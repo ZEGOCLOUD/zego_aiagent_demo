@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZegoTestSettingViewController">
+            <connections>
+                <outlet property="alphaButton" destination="Ty8-s9-1PH" id="U17-ZL-Ize"/>
+                <outlet property="appId" destination="IeY-nS-K76" id="Vjl-Mo-JAT"/>
+                <outlet property="clearLogButton" destination="6x4-KE-wcg" id="6Ne-O4-QI1"/>
+                <outlet property="customButton" destination="BRN-Tg-3tf" id="d7Q-Eh-TQJ"/>
+                <outlet property="saveButton" destination="Fae-51-rS5" id="MNN-aH-OrZ"/>
+                <outlet property="shareLogButton" destination="MPg-wc-UZL" id="P0n-ma-2Jo"/>
+                <outlet property="testButton" destination="PcF-Xj-epE" id="o7v-OA-UHd"/>
+                <outlet property="userId" destination="B33-Mb-dCO" id="98E-qd-hVF"/>
+                <outlet property="versionInfo" destination="zIz-hO-9f8" id="RHt-ni-HvT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcF-Xj-epE" customClass="ZegoRadioButton">
+                    <rect key="frame" x="134" y="110" width="147" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="61S-cx-e2Y"/>
+                        <constraint firstAttribute="width" constant="120" id="Dmg-lS-lqE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Beta(forTest)" image="unchecked">
+                        <color key="titleColor" systemColor="darkTextColor"/>
+                    </state>
+                    <state key="selected" image="checked"/>
+                    <connections>
+                        <action selector="buttonTouchUpInside:" destination="-1" eventType="touchUpInside" id="DWy-Ws-kMO"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="切换环境" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYC-t1-vc2">
+                    <rect key="frame" x="0.0" y="64" width="69.5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="su8-TF-zhK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" name="#FF4A50"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6x4-KE-wcg">
+                    <rect key="frame" x="151" y="551" width="100" height="50"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="ViV-Ft-TbO"/>
+                        <constraint firstAttribute="height" constant="50" id="vBK-ZU-tUD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <state key="normal" title="清除日志">
+                        <color key="titleColor" systemColor="groupTableViewBackgroundColor"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonTouchUpInside:" destination="-1" eventType="touchUpInside" id="woU-MR-CGX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fae-51-rS5">
+                    <rect key="frame" x="84" y="392" width="100" height="50"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="310" id="VvS-ek-HX6"/>
+                        <constraint firstAttribute="height" constant="50" id="lA4-x3-h8v"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <state key="normal" title="重启保存">
+                        <color key="titleColor" systemColor="groupTableViewBackgroundColor"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonTouchUpInside:" destination="-1" eventType="touchUpInside" id="JKM-mR-2ae"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1b-F4-7o1">
+                    <rect key="frame" x="22" y="59" width="44" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="USO-sx-5ZT"/>
+                        <constraint firstAttribute="height" constant="31" id="aC2-6t-7g6"/>
+                    </constraints>
+                    <state key="normal" title="Close"/>
+                    <connections>
+                        <action selector="buttonTouchUpInside:" destination="-1" eventType="touchUpInside" id="9Vk-dE-FqU"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ty8-s9-1PH" customClass="ZegoRadioButton">
+                    <rect key="frame" x="-4" y="110" width="165" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="404-Lh-vWm"/>
+                        <constraint firstAttribute="height" constant="24" id="qvM-pD-VCw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Alpha(forDev)" image="unchecked">
+                        <color key="titleColor" systemColor="darkTextColor"/>
+                    </state>
+                    <state key="selected" image="checked"/>
+                    <connections>
+                        <action selector="buttonTouchUpInside:" destination="-1" eventType="touchUpInside" id="w2k-3L-FpW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRN-Tg-3tf" customClass="ZegoRadioButton">
+                    <rect key="frame" x="273" y="110" width="100" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="9CC-C5-FnD"/>
+                        <constraint firstAttribute="width" constant="100" id="a04-SY-Kj7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Publish" image="unchecked">
+                        <color key="titleColor" systemColor="darkTextColor"/>
+                    </state>
+                    <state key="selected" image="checked"/>
+                    <connections>
+                        <action selector="buttonTouchUpInside:" destination="-1" eventType="touchUpInside" id="cSe-cD-yKx"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版本号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIz-hO-9f8">
+                    <rect key="frame" x="9" y="825" width="52" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="0Yu-EI-gf8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="appID：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeY-nS-K76">
+                    <rect key="frame" x="20" y="320" width="57" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="VPJ-Xr-gh4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userID:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B33-Mb-dCO">
+                    <rect key="frame" x="20" y="351" width="59" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="mAu-J3-vUN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPg-wc-UZL">
+                    <rect key="frame" x="151" y="459" width="100" height="50"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="lqV-MZ-rrq"/>
+                        <constraint firstAttribute="width" constant="150" id="vhC-hS-lK4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <state key="normal" title="分享日志">
+                        <color key="titleColor" systemColor="groupTableViewBackgroundColor"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonTouchUpInside:" destination="-1" eventType="touchUpInside" id="vnH-QL-hbq"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Ty8-s9-1PH" firstAttribute="top" secondItem="J1b-F4-7o1" secondAttribute="bottom" constant="40" id="67q-us-2ZU"/>
+                <constraint firstItem="IeY-nS-K76" firstAttribute="top" secondItem="6x4-KE-wcg" secondAttribute="bottom" constant="10" id="8oX-hf-Swy"/>
+                <constraint firstItem="AYC-t1-vc2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="8s3-9e-pnd"/>
+                <constraint firstItem="PcF-Xj-epE" firstAttribute="leading" secondItem="Ty8-s9-1PH" secondAttribute="trailing" constant="10" id="CEu-4P-OII"/>
+                <constraint firstItem="6x4-KE-wcg" firstAttribute="top" secondItem="Fae-51-rS5" secondAttribute="bottom" constant="10" id="E5s-cr-AVH"/>
+                <constraint firstItem="IeY-nS-K76" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="FeE-vH-Tas"/>
+                <constraint firstItem="B33-Mb-dCO" firstAttribute="top" secondItem="IeY-nS-K76" secondAttribute="bottom" constant="10" id="Iku-Up-YOX"/>
+                <constraint firstItem="6x4-KE-wcg" firstAttribute="leading" secondItem="MPg-wc-UZL" secondAttribute="trailing" constant="10" id="MA3-5J-6Q5"/>
+                <constraint firstItem="zIz-hO-9f8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="P8L-W5-j1h"/>
+                <constraint firstItem="B33-Mb-dCO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="R7v-AB-SSB"/>
+                <constraint firstItem="J1b-F4-7o1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="Rtg-V8-9Qi"/>
+                <constraint firstItem="MPg-wc-UZL" firstAttribute="top" secondItem="Fae-51-rS5" secondAttribute="bottom" constant="10" id="VG9-vk-Hhu"/>
+                <constraint firstItem="Fae-51-rS5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="200" id="XGW-cL-8wi"/>
+                <constraint firstItem="J1b-F4-7o1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="59" id="YB8-D8-xtF"/>
+                <constraint firstItem="BRN-Tg-3tf" firstAttribute="leading" secondItem="PcF-Xj-epE" secondAttribute="trailing" constant="10" id="ajt-7S-c8y"/>
+                <constraint firstAttribute="trailing" secondItem="BRN-Tg-3tf" secondAttribute="trailing" constant="20" id="ccs-nK-07E"/>
+                <constraint firstItem="zIz-hO-9f8" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" constant="-50" id="dRW-BR-235"/>
+                <constraint firstItem="Ty8-s9-1PH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="hHZ-SQ-APm"/>
+                <constraint firstItem="BRN-Tg-3tf" firstAttribute="top" secondItem="J1b-F4-7o1" secondAttribute="bottom" constant="40" id="k5F-S4-rYW"/>
+                <constraint firstItem="Fae-51-rS5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kOl-h0-ZML"/>
+                <constraint firstAttribute="trailing" secondItem="AYC-t1-vc2" secondAttribute="trailing" id="tOL-Ko-8so"/>
+                <constraint firstItem="MPg-wc-UZL" firstAttribute="leading" secondItem="Fae-51-rS5" secondAttribute="leading" id="vRo-zv-ZJH"/>
+                <constraint firstItem="PcF-Xj-epE" firstAttribute="top" secondItem="J1b-F4-7o1" secondAttribute="bottom" constant="40" id="vz6-jm-zCU"/>
+                <constraint firstItem="AYC-t1-vc2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yNm-iG-ImK"/>
+            </constraints>
+            <point key="canvasLocation" x="155.07246376811597" y="119.86607142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="checked" width="24" height="24"/>
+        <image name="unchecked" width="24" height="24"/>
+        <namedColor name="#FF4A50">
+            <color red="1" green="0.28999999165534973" blue="0.31400001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

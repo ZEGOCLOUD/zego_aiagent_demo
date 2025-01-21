@@ -1,0 +1,1103 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		51AE5E67E5D7BBD525B6B8AC /* Pods_ai_companion_uikit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32C695E212AFC9185B291E9 /* Pods_ai_companion_uikit.framework */; };
+		86235C862D263393006E5A06 /* ZegoCallVCNameUIComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235C852D263393006E5A06 /* ZegoCallVCNameUIComponent.m */; };
+		86235C8B2D2675BC006E5A06 /* ZegoAICompanionCallVCWithExpress.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235C8A2D2675BC006E5A06 /* ZegoAICompanionCallVCWithExpress.m */; };
+		86235C8E2D267704006E5A06 /* ZegoAIAgentExpressHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235C8C2D267704006E5A06 /* ZegoAIAgentExpressHelper.m */; };
+		86235C912D267762006E5A06 /* ZegoAIComponionExpressMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235C902D267762006E5A06 /* ZegoAIComponionExpressMainView.m */; };
+		86235C922D2677BD006E5A06 /* ZegoExpressEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86235C872D267489006E5A06 /* ZegoExpressEngine.xcframework */; };
+		86235C932D2677BD006E5A06 /* ZegoExpressEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86235C872D267489006E5A06 /* ZegoExpressEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		86235CC22D2B85AB006E5A06 /* ZegoAICompanionCallVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235CC12D2B85AB006E5A06 /* ZegoAICompanionCallVC.m */; };
+		862C9C772C7ED94000BE1DA9 /* AppDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 862C9C752C7ED94000BE1DA9 /* AppDataManager.m */; };
+		862C9C7D2C7F15D900BE1DA9 /* ZegoAiCompanionHttpHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 862C9C7C2C7F15D900BE1DA9 /* ZegoAiCompanionHttpHelper.mm */; };
+		862C9CC32C809BDD00BE1DA9 /* ic_launcher_round.webp in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CAD2C809BD000BE1DA9 /* ic_launcher_round.webp */; };
+		862C9CC42C809BDD00BE1DA9 /* ic_launcher.webp in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CAE2C809BD000BE1DA9 /* ic_launcher.webp */; };
+		862C9CC52C809BDD00BE1DA9 /* icon_audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CAF2C809BD000BE1DA9 /* icon_audio.png */; };
+		862C9CC62C809BDD00BE1DA9 /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CB02C809BD000BE1DA9 /* icon_back.png */; };
+		862C9CC72C809BDD00BE1DA9 /* icon_change.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CB12C809BD000BE1DA9 /* icon_change.png */; };
+		862C9CC82C809BDD00BE1DA9 /* icon_chose.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CB22C809BD000BE1DA9 /* icon_chose.png */; };
+		862C9CC92C809BDD00BE1DA9 /* icon_clean.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CB32C809BD000BE1DA9 /* icon_clean.png */; };
+		862C9CCA2C809BDD00BE1DA9 /* icon_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CB42C809BD000BE1DA9 /* icon_more.png */; };
+		862C9CCC2C809BDD00BE1DA9 /* icon_setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CB62C809BD000BE1DA9 /* icon_setting.png */; };
+		862C9CCD2C809BDD00BE1DA9 /* icon_wenxin.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CB72C809BD000BE1DA9 /* icon_wenxin.png */; };
+		862C9CCE2C809BDD00BE1DA9 /* icon_zhinengti.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CB82C809BD000BE1DA9 /* icon_zhinengti.png */; };
+		862C9CCF2C809BDD00BE1DA9 /* img_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CB92C809BD000BE1DA9 /* img_background.png */; };
+		862C9CD02C809BDD00BE1DA9 /* kefu.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CBA2C809BD000BE1DA9 /* kefu.png */; };
+		862C9CD12C809BDD00BE1DA9 /* main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CBB2C809BD000BE1DA9 /* main_bg.png */; };
+		862C9CD22C809BDD00BE1DA9 /* main_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CBC2C809BD000BE1DA9 /* main_more.png */; };
+		862C9CD32C809BDD00BE1DA9 /* main_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CBD2C809BD000BE1DA9 /* main_title.png */; };
+		862C9CD42C809BDD00BE1DA9 /* peiban.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CBE2C809BD000BE1DA9 /* peiban.png */; };
+		862C9CD52C809BDD00BE1DA9 /* pic_coming.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CBF2C809BD000BE1DA9 /* pic_coming.png */; };
+		862C9CD62C809BDD00BE1DA9 /* tts_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CC02C809BD000BE1DA9 /* tts_arrow.png */; };
+		862C9CD72C809BDD00BE1DA9 /* zhibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CC12C809BD000BE1DA9 /* zhibo.png */; };
+		862C9CDF2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 862C9CDD2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.m */; };
+		862C9CE42C81E26800BE1DA9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 862C9CE22C81E26800BE1DA9 /* SceneDelegate.m */; };
+		8649AA012D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA002D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m */; };
+		8649AB8C2D1024A2003E1EB6 /* zlogger.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8649AB8B2D1024A2003E1EB6 /* zlogger.xcframework */; };
+		86756CA32CEF401E00A84E20 /* ZegoRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86756CA22CEF401E00A84E20 /* ZegoRadioButton.m */; };
+		86756CA52CF022E500A84E20 /* AiCompanionConfig.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86756CA42CF022E500A84E20 /* AiCompanionConfig.mm */; };
+		86756CA92CF02DE600A84E20 /* ZegoTestSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86756CA62CF02DE600A84E20 /* ZegoTestSettingViewController.m */; };
+		86756CAA2CF02DE600A84E20 /* ZegoTestSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86756CA72CF02DE600A84E20 /* ZegoTestSettingViewController.xib */; };
+		86756CB82CF420C600A84E20 /* icon_mic_jinyong.png in Resources */ = {isa = PBXBuildFile; fileRef = 86756CB52CF420C600A84E20 /* icon_mic_jinyong.png */; };
+		86756CB92CF420C600A84E20 /* icon_mic_jinyong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86756CB62CF420C600A84E20 /* icon_mic_jinyong@2x.png */; };
+		86756CBA2CF420C600A84E20 /* icon_mic_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 86756CB72CF420C600A84E20 /* icon_mic_normal.png */; };
+		86756CBC2CF4230000A84E20 /* icon_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 86756CBB2CF4230000A84E20 /* icon_iphone.png */; };
+		86756CBE2CF42D1700A84E20 /* icon_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86756CBD2CF42D1700A84E20 /* icon_setting@2x.png */; };
+		867C228B2C00446C00F4717E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 867C228A2C00446C00F4717E /* AppDelegate.m */; };
+		867C22912C00446C00F4717E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867C22902C00446C00F4717E /* ViewController.m */; };
+		867C22942C00446C00F4717E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 867C22932C00446C00F4717E /* Base */; };
+		867C22962C00446D00F4717E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 867C22952C00446D00F4717E /* Assets.xcassets */; };
+		867C22992C00446D00F4717E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 867C22982C00446D00F4717E /* Base */; };
+		867C229C2C00446D00F4717E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 867C229B2C00446D00F4717E /* main.m */; };
+		869E4C4D2CE1A6D1000AA962 /* icon_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 869E4C4B2CE1A6D1000AA962 /* icon_edit.png */; };
+		869E4C4E2CE1A6D1000AA962 /* icon_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 869E4C4C2CE1A6D1000AA962 /* icon_edit@2x.png */; };
+		869E4C512CE1B0C2000AA962 /* ZegoAIComUpdateAIAgentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 869E4C502CE1B0C2000AA962 /* ZegoAIComUpdateAIAgentVC.m */; };
+		869E4C562CEB16F4000AA962 /* ZegoAskAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 869E4C542CEB16F4000AA962 /* ZegoAskAnswerTableViewCell.m */; };
+		869E4C572CEB16F4000AA962 /* ZegoStaticsLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 869E4C552CEB16F4000AA962 /* ZegoStaticsLogView.m */; };
+		869E4C5A2CEB17C4000AA962 /* PerfStaticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 869E4C582CEB17C4000AA962 /* PerfStaticsHelper.m */; };
+		86B5C1A32CA1848500333A13 /* ZegoAiCompanionUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86B5C1A22CA1848500333A13 /* ZegoAiCompanionUtil.mm */; };
+		86B5C1A62CA2DA5600333A13 /* ZegoSettingsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B5C1A52CA2DA5600333A13 /* ZegoSettingsContainerView.m */; };
+		86C493132D23D487005090F1 /* AVAudioSession+Switch.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C493122D23D487005090F1 /* AVAudioSession+Switch.m */; };
+		86D32CA82CA93B6B008F6FA1 /* ZegoAIComponionMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CA72CA93B6B008F6FA1 /* ZegoAIComponionMainView.m */; };
+		86D32CCA2CC11C17008F6FA1 /* ZegoAIComConversationListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CC92CC11C17008F6FA1 /* ZegoAIComConversationListVC.swift */; };
+		86D32CD12CC20F3A008F6FA1 /* nav-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D32CCF2CC20F3A008F6FA1 /* nav-back@2x.png */; };
+		86D32CD22CC20F3A008F6FA1 /* nav-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D32CD02CC20F3A008F6FA1 /* nav-back.png */; };
+		86D32CD82CCA2CF5008F6FA1 /* icon_touxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D32CD62CCA2CF5008F6FA1 /* icon_touxiang.png */; };
+		86D32CD92CCA2CF5008F6FA1 /* icon_touxiang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D32CD72CCA2CF5008F6FA1 /* icon_touxiang@2x.png */; };
+		86D32CDC2CCA467F008F6FA1 /* gender-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D32CDA2CCA467E008F6FA1 /* gender-arrow.png */; };
+		86D32CDD2CCA467F008F6FA1 /* gender-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D32CDB2CCA467E008F6FA1 /* gender-arrow@2x.png */; };
+		86D32CE02CCA61A4008F6FA1 /* icon_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D32CDE2CCA61A4008F6FA1 /* icon_add@2x.png */; };
+		86D32CE12CCA61A4008F6FA1 /* icon_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D32CDF2CCA61A4008F6FA1 /* icon_add.png */; };
+		86D32CEA2CCB8AC8008F6FA1 /* ZegoAIComCreateAIAgentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CE62CCB8AC8008F6FA1 /* ZegoAIComCreateAIAgentVC.m */; };
+		86D32CEB2CCB8AC8008F6FA1 /* ZegoInsetsLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CE82CCB8AC8008F6FA1 /* ZegoInsetsLabelView.m */; };
+		86D32CEE2CCB8F17008F6FA1 /* ZegoGenderSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CED2CCB8F17008F6FA1 /* ZegoGenderSelectView.m */; };
+		86D32CF12CCB9331008F6FA1 /* ZegoPopUpContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CEF2CCB9331008F6FA1 /* ZegoPopUpContainerView.m */; };
+		86D32CF52CD08D33008F6FA1 /* ZegoAutoAdjustTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CF42CD08D33008F6FA1 /* ZegoAutoAdjustTextView.m */; };
+		86D32CF82CD094A6008F6FA1 /* ZegoPhotoSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CF72CD094A6008F6FA1 /* ZegoPhotoSelectView.m */; };
+		86D32D052CD48303008F6FA1 /* ZLoggerWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CFF2CD48303008F6FA1 /* ZLoggerWrapper.cpp */; };
+		86D32D142CD4CE94008F6FA1 /* LogUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86D32D122CD4CE94008F6FA1 /* LogUtil.cpp */; };
+		86D32D1A2CD4DD5A008F6FA1 /* AIAgentLogUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86D32D182CD4DD5A008F6FA1 /* AIAgentLogUtil.mm */; };
+		86DBC0292C87284200B2A1AB /* icon in Resources */ = {isa = PBXBuildFile; fileRef = 86DBC0282C87284200B2A1AB /* icon */; };
+		86DBC0302C89D39100B2A1AB /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DBC02E2C89D39100B2A1AB /* UIView+Toast.m */; };
+		86DBC0422C92880100B2A1AB /* ZegoCustomNavBarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DBC0412C92880100B2A1AB /* ZegoCustomNavBarHeaderView.m */; };
+		86DBC04B2C94563200B2A1AB /* icon_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DBC0492C94563100B2A1AB /* icon_iphone@2x.png */; };
+		86DBC0542C94572200B2A1AB /* icon_mic_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DBC0502C94572200B2A1AB /* icon_mic_normal@2x.png */; };
+		86DBC0572C9566B900B2A1AB /* ZegoAudioChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DBC0552C9566B900B2A1AB /* ZegoAudioChatTableViewCell.m */; };
+		86DBC05A2C95673000B2A1AB /* ZegoAudioChatMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DBC0582C95673000B2A1AB /* ZegoAudioChatMsgModel.m */; };
+		86DBC0612C9A80B100B2A1AB /* ZegoAudioChatCellLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DBC05F2C9A80B100B2A1AB /* ZegoAudioChatCellLabelView.m */; };
+		86DBC0A82C9C4C0F00B2A1AB /* ZegoAICompanionSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DBC0A42C9C4C0E00B2A1AB /* ZegoAICompanionSettingsView.m */; };
+		86DBC0A92C9C4C0F00B2A1AB /* ZegoTimbreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DBC0A62C9C4C0E00B2A1AB /* ZegoTimbreCollectionViewCell.m */; };
+		86DBC0AC2C9D6E0000B2A1AB /* ZegoTTSComponySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DBC0AB2C9D6E0000B2A1AB /* ZegoTTSComponySelectView.m */; };
+		86DBC0B22CA1137D00B2A1AB /* AppExtraConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 86DBC0B12CA1137D00B2A1AB /* AppExtraConfig.json */; };
+		86DD163C2CFEBA500098B1C0 /* icon_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DD163A2CFEBA500098B1C0 /* icon_close.png */; };
+		86DD163D2CFEBA500098B1C0 /* icon_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DD163B2CFEBA500098B1C0 /* icon_close@2x.png */; };
+		86DD16452CFF24F80098B1C0 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DD16432CFF24F80098B1C0 /* libc++.1.tbd */; };
+		86DD16462CFF24F80098B1C0 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DD16442CFF24F80098B1C0 /* libc++.tbd */; };
+		86DD16492CFF26F90098B1C0 /* WavFileWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16482CFF26F90098B1C0 /* WavFileWriter.cpp */; };
+		86DD164C2CFF27BA0098B1C0 /* PlayAudioRecorderUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86DD164A2CFF27BA0098B1C0 /* PlayAudioRecorderUtil.mm */; };
+		86DD16512D0198080098B1C0 /* ZegoVoiceActivityChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD164F2D0198080098B1C0 /* ZegoVoiceActivityChecker.m */; };
+		86DD16C72D09B1820098B1C0 /* ZGMWAsyncPCM.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16C52D09B1820098B1C0 /* ZGMWAsyncPCM.m */; };
+		86DD16D72D09B3B80098B1C0 /* ZegoPopupMenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16D22D09B3B70098B1C0 /* ZegoPopupMenuViewCell.m */; };
+		86DD16D82D09B3B80098B1C0 /* ZegoPopupMenuWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16D42D09B3B70098B1C0 /* ZegoPopupMenuWindow.m */; };
+		86DD16D92D09B3B80098B1C0 /* ZegoPopupMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16D62D09B3B80098B1C0 /* ZegoPopupMenuItem.m */; };
+		86DD16F62D09B4110098B1C0 /* ZegoAIAgentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16F42D09B4110098B1C0 /* ZegoAIAgentHelper.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		86235C942D2677BD006E5A06 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				86235C932D2677BD006E5A06 /* ZegoExpressEngine.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0D96BB834C67212F21C45CF0 /* Pods-ai_companion_uikit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ai_companion_uikit.release.xcconfig"; path = "Target Support Files/Pods-ai_companion_uikit/Pods-ai_companion_uikit.release.xcconfig"; sourceTree = "<group>"; };
+		180C4AF0C581B93A4E891E09 /* Pods_live_streaming_ocTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_live_streaming_ocTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DDDCE432F05EA5BC7E700E5 /* Pods_live_streaming_oc_live_streaming_ocUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_live_streaming_oc_live_streaming_ocUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CCC5295CCA4F015DE892D65 /* Pods-ai_companion_oc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ai_companion_oc.debug.xcconfig"; path = "Target Support Files/Pods-ai_companion_oc/Pods-ai_companion_oc.debug.xcconfig"; sourceTree = "<group>"; };
+		86235C842D263393006E5A06 /* ZegoCallVCNameUIComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoCallVCNameUIComponent.h; sourceTree = "<group>"; };
+		86235C852D263393006E5A06 /* ZegoCallVCNameUIComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoCallVCNameUIComponent.m; sourceTree = "<group>"; };
+		86235C872D267489006E5A06 /* ZegoExpressEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ZegoExpressEngine.xcframework; path = Libs/Express/ZegoExpressEngine.xcframework; sourceTree = "<group>"; };
+		86235C892D2675BC006E5A06 /* ZegoAICompanionCallVCWithExpress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZegoAICompanionCallVCWithExpress.h; path = ai_companion_express/aiagent/ZegoAICompanionCallVCWithExpress.h; sourceTree = SOURCE_ROOT; };
+		86235C8A2D2675BC006E5A06 /* ZegoAICompanionCallVCWithExpress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZegoAICompanionCallVCWithExpress.m; path = ai_companion_express/aiagent/ZegoAICompanionCallVCWithExpress.m; sourceTree = SOURCE_ROOT; };
+		86235C8C2D267704006E5A06 /* ZegoAIAgentExpressHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZegoAIAgentExpressHelper.m; path = ai_companion_express/aiagent/ZegoAIAgentExpressHelper.m; sourceTree = SOURCE_ROOT; };
+		86235C8D2D267704006E5A06 /* ZegoAIAgentExpressHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZegoAIAgentExpressHelper.h; path = ai_companion_express/aiagent/ZegoAIAgentExpressHelper.h; sourceTree = SOURCE_ROOT; };
+		86235C8F2D267762006E5A06 /* ZegoAIComponionExpressMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZegoAIComponionExpressMainView.h; path = ai_companion_express/aiagent/ZegoAIComponionExpressMainView.h; sourceTree = SOURCE_ROOT; };
+		86235C902D267762006E5A06 /* ZegoAIComponionExpressMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZegoAIComponionExpressMainView.m; path = ai_companion_express/aiagent/ZegoAIComponionExpressMainView.m; sourceTree = SOURCE_ROOT; };
+		86235CC02D2B85AB006E5A06 /* ZegoAICompanionCallVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAICompanionCallVC.h; sourceTree = "<group>"; };
+		86235CC12D2B85AB006E5A06 /* ZegoAICompanionCallVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAICompanionCallVC.m; sourceTree = "<group>"; };
+		862C9C742C7ED94000BE1DA9 /* AppDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDataManager.h; sourceTree = "<group>"; };
+		862C9C752C7ED94000BE1DA9 /* AppDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDataManager.m; sourceTree = "<group>"; };
+		862C9C7B2C7F15D900BE1DA9 /* ZegoAiCompanionHttpHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAiCompanionHttpHelper.h; sourceTree = "<group>"; };
+		862C9C7C2C7F15D900BE1DA9 /* ZegoAiCompanionHttpHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZegoAiCompanionHttpHelper.mm; sourceTree = "<group>"; };
+		862C9CAD2C809BD000BE1DA9 /* ic_launcher_round.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = ic_launcher_round.webp; sourceTree = "<group>"; };
+		862C9CAE2C809BD000BE1DA9 /* ic_launcher.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = ic_launcher.webp; sourceTree = "<group>"; };
+		862C9CAF2C809BD000BE1DA9 /* icon_audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_audio.png; sourceTree = "<group>"; };
+		862C9CB02C809BD000BE1DA9 /* icon_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_back.png; sourceTree = "<group>"; };
+		862C9CB12C809BD000BE1DA9 /* icon_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_change.png; sourceTree = "<group>"; };
+		862C9CB22C809BD000BE1DA9 /* icon_chose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_chose.png; sourceTree = "<group>"; };
+		862C9CB32C809BD000BE1DA9 /* icon_clean.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_clean.png; sourceTree = "<group>"; };
+		862C9CB42C809BD000BE1DA9 /* icon_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_more.png; sourceTree = "<group>"; };
+		862C9CB62C809BD000BE1DA9 /* icon_setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_setting.png; sourceTree = "<group>"; };
+		862C9CB72C809BD000BE1DA9 /* icon_wenxin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wenxin.png; sourceTree = "<group>"; };
+		862C9CB82C809BD000BE1DA9 /* icon_zhinengti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zhinengti.png; sourceTree = "<group>"; };
+		862C9CB92C809BD000BE1DA9 /* img_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_background.png; sourceTree = "<group>"; };
+		862C9CBA2C809BD000BE1DA9 /* kefu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kefu.png; sourceTree = "<group>"; };
+		862C9CBB2C809BD000BE1DA9 /* main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_bg.png; sourceTree = "<group>"; };
+		862C9CBC2C809BD000BE1DA9 /* main_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_more.png; sourceTree = "<group>"; };
+		862C9CBD2C809BD000BE1DA9 /* main_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_title.png; sourceTree = "<group>"; };
+		862C9CBE2C809BD000BE1DA9 /* peiban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peiban.png; sourceTree = "<group>"; };
+		862C9CBF2C809BD000BE1DA9 /* pic_coming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_coming.png; sourceTree = "<group>"; };
+		862C9CC02C809BD000BE1DA9 /* tts_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tts_arrow.png; sourceTree = "<group>"; };
+		862C9CC12C809BD000BE1DA9 /* zhibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhibo.png; sourceTree = "<group>"; };
+		862C9CDD2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoCustomCollectionViewCell.m; sourceTree = "<group>"; };
+		862C9CDE2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoCustomCollectionViewCell.h; sourceTree = "<group>"; };
+		862C9CE22C81E26800BE1DA9 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		862C9CE32C81E26800BE1DA9 /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		8649A9FF2D0C5AA8003E1EB6 /* ZegoAudioChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatTableView.h; sourceTree = "<group>"; };
+		8649AA002D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatTableView.m; sourceTree = "<group>"; };
+		8649AB8B2D1024A2003E1EB6 /* zlogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = zlogger.xcframework; path = Libs/Zlogger/libs/ios/zlogger.xcframework; sourceTree = "<group>"; };
+		86756CA12CEF401E00A84E20 /* ZegoRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoRadioButton.h; sourceTree = "<group>"; };
+		86756CA22CEF401E00A84E20 /* ZegoRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoRadioButton.m; sourceTree = "<group>"; };
+		86756CA42CF022E500A84E20 /* AiCompanionConfig.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AiCompanionConfig.mm; sourceTree = "<group>"; };
+		86756CA62CF02DE600A84E20 /* ZegoTestSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoTestSettingViewController.m; sourceTree = "<group>"; };
+		86756CA72CF02DE600A84E20 /* ZegoTestSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZegoTestSettingViewController.xib; sourceTree = "<group>"; };
+		86756CA82CF02DE600A84E20 /* ZegoTestSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoTestSettingViewController.h; sourceTree = "<group>"; };
+		86756CB52CF420C600A84E20 /* icon_mic_jinyong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mic_jinyong.png; sourceTree = "<group>"; };
+		86756CB62CF420C600A84E20 /* icon_mic_jinyong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_mic_jinyong@2x.png"; sourceTree = "<group>"; };
+		86756CB72CF420C600A84E20 /* icon_mic_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mic_normal.png; sourceTree = "<group>"; };
+		86756CBB2CF4230000A84E20 /* icon_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_iphone.png; sourceTree = "<group>"; };
+		86756CBD2CF42D1700A84E20 /* icon_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_setting@2x.png"; sourceTree = "<group>"; };
+		86756CBF2CF4A3E800A84E20 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		86756CC02CF4A3E800A84E20 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		867C22862C00446C00F4717E /* ai_companion_uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ai_companion_uikit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		867C22892C00446C00F4717E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		867C228A2C00446C00F4717E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		867C228F2C00446C00F4717E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		867C22902C00446C00F4717E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		867C22932C00446C00F4717E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		867C22952C00446D00F4717E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		867C22982C00446D00F4717E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		867C229A2C00446D00F4717E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		867C229B2C00446D00F4717E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		869E4C4B2CE1A6D1000AA962 /* icon_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_edit.png; sourceTree = "<group>"; };
+		869E4C4C2CE1A6D1000AA962 /* icon_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_edit@2x.png"; sourceTree = "<group>"; };
+		869E4C4F2CE1B0C2000AA962 /* ZegoAIComUpdateAIAgentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAIComUpdateAIAgentVC.h; sourceTree = "<group>"; };
+		869E4C502CE1B0C2000AA962 /* ZegoAIComUpdateAIAgentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAIComUpdateAIAgentVC.m; sourceTree = "<group>"; };
+		869E4C522CEB16F3000AA962 /* ZegoAskAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAskAnswerTableViewCell.h; sourceTree = "<group>"; };
+		869E4C532CEB16F3000AA962 /* ZegoStaticsLogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoStaticsLogView.h; sourceTree = "<group>"; };
+		869E4C542CEB16F4000AA962 /* ZegoAskAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAskAnswerTableViewCell.m; sourceTree = "<group>"; };
+		869E4C552CEB16F4000AA962 /* ZegoStaticsLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoStaticsLogView.m; sourceTree = "<group>"; };
+		869E4C582CEB17C4000AA962 /* PerfStaticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfStaticsHelper.m; sourceTree = "<group>"; };
+		869E4C592CEB17C4000AA962 /* PerfStaticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfStaticsHelper.h; sourceTree = "<group>"; };
+		869E4C5B2CEB2FA2000AA962 /* ai_companion_ocDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ai_companion_ocDebug.entitlements; sourceTree = "<group>"; };
+		86B5C1A12CA1848500333A13 /* ZegoAiCompanionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAiCompanionUtil.h; sourceTree = "<group>"; };
+		86B5C1A22CA1848500333A13 /* ZegoAiCompanionUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZegoAiCompanionUtil.mm; sourceTree = "<group>"; };
+		86B5C1A42CA2DA5600333A13 /* ZegoSettingsContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoSettingsContainerView.h; sourceTree = "<group>"; };
+		86B5C1A52CA2DA5600333A13 /* ZegoSettingsContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoSettingsContainerView.m; sourceTree = "<group>"; };
+		86C493112D23D487005090F1 /* AVAudioSession+Switch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVAudioSession+Switch.h"; sourceTree = "<group>"; };
+		86C493122D23D487005090F1 /* AVAudioSession+Switch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVAudioSession+Switch.m"; sourceTree = "<group>"; };
+		86D32CA62CA93B6B008F6FA1 /* ZegoAIComponionMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAIComponionMainView.h; sourceTree = "<group>"; };
+		86D32CA72CA93B6B008F6FA1 /* ZegoAIComponionMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAIComponionMainView.m; sourceTree = "<group>"; };
+		86D32CAC2CA972D1008F6FA1 /* AiCompanionConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AiCompanionConfig.h; sourceTree = "<group>"; };
+		86D32CC92CC11C17008F6FA1 /* ZegoAIComConversationListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZegoAIComConversationListVC.swift; sourceTree = "<group>"; };
+		86D32CCE2CC20733008F6FA1 /* ai_companion_oc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ai_companion_oc-Bridging-Header.h"; sourceTree = "<group>"; };
+		86D32CCF2CC20F3A008F6FA1 /* nav-back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-back@2x.png"; sourceTree = "<group>"; };
+		86D32CD02CC20F3A008F6FA1 /* nav-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-back.png"; sourceTree = "<group>"; };
+		86D32CD62CCA2CF5008F6FA1 /* icon_touxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_touxiang.png; sourceTree = "<group>"; };
+		86D32CD72CCA2CF5008F6FA1 /* icon_touxiang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_touxiang@2x.png"; sourceTree = "<group>"; };
+		86D32CDA2CCA467E008F6FA1 /* gender-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gender-arrow.png"; sourceTree = "<group>"; };
+		86D32CDB2CCA467E008F6FA1 /* gender-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gender-arrow@2x.png"; sourceTree = "<group>"; };
+		86D32CDE2CCA61A4008F6FA1 /* icon_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add@2x.png"; sourceTree = "<group>"; };
+		86D32CDF2CCA61A4008F6FA1 /* icon_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_add.png; sourceTree = "<group>"; };
+		86D32CE52CCB8AC8008F6FA1 /* ZegoAIComCreateAIAgentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAIComCreateAIAgentVC.h; sourceTree = "<group>"; };
+		86D32CE62CCB8AC8008F6FA1 /* ZegoAIComCreateAIAgentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAIComCreateAIAgentVC.m; sourceTree = "<group>"; };
+		86D32CE72CCB8AC8008F6FA1 /* ZegoInsetsLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoInsetsLabelView.h; sourceTree = "<group>"; };
+		86D32CE82CCB8AC8008F6FA1 /* ZegoInsetsLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoInsetsLabelView.m; sourceTree = "<group>"; };
+		86D32CEC2CCB8F17008F6FA1 /* ZegoGenderSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoGenderSelectView.h; sourceTree = "<group>"; };
+		86D32CED2CCB8F17008F6FA1 /* ZegoGenderSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoGenderSelectView.m; sourceTree = "<group>"; };
+		86D32CEF2CCB9331008F6FA1 /* ZegoPopUpContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoPopUpContainerView.m; sourceTree = "<group>"; };
+		86D32CF02CCB9331008F6FA1 /* ZegoPopUpContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoPopUpContainerView.h; sourceTree = "<group>"; };
+		86D32CF32CD08D33008F6FA1 /* ZegoAutoAdjustTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAutoAdjustTextView.h; sourceTree = "<group>"; };
+		86D32CF42CD08D33008F6FA1 /* ZegoAutoAdjustTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAutoAdjustTextView.m; sourceTree = "<group>"; };
+		86D32CF62CD094A6008F6FA1 /* ZegoPhotoSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoPhotoSelectView.h; sourceTree = "<group>"; };
+		86D32CF72CD094A6008F6FA1 /* ZegoPhotoSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoPhotoSelectView.m; sourceTree = "<group>"; };
+		86D32CFF2CD48303008F6FA1 /* ZLoggerWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZLoggerWrapper.cpp; sourceTree = "<group>"; };
+		86D32D002CD48303008F6FA1 /* ZLoggerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLoggerWrapper.h; sourceTree = "<group>"; };
+		86D32D072CD484C6008F6FA1 /* zlogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = zlogger.xcframework; path = ai_companion_oc/Libs/logger/libs/ios/zlogger.xcframework; sourceTree = "<group>"; };
+		86D32D0E2CD4C61F008F6FA1 /* zlogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = zlogger.xcframework; path = ai_companion_oc/Libs/Zlogger/libs/ios/zlogger.xcframework; sourceTree = "<group>"; };
+		86D32D122CD4CE94008F6FA1 /* LogUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogUtil.cpp; sourceTree = "<group>"; };
+		86D32D132CD4CE94008F6FA1 /* LogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogUtil.h; sourceTree = "<group>"; };
+		86D32D182CD4DD5A008F6FA1 /* AIAgentLogUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AIAgentLogUtil.mm; sourceTree = "<group>"; };
+		86D32D1B2CD4E032008F6FA1 /* AIAgentLogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIAgentLogUtil.h; sourceTree = "<group>"; };
+		86DBC0282C87284200B2A1AB /* icon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icon; sourceTree = "<group>"; };
+		86DBC02D2C89D39100B2A1AB /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		86DBC02E2C89D39100B2A1AB /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		86DBC0402C92880100B2A1AB /* ZegoCustomNavBarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoCustomNavBarHeaderView.h; sourceTree = "<group>"; };
+		86DBC0412C92880100B2A1AB /* ZegoCustomNavBarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoCustomNavBarHeaderView.m; sourceTree = "<group>"; };
+		86DBC0492C94563100B2A1AB /* icon_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_iphone@2x.png"; sourceTree = "<group>"; };
+		86DBC0502C94572200B2A1AB /* icon_mic_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_mic_normal@2x.png"; sourceTree = "<group>"; };
+		86DBC0552C9566B900B2A1AB /* ZegoAudioChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatTableViewCell.m; sourceTree = "<group>"; };
+		86DBC0562C9566B900B2A1AB /* ZegoAudioChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatTableViewCell.h; sourceTree = "<group>"; };
+		86DBC0582C95673000B2A1AB /* ZegoAudioChatMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatMsgModel.m; sourceTree = "<group>"; };
+		86DBC0592C95673000B2A1AB /* ZegoAudioChatMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatMsgModel.h; sourceTree = "<group>"; };
+		86DBC05F2C9A80B100B2A1AB /* ZegoAudioChatCellLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatCellLabelView.m; sourceTree = "<group>"; };
+		86DBC0602C9A80B100B2A1AB /* ZegoAudioChatCellLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatCellLabelView.h; sourceTree = "<group>"; };
+		86DBC0A42C9C4C0E00B2A1AB /* ZegoAICompanionSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAICompanionSettingsView.m; sourceTree = "<group>"; };
+		86DBC0A52C9C4C0E00B2A1AB /* ZegoAICompanionSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAICompanionSettingsView.h; sourceTree = "<group>"; };
+		86DBC0A62C9C4C0E00B2A1AB /* ZegoTimbreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoTimbreCollectionViewCell.m; sourceTree = "<group>"; };
+		86DBC0A72C9C4C0E00B2A1AB /* ZegoTimbreCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoTimbreCollectionViewCell.h; sourceTree = "<group>"; };
+		86DBC0AA2C9D6DFF00B2A1AB /* ZegoTTSComponySelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoTTSComponySelectView.h; sourceTree = "<group>"; };
+		86DBC0AB2C9D6E0000B2A1AB /* ZegoTTSComponySelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoTTSComponySelectView.m; sourceTree = "<group>"; };
+		86DBC0AD2C9D8BDC00B2A1AB /* ZegoAIComponionSettingsDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAIComponionSettingsDef.h; sourceTree = "<group>"; };
+		86DBC0B12CA1137D00B2A1AB /* AppExtraConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppExtraConfig.json; sourceTree = "<group>"; };
+		86DD163A2CFEBA500098B1C0 /* icon_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_close.png; sourceTree = "<group>"; };
+		86DD163B2CFEBA500098B1C0 /* icon_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_close@2x.png"; sourceTree = "<group>"; };
+		86DD16432CFF24F80098B1C0 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
+		86DD16442CFF24F80098B1C0 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		86DD16472CFF26F90098B1C0 /* WavFileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavFileWriter.h; sourceTree = "<group>"; };
+		86DD16482CFF26F90098B1C0 /* WavFileWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WavFileWriter.cpp; sourceTree = "<group>"; };
+		86DD164A2CFF27BA0098B1C0 /* PlayAudioRecorderUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayAudioRecorderUtil.mm; sourceTree = "<group>"; };
+		86DD164B2CFF27BA0098B1C0 /* PlayAudioRecorderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioRecorderUtil.h; sourceTree = "<group>"; };
+		86DD164F2D0198080098B1C0 /* ZegoVoiceActivityChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoVoiceActivityChecker.m; sourceTree = "<group>"; };
+		86DD16502D0198080098B1C0 /* ZegoVoiceActivityChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoVoiceActivityChecker.h; sourceTree = "<group>"; };
+		86DD16C42D09B1820098B1C0 /* ZGMWAsyncPCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGMWAsyncPCM.h; sourceTree = "<group>"; };
+		86DD16C52D09B1820098B1C0 /* ZGMWAsyncPCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGMWAsyncPCM.m; sourceTree = "<group>"; };
+		86DD16C62D09B1820098B1C0 /* IAsyncPCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAsyncPCM.h; sourceTree = "<group>"; };
+		86DD16D12D09B3B70098B1C0 /* ZegoPopupMenuWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoPopupMenuWindow.h; sourceTree = "<group>"; };
+		86DD16D22D09B3B70098B1C0 /* ZegoPopupMenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoPopupMenuViewCell.m; sourceTree = "<group>"; };
+		86DD16D32D09B3B70098B1C0 /* ZegoPopupMenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoPopupMenuViewCell.h; sourceTree = "<group>"; };
+		86DD16D42D09B3B70098B1C0 /* ZegoPopupMenuWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoPopupMenuWindow.m; sourceTree = "<group>"; };
+		86DD16D52D09B3B80098B1C0 /* ZegoPopupMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoPopupMenuItem.h; sourceTree = "<group>"; };
+		86DD16D62D09B3B80098B1C0 /* ZegoPopupMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoPopupMenuItem.m; sourceTree = "<group>"; };
+		86DD16F42D09B4110098B1C0 /* ZegoAIAgentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAIAgentHelper.m; sourceTree = "<group>"; };
+		86DD16F52D09B4110098B1C0 /* ZegoAIAgentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAIAgentHelper.h; sourceTree = "<group>"; };
+		8DA9313E47E6616222C9EED8 /* Pods-ai_companion_oc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ai_companion_oc.release.xcconfig"; path = "Target Support Files/Pods-ai_companion_oc/Pods-ai_companion_oc.release.xcconfig"; sourceTree = "<group>"; };
+		BFB8D0F77605FE641694F0B0 /* Pods-ai_companion_uikit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ai_companion_uikit.debug.xcconfig"; path = "Target Support Files/Pods-ai_companion_uikit/Pods-ai_companion_uikit.debug.xcconfig"; sourceTree = "<group>"; };
+		D32C695E212AFC9185B291E9 /* Pods_ai_companion_uikit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ai_companion_uikit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		867C22832C00446C00F4717E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8649AB8C2D1024A2003E1EB6 /* zlogger.xcframework in Frameworks */,
+				86DD16452CFF24F80098B1C0 /* libc++.1.tbd in Frameworks */,
+				86235C922D2677BD006E5A06 /* ZegoExpressEngine.xcframework in Frameworks */,
+				86DD16462CFF24F80098B1C0 /* libc++.tbd in Frameworks */,
+				51AE5E67E5D7BBD525B6B8AC /* Pods_ai_companion_uikit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		038FF98A441A6AD332A46868 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2CCC5295CCA4F015DE892D65 /* Pods-ai_companion_oc.debug.xcconfig */,
+				8DA9313E47E6616222C9EED8 /* Pods-ai_companion_oc.release.xcconfig */,
+				BFB8D0F77605FE641694F0B0 /* Pods-ai_companion_uikit.debug.xcconfig */,
+				0D96BB834C67212F21C45CF0 /* Pods-ai_companion_uikit.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		599B46F4855041DF9F7F9A2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				86235C872D267489006E5A06 /* ZegoExpressEngine.xcframework */,
+				8649AB8B2D1024A2003E1EB6 /* zlogger.xcframework */,
+				86DD16432CFF24F80098B1C0 /* libc++.1.tbd */,
+				86DD16442CFF24F80098B1C0 /* libc++.tbd */,
+				86D32D072CD484C6008F6FA1 /* zlogger.xcframework */,
+				86D32D0E2CD4C61F008F6FA1 /* zlogger.xcframework */,
+				1DDDCE432F05EA5BC7E700E5 /* Pods_live_streaming_oc_live_streaming_ocUITests.framework */,
+				180C4AF0C581B93A4E891E09 /* Pods_live_streaming_ocTests.framework */,
+				D32C695E212AFC9185B291E9 /* Pods_ai_companion_uikit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		862075962CA5404A00946A88 /* thirdpart */ = {
+			isa = PBXGroup;
+			children = (
+				86DBC02F2C89D39100B2A1AB /* toast */,
+			);
+			path = thirdpart;
+			sourceTree = "<group>";
+		};
+		862075972CA542FD00946A88 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				869E4C592CEB17C4000AA962 /* PerfStaticsHelper.h */,
+				869E4C582CEB17C4000AA962 /* PerfStaticsHelper.m */,
+				862C9C742C7ED94000BE1DA9 /* AppDataManager.h */,
+				862C9C752C7ED94000BE1DA9 /* AppDataManager.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		862C9C762C7ED94000BE1DA9 /* aiagent */ = {
+			isa = PBXGroup;
+			children = (
+				86DD16F52D09B4110098B1C0 /* ZegoAIAgentHelper.h */,
+				86DD16F42D09B4110098B1C0 /* ZegoAIAgentHelper.m */,
+				862C9CC22C809BD000BE1DA9 /* Resource */,
+				86D32CE92CCB8AC8008F6FA1 /* createagent */,
+				862075962CA5404A00946A88 /* thirdpart */,
+				862075972CA542FD00946A88 /* model */,
+				86DBC0682C9AF6A000B2A1AB /* ttssettings */,
+				86DBC05E2C9568D100B2A1AB /* mainpage */,
+				86DBC05D2C95680400B2A1AB /* utils */,
+				86DBC05C2C9567CF00B2A1AB /* network */,
+				86DBC05B2C95677E00B2A1AB /* voicecall */,
+			);
+			path = aiagent;
+			sourceTree = "<group>";
+		};
+		862C9CC22C809BD000BE1DA9 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				86DD163A2CFEBA500098B1C0 /* icon_close.png */,
+				86DD163B2CFEBA500098B1C0 /* icon_close@2x.png */,
+				86D32CDF2CCA61A4008F6FA1 /* icon_add.png */,
+				86D32CDE2CCA61A4008F6FA1 /* icon_add@2x.png */,
+				86D32CDA2CCA467E008F6FA1 /* gender-arrow.png */,
+				86D32CDB2CCA467E008F6FA1 /* gender-arrow@2x.png */,
+				86D32CD62CCA2CF5008F6FA1 /* icon_touxiang.png */,
+				86D32CD72CCA2CF5008F6FA1 /* icon_touxiang@2x.png */,
+				86DBC0B12CA1137D00B2A1AB /* AppExtraConfig.json */,
+				86DBC0282C87284200B2A1AB /* icon */,
+				862C9CAD2C809BD000BE1DA9 /* ic_launcher_round.webp */,
+				86D32CD02CC20F3A008F6FA1 /* nav-back.png */,
+				86D32CCF2CC20F3A008F6FA1 /* nav-back@2x.png */,
+				869E4C4B2CE1A6D1000AA962 /* icon_edit.png */,
+				869E4C4C2CE1A6D1000AA962 /* icon_edit@2x.png */,
+				862C9CAE2C809BD000BE1DA9 /* ic_launcher.webp */,
+				862C9CAF2C809BD000BE1DA9 /* icon_audio.png */,
+				86756CBB2CF4230000A84E20 /* icon_iphone.png */,
+				86DBC0492C94563100B2A1AB /* icon_iphone@2x.png */,
+				86756CB72CF420C600A84E20 /* icon_mic_normal.png */,
+				86DBC0502C94572200B2A1AB /* icon_mic_normal@2x.png */,
+				86756CB52CF420C600A84E20 /* icon_mic_jinyong.png */,
+				86756CB62CF420C600A84E20 /* icon_mic_jinyong@2x.png */,
+				862C9CB02C809BD000BE1DA9 /* icon_back.png */,
+				862C9CB12C809BD000BE1DA9 /* icon_change.png */,
+				862C9CB22C809BD000BE1DA9 /* icon_chose.png */,
+				862C9CB32C809BD000BE1DA9 /* icon_clean.png */,
+				862C9CB42C809BD000BE1DA9 /* icon_more.png */,
+				862C9CB62C809BD000BE1DA9 /* icon_setting.png */,
+				86756CBD2CF42D1700A84E20 /* icon_setting@2x.png */,
+				862C9CB72C809BD000BE1DA9 /* icon_wenxin.png */,
+				862C9CB82C809BD000BE1DA9 /* icon_zhinengti.png */,
+				862C9CB92C809BD000BE1DA9 /* img_background.png */,
+				862C9CBA2C809BD000BE1DA9 /* kefu.png */,
+				862C9CBB2C809BD000BE1DA9 /* main_bg.png */,
+				862C9CBC2C809BD000BE1DA9 /* main_more.png */,
+				862C9CBD2C809BD000BE1DA9 /* main_title.png */,
+				862C9CBE2C809BD000BE1DA9 /* peiban.png */,
+				862C9CBF2C809BD000BE1DA9 /* pic_coming.png */,
+				862C9CC02C809BD000BE1DA9 /* tts_arrow.png */,
+				862C9CC12C809BD000BE1DA9 /* zhibo.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		867C227D2C00446C00F4717E = {
+			isa = PBXGroup;
+			children = (
+				867C22882C00446C00F4717E /* ai_companion_uikit */,
+				867C22872C00446C00F4717E /* Products */,
+				599B46F4855041DF9F7F9A2C /* Frameworks */,
+				038FF98A441A6AD332A46868 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		867C22872C00446C00F4717E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				867C22862C00446C00F4717E /* ai_companion_uikit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		867C22882C00446C00F4717E /* ai_companion_uikit */ = {
+			isa = PBXGroup;
+			children = (
+				869E4C5B2CEB2FA2000AA962 /* ai_companion_ocDebug.entitlements */,
+				86C493112D23D487005090F1 /* AVAudioSession+Switch.h */,
+				86C493122D23D487005090F1 /* AVAudioSession+Switch.m */,
+				86D32D032CD48303008F6FA1 /* logger */,
+				862C9C762C7ED94000BE1DA9 /* aiagent */,
+				867C22892C00446C00F4717E /* AppDelegate.h */,
+				867C228A2C00446C00F4717E /* AppDelegate.m */,
+				86D32CAC2CA972D1008F6FA1 /* AiCompanionConfig.h */,
+				86756CA42CF022E500A84E20 /* AiCompanionConfig.mm */,
+				86756CA12CEF401E00A84E20 /* ZegoRadioButton.h */,
+				86756CA22CEF401E00A84E20 /* ZegoRadioButton.m */,
+				862C9CE32C81E26800BE1DA9 /* SceneDelegate.h */,
+				862C9CE22C81E26800BE1DA9 /* SceneDelegate.m */,
+				867C228F2C00446C00F4717E /* ViewController.h */,
+				867C22902C00446C00F4717E /* ViewController.m */,
+				867C22922C00446C00F4717E /* Main.storyboard */,
+				86756CA82CF02DE600A84E20 /* ZegoTestSettingViewController.h */,
+				86756CA62CF02DE600A84E20 /* ZegoTestSettingViewController.m */,
+				86756CA72CF02DE600A84E20 /* ZegoTestSettingViewController.xib */,
+				867C22952C00446D00F4717E /* Assets.xcassets */,
+				867C22972C00446D00F4717E /* LaunchScreen.storyboard */,
+				867C229A2C00446D00F4717E /* Info.plist */,
+				867C229B2C00446D00F4717E /* main.m */,
+			);
+			path = ai_companion_uikit;
+			sourceTree = "<group>";
+		};
+		86D32CE92CCB8AC8008F6FA1 /* createagent */ = {
+			isa = PBXGroup;
+			children = (
+				86D32CE52CCB8AC8008F6FA1 /* ZegoAIComCreateAIAgentVC.h */,
+				86D32CE62CCB8AC8008F6FA1 /* ZegoAIComCreateAIAgentVC.m */,
+				869E4C4F2CE1B0C2000AA962 /* ZegoAIComUpdateAIAgentVC.h */,
+				869E4C502CE1B0C2000AA962 /* ZegoAIComUpdateAIAgentVC.m */,
+				86D32CF62CD094A6008F6FA1 /* ZegoPhotoSelectView.h */,
+				86D32CF72CD094A6008F6FA1 /* ZegoPhotoSelectView.m */,
+				86D32CF02CCB9331008F6FA1 /* ZegoPopUpContainerView.h */,
+				86D32CEF2CCB9331008F6FA1 /* ZegoPopUpContainerView.m */,
+				86D32CEC2CCB8F17008F6FA1 /* ZegoGenderSelectView.h */,
+				86D32CED2CCB8F17008F6FA1 /* ZegoGenderSelectView.m */,
+				86D32CE72CCB8AC8008F6FA1 /* ZegoInsetsLabelView.h */,
+				86D32CE82CCB8AC8008F6FA1 /* ZegoInsetsLabelView.m */,
+			);
+			path = createagent;
+			sourceTree = "<group>";
+		};
+		86D32D032CD48303008F6FA1 /* logger */ = {
+			isa = PBXGroup;
+			children = (
+				86D32D1B2CD4E032008F6FA1 /* AIAgentLogUtil.h */,
+				86D32D182CD4DD5A008F6FA1 /* AIAgentLogUtil.mm */,
+				86D32D122CD4CE94008F6FA1 /* LogUtil.cpp */,
+				86D32D132CD4CE94008F6FA1 /* LogUtil.h */,
+				86D32CFF2CD48303008F6FA1 /* ZLoggerWrapper.cpp */,
+				86D32D002CD48303008F6FA1 /* ZLoggerWrapper.h */,
+			);
+			path = logger;
+			sourceTree = "<group>";
+		};
+		86DBC02F2C89D39100B2A1AB /* toast */ = {
+			isa = PBXGroup;
+			children = (
+				86DBC02D2C89D39100B2A1AB /* UIView+Toast.h */,
+				86DBC02E2C89D39100B2A1AB /* UIView+Toast.m */,
+			);
+			path = toast;
+			sourceTree = "<group>";
+		};
+		86DBC05B2C95677E00B2A1AB /* voicecall */ = {
+			isa = PBXGroup;
+			children = (
+				86235C842D263393006E5A06 /* ZegoCallVCNameUIComponent.h */,
+				86235C852D263393006E5A06 /* ZegoCallVCNameUIComponent.m */,
+				8649A9FF2D0C5AA8003E1EB6 /* ZegoAudioChatTableView.h */,
+				8649AA002D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m */,
+				86DD16502D0198080098B1C0 /* ZegoVoiceActivityChecker.h */,
+				86DD164F2D0198080098B1C0 /* ZegoVoiceActivityChecker.m */,
+				86235C892D2675BC006E5A06 /* ZegoAICompanionCallVCWithExpress.h */,
+				86235C8A2D2675BC006E5A06 /* ZegoAICompanionCallVCWithExpress.m */,
+				86235CC02D2B85AB006E5A06 /* ZegoAICompanionCallVC.h */,
+				86235CC12D2B85AB006E5A06 /* ZegoAICompanionCallVC.m */,
+				86235C8F2D267762006E5A06 /* ZegoAIComponionExpressMainView.h */,
+				86235C902D267762006E5A06 /* ZegoAIComponionExpressMainView.m */,
+				86235C8D2D267704006E5A06 /* ZegoAIAgentExpressHelper.h */,
+				86235C8C2D267704006E5A06 /* ZegoAIAgentExpressHelper.m */,
+				86DBC0592C95673000B2A1AB /* ZegoAudioChatMsgModel.h */,
+				86DBC0582C95673000B2A1AB /* ZegoAudioChatMsgModel.m */,
+				86DBC0562C9566B900B2A1AB /* ZegoAudioChatTableViewCell.h */,
+				86DBC0552C9566B900B2A1AB /* ZegoAudioChatTableViewCell.m */,
+				86DBC0602C9A80B100B2A1AB /* ZegoAudioChatCellLabelView.h */,
+				86DBC05F2C9A80B100B2A1AB /* ZegoAudioChatCellLabelView.m */,
+			);
+			path = voicecall;
+			sourceTree = "<group>";
+		};
+		86DBC05C2C9567CF00B2A1AB /* network */ = {
+			isa = PBXGroup;
+			children = (
+				862C9C7B2C7F15D900BE1DA9 /* ZegoAiCompanionHttpHelper.h */,
+				862C9C7C2C7F15D900BE1DA9 /* ZegoAiCompanionHttpHelper.mm */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		86DBC05D2C95680400B2A1AB /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				86DD16C62D09B1820098B1C0 /* IAsyncPCM.h */,
+				86DD16C42D09B1820098B1C0 /* ZGMWAsyncPCM.h */,
+				86DD16C52D09B1820098B1C0 /* ZGMWAsyncPCM.m */,
+				86DD16482CFF26F90098B1C0 /* WavFileWriter.cpp */,
+				86DD16472CFF26F90098B1C0 /* WavFileWriter.h */,
+				869E4C522CEB16F3000AA962 /* ZegoAskAnswerTableViewCell.h */,
+				869E4C542CEB16F4000AA962 /* ZegoAskAnswerTableViewCell.m */,
+				869E4C532CEB16F3000AA962 /* ZegoStaticsLogView.h */,
+				869E4C552CEB16F4000AA962 /* ZegoStaticsLogView.m */,
+				86D32CF32CD08D33008F6FA1 /* ZegoAutoAdjustTextView.h */,
+				86D32CF42CD08D33008F6FA1 /* ZegoAutoAdjustTextView.m */,
+				86B5C1A12CA1848500333A13 /* ZegoAiCompanionUtil.h */,
+				86B5C1A22CA1848500333A13 /* ZegoAiCompanionUtil.mm */,
+				86DD164B2CFF27BA0098B1C0 /* PlayAudioRecorderUtil.h */,
+				86DD164A2CFF27BA0098B1C0 /* PlayAudioRecorderUtil.mm */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		86DBC05E2C9568D100B2A1AB /* mainpage */ = {
+			isa = PBXGroup;
+			children = (
+				86DD16D52D09B3B80098B1C0 /* ZegoPopupMenuItem.h */,
+				86DD16D62D09B3B80098B1C0 /* ZegoPopupMenuItem.m */,
+				86DD16D32D09B3B70098B1C0 /* ZegoPopupMenuViewCell.h */,
+				86DD16D22D09B3B70098B1C0 /* ZegoPopupMenuViewCell.m */,
+				86DD16D12D09B3B70098B1C0 /* ZegoPopupMenuWindow.h */,
+				86DD16D42D09B3B70098B1C0 /* ZegoPopupMenuWindow.m */,
+				86D32CCE2CC20733008F6FA1 /* ai_companion_oc-Bridging-Header.h */,
+				86D32CC92CC11C17008F6FA1 /* ZegoAIComConversationListVC.swift */,
+				86D32CA62CA93B6B008F6FA1 /* ZegoAIComponionMainView.h */,
+				86D32CA72CA93B6B008F6FA1 /* ZegoAIComponionMainView.m */,
+				86DBC0402C92880100B2A1AB /* ZegoCustomNavBarHeaderView.h */,
+				86DBC0412C92880100B2A1AB /* ZegoCustomNavBarHeaderView.m */,
+				862C9CDE2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.h */,
+				862C9CDD2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.m */,
+			);
+			path = mainpage;
+			sourceTree = "<group>";
+		};
+		86DBC0682C9AF6A000B2A1AB /* ttssettings */ = {
+			isa = PBXGroup;
+			children = (
+				86B5C1A42CA2DA5600333A13 /* ZegoSettingsContainerView.h */,
+				86B5C1A52CA2DA5600333A13 /* ZegoSettingsContainerView.m */,
+				86DBC0AD2C9D8BDC00B2A1AB /* ZegoAIComponionSettingsDef.h */,
+				86DBC0AA2C9D6DFF00B2A1AB /* ZegoTTSComponySelectView.h */,
+				86DBC0AB2C9D6E0000B2A1AB /* ZegoTTSComponySelectView.m */,
+				86DBC0A52C9C4C0E00B2A1AB /* ZegoAICompanionSettingsView.h */,
+				86DBC0A42C9C4C0E00B2A1AB /* ZegoAICompanionSettingsView.m */,
+				86DBC0A72C9C4C0E00B2A1AB /* ZegoTimbreCollectionViewCell.h */,
+				86DBC0A62C9C4C0E00B2A1AB /* ZegoTimbreCollectionViewCell.m */,
+			);
+			path = ttssettings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		867C22852C00446C00F4717E /* ai_companion_uikit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 867C22B52C00446D00F4717E /* Build configuration list for PBXNativeTarget "ai_companion_uikit" */;
+			buildPhases = (
+				8C4B508796AE044D05FC3CF4 /* [CP] Check Pods Manifest.lock */,
+				867C22822C00446C00F4717E /* Sources */,
+				867C22832C00446C00F4717E /* Frameworks */,
+				867C22842C00446C00F4717E /* Resources */,
+				362FC57B3547B51D50202F3C /* [CP] Embed Pods Frameworks */,
+				86235C942D2677BD006E5A06 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ai_companion_uikit;
+			productName = live_streaming_oc;
+			productReference = 867C22862C00446C00F4717E /* ai_companion_uikit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		867C227E2C00446C00F4717E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					867C22852C00446C00F4717E = {
+						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1530;
+					};
+				};
+			};
+			buildConfigurationList = 867C22812C00446C00F4717E /* Build configuration list for PBXProject "ai_companion_uikit" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 867C227D2C00446C00F4717E;
+			productRefGroup = 867C22872C00446C00F4717E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				867C22852C00446C00F4717E /* ai_companion_uikit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		867C22842C00446C00F4717E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				869E4C4D2CE1A6D1000AA962 /* icon_edit.png in Resources */,
+				869E4C4E2CE1A6D1000AA962 /* icon_edit@2x.png in Resources */,
+				862C9CC32C809BDD00BE1DA9 /* ic_launcher_round.webp in Resources */,
+				862C9CC42C809BDD00BE1DA9 /* ic_launcher.webp in Resources */,
+				86756CB92CF420C600A84E20 /* icon_mic_jinyong@2x.png in Resources */,
+				862C9CC52C809BDD00BE1DA9 /* icon_audio.png in Resources */,
+				862C9CC62C809BDD00BE1DA9 /* icon_back.png in Resources */,
+				86D32CD12CC20F3A008F6FA1 /* nav-back@2x.png in Resources */,
+				862C9CC72C809BDD00BE1DA9 /* icon_change.png in Resources */,
+				862C9CC82C809BDD00BE1DA9 /* icon_chose.png in Resources */,
+				862C9CC92C809BDD00BE1DA9 /* icon_clean.png in Resources */,
+				86DD163C2CFEBA500098B1C0 /* icon_close.png in Resources */,
+				86D32CDD2CCA467F008F6FA1 /* gender-arrow@2x.png in Resources */,
+				862C9CCA2C809BDD00BE1DA9 /* icon_more.png in Resources */,
+				862C9CCC2C809BDD00BE1DA9 /* icon_setting.png in Resources */,
+				862C9CCD2C809BDD00BE1DA9 /* icon_wenxin.png in Resources */,
+				86D32CDC2CCA467F008F6FA1 /* gender-arrow.png in Resources */,
+				862C9CCE2C809BDD00BE1DA9 /* icon_zhinengti.png in Resources */,
+				86D32CE12CCA61A4008F6FA1 /* icon_add.png in Resources */,
+				86756CAA2CF02DE600A84E20 /* ZegoTestSettingViewController.xib in Resources */,
+				86756CB82CF420C600A84E20 /* icon_mic_jinyong.png in Resources */,
+				86DBC04B2C94563200B2A1AB /* icon_iphone@2x.png in Resources */,
+				86756CBC2CF4230000A84E20 /* icon_iphone.png in Resources */,
+				86756CBA2CF420C600A84E20 /* icon_mic_normal.png in Resources */,
+				86756CBE2CF42D1700A84E20 /* icon_setting@2x.png in Resources */,
+				862C9CCF2C809BDD00BE1DA9 /* img_background.png in Resources */,
+				86D32CD82CCA2CF5008F6FA1 /* icon_touxiang.png in Resources */,
+				862C9CD02C809BDD00BE1DA9 /* kefu.png in Resources */,
+				862C9CD12C809BDD00BE1DA9 /* main_bg.png in Resources */,
+				862C9CD22C809BDD00BE1DA9 /* main_more.png in Resources */,
+				862C9CD32C809BDD00BE1DA9 /* main_title.png in Resources */,
+				86DBC0B22CA1137D00B2A1AB /* AppExtraConfig.json in Resources */,
+				86D32CD22CC20F3A008F6FA1 /* nav-back.png in Resources */,
+				86DBC0542C94572200B2A1AB /* icon_mic_normal@2x.png in Resources */,
+				862C9CD42C809BDD00BE1DA9 /* peiban.png in Resources */,
+				86D32CD92CCA2CF5008F6FA1 /* icon_touxiang@2x.png in Resources */,
+				862C9CD52C809BDD00BE1DA9 /* pic_coming.png in Resources */,
+				862C9CD62C809BDD00BE1DA9 /* tts_arrow.png in Resources */,
+				862C9CD72C809BDD00BE1DA9 /* zhibo.png in Resources */,
+				867C22962C00446D00F4717E /* Assets.xcassets in Resources */,
+				867C22992C00446D00F4717E /* Base in Resources */,
+				867C22942C00446C00F4717E /* Base in Resources */,
+				86DBC0292C87284200B2A1AB /* icon in Resources */,
+				86DD163D2CFEBA500098B1C0 /* icon_close@2x.png in Resources */,
+				86D32CE02CCA61A4008F6FA1 /* icon_add@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		362FC57B3547B51D50202F3C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ai_companion_uikit/Pods-ai_companion_uikit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ai_companion_uikit/Pods-ai_companion_uikit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ai_companion_uikit/Pods-ai_companion_uikit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C4B508796AE044D05FC3CF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ai_companion_uikit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		867C22822C00446C00F4717E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86756CA52CF022E500A84E20 /* AiCompanionConfig.mm in Sources */,
+				86D32CEA2CCB8AC8008F6FA1 /* ZegoAIComCreateAIAgentVC.m in Sources */,
+				869E4C5A2CEB17C4000AA962 /* PerfStaticsHelper.m in Sources */,
+				86D32CEB2CCB8AC8008F6FA1 /* ZegoInsetsLabelView.m in Sources */,
+				86DBC0422C92880100B2A1AB /* ZegoCustomNavBarHeaderView.m in Sources */,
+				86DBC0302C89D39100B2A1AB /* UIView+Toast.m in Sources */,
+				86DBC0A82C9C4C0F00B2A1AB /* ZegoAICompanionSettingsView.m in Sources */,
+				867C22912C00446C00F4717E /* ViewController.m in Sources */,
+				86D32D052CD48303008F6FA1 /* ZLoggerWrapper.cpp in Sources */,
+				86DBC0AC2C9D6E0000B2A1AB /* ZegoTTSComponySelectView.m in Sources */,
+				86D32CF82CD094A6008F6FA1 /* ZegoPhotoSelectView.m in Sources */,
+				86756CA92CF02DE600A84E20 /* ZegoTestSettingViewController.m in Sources */,
+				869E4C572CEB16F4000AA962 /* ZegoStaticsLogView.m in Sources */,
+				86DBC0612C9A80B100B2A1AB /* ZegoAudioChatCellLabelView.m in Sources */,
+				86DD16D92D09B3B80098B1C0 /* ZegoPopupMenuItem.m in Sources */,
+				869E4C512CE1B0C2000AA962 /* ZegoAIComUpdateAIAgentVC.m in Sources */,
+				86756CA32CEF401E00A84E20 /* ZegoRadioButton.m in Sources */,
+				86DD164C2CFF27BA0098B1C0 /* PlayAudioRecorderUtil.mm in Sources */,
+				86DBC0A92C9C4C0F00B2A1AB /* ZegoTimbreCollectionViewCell.m in Sources */,
+				86D32D142CD4CE94008F6FA1 /* LogUtil.cpp in Sources */,
+				86D32D1A2CD4DD5A008F6FA1 /* AIAgentLogUtil.mm in Sources */,
+				86235C912D267762006E5A06 /* ZegoAIComponionExpressMainView.m in Sources */,
+				86DD16492CFF26F90098B1C0 /* WavFileWriter.cpp in Sources */,
+				86D32CF52CD08D33008F6FA1 /* ZegoAutoAdjustTextView.m in Sources */,
+				86D32CEE2CCB8F17008F6FA1 /* ZegoGenderSelectView.m in Sources */,
+				86DBC0572C9566B900B2A1AB /* ZegoAudioChatTableViewCell.m in Sources */,
+				86DD16D82D09B3B80098B1C0 /* ZegoPopupMenuWindow.m in Sources */,
+				86DD16C72D09B1820098B1C0 /* ZGMWAsyncPCM.m in Sources */,
+				86DD16F62D09B4110098B1C0 /* ZegoAIAgentHelper.m in Sources */,
+				86B5C1A32CA1848500333A13 /* ZegoAiCompanionUtil.mm in Sources */,
+				86235C862D263393006E5A06 /* ZegoCallVCNameUIComponent.m in Sources */,
+				86C493132D23D487005090F1 /* AVAudioSession+Switch.m in Sources */,
+				86D32CF12CCB9331008F6FA1 /* ZegoPopUpContainerView.m in Sources */,
+				867C228B2C00446C00F4717E /* AppDelegate.m in Sources */,
+				862C9CE42C81E26800BE1DA9 /* SceneDelegate.m in Sources */,
+				86B5C1A62CA2DA5600333A13 /* ZegoSettingsContainerView.m in Sources */,
+				86D32CA82CA93B6B008F6FA1 /* ZegoAIComponionMainView.m in Sources */,
+				862C9C7D2C7F15D900BE1DA9 /* ZegoAiCompanionHttpHelper.mm in Sources */,
+				869E4C562CEB16F4000AA962 /* ZegoAskAnswerTableViewCell.m in Sources */,
+				86235C8B2D2675BC006E5A06 /* ZegoAICompanionCallVCWithExpress.m in Sources */,
+				867C229C2C00446D00F4717E /* main.m in Sources */,
+				862C9C772C7ED94000BE1DA9 /* AppDataManager.m in Sources */,
+				86DD16D72D09B3B80098B1C0 /* ZegoPopupMenuViewCell.m in Sources */,
+				8649AA012D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m in Sources */,
+				86DBC05A2C95673000B2A1AB /* ZegoAudioChatMsgModel.m in Sources */,
+				86D32CCA2CC11C17008F6FA1 /* ZegoAIComConversationListVC.swift in Sources */,
+				86235CC22D2B85AB006E5A06 /* ZegoAICompanionCallVC.m in Sources */,
+				86235C8E2D267704006E5A06 /* ZegoAIAgentExpressHelper.m in Sources */,
+				86DD16512D0198080098B1C0 /* ZegoVoiceActivityChecker.m in Sources */,
+				862C9CDF2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		867C22922C00446C00F4717E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				867C22932C00446C00F4717E /* Base */,
+				86756CBF2CF4A3E800A84E20 /* zh-Hans */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		867C22972C00446D00F4717E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				867C22982C00446D00F4717E /* Base */,
+				86756CC02CF4A3E800A84E20 /* zh-Hans */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		867C22B32C00446D00F4717E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		867C22B42C00446D00F4717E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		867C22B62C00446D00F4717E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFB8D0F77605FE641694F0B0 /* Pods-ai_companion_uikit.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.1.1;
+				DEVELOPMENT_TEAM = B82BHJ5H89;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					USE_ZLOGGER,
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry/Masonry.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YYKit/YYKit.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZIMKit/ZIMKit.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZegoPluginAdapter/ZegoPluginAdapter.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZegoUIKit/ZegoUIKit.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZegoUIKitPrebuiltCall/ZegoUIKitPrebuiltCall.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZegoUIKitSignalingPlugin/ZegoUIKitSignalingPlugin.framework/Headers\"",
+					"$(PROJECT_DIR)/ai_companion_oc/libs/Zlogger/include",
+					"$(PROJECT_DIR)/ai_companion_oc/libs/Zlogger/include/factory",
+				);
+				INFOPLIST_FILE = ai_companion_uikit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI陪伴";
+				INFOPLIST_KEY_NSCameraUsageDescription = "相机";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "麦克风";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = im.zego.aicompanion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ai_companion_uikit/aiagent/mainpage/ai_companion_oc-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		867C22B72C00446D00F4717E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D96BB834C67212F21C45CF0 /* Pods-ai_companion_uikit.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.1.1;
+				DEVELOPMENT_TEAM = B82BHJ5H89;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					USE_ZLOGGER,
+					FINAL_RELEASE,
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry/Masonry.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YYKit/YYKit.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZIMKit/ZIMKit.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZegoPluginAdapter/ZegoPluginAdapter.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZegoUIKit/ZegoUIKit.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZegoUIKitPrebuiltCall/ZegoUIKitPrebuiltCall.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZegoUIKitSignalingPlugin/ZegoUIKitSignalingPlugin.framework/Headers\"",
+					"$(PROJECT_DIR)/ai_companion_oc/libs/Zlogger/include",
+					"$(PROJECT_DIR)/ai_companion_oc/libs/Zlogger/include/factory",
+				);
+				INFOPLIST_FILE = ai_companion_uikit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI陪伴";
+				INFOPLIST_KEY_NSCameraUsageDescription = "相机";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "麦克风";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = im.zego.aicompanion;
+				PRODUCT_NAME = ai_companion_uikit;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ai_companion_uikit/aiagent/mainpage/ai_companion_oc-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		867C22812C00446C00F4717E /* Build configuration list for PBXProject "ai_companion_uikit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				867C22B32C00446D00F4717E /* Debug */,
+				867C22B42C00446D00F4717E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		867C22B52C00446D00F4717E /* Build configuration list for PBXNativeTarget "ai_companion_uikit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				867C22B62C00446D00F4717E /* Debug */,
+				867C22B72C00446D00F4717E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 867C227E2C00446C00F4717E /* Project object */;
+}

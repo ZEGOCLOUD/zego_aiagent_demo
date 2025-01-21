@@ -1,0 +1,930 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		86235C822D22CF99006E5A06 /* ZegoTestSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235C802D22CF99006E5A06 /* ZegoTestSettingViewController.m */; };
+		86235C832D22CF99006E5A06 /* ZegoTestSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86235C812D22CF99006E5A06 /* ZegoTestSettingViewController.xib */; };
+		86235CA32D267F07006E5A06 /* ZegoExpressEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86235CA12D267EFF006E5A06 /* ZegoExpressEngine.xcframework */; };
+		86235CA42D267F07006E5A06 /* ZegoExpressEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86235CA12D267EFF006E5A06 /* ZegoExpressEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		86235CA82D267F68006E5A06 /* ZegoCallVCNameUIComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235CA72D267F68006E5A06 /* ZegoCallVCNameUIComponent.m */; };
+		8649AA782D102271003E1EB6 /* AIAgentLogUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA722D102271003E1EB6 /* AIAgentLogUtil.mm */; };
+		8649AA792D102271003E1EB6 /* LogUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA732D102271003E1EB6 /* LogUtil.cpp */; };
+		8649AA7A2D102271003E1EB6 /* ZLoggerWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA752D102271003E1EB6 /* ZLoggerWrapper.cpp */; };
+		8649AA7F2D10228F003E1EB6 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA7C2D10228F003E1EB6 /* UIView+Toast.m */; };
+		8649AA8A2D1022F5003E1EB6 /* ZegoAICompanionSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA812D1022F5003E1EB6 /* ZegoAICompanionSettingsView.m */; };
+		8649AA8B2D1022F5003E1EB6 /* ZegoSettingsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA842D1022F5003E1EB6 /* ZegoSettingsContainerView.m */; };
+		8649AA8C2D1022F5003E1EB6 /* ZegoTimbreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA862D1022F5003E1EB6 /* ZegoTimbreCollectionViewCell.m */; };
+		8649AA8D2D1022F5003E1EB6 /* ZegoTTSComponySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA882D1022F5003E1EB6 /* ZegoTTSComponySelectView.m */; };
+		8649AA9F2D102320003E1EB6 /* ZegoAudioChatCellLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA932D102320003E1EB6 /* ZegoAudioChatCellLabelView.m */; };
+		8649AAA02D102320003E1EB6 /* ZegoAudioChatMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA952D102320003E1EB6 /* ZegoAudioChatMsgModel.m */; };
+		8649AAA12D102320003E1EB6 /* ZegoAudioChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA972D102320003E1EB6 /* ZegoAudioChatTableView.m */; };
+		8649AAA22D102320003E1EB6 /* ZegoAudioChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA992D102320003E1EB6 /* ZegoAudioChatTableViewCell.m */; };
+		8649AAA32D102320003E1EB6 /* ZegoVoiceActivityChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA9B2D102320003E1EB6 /* ZegoVoiceActivityChecker.m */; };
+		8649AB3A2D102372003E1EB6 /* AppExtraConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAE12D102372003E1EB6 /* AppExtraConfig.json */; };
+		8649AB3B2D102372003E1EB6 /* gender-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAE22D102372003E1EB6 /* gender-arrow.png */; };
+		8649AB3C2D102372003E1EB6 /* gender-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAE32D102372003E1EB6 /* gender-arrow@2x.png */; };
+		8649AB3D2D102372003E1EB6 /* ic_launcher_round.webp in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAE42D102372003E1EB6 /* ic_launcher_round.webp */; };
+		8649AB3E2D102372003E1EB6 /* ic_launcher.webp in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAE52D102372003E1EB6 /* ic_launcher.webp */; };
+		8649AB3F2D102372003E1EB6 /* icon_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAE62D102372003E1EB6 /* icon_add.png */; };
+		8649AB402D102372003E1EB6 /* icon_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAE72D102372003E1EB6 /* icon_add@2x.png */; };
+		8649AB412D102372003E1EB6 /* icon_audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAE82D102372003E1EB6 /* icon_audio.png */; };
+		8649AB422D102372003E1EB6 /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAE92D102372003E1EB6 /* icon_back.png */; };
+		8649AB432D102372003E1EB6 /* icon_change.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAEA2D102372003E1EB6 /* icon_change.png */; };
+		8649AB442D102372003E1EB6 /* icon_chose.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAEB2D102372003E1EB6 /* icon_chose.png */; };
+		8649AB452D102372003E1EB6 /* icon_clean.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAEC2D102372003E1EB6 /* icon_clean.png */; };
+		8649AB462D102372003E1EB6 /* icon_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAED2D102372003E1EB6 /* icon_close.png */; };
+		8649AB472D102372003E1EB6 /* icon_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAEE2D102372003E1EB6 /* icon_close@2x.png */; };
+		8649AB482D102372003E1EB6 /* icon_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAEF2D102372003E1EB6 /* icon_edit.png */; };
+		8649AB492D102372003E1EB6 /* icon_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF02D102372003E1EB6 /* icon_edit@2x.png */; };
+		8649AB4A2D102372003E1EB6 /* icon_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF12D102372003E1EB6 /* icon_iphone.png */; };
+		8649AB4B2D102372003E1EB6 /* icon_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF22D102372003E1EB6 /* icon_iphone@2x.png */; };
+		8649AB4C2D102372003E1EB6 /* icon_mic_jinyong.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF32D102372003E1EB6 /* icon_mic_jinyong.png */; };
+		8649AB4D2D102372003E1EB6 /* icon_mic_jinyong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF42D102372003E1EB6 /* icon_mic_jinyong@2x.png */; };
+		8649AB4E2D102372003E1EB6 /* icon_mic_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF52D102372003E1EB6 /* icon_mic_normal.png */; };
+		8649AB4F2D102372003E1EB6 /* icon_mic_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF62D102372003E1EB6 /* icon_mic_normal@2x.png */; };
+		8649AB502D102372003E1EB6 /* icon_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF72D102372003E1EB6 /* icon_more.png */; };
+		8649AB512D102372003E1EB6 /* icon_setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF82D102372003E1EB6 /* icon_setting.png */; };
+		8649AB522D102372003E1EB6 /* icon_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAF92D102372003E1EB6 /* icon_setting@2x.png */; };
+		8649AB532D102372003E1EB6 /* icon_touxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAFA2D102372003E1EB6 /* icon_touxiang.png */; };
+		8649AB542D102372003E1EB6 /* icon_touxiang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAFB2D102372003E1EB6 /* icon_touxiang@2x.png */; };
+		8649AB552D102372003E1EB6 /* icon_wenxin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAFC2D102372003E1EB6 /* icon_wenxin.png */; };
+		8649AB562D102372003E1EB6 /* icon_zhinengti.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAFD2D102372003E1EB6 /* icon_zhinengti.png */; };
+		8649AB572D102372003E1EB6 /* img_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAFE2D102372003E1EB6 /* img_background.png */; };
+		8649AB582D102372003E1EB6 /* kefu.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AAFF2D102372003E1EB6 /* kefu.png */; };
+		8649AB592D102372003E1EB6 /* main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB002D102372003E1EB6 /* main_bg.png */; };
+		8649AB5A2D102372003E1EB6 /* main_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB012D102372003E1EB6 /* main_more.png */; };
+		8649AB5B2D102372003E1EB6 /* main_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB022D102372003E1EB6 /* main_title.png */; };
+		8649AB5C2D102372003E1EB6 /* nav-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB032D102372003E1EB6 /* nav-back.png */; };
+		8649AB5D2D102372003E1EB6 /* nav-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB042D102372003E1EB6 /* nav-back@2x.png */; };
+		8649AB5E2D102372003E1EB6 /* peiban.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB052D102372003E1EB6 /* peiban.png */; };
+		8649AB5F2D102372003E1EB6 /* pic_coming.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB062D102372003E1EB6 /* pic_coming.png */; };
+		8649AB602D102372003E1EB6 /* tts_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB072D102372003E1EB6 /* tts_arrow.png */; };
+		8649AB612D102372003E1EB6 /* zhibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB082D102372003E1EB6 /* zhibo.png */; };
+		8649AB632D10237D003E1EB6 /* icon in Resources */ = {isa = PBXBuildFile; fileRef = 8649AB622D10237D003E1EB6 /* icon */; };
+		8649AB762D102396003E1EB6 /* PlayAudioRecorderUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB682D102396003E1EB6 /* PlayAudioRecorderUtil.mm */; };
+		8649AB772D102396003E1EB6 /* WavFileWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB692D102396003E1EB6 /* WavFileWriter.cpp */; };
+		8649AB782D102396003E1EB6 /* ZegoAiCompanionUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB6C2D102396003E1EB6 /* ZegoAiCompanionUtil.mm */; };
+		8649AB792D102396003E1EB6 /* ZegoAskAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB6E2D102396003E1EB6 /* ZegoAskAnswerTableViewCell.m */; };
+		8649AB7A2D102396003E1EB6 /* ZegoAutoAdjustTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB702D102396003E1EB6 /* ZegoAutoAdjustTextView.m */; };
+		8649AB7B2D102396003E1EB6 /* ZegoStaticsLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB722D102396003E1EB6 /* ZegoStaticsLogView.m */; };
+		8649AB7C2D102396003E1EB6 /* ZGMWAsyncPCM.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB742D102396003E1EB6 /* ZGMWAsyncPCM.m */; };
+		8649AB802D1023A3003E1EB6 /* ZegoAiCompanionHttpHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB7E2D1023A3003E1EB6 /* ZegoAiCompanionHttpHelper.mm */; };
+		8649AB862D1023B0003E1EB6 /* AppDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB822D1023B0003E1EB6 /* AppDataManager.m */; };
+		8649AB872D1023B0003E1EB6 /* PerfStaticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB842D1023B0003E1EB6 /* PerfStaticsHelper.m */; };
+		8649AB8A2D1023C2003E1EB6 /* AiCompanionConfig.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB882D1023C2003E1EB6 /* AiCompanionConfig.mm */; };
+		8649AB8E2D102624003E1EB6 /* zlogger.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8649AB8D2D102624003E1EB6 /* zlogger.xcframework */; };
+		8649AB912D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB8F2D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.m */; };
+		86DD16852D09ABEB0098B1C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16842D09ABEB0098B1C0 /* AppDelegate.m */; };
+		86DD16882D09ABEB0098B1C0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16872D09ABEB0098B1C0 /* SceneDelegate.m */; };
+		86DD168B2D09ABEB0098B1C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD168A2D09ABEB0098B1C0 /* ViewController.m */; };
+		86DD168E2D09ABEB0098B1C0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 86DD168D2D09ABEB0098B1C0 /* Base */; };
+		86DD16902D09ABEC0098B1C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86DD168F2D09ABEC0098B1C0 /* Assets.xcassets */; };
+		86DD16932D09ABEC0098B1C0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 86DD16922D09ABEC0098B1C0 /* Base */; };
+		86DD16962D09ABEC0098B1C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16952D09ABEC0098B1C0 /* main.m */; };
+		86DD16A12D09AEF80098B1C0 /* ZegoAIAgentExpressHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD169F2D09AEF80098B1C0 /* ZegoAIAgentExpressHelper.m */; };
+		86DD16C32D09B10F0098B1C0 /* ZegoAIComponionExpressMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16C12D09B10F0098B1C0 /* ZegoAIComponionExpressMainView.m */; };
+		EC0C31D2AFCE6249E5BB83EA /* Pods_ai_companion_express.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9550618B04AB7DB2FCC79B /* Pods_ai_companion_express.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		86235CA52D267F07006E5A06 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				86235CA42D267F07006E5A06 /* ZegoExpressEngine.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2A9550618B04AB7DB2FCC79B /* Pods_ai_companion_express.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ai_companion_express.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70124B2027B10F9EEB36C184 /* Pods-ai_companion_express.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ai_companion_express.debug.xcconfig"; path = "Target Support Files/Pods-ai_companion_express/Pods-ai_companion_express.debug.xcconfig"; sourceTree = "<group>"; };
+		86235C7F2D22CF99006E5A06 /* ZegoTestSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZegoTestSettingViewController.h; path = ai_companion_uikit/ZegoTestSettingViewController.h; sourceTree = SOURCE_ROOT; };
+		86235C802D22CF99006E5A06 /* ZegoTestSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZegoTestSettingViewController.m; path = ai_companion_uikit/ZegoTestSettingViewController.m; sourceTree = SOURCE_ROOT; };
+		86235C812D22CF99006E5A06 /* ZegoTestSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZegoTestSettingViewController.xib; path = ai_companion_uikit/ZegoTestSettingViewController.xib; sourceTree = SOURCE_ROOT; };
+		86235CA12D267EFF006E5A06 /* ZegoExpressEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ZegoExpressEngine.xcframework; path = Libs/Express/ZegoExpressEngine.xcframework; sourceTree = "<group>"; };
+		86235CA62D267F68006E5A06 /* ZegoCallVCNameUIComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoCallVCNameUIComponent.h; sourceTree = "<group>"; };
+		86235CA72D267F68006E5A06 /* ZegoCallVCNameUIComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoCallVCNameUIComponent.m; sourceTree = "<group>"; };
+		8649AA712D102271003E1EB6 /* AIAgentLogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIAgentLogUtil.h; sourceTree = "<group>"; };
+		8649AA722D102271003E1EB6 /* AIAgentLogUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AIAgentLogUtil.mm; sourceTree = "<group>"; };
+		8649AA732D102271003E1EB6 /* LogUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogUtil.cpp; sourceTree = "<group>"; };
+		8649AA742D102271003E1EB6 /* LogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogUtil.h; sourceTree = "<group>"; };
+		8649AA752D102271003E1EB6 /* ZLoggerWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZLoggerWrapper.cpp; sourceTree = "<group>"; };
+		8649AA762D102271003E1EB6 /* ZLoggerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLoggerWrapper.h; sourceTree = "<group>"; };
+		8649AA7B2D10228F003E1EB6 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		8649AA7C2D10228F003E1EB6 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		8649AA802D1022F5003E1EB6 /* ZegoAICompanionSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAICompanionSettingsView.h; sourceTree = "<group>"; };
+		8649AA812D1022F5003E1EB6 /* ZegoAICompanionSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAICompanionSettingsView.m; sourceTree = "<group>"; };
+		8649AA822D1022F5003E1EB6 /* ZegoAIComponionSettingsDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAIComponionSettingsDef.h; sourceTree = "<group>"; };
+		8649AA832D1022F5003E1EB6 /* ZegoSettingsContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoSettingsContainerView.h; sourceTree = "<group>"; };
+		8649AA842D1022F5003E1EB6 /* ZegoSettingsContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoSettingsContainerView.m; sourceTree = "<group>"; };
+		8649AA852D1022F5003E1EB6 /* ZegoTimbreCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoTimbreCollectionViewCell.h; sourceTree = "<group>"; };
+		8649AA862D1022F5003E1EB6 /* ZegoTimbreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoTimbreCollectionViewCell.m; sourceTree = "<group>"; };
+		8649AA872D1022F5003E1EB6 /* ZegoTTSComponySelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoTTSComponySelectView.h; sourceTree = "<group>"; };
+		8649AA882D1022F5003E1EB6 /* ZegoTTSComponySelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoTTSComponySelectView.m; sourceTree = "<group>"; };
+		8649AA922D102320003E1EB6 /* ZegoAudioChatCellLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatCellLabelView.h; sourceTree = "<group>"; };
+		8649AA932D102320003E1EB6 /* ZegoAudioChatCellLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatCellLabelView.m; sourceTree = "<group>"; };
+		8649AA942D102320003E1EB6 /* ZegoAudioChatMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatMsgModel.h; sourceTree = "<group>"; };
+		8649AA952D102320003E1EB6 /* ZegoAudioChatMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatMsgModel.m; sourceTree = "<group>"; };
+		8649AA962D102320003E1EB6 /* ZegoAudioChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatTableView.h; sourceTree = "<group>"; };
+		8649AA972D102320003E1EB6 /* ZegoAudioChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatTableView.m; sourceTree = "<group>"; };
+		8649AA982D102320003E1EB6 /* ZegoAudioChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatTableViewCell.h; sourceTree = "<group>"; };
+		8649AA992D102320003E1EB6 /* ZegoAudioChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatTableViewCell.m; sourceTree = "<group>"; };
+		8649AA9A2D102320003E1EB6 /* ZegoVoiceActivityChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoVoiceActivityChecker.h; sourceTree = "<group>"; };
+		8649AA9B2D102320003E1EB6 /* ZegoVoiceActivityChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoVoiceActivityChecker.m; sourceTree = "<group>"; };
+		8649AAE12D102372003E1EB6 /* AppExtraConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppExtraConfig.json; sourceTree = "<group>"; };
+		8649AAE22D102372003E1EB6 /* gender-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gender-arrow.png"; sourceTree = "<group>"; };
+		8649AAE32D102372003E1EB6 /* gender-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gender-arrow@2x.png"; sourceTree = "<group>"; };
+		8649AAE42D102372003E1EB6 /* ic_launcher_round.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = ic_launcher_round.webp; sourceTree = "<group>"; };
+		8649AAE52D102372003E1EB6 /* ic_launcher.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = ic_launcher.webp; sourceTree = "<group>"; };
+		8649AAE62D102372003E1EB6 /* icon_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_add.png; sourceTree = "<group>"; };
+		8649AAE72D102372003E1EB6 /* icon_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add@2x.png"; sourceTree = "<group>"; };
+		8649AAE82D102372003E1EB6 /* icon_audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_audio.png; sourceTree = "<group>"; };
+		8649AAE92D102372003E1EB6 /* icon_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_back.png; sourceTree = "<group>"; };
+		8649AAEA2D102372003E1EB6 /* icon_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_change.png; sourceTree = "<group>"; };
+		8649AAEB2D102372003E1EB6 /* icon_chose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_chose.png; sourceTree = "<group>"; };
+		8649AAEC2D102372003E1EB6 /* icon_clean.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_clean.png; sourceTree = "<group>"; };
+		8649AAED2D102372003E1EB6 /* icon_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_close.png; sourceTree = "<group>"; };
+		8649AAEE2D102372003E1EB6 /* icon_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_close@2x.png"; sourceTree = "<group>"; };
+		8649AAEF2D102372003E1EB6 /* icon_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_edit.png; sourceTree = "<group>"; };
+		8649AAF02D102372003E1EB6 /* icon_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_edit@2x.png"; sourceTree = "<group>"; };
+		8649AAF12D102372003E1EB6 /* icon_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_iphone.png; sourceTree = "<group>"; };
+		8649AAF22D102372003E1EB6 /* icon_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_iphone@2x.png"; sourceTree = "<group>"; };
+		8649AAF32D102372003E1EB6 /* icon_mic_jinyong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mic_jinyong.png; sourceTree = "<group>"; };
+		8649AAF42D102372003E1EB6 /* icon_mic_jinyong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_mic_jinyong@2x.png"; sourceTree = "<group>"; };
+		8649AAF52D102372003E1EB6 /* icon_mic_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mic_normal.png; sourceTree = "<group>"; };
+		8649AAF62D102372003E1EB6 /* icon_mic_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_mic_normal@2x.png"; sourceTree = "<group>"; };
+		8649AAF72D102372003E1EB6 /* icon_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_more.png; sourceTree = "<group>"; };
+		8649AAF82D102372003E1EB6 /* icon_setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_setting.png; sourceTree = "<group>"; };
+		8649AAF92D102372003E1EB6 /* icon_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_setting@2x.png"; sourceTree = "<group>"; };
+		8649AAFA2D102372003E1EB6 /* icon_touxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_touxiang.png; sourceTree = "<group>"; };
+		8649AAFB2D102372003E1EB6 /* icon_touxiang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_touxiang@2x.png"; sourceTree = "<group>"; };
+		8649AAFC2D102372003E1EB6 /* icon_wenxin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wenxin.png; sourceTree = "<group>"; };
+		8649AAFD2D102372003E1EB6 /* icon_zhinengti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zhinengti.png; sourceTree = "<group>"; };
+		8649AAFE2D102372003E1EB6 /* img_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_background.png; sourceTree = "<group>"; };
+		8649AAFF2D102372003E1EB6 /* kefu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kefu.png; sourceTree = "<group>"; };
+		8649AB002D102372003E1EB6 /* main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_bg.png; sourceTree = "<group>"; };
+		8649AB012D102372003E1EB6 /* main_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_more.png; sourceTree = "<group>"; };
+		8649AB022D102372003E1EB6 /* main_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_title.png; sourceTree = "<group>"; };
+		8649AB032D102372003E1EB6 /* nav-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-back.png"; sourceTree = "<group>"; };
+		8649AB042D102372003E1EB6 /* nav-back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-back@2x.png"; sourceTree = "<group>"; };
+		8649AB052D102372003E1EB6 /* peiban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peiban.png; sourceTree = "<group>"; };
+		8649AB062D102372003E1EB6 /* pic_coming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_coming.png; sourceTree = "<group>"; };
+		8649AB072D102372003E1EB6 /* tts_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tts_arrow.png; sourceTree = "<group>"; };
+		8649AB082D102372003E1EB6 /* zhibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhibo.png; sourceTree = "<group>"; };
+		8649AB622D10237D003E1EB6 /* icon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icon; sourceTree = "<group>"; };
+		8649AB662D102396003E1EB6 /* IAsyncPCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAsyncPCM.h; sourceTree = "<group>"; };
+		8649AB672D102396003E1EB6 /* PlayAudioRecorderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioRecorderUtil.h; sourceTree = "<group>"; };
+		8649AB682D102396003E1EB6 /* PlayAudioRecorderUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayAudioRecorderUtil.mm; sourceTree = "<group>"; };
+		8649AB692D102396003E1EB6 /* WavFileWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WavFileWriter.cpp; sourceTree = "<group>"; };
+		8649AB6A2D102396003E1EB6 /* WavFileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavFileWriter.h; sourceTree = "<group>"; };
+		8649AB6B2D102396003E1EB6 /* ZegoAiCompanionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAiCompanionUtil.h; sourceTree = "<group>"; };
+		8649AB6C2D102396003E1EB6 /* ZegoAiCompanionUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZegoAiCompanionUtil.mm; sourceTree = "<group>"; };
+		8649AB6D2D102396003E1EB6 /* ZegoAskAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAskAnswerTableViewCell.h; sourceTree = "<group>"; };
+		8649AB6E2D102396003E1EB6 /* ZegoAskAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAskAnswerTableViewCell.m; sourceTree = "<group>"; };
+		8649AB6F2D102396003E1EB6 /* ZegoAutoAdjustTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAutoAdjustTextView.h; sourceTree = "<group>"; };
+		8649AB702D102396003E1EB6 /* ZegoAutoAdjustTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAutoAdjustTextView.m; sourceTree = "<group>"; };
+		8649AB712D102396003E1EB6 /* ZegoStaticsLogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoStaticsLogView.h; sourceTree = "<group>"; };
+		8649AB722D102396003E1EB6 /* ZegoStaticsLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoStaticsLogView.m; sourceTree = "<group>"; };
+		8649AB732D102396003E1EB6 /* ZGMWAsyncPCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGMWAsyncPCM.h; sourceTree = "<group>"; };
+		8649AB742D102396003E1EB6 /* ZGMWAsyncPCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGMWAsyncPCM.m; sourceTree = "<group>"; };
+		8649AB7D2D1023A3003E1EB6 /* ZegoAiCompanionHttpHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAiCompanionHttpHelper.h; sourceTree = "<group>"; };
+		8649AB7E2D1023A3003E1EB6 /* ZegoAiCompanionHttpHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZegoAiCompanionHttpHelper.mm; sourceTree = "<group>"; };
+		8649AB812D1023B0003E1EB6 /* AppDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDataManager.h; sourceTree = "<group>"; };
+		8649AB822D1023B0003E1EB6 /* AppDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDataManager.m; sourceTree = "<group>"; };
+		8649AB832D1023B0003E1EB6 /* PerfStaticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfStaticsHelper.h; sourceTree = "<group>"; };
+		8649AB842D1023B0003E1EB6 /* PerfStaticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfStaticsHelper.m; sourceTree = "<group>"; };
+		8649AB882D1023C2003E1EB6 /* AiCompanionConfig.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AiCompanionConfig.mm; path = ai_companion_uikit/AiCompanionConfig.mm; sourceTree = SOURCE_ROOT; };
+		8649AB892D1023C2003E1EB6 /* AiCompanionConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AiCompanionConfig.h; path = ai_companion_uikit/AiCompanionConfig.h; sourceTree = SOURCE_ROOT; };
+		8649AB8D2D102624003E1EB6 /* zlogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = zlogger.xcframework; path = Libs/Zlogger/libs/ios/zlogger.xcframework; sourceTree = "<group>"; };
+		8649AB8F2D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAICompanionCallVCWithExpress.m; sourceTree = "<group>"; };
+		8649AB902D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAICompanionCallVCWithExpress.h; sourceTree = "<group>"; };
+		86DD16802D09ABEB0098B1C0 /* ai_companion_express.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ai_companion_express.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86DD16832D09ABEB0098B1C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		86DD16842D09ABEB0098B1C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		86DD16862D09ABEB0098B1C0 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		86DD16872D09ABEB0098B1C0 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		86DD16892D09ABEB0098B1C0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		86DD168A2D09ABEB0098B1C0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		86DD168D2D09ABEB0098B1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		86DD168F2D09ABEC0098B1C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		86DD16922D09ABEC0098B1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		86DD16942D09ABEC0098B1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86DD16952D09ABEC0098B1C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		86DD169E2D09AEF80098B1C0 /* ZegoAIAgentExpressHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAIAgentExpressHelper.h; sourceTree = "<group>"; };
+		86DD169F2D09AEF80098B1C0 /* ZegoAIAgentExpressHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAIAgentExpressHelper.m; sourceTree = "<group>"; };
+		86DD16C12D09B10F0098B1C0 /* ZegoAIComponionExpressMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAIComponionExpressMainView.m; sourceTree = "<group>"; };
+		86DD16C22D09B10F0098B1C0 /* ZegoAIComponionExpressMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAIComponionExpressMainView.h; sourceTree = "<group>"; };
+		86DD17042D09B9100098B1C0 /* zlogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = zlogger.xcframework; path = ai_companion_oc/Libs/Zlogger/libs/ios/zlogger.xcframework; sourceTree = "<group>"; };
+		C0F1A9DD188AB81DBDEE8849 /* Pods-ai_companion_express.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ai_companion_express.release.xcconfig"; path = "Target Support Files/Pods-ai_companion_express/Pods-ai_companion_express.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		86DD167D2D09ABEB0098B1C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86235CA32D267F07006E5A06 /* ZegoExpressEngine.xcframework in Frameworks */,
+				8649AB8E2D102624003E1EB6 /* zlogger.xcframework in Frameworks */,
+				EC0C31D2AFCE6249E5BB83EA /* Pods_ai_companion_express.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8649AA772D102271003E1EB6 /* logger */ = {
+			isa = PBXGroup;
+			children = (
+				8649AA712D102271003E1EB6 /* AIAgentLogUtil.h */,
+				8649AA722D102271003E1EB6 /* AIAgentLogUtil.mm */,
+				8649AA732D102271003E1EB6 /* LogUtil.cpp */,
+				8649AA742D102271003E1EB6 /* LogUtil.h */,
+				8649AA752D102271003E1EB6 /* ZLoggerWrapper.cpp */,
+				8649AA762D102271003E1EB6 /* ZLoggerWrapper.h */,
+			);
+			name = logger;
+			path = ai_companion_uikit/logger;
+			sourceTree = SOURCE_ROOT;
+		};
+		8649AA7D2D10228F003E1EB6 /* toast */ = {
+			isa = PBXGroup;
+			children = (
+				8649AA7B2D10228F003E1EB6 /* UIView+Toast.h */,
+				8649AA7C2D10228F003E1EB6 /* UIView+Toast.m */,
+			);
+			path = toast;
+			sourceTree = "<group>";
+		};
+		8649AA7E2D10228F003E1EB6 /* thirdpart */ = {
+			isa = PBXGroup;
+			children = (
+				8649AA7D2D10228F003E1EB6 /* toast */,
+			);
+			name = thirdpart;
+			path = ai_companion_uikit/aiagent/thirdpart;
+			sourceTree = SOURCE_ROOT;
+		};
+		8649AA892D1022F5003E1EB6 /* ttssettings */ = {
+			isa = PBXGroup;
+			children = (
+				8649AA802D1022F5003E1EB6 /* ZegoAICompanionSettingsView.h */,
+				8649AA812D1022F5003E1EB6 /* ZegoAICompanionSettingsView.m */,
+				8649AA822D1022F5003E1EB6 /* ZegoAIComponionSettingsDef.h */,
+				8649AA832D1022F5003E1EB6 /* ZegoSettingsContainerView.h */,
+				8649AA842D1022F5003E1EB6 /* ZegoSettingsContainerView.m */,
+				8649AA852D1022F5003E1EB6 /* ZegoTimbreCollectionViewCell.h */,
+				8649AA862D1022F5003E1EB6 /* ZegoTimbreCollectionViewCell.m */,
+				8649AA872D1022F5003E1EB6 /* ZegoTTSComponySelectView.h */,
+				8649AA882D1022F5003E1EB6 /* ZegoTTSComponySelectView.m */,
+			);
+			name = ttssettings;
+			path = ai_companion_uikit/aiagent/ttssettings;
+			sourceTree = SOURCE_ROOT;
+		};
+		8649AA9C2D102320003E1EB6 /* voicecall */ = {
+			isa = PBXGroup;
+			children = (
+				86235CA62D267F68006E5A06 /* ZegoCallVCNameUIComponent.h */,
+				86235CA72D267F68006E5A06 /* ZegoCallVCNameUIComponent.m */,
+				8649AA922D102320003E1EB6 /* ZegoAudioChatCellLabelView.h */,
+				8649AA932D102320003E1EB6 /* ZegoAudioChatCellLabelView.m */,
+				8649AA942D102320003E1EB6 /* ZegoAudioChatMsgModel.h */,
+				8649AA952D102320003E1EB6 /* ZegoAudioChatMsgModel.m */,
+				8649AA962D102320003E1EB6 /* ZegoAudioChatTableView.h */,
+				8649AA972D102320003E1EB6 /* ZegoAudioChatTableView.m */,
+				8649AA982D102320003E1EB6 /* ZegoAudioChatTableViewCell.h */,
+				8649AA992D102320003E1EB6 /* ZegoAudioChatTableViewCell.m */,
+				8649AA9A2D102320003E1EB6 /* ZegoVoiceActivityChecker.h */,
+				8649AA9B2D102320003E1EB6 /* ZegoVoiceActivityChecker.m */,
+			);
+			name = voicecall;
+			path = ai_companion_uikit/aiagent/voicecall;
+			sourceTree = SOURCE_ROOT;
+		};
+		8649AB092D102372003E1EB6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				8649AB622D10237D003E1EB6 /* icon */,
+				8649AAE12D102372003E1EB6 /* AppExtraConfig.json */,
+				8649AAE22D102372003E1EB6 /* gender-arrow.png */,
+				8649AAE32D102372003E1EB6 /* gender-arrow@2x.png */,
+				8649AAE42D102372003E1EB6 /* ic_launcher_round.webp */,
+				8649AAE52D102372003E1EB6 /* ic_launcher.webp */,
+				8649AAE62D102372003E1EB6 /* icon_add.png */,
+				8649AAE72D102372003E1EB6 /* icon_add@2x.png */,
+				8649AAE82D102372003E1EB6 /* icon_audio.png */,
+				8649AAE92D102372003E1EB6 /* icon_back.png */,
+				8649AAEA2D102372003E1EB6 /* icon_change.png */,
+				8649AAEB2D102372003E1EB6 /* icon_chose.png */,
+				8649AAEC2D102372003E1EB6 /* icon_clean.png */,
+				8649AAED2D102372003E1EB6 /* icon_close.png */,
+				8649AAEE2D102372003E1EB6 /* icon_close@2x.png */,
+				8649AAEF2D102372003E1EB6 /* icon_edit.png */,
+				8649AAF02D102372003E1EB6 /* icon_edit@2x.png */,
+				8649AAF12D102372003E1EB6 /* icon_iphone.png */,
+				8649AAF22D102372003E1EB6 /* icon_iphone@2x.png */,
+				8649AAF32D102372003E1EB6 /* icon_mic_jinyong.png */,
+				8649AAF42D102372003E1EB6 /* icon_mic_jinyong@2x.png */,
+				8649AAF52D102372003E1EB6 /* icon_mic_normal.png */,
+				8649AAF62D102372003E1EB6 /* icon_mic_normal@2x.png */,
+				8649AAF72D102372003E1EB6 /* icon_more.png */,
+				8649AAF82D102372003E1EB6 /* icon_setting.png */,
+				8649AAF92D102372003E1EB6 /* icon_setting@2x.png */,
+				8649AAFA2D102372003E1EB6 /* icon_touxiang.png */,
+				8649AAFB2D102372003E1EB6 /* icon_touxiang@2x.png */,
+				8649AAFC2D102372003E1EB6 /* icon_wenxin.png */,
+				8649AAFD2D102372003E1EB6 /* icon_zhinengti.png */,
+				8649AAFE2D102372003E1EB6 /* img_background.png */,
+				8649AAFF2D102372003E1EB6 /* kefu.png */,
+				8649AB002D102372003E1EB6 /* main_bg.png */,
+				8649AB012D102372003E1EB6 /* main_more.png */,
+				8649AB022D102372003E1EB6 /* main_title.png */,
+				8649AB032D102372003E1EB6 /* nav-back.png */,
+				8649AB042D102372003E1EB6 /* nav-back@2x.png */,
+				8649AB052D102372003E1EB6 /* peiban.png */,
+				8649AB062D102372003E1EB6 /* pic_coming.png */,
+				8649AB072D102372003E1EB6 /* tts_arrow.png */,
+				8649AB082D102372003E1EB6 /* zhibo.png */,
+			);
+			name = Resource;
+			path = ai_companion_uikit/aiagent/Resource;
+			sourceTree = SOURCE_ROOT;
+		};
+		8649AB752D102396003E1EB6 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				8649AB662D102396003E1EB6 /* IAsyncPCM.h */,
+				8649AB672D102396003E1EB6 /* PlayAudioRecorderUtil.h */,
+				8649AB682D102396003E1EB6 /* PlayAudioRecorderUtil.mm */,
+				8649AB692D102396003E1EB6 /* WavFileWriter.cpp */,
+				8649AB6A2D102396003E1EB6 /* WavFileWriter.h */,
+				8649AB6B2D102396003E1EB6 /* ZegoAiCompanionUtil.h */,
+				8649AB6C2D102396003E1EB6 /* ZegoAiCompanionUtil.mm */,
+				8649AB6D2D102396003E1EB6 /* ZegoAskAnswerTableViewCell.h */,
+				8649AB6E2D102396003E1EB6 /* ZegoAskAnswerTableViewCell.m */,
+				8649AB6F2D102396003E1EB6 /* ZegoAutoAdjustTextView.h */,
+				8649AB702D102396003E1EB6 /* ZegoAutoAdjustTextView.m */,
+				8649AB712D102396003E1EB6 /* ZegoStaticsLogView.h */,
+				8649AB722D102396003E1EB6 /* ZegoStaticsLogView.m */,
+				8649AB732D102396003E1EB6 /* ZGMWAsyncPCM.h */,
+				8649AB742D102396003E1EB6 /* ZGMWAsyncPCM.m */,
+			);
+			name = utils;
+			path = ai_companion_uikit/aiagent/utils;
+			sourceTree = SOURCE_ROOT;
+		};
+		8649AB7F2D1023A3003E1EB6 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				8649AB7D2D1023A3003E1EB6 /* ZegoAiCompanionHttpHelper.h */,
+				8649AB7E2D1023A3003E1EB6 /* ZegoAiCompanionHttpHelper.mm */,
+			);
+			name = network;
+			path = ai_companion_uikit/aiagent/network;
+			sourceTree = SOURCE_ROOT;
+		};
+		8649AB852D1023B0003E1EB6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8649AB812D1023B0003E1EB6 /* AppDataManager.h */,
+				8649AB822D1023B0003E1EB6 /* AppDataManager.m */,
+				8649AB832D1023B0003E1EB6 /* PerfStaticsHelper.h */,
+				8649AB842D1023B0003E1EB6 /* PerfStaticsHelper.m */,
+			);
+			name = model;
+			path = ai_companion_uikit/aiagent/model;
+			sourceTree = SOURCE_ROOT;
+		};
+		86DD16772D09ABEB0098B1C0 = {
+			isa = PBXGroup;
+			children = (
+				86DD16822D09ABEB0098B1C0 /* ai_companion_express */,
+				86DD16812D09ABEB0098B1C0 /* Products */,
+				E8438DA9593DB9D56FED8BFA /* Pods */,
+				B4E8DDD8E74543E91DE7B8F4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		86DD16812D09ABEB0098B1C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86DD16802D09ABEB0098B1C0 /* ai_companion_express.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		86DD16822D09ABEB0098B1C0 /* ai_companion_express */ = {
+			isa = PBXGroup;
+			children = (
+				8649AA772D102271003E1EB6 /* logger */,
+				86DD16A02D09AEF80098B1C0 /* aiagent */,
+				86DD16832D09ABEB0098B1C0 /* AppDelegate.h */,
+				86DD16842D09ABEB0098B1C0 /* AppDelegate.m */,
+				8649AB892D1023C2003E1EB6 /* AiCompanionConfig.h */,
+				8649AB882D1023C2003E1EB6 /* AiCompanionConfig.mm */,
+				86DD16862D09ABEB0098B1C0 /* SceneDelegate.h */,
+				86DD16872D09ABEB0098B1C0 /* SceneDelegate.m */,
+				86DD16892D09ABEB0098B1C0 /* ViewController.h */,
+				86DD168A2D09ABEB0098B1C0 /* ViewController.m */,
+				86235C7F2D22CF99006E5A06 /* ZegoTestSettingViewController.h */,
+				86235C802D22CF99006E5A06 /* ZegoTestSettingViewController.m */,
+				86235C812D22CF99006E5A06 /* ZegoTestSettingViewController.xib */,
+				86DD168C2D09ABEB0098B1C0 /* Main.storyboard */,
+				86DD168F2D09ABEC0098B1C0 /* Assets.xcassets */,
+				86DD16912D09ABEC0098B1C0 /* LaunchScreen.storyboard */,
+				86DD16942D09ABEC0098B1C0 /* Info.plist */,
+				86DD16952D09ABEC0098B1C0 /* main.m */,
+			);
+			path = ai_companion_express;
+			sourceTree = "<group>";
+		};
+		86DD16A02D09AEF80098B1C0 /* aiagent */ = {
+			isa = PBXGroup;
+			children = (
+				8649AB852D1023B0003E1EB6 /* model */,
+				8649AB7F2D1023A3003E1EB6 /* network */,
+				8649AB752D102396003E1EB6 /* utils */,
+				8649AB092D102372003E1EB6 /* Resource */,
+				8649AA9C2D102320003E1EB6 /* voicecall */,
+				8649AA892D1022F5003E1EB6 /* ttssettings */,
+				8649AA7E2D10228F003E1EB6 /* thirdpart */,
+				86DD16C12D09B10F0098B1C0 /* ZegoAIComponionExpressMainView.m */,
+				86DD16C22D09B10F0098B1C0 /* ZegoAIComponionExpressMainView.h */,
+				86DD169E2D09AEF80098B1C0 /* ZegoAIAgentExpressHelper.h */,
+				86DD169F2D09AEF80098B1C0 /* ZegoAIAgentExpressHelper.m */,
+				8649AB902D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.h */,
+				8649AB8F2D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.m */,
+			);
+			path = aiagent;
+			sourceTree = "<group>";
+		};
+		B4E8DDD8E74543E91DE7B8F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				86235CA12D267EFF006E5A06 /* ZegoExpressEngine.xcframework */,
+				86DD17042D09B9100098B1C0 /* zlogger.xcframework */,
+				8649AB8D2D102624003E1EB6 /* zlogger.xcframework */,
+				2A9550618B04AB7DB2FCC79B /* Pods_ai_companion_express.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8438DA9593DB9D56FED8BFA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				70124B2027B10F9EEB36C184 /* Pods-ai_companion_express.debug.xcconfig */,
+				C0F1A9DD188AB81DBDEE8849 /* Pods-ai_companion_express.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		86DD167F2D09ABEB0098B1C0 /* ai_companion_express */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86DD16992D09ABEC0098B1C0 /* Build configuration list for PBXNativeTarget "ai_companion_express" */;
+			buildPhases = (
+				06534FBCB26919EDEB694AFD /* [CP] Check Pods Manifest.lock */,
+				86DD167C2D09ABEB0098B1C0 /* Sources */,
+				86DD167D2D09ABEB0098B1C0 /* Frameworks */,
+				86DD167E2D09ABEB0098B1C0 /* Resources */,
+				DE5D28E43B112F41740D42A4 /* [CP] Embed Pods Frameworks */,
+				86235CA52D267F07006E5A06 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ai_companion_express;
+			productName = ai_companion_express;
+			productReference = 86DD16802D09ABEB0098B1C0 /* ai_companion_express.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		86DD16782D09ABEB0098B1C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					86DD167F2D09ABEB0098B1C0 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 86DD167B2D09ABEB0098B1C0 /* Build configuration list for PBXProject "ai_companion_express" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 86DD16772D09ABEB0098B1C0;
+			productRefGroup = 86DD16812D09ABEB0098B1C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				86DD167F2D09ABEB0098B1C0 /* ai_companion_express */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		86DD167E2D09ABEB0098B1C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8649AB4A2D102372003E1EB6 /* icon_iphone.png in Resources */,
+				8649AB612D102372003E1EB6 /* zhibo.png in Resources */,
+				8649AB5B2D102372003E1EB6 /* main_title.png in Resources */,
+				8649AB512D102372003E1EB6 /* icon_setting.png in Resources */,
+				8649AB492D102372003E1EB6 /* icon_edit@2x.png in Resources */,
+				8649AB632D10237D003E1EB6 /* icon in Resources */,
+				8649AB402D102372003E1EB6 /* icon_add@2x.png in Resources */,
+				8649AB4E2D102372003E1EB6 /* icon_mic_normal.png in Resources */,
+				8649AB4F2D102372003E1EB6 /* icon_mic_normal@2x.png in Resources */,
+				8649AB572D102372003E1EB6 /* img_background.png in Resources */,
+				8649AB5F2D102372003E1EB6 /* pic_coming.png in Resources */,
+				8649AB602D102372003E1EB6 /* tts_arrow.png in Resources */,
+				8649AB502D102372003E1EB6 /* icon_more.png in Resources */,
+				86235C832D22CF99006E5A06 /* ZegoTestSettingViewController.xib in Resources */,
+				8649AB442D102372003E1EB6 /* icon_chose.png in Resources */,
+				8649AB3A2D102372003E1EB6 /* AppExtraConfig.json in Resources */,
+				8649AB3F2D102372003E1EB6 /* icon_add.png in Resources */,
+				8649AB432D102372003E1EB6 /* icon_change.png in Resources */,
+				8649AB4B2D102372003E1EB6 /* icon_iphone@2x.png in Resources */,
+				8649AB5A2D102372003E1EB6 /* main_more.png in Resources */,
+				86DD16902D09ABEC0098B1C0 /* Assets.xcassets in Resources */,
+				8649AB412D102372003E1EB6 /* icon_audio.png in Resources */,
+				8649AB482D102372003E1EB6 /* icon_edit.png in Resources */,
+				8649AB3D2D102372003E1EB6 /* ic_launcher_round.webp in Resources */,
+				8649AB462D102372003E1EB6 /* icon_close.png in Resources */,
+				8649AB4D2D102372003E1EB6 /* icon_mic_jinyong@2x.png in Resources */,
+				8649AB592D102372003E1EB6 /* main_bg.png in Resources */,
+				8649AB5C2D102372003E1EB6 /* nav-back.png in Resources */,
+				8649AB422D102372003E1EB6 /* icon_back.png in Resources */,
+				8649AB472D102372003E1EB6 /* icon_close@2x.png in Resources */,
+				8649AB3C2D102372003E1EB6 /* gender-arrow@2x.png in Resources */,
+				86DD16932D09ABEC0098B1C0 /* Base in Resources */,
+				86DD168E2D09ABEB0098B1C0 /* Base in Resources */,
+				8649AB5D2D102372003E1EB6 /* nav-back@2x.png in Resources */,
+				8649AB452D102372003E1EB6 /* icon_clean.png in Resources */,
+				8649AB3B2D102372003E1EB6 /* gender-arrow.png in Resources */,
+				8649AB4C2D102372003E1EB6 /* icon_mic_jinyong.png in Resources */,
+				8649AB552D102372003E1EB6 /* icon_wenxin.png in Resources */,
+				8649AB582D102372003E1EB6 /* kefu.png in Resources */,
+				8649AB522D102372003E1EB6 /* icon_setting@2x.png in Resources */,
+				8649AB3E2D102372003E1EB6 /* ic_launcher.webp in Resources */,
+				8649AB532D102372003E1EB6 /* icon_touxiang.png in Resources */,
+				8649AB5E2D102372003E1EB6 /* peiban.png in Resources */,
+				8649AB562D102372003E1EB6 /* icon_zhinengti.png in Resources */,
+				8649AB542D102372003E1EB6 /* icon_touxiang@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06534FBCB26919EDEB694AFD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ai_companion_express-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE5D28E43B112F41740D42A4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ai_companion_express/Pods-ai_companion_express-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ai_companion_express/Pods-ai_companion_express-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ai_companion_express/Pods-ai_companion_express-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		86DD167C2D09ABEB0098B1C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8649AB8A2D1023C2003E1EB6 /* AiCompanionConfig.mm in Sources */,
+				8649AB762D102396003E1EB6 /* PlayAudioRecorderUtil.mm in Sources */,
+				8649AA792D102271003E1EB6 /* LogUtil.cpp in Sources */,
+				8649AB792D102396003E1EB6 /* ZegoAskAnswerTableViewCell.m in Sources */,
+				8649AB862D1023B0003E1EB6 /* AppDataManager.m in Sources */,
+				8649AAA32D102320003E1EB6 /* ZegoVoiceActivityChecker.m in Sources */,
+				86DD168B2D09ABEB0098B1C0 /* ViewController.m in Sources */,
+				8649AB772D102396003E1EB6 /* WavFileWriter.cpp in Sources */,
+				8649AB802D1023A3003E1EB6 /* ZegoAiCompanionHttpHelper.mm in Sources */,
+				86DD16852D09ABEB0098B1C0 /* AppDelegate.m in Sources */,
+				86DD16962D09ABEC0098B1C0 /* main.m in Sources */,
+				8649AA7A2D102271003E1EB6 /* ZLoggerWrapper.cpp in Sources */,
+				86235C822D22CF99006E5A06 /* ZegoTestSettingViewController.m in Sources */,
+				8649AB7C2D102396003E1EB6 /* ZGMWAsyncPCM.m in Sources */,
+				86DD16A12D09AEF80098B1C0 /* ZegoAIAgentExpressHelper.m in Sources */,
+				8649AAA22D102320003E1EB6 /* ZegoAudioChatTableViewCell.m in Sources */,
+				8649AB7B2D102396003E1EB6 /* ZegoStaticsLogView.m in Sources */,
+				8649AB7A2D102396003E1EB6 /* ZegoAutoAdjustTextView.m in Sources */,
+				8649AB912D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.m in Sources */,
+				8649AA782D102271003E1EB6 /* AIAgentLogUtil.mm in Sources */,
+				8649AA7F2D10228F003E1EB6 /* UIView+Toast.m in Sources */,
+				86DD16882D09ABEB0098B1C0 /* SceneDelegate.m in Sources */,
+				86DD16C32D09B10F0098B1C0 /* ZegoAIComponionExpressMainView.m in Sources */,
+				8649AB872D1023B0003E1EB6 /* PerfStaticsHelper.m in Sources */,
+				8649AA9F2D102320003E1EB6 /* ZegoAudioChatCellLabelView.m in Sources */,
+				8649AA8D2D1022F5003E1EB6 /* ZegoTTSComponySelectView.m in Sources */,
+				8649AA8B2D1022F5003E1EB6 /* ZegoSettingsContainerView.m in Sources */,
+				8649AB782D102396003E1EB6 /* ZegoAiCompanionUtil.mm in Sources */,
+				86235CA82D267F68006E5A06 /* ZegoCallVCNameUIComponent.m in Sources */,
+				8649AAA12D102320003E1EB6 /* ZegoAudioChatTableView.m in Sources */,
+				8649AA8C2D1022F5003E1EB6 /* ZegoTimbreCollectionViewCell.m in Sources */,
+				8649AAA02D102320003E1EB6 /* ZegoAudioChatMsgModel.m in Sources */,
+				8649AA8A2D1022F5003E1EB6 /* ZegoAICompanionSettingsView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		86DD168C2D09ABEB0098B1C0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86DD168D2D09ABEB0098B1C0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		86DD16912D09ABEC0098B1C0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86DD16922D09ABEC0098B1C0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		86DD16972D09ABEC0098B1C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		86DD16982D09ABEC0098B1C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		86DD169A2D09ABEC0098B1C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70124B2027B10F9EEB36C184 /* Pods-ai_companion_express.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.1.1;
+				DEVELOPMENT_TEAM = B82BHJ5H89;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					USE_ZLOGGER,
+					EXPRESS_DEMO,
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ai_companion_express/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI陪伴Express版";
+				INFOPLIST_KEY_NSCameraUsageDescription = "相机";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "麦克风";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = im.zego.aicompanion.express;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		86DD169B2D09ABEC0098B1C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0F1A9DD188AB81DBDEE8849 /* Pods-ai_companion_express.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.1.1;
+				DEVELOPMENT_TEAM = B82BHJ5H89;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					USE_ZLOGGER,
+					EXPRESS_DEMO,
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ai_companion_express/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI陪伴Express版";
+				INFOPLIST_KEY_NSCameraUsageDescription = "相机";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "麦克风";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = im.zego.aicompanion.express;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		86DD167B2D09ABEB0098B1C0 /* Build configuration list for PBXProject "ai_companion_express" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86DD16972D09ABEC0098B1C0 /* Debug */,
+				86DD16982D09ABEC0098B1C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86DD16992D09ABEC0098B1C0 /* Build configuration list for PBXNativeTarget "ai_companion_express" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86DD169A2D09ABEC0098B1C0 /* Debug */,
+				86DD169B2D09ABEC0098B1C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 86DD16782D09ABEB0098B1C0 /* Project object */;
+}
