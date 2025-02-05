@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="#ccffffff">
+
+  <com.google.android.material.switchmaterial.SwitchMaterial
+    android:id="@+id/switch_audio_dump"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/audio_dump"
+    android:textColor="@color/black"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+  <TextView
+    android:id="@+id/log_play_volume"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:textColor="@color/black"
+    android:textSize="10sp"
+    app:layout_constraintBottom_toBottomOf="@+id/switch_audio_dump"
+    app:layout_constraintStart_toEndOf="@+id/switch_audio_dump"
+    app:layout_constraintTop_toTopOf="@+id/switch_audio_dump" />
+
+  <!--  <com.google.android.material.switchmaterial.SwitchMaterial-->
+  <!--    android:id="@+id/switch_capture_audio"-->
+  <!--    android:layout_width="wrap_content"-->
+  <!--    android:layout_height="wrap_content"-->
+  <!--    android:text="录制采集声音"-->
+  <!--    android:textColor="@color/black"-->
+  <!--    android:visibility="gone"-->
+  <!--    app:layout_constraintStart_toStartOf="parent"-->
+  <!--    app:layout_constraintTop_toBottomOf="@+id/switch_audio_dump"-->
+  <!--    tools:ignore="UseSwitchCompatOrMaterialXml" />-->
+
+  <!--  <com.google.android.material.switchmaterial.SwitchMaterial-->
+  <!--    android:id="@+id/switch_play_audio"-->
+  <!--    android:layout_width="wrap_content"-->
+  <!--    android:layout_height="wrap_content"-->
+  <!--    android:text="录制拉流声音"-->
+  <!--    android:textColor="@color/black"-->
+  <!--    android:visibility="gone"-->
+  <!--    app:layout_constraintBottom_toBottomOf="@+id/switch_capture_audio"-->
+  <!--    app:layout_constraintEnd_toEndOf="parent"-->
+  <!--    app:layout_constraintStart_toEndOf="@+id/switch_capture_audio"-->
+  <!--    app:layout_constraintTop_toTopOf="@+id/switch_capture_audio"-->
+  <!--    tools:ignore="UseSwitchCompatOrMaterialXml" />-->
+
+  <TextView
+    android:id="@+id/log_room_id"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/black"
+    android:textSize="10sp"
+    app:layout_constraintTop_toBottomOf="@+id/switch_audio_dump" />
+
+  <TextView
+    android:id="@+id/log_conversation_id"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/black"
+    android:textSize="10sp"
+    app:layout_constraintTop_toBottomOf="@+id/log_room_id" />
+
+  <TextView
+    android:id="@+id/log_publish_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/black"
+    android:textSize="10sp"
+    app:layout_constraintTop_toBottomOf="@+id/log_conversation_id" />
+
+  <TextView
+    android:id="@+id/log_play_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/black"
+    android:textSize="10sp"
+    app:layout_constraintTop_toBottomOf="@+id/log_publish_text" />
+
+  <TextView
+    android:id="@+id/log_cmd_text"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="#11000000"
+    android:scrollbars="vertical"
+    android:textColor="@color/black"
+    android:textSize="10sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/log_play_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fillViewport="true">
+
+  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_ai_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFF0F2">
+
+    <TextView
+      android:id="@+id/create_ai_title"
+      android:layout_width="match_parent"
+      android:layout_height="54dp"
+      android:layout_gravity="center"
+      android:fontFamily="sans-serif"
+      android:gravity="center"
+      android:text="@string/create_ai_smart"
+      android:textColor="@color/black"
+      android:textSize="18sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+      android:id="@+id/create_ai_back"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:layout_marginStart="4dp"
+      android:layout_marginTop="7dp"
+      android:background="@mipmap/icon_list_back"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+      android:id="@+id/create_ai_pic"
+      android:layout_width="80dp"
+      android:layout_height="80dp"
+      android:layout_marginTop="11dp"
+      android:scaleType="centerCrop"
+      android:src="@mipmap/icon_touxiang"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/create_ai_title"
+      tools:ignore="MissingConstraints" />
+
+    <ImageView
+      android:id="@+id/create_ai_pic_add"
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+
+      android:background="@mipmap/icon_add"
+      app:layout_constraintBottom_toBottomOf="@+id/create_ai_pic"
+      app:layout_constraintEnd_toEndOf="@+id/create_ai_pic"
+      tools:ignore="MissingConstraints" />
+
+    <TextView
+      android:id="@+id/create_ai_declare"
+      android:layout_width="343dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="16dp"
+      android:background="@drawable/rounded_ai_white_transparent"
+      android:fontFamily="sans-serif"
+      android:paddingHorizontal="16dp"
+      android:paddingVertical="8dp"
+      android:text="@string/create_ai_declare"
+      android:textColor="#8E9093"
+      android:textSize="12sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/create_ai_pic" />
+
+    <EditText
+      android:id="@+id/create_ai_name_txt"
+      android:layout_width="343dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="30dp"
+      android:background="@drawable/rounded_ai_white_nostroke"
+      android:cursorVisible="true"
+      android:ellipsize="end"
+      android:focusable="true"
+      android:focusableInTouchMode="true"
+      android:gravity="center_vertical|end"
+      android:hint="@string/input_ai_name"
+      android:maxLength="20"
+      android:maxLines="1"
+      android:paddingHorizontal="18dp"
+      android:paddingStart="200dp"
+      android:scrollbars="horizontal"
+      android:scrollHorizontally="true"
+      android:singleLine="true"
+      android:textAlignment="viewEnd"
+      android:textColor="#000000"
+      android:textColorHint="#A4A4A4"
+      android:textCursorDrawable="@drawable/color_cursor"
+      android:textSize="16sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/create_ai_declare" />
+
+    <TextView
+      android:id="@+id/create_ai_name"
+      android:layout_width="32dp"
+      android:layout_height="22dp"
+      android:layout_marginLeft="16dp"
+      android:layout_marginTop="14dp"
+      android:gravity="center"
+      android:text="@string/name"
+      android:textColor="@color/black"
+      android:textSize="16sp"
+      app:layout_constraintLeft_toLeftOf="@+id/create_ai_name_txt"
+      app:layout_constraintTop_toTopOf="@+id/create_ai_name_txt" />
+
+    <TextView
+      android:id="@+id/create_ai_sex_txt"
+      android:layout_width="343dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="16dp"
+      android:background="@drawable/rounded_ai_white_nostroke"
+      android:gravity="center_vertical|end"
+      android:hint="@string/please_choose"
+      android:maxLength="20"
+      android:paddingHorizontal="34dp"
+      android:textColor="#000000"
+      android:textColorHint="#A4A4A4"
+      android:textSize="16sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/create_ai_name_txt" />
+
+    <TextView
+      android:id="@+id/create_ai_sex"
+      android:layout_width="32dp"
+      android:layout_height="22dp"
+      android:layout_marginLeft="16dp"
+      android:layout_marginTop="14dp"
+      android:gravity="center"
+      android:text="@string/sex"
+      android:textColor="@color/black"
+      android:textSize="16sp"
+      app:layout_constraintLeft_toLeftOf="@+id/create_ai_sex_txt"
+      app:layout_constraintTop_toTopOf="@+id/create_ai_sex_txt" />
+
+    <ImageView
+      android:id="@+id/create_ai_sex_next"
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:layout_marginTop="13dp"
+      android:layout_marginEnd="10dp"
+      android:background="@mipmap/icon_next"
+      app:layout_constraintRight_toRightOf="@+id/create_ai_sex_txt"
+      app:layout_constraintTop_toTopOf="@+id/create_ai_sex_txt" />
+
+    <EditText
+      android:id="@+id/create_ai_desc_txt"
+      android:layout_width="343dp"
+      android:layout_height="132dp"
+      android:layout_marginTop="16dp"
+      android:background="@drawable/rounded_ai_white_nostroke"
+      android:cursorVisible="true"
+      android:ellipsize="end"
+      android:fadeScrollbars="false"
+      android:focusable="true"
+      android:focusableInTouchMode="true"
+      android:gravity="top|start"
+      android:hint="@string/create_ai_desc"
+      android:lineHeight="22dp"
+      android:maxLength="5000"
+      android:maxLines="3"
+      android:paddingStart="16dp"
+      android:paddingTop="46dp"
+      android:paddingEnd="15dp"
+      android:paddingBottom="14dp"
+      android:scrollbarThumbVertical="@android:color/darker_gray"
+      android:scrollbars="vertical"
+      android:textColor="#000000"
+      android:textColorHint="#A4A4A4"
+      android:textCursorDrawable="@drawable/color_cursor"
+      android:textSize="15sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/create_ai_sex_txt" />
+
+    <TextView
+      android:id="@+id/create_ai_desc"
+      android:layout_width="64dp"
+      android:layout_height="22dp"
+      android:layout_marginLeft="16dp"
+      android:layout_marginTop="14dp"
+      android:gravity="center"
+      android:text="@string/create_ai_set_desc"
+      android:textColor="@color/black"
+      android:textSize="16sp"
+      app:layout_constraintLeft_toLeftOf="@+id/create_ai_desc_txt"
+      app:layout_constraintTop_toTopOf="@+id/create_ai_desc_txt" />
+
+    <TextView
+      android:id="@+id/create_ai_voice"
+      android:layout_width="343dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="16dp"
+      android:background="@drawable/rounded_ai_white_nostroke"
+      android:gravity="center_vertical|end"
+      android:hint="@string/please_choose"
+      android:maxLength="20"
+      android:paddingHorizontal="34dp"
+      android:textColor="#000000"
+      android:textColorHint="#A4A4A4"
+      android:textSize="16sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/create_ai_desc_txt" />
+
+    <TextView
+      android:id="@+id/create_ai_set_voice"
+      android:layout_width="64dp"
+      android:layout_height="22dp"
+      android:layout_marginLeft="16dp"
+      android:layout_marginTop="14dp"
+      android:gravity="center"
+      android:text="@string/create_ai_set_voice"
+      android:textColor="@color/black"
+      android:textSize="16sp"
+      app:layout_constraintLeft_toLeftOf="@+id/create_ai_voice"
+      app:layout_constraintTop_toTopOf="@+id/create_ai_voice" />
+
+    <ImageView
+      android:id="@+id/create_ai_voice_next"
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:layout_marginTop="13dp"
+      android:layout_marginEnd="10dp"
+      android:background="@mipmap/icon_next"
+      app:layout_constraintRight_toRightOf="@+id/create_ai_voice"
+      app:layout_constraintTop_toTopOf="@+id/create_ai_voice" />
+
+    <TextView
+      android:id="@+id/create_ai_only"
+      android:layout_width="327dp"
+      android:layout_height="52dp"
+      android:layout_marginTop="140dp"
+      android:layout_marginBottom="8dp"
+      android:background="@drawable/rounded_enable_save"
+
+      android:fontFamily="sans-serif"
+      android:gravity="center"
+      android:maxLines="2"
+      android:text="@string/create_ai_only"
+      android:textColor="@color/white"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/create_ai_desc_txt"
+      tools:ignore="MissingConstraints" />
+
+    <TextView
+      android:id="@+id/create_ai_copyright"
+      android:layout_width="326dp"
+      android:layout_height="52dp"
+      android:layout_marginTop="8dp"
+      android:fontFamily="sans-serif"
+      android:text="@string/copyright"
+      android:textColor="#8E9093"
+      android:textSize="12sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/create_ai_only" />
+
+
+    <FrameLayout
+      android:id="@+id/content_loading"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:background="#44000000"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+      <com.github.ybq.android.spinkit.SpinKitView
+        style="@style/SpinKitView.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+    </FrameLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

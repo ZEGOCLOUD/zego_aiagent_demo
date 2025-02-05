@@ -1,0 +1,1135 @@
+{
+    "llm_list": [
+        {
+            "id": "minimax-6.5t",
+            "name": "minimax-6.5t",
+            "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_minimax.png",
+            "is_supported": true,
+            "raw_properties": {
+
+                "Type": "Minimax",
+                "Model": "abab6.5t-chat"
+            }
+        },
+        {
+            "id": "minimax-5.5s",
+            "name": "minimax-5.5s",
+            "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_minimax.png",
+            "is_supported": true,
+            "raw_properties": {
+
+                "Type": "Minimax",
+                "Model": "abab5.5s-chat"
+            }
+        },
+        {
+            "id": "doubaolite",
+            "name": "豆包-lite",
+            "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_doubao.png",
+            "is_supported": true,
+            "raw_properties": {
+
+                "Type": "Doubao",
+                "Model": "ep-20240805155703-7lgk8"
+            }
+        },
+        {
+            "id": "doubaopro",
+            "name": "豆包-pro",
+            "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_doubao.png",
+            "is_supported": true,
+            "raw_properties": {
+
+                "Type": "Doubao",
+                "Model": "ep-20240806100628-6dfw7"
+            }
+        },
+        {
+            "id": "wenxin",
+            "name": "文心一言",
+            "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_wenxin.png",
+            "is_supported": true,
+            "raw_properties": {
+
+                "Type": "WenXin",
+                "Model": "ERNIE-3.5-8K"
+            }
+        },
+        {
+            "id": "tongyi",
+            "name": "通义千问",
+            "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_tongyi.png",
+            "is_supported": false
+        }
+    ],
+    "tts_list": [
+        {
+            "id": "Minimax",
+            "name": "MINIMAX",
+            "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_minimax.png",
+            "is_supported": true,
+            "raw_properties": {
+
+                "Type": "Minimax"
+            },
+            "voice_list": [
+                {
+                    "id": "male-qn-qingse",
+                    "name": "青涩青年",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "male-qn-jingying",
+                    "name": "精英青年",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "male-qn-badao",
+                    "name": "霸道青年",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "male-qn-daxuesheng",
+                    "name": "青年大学生",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "female-shaonv",
+                    "name": "少女",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "female-yujie",
+                    "name": "御姐",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "female-chengshu",
+                    "name": "成熟女性",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "female-tianmei",
+                    "name": "甜美女性",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "clever_boy",
+                    "name": "聪明男童",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "cute_boy",
+                    "name": "可爱男童",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "lovely_girl",
+                    "name": "萌萌女童",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "cartoon_pig",
+                    "name": "卡通猪小琪",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "huajia_nainai",
+                    "name": "花甲奶奶",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "lengdan_nvwang",
+                    "name": "冷淡女王",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "chengshu_jiejie",
+                    "name": "成熟姐姐",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "linju_ayi",
+                    "name": "邻居阿姨",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "gaoxiao_daye",
+                    "name": "搞笑大爷",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "daimeng_qingnian",
+                    "name": "呆萌青年",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "zhinen_naigou",
+                    "name": "稚嫩奶狗",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "jia_xiaozi",
+                    "name": "假小子",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "nv_shangsi",
+                    "name": "女上司",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "guiyi_fashi",
+                    "name": "诡异法师",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "dongman_baobao",
+                    "name": "海绵宝宝",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "youmo_shushu",
+                    "name": "幽默叔叔",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "hutong_daye",
+                    "name": "胡同大爷",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "zhichang_jingli",
+                    "name": "职场经理",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "bingruo_shaonv",
+                    "name": "病弱少女",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "huopo_nvhai",
+                    "name": "活泼女孩",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "nv_bangzhu",
+                    "name": "女帮主",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "wenshun_didi",
+                    "name": "温顺弟弟",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "zhinen_xuesheng",
+                    "name": "稚嫩学生",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "qiongyao_nanzhu",
+                    "name": "琼瑶男主",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "keai_nvsheng",
+                    "name": "可爱女生",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "tianzhen_nvhai",
+                    "name": "天真女孩",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "huoli_gege",
+                    "name": "活力哥哥",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "bingjiao_huangdi",
+                    "name": "病娇皇帝",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "nv_banzhang",
+                    "name": "女班长",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "xueba_tongzhuo",
+                    "name": "学霸同桌",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "wenya_nvyou",
+                    "name": "文雅女友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "tiexin_nanyou",
+                    "name": "贴心男友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "jiaoxiu_nvyou",
+                    "name": "娇羞女友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "badao_zongcai",
+                    "name": "霸道总裁",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "tiaopi_gongzhu",
+                    "name": "调皮公主",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "xiaoyao_jianxian",
+                    "name": "逍遥剑仙",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "tianmei_shaonv",
+                    "name": "甜美少女",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "guao_gongzi",
+                    "name": "孤傲公子",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "xinggan_yujie",
+                    "name": "性感御姐",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "ruya_zongcai",
+                    "name": "儒雅总裁",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "wenrou_yisheng",
+                    "name": "温柔医生",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "roumei_nvyou",
+                    "name": "柔美女友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "badao_shangsi",
+                    "name": "冷峻上司",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "chongni_nanyou",
+                    "name": "宠溺男友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "aojiao_nanyou",
+                    "name": "傲娇男友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "mensao_nvyou",
+                    "name": "闷骚女友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "cujing_nanyou",
+                    "name": "醋精男友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "tiyuxi_xuedi",
+                    "name": "体育系学弟",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "zhixing_laoshi",
+                    "name": "知性老师",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "nuanxin_xuejie",
+                    "name": "暖心学姐",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "lingdong_nvhai",
+                    "name": "灵动女孩",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "bingjiao_jiejie",
+                    "name": "病娇姐姐",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "bingjiao_gege",
+                    "name": "病娇哥哥",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "mensao_nanyou",
+                    "name": "闷骚男友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "bingjiao_zongcai",
+                    "name": "病娇总裁",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "bingruo_gongzi",
+                    "name": "病弱公子",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "wenrou_tongzhuo",
+                    "name": "温柔同桌",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "rouyou_bangzhu",
+                    "name": "优柔帮主",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "xuanhuan_jianke",
+                    "name": "玄幻剑客",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "jixie_zhanjia",
+                    "name": "机械战甲",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "badao_shaoye",
+                    "name": "霸道少爷",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "xianjing_xuejie",
+                    "name": "娴静学姐",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "wanyue_nvyou",
+                    "name": "婉约女友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "huopo_nvyou",
+                    "name": "活泼女友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "meili_nvyou",
+                    "name": "魅力女友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "lengdan_xiongzhang",
+                    "name": "冷淡兄长",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "danya_xuejie",
+                    "name": "淡雅学姐",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "diadia_xuemei",
+                    "name": "嗲嗲学妹",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "chunzhen_xuedi",
+                    "name": "纯真学弟",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "junlang_nanyou",
+                    "name": "俊朗男友",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "wumei_yujie",
+                    "name": "妩媚御姐",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "bingjiao_didi",
+                    "name": "病娇弟弟",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "qiaopi_mengmei",
+                    "name": "俏皮萌妹",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "tianxin_xiaoling",
+                    "name": "甜心小玲",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "shuaizhen_shaonian",
+                    "name": "率真少年",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "Aliyun",
+            "name": "阿里云TTS",
+            "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_aliyun.png",
+            "is_supported": false,
+            "raw_properties": {
+
+                "Type": "Aliyun"
+            },
+            "voice_list": [
+                {
+                    "id": "zhiyue",
+                    "name": "普通话女声",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "zhimi_emo",
+                    "name": "温暖女声",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        },
+                        {
+                            "id": "en",
+                            "name": "English"
+                        }
+                    ]
+                },
+                {
+                    "id": "aixiang",
+                    "name": "磁性男声",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        },
+                        {
+                            "id": "en",
+                            "name": "English"
+                        }
+                    ]
+                },
+                {
+                    "id": "chuangirl",
+                    "name": "四川话女声",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        },
+                        {
+                            "id": "en",
+                            "name": "English"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "Huoshan",
+            "name": "火山TTS",
+            "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_huoshan.png",
+            "is_supported": false,
+            "raw_properties": {
+
+                "Type": "Huoshan"
+            },
+            "voice_list": [
+                {
+                    "id": "zh_female_shuangkuaisisi_moon_bigtts",
+                    "name": "爽快思思",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        },
+                        {
+                            "id": "en",
+                            "name": "English"
+                        }
+                    ]
+                },
+                {
+                    "id": "zh_female_wanwanxiaohe_moon_bigtts",
+                    "name": "湾湾小何",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "zh_male_jingqiangkanye_moon_bigtts",
+                    "name": "京腔侃爷",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        },
+                        {
+                            "id": "en",
+                            "name": "English"
+                        }
+                    ]
+                },
+                {
+                    "id": "zh_male_wennuanahu_moon_bigtts",
+                    "name": "温暖阿虎",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        },
+                        {
+                            "id": "en",
+                            "name": "English"
+                        }
+                    ]
+                },
+                {
+                    "id": "zh_female_linjianvhai_moon_bigtts",
+                    "name": "邻家女孩",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "zh_female_gaolengyujie_moon_bigtts",
+                    "name": "高冷御姐",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "zh_male_aojiaobazong_moon_bigtts",
+                    "name": "傲娇霸总",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "zh_male_shaonianzixin_moon_bigtts",
+                    "name": "少年梓辛",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        },
+                        {
+                            "id": "en",
+                            "name": "English"
+                        }
+                    ]
+                },
+                {
+                    "id": "zh_male_yuanboxiaoshu_moon_bigtts",
+                    "name": "渊博小叔",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "BV700_streaming",
+                    "name": "灿灿",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "BV701_streaming",
+                    "name": "擎苍",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                },
+                {
+                    "id": "BV113_streaming",
+                    "name": "甜宠少御",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        },
+                        {
+                            "id": "en",
+                            "name": "English"
+                        }
+                    ]
+                },
+                {
+                    "id": "BV001_streaming",
+                    "name": "通用女声",
+                    "language": [
+                        {
+                            "id": "zh",
+                            "name": "中文"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

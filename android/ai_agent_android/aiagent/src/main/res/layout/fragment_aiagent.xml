@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/main_bg">
+
+    <FrameLayout
+      android:id="@+id/fragment_container"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+
+    <ScrollView
+      android:id="@+id/entrance"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toTopOf="parent">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+          android:id="@+id/main_title"
+          android:layout_width="222dp"
+          android:layout_height="97dp"
+          android:layout_marginTop="32dp"
+          android:background="@mipmap/main_title"
+          app:layout_constraintLeft_toLeftOf="@id/chat_button"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+          android:id="@+id/chat_button"
+          android:layout_width="339dp"
+          android:layout_height="150dp"
+          android:layout_marginTop="155dp"
+          android:background="@mipmap/peiban"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+          android:id="@+id/button1"
+          android:layout_width="164dp"
+          android:layout_height="180dp"
+          android:layout_marginTop="11dp"
+          android:background="@mipmap/kefu"
+          app:layout_constraintLeft_toLeftOf="@id/chat_button"
+          app:layout_constraintTop_toBottomOf="@id/chat_button" />
+
+        <ImageView
+          android:id="@+id/button2"
+          android:layout_width="164dp"
+          android:layout_height="180dp"
+          android:layout_marginTop="11dp"
+          android:background="@mipmap/zhibo"
+          app:layout_constraintRight_toRightOf="@id/chat_button"
+          app:layout_constraintTop_toBottomOf="@id/chat_button" />
+
+        <ImageView
+          android:id="@+id/button3"
+          android:layout_width="164dp"
+          android:layout_height="180dp"
+          android:layout_marginTop="11dp"
+          android:layout_marginBottom="80dp"
+          android:background="@mipmap/main_more"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="@id/button1"
+          app:layout_constraintTop_toBottomOf="@id/button1" />
+      </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <FrameLayout
+      android:id="@+id/content_loading"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="#44000000"
+      android:visibility="gone">
+
+      <com.github.ybq.android.spinkit.SpinKitView
+        style="@style/SpinKitView.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+    </FrameLayout>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+

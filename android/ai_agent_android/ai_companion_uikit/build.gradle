@@ -1,0 +1,88 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'im.zego.aicompanion.uikit'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "im.zego.aicompanion"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "v2.1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            storeFile file("your_app_key.jks")
+            storePassword "your_keystore_password"
+            keyAlias "your_key_alias"
+            keyPassword "your_key_password"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+        buildConfig = true
+    }
+
+    applicationVariants.all { variant ->
+        // 设置输出文件的名称
+        variant.outputs.all {
+            outputFileName = "AI陪伴_${variant.versionName}.apk"
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+
+    implementation "androidx.appcompat:appcompat:1.5.1"
+    implementation "com.google.android.material:material:1.6.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    implementation project(path: ':aiagent')
+    // 崩溃捕获
+    implementation 'com.iqiyi.xcrash:xcrash-android-lib:3.0.0'
+    // 序列化，读写
+    implementation 'com.tencent:mmkv:1.2.13'
+    implementation "com.google.code.gson:gson:2.9.1"
+
+    implementation('com.github.ZEGOCLOUD:zego_inapp_chat_uikit_android:2.7.9-beta4') {
+        exclude group: 'im.zego', module: 'zim'
+    }
+    implementation 'im.zego:zim:2.19.0'
+//    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+}

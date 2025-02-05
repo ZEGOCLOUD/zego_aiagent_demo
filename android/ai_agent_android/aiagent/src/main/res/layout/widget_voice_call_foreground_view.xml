@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/white">
+
+  <ImageView
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="centerCrop" />
+
+  <ListView
+    android:id="@+id/message_list"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_marginTop="340dp"
+    android:layout_marginBottom="6dp"
+    android:listSelector="@android:color/transparent"
+    app:layout_constraintBottom_toTopOf="@id/end_call"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="61dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/round_rect_8dp_7f000000"
+    android:gravity="center"
+    android:minWidth="72dp"
+    android:orientation="vertical"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <TextView
+      android:id="@+id/user_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:text="小智"
+      android:textColor="@color/white"
+      android:textSize="16sp" />
+
+
+    <TextView
+      android:id="@+id/status"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:layout_marginEnd="10dp"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:text="正在听..."
+      android:textColor="@color/white"
+      android:textSize="14sp" />
+  </LinearLayout>
+
+  <ImageView
+    android:id="@+id/settings"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:layout_marginRight="12dp"
+    android:background="@mipmap/icon_setting"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <ImageView
+    android:id="@+id/microphone"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:layout_marginLeft="44dp"
+    android:layout_marginBottom="60dp"
+    android:background="@drawable/round_mic"
+    android:padding="15dp"
+    android:src="@mipmap/icon_mic_normal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent" />
+
+  <ImageView
+    android:id="@+id/end_call"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:layout_marginBottom="60dp"
+    android:src="@mipmap/icon_hangup"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent" />
+
+  <im.zego.aiagent.core.widget.ZegoAgentTestView
+    android:id="@+id/atv_test_view"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginTop="100dp"
+    android:visibility="gone"
+    app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

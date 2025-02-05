@@ -1,0 +1,35 @@
+<resources>
+  <string name="chat">对话</string>
+  <string name="cancel">取消</string>
+  <string name="create_ai_smart">创建 AI 智能体</string>
+  <string name="set_ai_smart">智能体设定</string>
+  <string name="create_ai">创建智能体</string>
+  <string name="name">名称</string>
+  <string name="sex">性别</string>
+  <string name="create_ai_only">创建智能体\n(仅自己可对话)</string>
+  <string name="edit_ai_only">完成\n(仅自己可对话)</string>
+  <string name="create_ai_declare">若生成的智能体效果不符合您的预期，请联系 ZEGO 为您提供 AI 智能体的深度运营</string>
+  <string name="copyright">版权声明：请确认此智能体是您的原创智能体，请勿侵犯他人图像、IP或其他权利</string>
+  <string name="demo_login_hint">输入用户id</string>
+  <string name="demo_login">登录</string>
+  <string name="demo_user_name">用户名为:%s</string>
+  <string name="demo_welcome">hi，\n欢迎使用 Zego In-app chat</string>
+  <string name="demo_input_user_id_error_tips">请输入6–12位英文或数字的用户ID</string>
+  <string name="demo_user_id_login">用户id登录</string>
+
+  <string name="demo_user_kick_out">重复登录，用户被踢出</string>
+  <string name="demo_network_anomaly">网络异常，请检查网络后重试</string>
+  <string name="demo_ai_conversation_error">拉取 AI 会话失败，请重试</string>
+  <string name="please_choose">请选择</string>
+  <string name="input_ai_name">输入智能体名称</string>
+  <string name="create_ai_desc">示例：你是一位经验丰富的英语老师，拥有激发学生学习热情的教学方法。你善于运用幽默和实际应用案例，使对话充满趣味。</string>
+  <string name="create_ai_set_desc">设定描述</string>
+  <string name="create_ai_set_voice">声音设置</string>
+  <string name="select_from_pics">从相册选择</string>
+  <string name="select_sex">选择性别</string>
+  <string name="boy">男生</string>
+  <string name="girl">女生</string>
+  <string name="voice_setting">声音设置</string>
+  <string name="ai_setting">智能体设定</string>
+  <string name="audio_dump">audio_dump</string>
+</resources>

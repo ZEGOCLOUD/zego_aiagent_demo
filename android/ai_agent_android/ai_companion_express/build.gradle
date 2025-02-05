@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'im.zego.aicompanion.express'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "im.zego.aicompanion.express"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "v2.1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            storeFile file("your_app_key.jks")
+            storePassword "your_keystore_password"
+            keyAlias "your_key_alias"
+            keyPassword "your_key_password"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+        buildConfig = true
+    }
+
+    applicationVariants.all { variant ->
+        // 设置输出文件的名称
+        variant.outputs.all {
+            outputFileName = "AI陪伴_Express_${variant.versionName}.apk"
+        }
+    }
+}
+
+dependencies {
+
+    implementation "androidx.appcompat:appcompat:1.5.1"
+    implementation "com.google.android.material:material:1.6.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    implementation project(path: ':aiagent')
+
+    // 崩溃捕获
+    implementation 'com.iqiyi.xcrash:xcrash-android-lib:3.0.0'
+    // 序列化，读写
+    implementation 'com.tencent:mmkv:1.2.13'
+    // 写日志
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.elvishew:xlog:1.10.1'
+}

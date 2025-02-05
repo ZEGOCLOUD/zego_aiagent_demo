@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 阴影层 -->
+    <item android:left="0dp" android:top="-1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#14000000" /> <!-- 阴影颜色 -->
+            <corners android:radius="15dp" />
+        </shape>
+    </item>
+
+    <!-- 主背景层 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <corners android:radius="15dp" />
+        </shape>
+    </item>
+</layer-list>

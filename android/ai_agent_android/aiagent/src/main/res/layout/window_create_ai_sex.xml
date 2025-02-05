@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#66000000">
+
+    <View
+        android:id="@+id/empty_panel_sex"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/valid_panel_sex"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/valid_panel_sex"
+        android:layout_width="match_parent"
+        android:layout_height="199dp"
+        android:background="@drawable/rounded_tts_settings_panel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/create_ai_sex_back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="22dp"
+            android:background="@mipmap/icon_list_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/create_ai_sex_title"
+            android:layout_width="150dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="3dp"
+            android:text="@string/select_sex"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:gravity="left"
+            app:layout_constraintStart_toEndOf="@+id/create_ai_sex_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/create_ai_sex_boy"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/boy"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:paddingStart="26dp"
+            android:gravity="center_vertical|left"
+            app:layout_constraintTop_toBottomOf="@+id/create_ai_sex_title"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/create_ai_boy_chose"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@mipmap/icon_chose"
+            app:layout_constraintEnd_toEndOf="@+id/create_ai_sex_boy"
+            app:layout_constraintTop_toTopOf="@+id/create_ai_sex_boy" />
+
+        <TextView
+            android:id="@+id/create_ai_sex_girl"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/girl"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:paddingStart="26dp"
+            android:gravity="center_vertical|left"
+            app:layout_constraintTop_toBottomOf="@+id/create_ai_sex_boy"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/create_ai_girl_chose"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="invisible"
+            android:background="@mipmap/icon_chose"
+            app:layout_constraintEnd_toEndOf="@+id/create_ai_sex_girl"
+            app:layout_constraintTop_toTopOf="@+id/create_ai_sex_girl" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
