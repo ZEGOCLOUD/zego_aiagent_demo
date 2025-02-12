@@ -557,8 +557,7 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
             self.chatSessionState = ChatSessionState_AI_LISTEN;
         }else if(speakStatus == 2){
             self.callVCNameStatusCom.chatStatusText = @"正在想...";
-            ZAALogI(@"onInRoomMessageReceived cmd=1 speakStatus=2", @"正在想, setPlayVolume:100");
-            [self setPlayVolumeInternal:100];
+            ZAALogI(@"onInRoomMessageReceived cmd=1 speakStatus=2", @"正在想");
             self.chatSessionState = ChatSessionState_AI_THINKING;
         }
         self.lastCMD1Seq = seqId;
@@ -568,6 +567,8 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
                 fromUser.userName, cmd, seqId, timeStamp, speakStatus);
         if(speakStatus == 1){
             self.callVCNameStatusCom.chatStatusText = @"可以随时说话打断我";
+            ZAALogI(@"onInRoomMessageReceived cmd=2 speakStatus=2", @"可以随时说话打断我, setPlayVolume:100");
+            [self setPlayVolumeInternal:100];
             self.chatSessionState = ChatSessionState_AI_SPEAKING;
         }else if(speakStatus == 2){
             self.callVCNameStatusCom.chatStatusText= @"正在听...";
