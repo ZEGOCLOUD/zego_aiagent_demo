@@ -458,7 +458,6 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
                         updateStatusText("正在想...");
                         this.mChatSessionState = ChatSessionState.AI_THINKING;
                         this.mLocalMuteFlag = false;
-                        setPlayVolumeInternal(100);
                         ZegoAIAgentMonitor.getInstance().report(ZegoAIAgentMonitor.AppState.VAD_AIVoice_Finish);
                     }
                     lastCMD1Seq = roomMessage.seq_id;
@@ -467,6 +466,7 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
                     if (roomMessage.data.speak_status == 1) {
                         updateStatusText("可以随时说话打断我");
                         this.mChatSessionState = ChatSessionState.AI_SPEAKING;
+                        setPlayVolumeInternal(100);
                         ZegoAIAgentMonitor.getInstance().report(ZegoAIAgentMonitor.AppState.VAD_AIVoice_Start);
                     } else if (roomMessage.data.speak_status == 2) {
                         updateStatusText("正在听...");
