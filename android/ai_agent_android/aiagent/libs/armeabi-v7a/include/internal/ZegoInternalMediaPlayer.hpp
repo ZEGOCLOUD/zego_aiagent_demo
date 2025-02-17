@@ -24,10 +24,7 @@ class ZegoExpressMediaPlayerImp : public IZegoMediaPlayer,
 
     void setVideoHandler(std::shared_ptr<IZegoMediaPlayerVideoHandler> handler,
                          ZegoVideoFrameFormat format) override {
-        {
-            std::lock_guard<std::mutex> lock(mediaEventMutex);
-            mpVideoHandler = handler;
-        }
+        std::lock_guard<std::mutex> lock(mediaEventMutex);
         if (handler) {
             oInternalOriginBridge->mediaPlayerEnableVideoData(
                 true, zego_video_frame_format(format),
@@ -37,13 +34,11 @@ class ZegoExpressMediaPlayerImp : public IZegoMediaPlayer,
                 false, zego_video_frame_format(format),
                 zego_media_player_instance_index(instanceIndex));
         }
+        mpVideoHandler = handler;
     }
 
     void setAudioHandler(std::shared_ptr<IZegoMediaPlayerAudioHandler> handler) override {
-        {
-            std::lock_guard<std::mutex> lock(mediaEventMutex);
-            mpAudioHandler = handler;
-        }
+        std::lock_guard<std::mutex> lock(mediaEventMutex);
         if (handler) {
             oInternalOriginBridge->mediaPlayerEnableAudioData(
                 true, zego_media_player_instance_index(instanceIndex));
@@ -51,14 +46,12 @@ class ZegoExpressMediaPlayerImp : public IZegoMediaPlayer,
             oInternalOriginBridge->mediaPlayerEnableAudioData(
                 false, zego_media_player_instance_index(instanceIndex));
         }
+        mpAudioHandler = handler;
     }
 
     void setBlockDataHandler(std::shared_ptr<IZegoMediaPlayerBlockDataHandler> handler,
                              unsigned int blockSize) override {
-        {
-            std::lock_guard<std::mutex> lock(mediaEventMutex);
-            mpBlockDataHandler = handler;
-        }
+        std::lock_guard<std::mutex> lock(mediaEventMutex);
         if (handler) {
             oInternalOriginBridge->mediaPlayerEnableBlockData(
                 true, blockSize, zego_media_player_instance_index(instanceIndex));
@@ -66,51 +59,61 @@ class ZegoExpressMediaPlayerImp : public IZegoMediaPlayer,
             oInternalOriginBridge->mediaPlayerEnableBlockData(
                 false, blockSize, zego_media_player_instance_index(instanceIndex));
         }
+        mpBlockDataHandler = handler;
     }
 
     void loadResource(const std::string &sourcePath,
                       ZegoMediaPlayerLoadResourceCallback callback) override {
-        int errorCode = oInternalOriginBridge->mediaPlayerPreload(
-            sourcePath.c_str(), zego_media_player_instance_index(instanceIndex));
-
-        handleLoadResourceCallback(errorCode, callback);
+        oInternalOriginBridge->mediaPlayerPreload(sourcePath.c_str(),
+                                                  zego_media_player_instance_index(instanceIndex));
+        if (callback != nullptr) {
+            std::lock_guard<std::mutex> lock(mediaEventMutex);
+            mpLoadResourceCallbacks = callback;
+        }
     }
 
     void loadResourceWithPosition(const std::string &sourcePath, unsigned long long startPosition,
                                   ZegoMediaPlayerLoadResourceCallback callback) override {
-        int errorCode = oInternalOriginBridge->mediaPlayerPreloadWithPosition(
+        oInternalOriginBridge->mediaPlayerPreloadWithPosition(
             sourcePath.c_str(), startPosition, zego_media_player_instance_index(instanceIndex));
-
-        handleLoadResourceCallback(errorCode, callback);
+        if (callback != nullptr) {
+            std::lock_guard<std::mutex> lock(mediaEventMutex);
+            mpLoadResourceCallbacks = callback;
+        }
     }
 
     void loadResourceFromMediaData(unsigned char *media_data, int media_data_length,
                                    unsigned long long start_position,
                                    ZegoMediaPlayerLoadResourceCallback callback) override {
-        int errorCode = oInternalOriginBridge->mediaPlayerPreload(
-            media_data, media_data_length, start_position,
-            zego_media_player_instance_index(instanceIndex));
-
-        handleLoadResourceCallback(errorCode, callback);
+        oInternalOriginBridge->mediaPlayerPreload(media_data, media_data_length, start_position,
+                                                  zego_media_player_instance_index(instanceIndex));
+        if (callback != nullptr) {
+            std::lock_guard<std::mutex> lock(mediaEventMutex);
+            mpLoadResourceCallbacks = callback;
+        }
     }
 
     void loadCopyrightedMusicResourceWithPosition(
         const std::string &resourceId, unsigned long long startPosition,
         ZegoMediaPlayerLoadResourceCallback callback) override {
-        int errorCode =
-            oInternalOriginBridge->mediaPlayerPreloadCopyrightedMusicResourceWithPosition(
-                resourceId.c_str(), startPosition, zego_media_player_instance_index(instanceIndex));
-
-        handleLoadResourceCallback(errorCode, callback);
+        oInternalOriginBridge->mediaPlayerPreloadCopyrightedMusicResourceWithPosition(
+            resourceId.c_str(), startPosition, zego_media_player_instance_index(instanceIndex));
+        if (callback != nullptr) {
+            std::lock_guard<std::mutex> lock(mediaEventMutex);
+            mpLoadResourceCallbacks = callback;
+        }
     }
 
     void loadResourceWithConfig(ZegoMediaPlayerResource resource,
                                 ZegoMediaPlayerLoadResourceCallback callback) override {
         auto resource_c = ZegoExpressConvert::O2IMediaPlayerResource(resource);
-        int errorCode = oInternalOriginBridge->mediaPlayerPreloadResourceWithConfig(
+        int seq = oInternalOriginBridge->mediaPlayerPreloadResourceWithConfig(
             &resource_c, zego_media_player_instance_index(instanceIndex));
-
-        handleLoadResourceCallback(errorCode, callback);
+        ZEGO_UNUSED_VARIABLE(seq);
+        if (callback != nullptr) {
+            std::lock_guard<std::mutex> lock(mediaEventMutex);
+            mpLoadResourceCallbacks = callback;
+        }
     }
 
     void start() override {
@@ -130,14 +133,12 @@ class ZegoExpressMediaPlayerImp : public IZegoMediaPlayer,
     }
 
     void seekTo(unsigned long long millisecond, ZegoMediaPlayerSeekToCallback callback) override {
-        auto seq = oInternalOriginBridge->getIncreaseSeq();
+        int seq = oInternalOriginBridge->mediaPlayerSeekTo(
+            millisecond, zego_media_player_instance_index(instanceIndex));
         if (callback != nullptr) {
             std::lock_guard<std::mutex> lock(mediaEventMutex);
             mpSeekToCallbacks.insert({seq, callback});
         }
-
-        oInternalOriginBridge->mediaPlayerSeekTo(
-            millisecond, zego_media_player_instance_index(instanceIndex), seq);
     }
 
     void enableRepeat(bool enable) override {
@@ -244,17 +245,6 @@ class ZegoExpressMediaPlayerImp : public IZegoMediaPlayer,
 
     void setAudioTrackIndex(unsigned int index) override {
         oInternalOriginBridge->mediaPlayerSetAudioTrackIndex(
-            index, zego_media_player_instance_index(instanceIndex));
-    }
-
-    void setAudioTrackMode(ZegoMediaPlayerAudioTrackMode mode) override {
-        oInternalOriginBridge->mediaPlayerSetAudioTrackMode(
-            zego_media_player_audio_track_mode(mode),
-            zego_media_player_instance_index(instanceIndex));
-    }
-
-    void setAudioTrackPublishIndex(unsigned int index) override {
-        oInternalOriginBridge->mediaPlayerSetAudioTrackPublishIndex(
             index, zego_media_player_instance_index(instanceIndex));
     }
 
@@ -523,15 +513,9 @@ class ZegoExpressMediaPlayerImp : public IZegoMediaPlayer,
 
     void zego_on_mediaplayer_load_file_result(zego_error error_code) {
         std::lock_guard<std::mutex> lock(mediaEventMutex);
-        if (mpLoadResourceCallbacks.empty()) {
-            return;
-        }
-
-        ZegoMediaPlayerLoadResourceCallback callback = mpLoadResourceCallbacks.front();
-        mpLoadResourceCallbacks.pop_front();
-        if (callback) {
+        if (mpLoadResourceCallbacks) {
             ZEGO_SWITCH_THREAD_PRE
-            callback(error_code);
+            mpLoadResourceCallbacks(error_code);
             ZEGO_SWITCH_THREAD_ING
         }
     }
@@ -615,29 +599,11 @@ class ZegoExpressMediaPlayerImp : public IZegoMediaPlayer,
     }
 
   private:
-    void handleLoadResourceCallback(int errorCode, ZegoMediaPlayerLoadResourceCallback callback) {
-        if (errorCode == ZEGO_ERRCODE_COMMON_SUCCESS) {
-            std::lock_guard<std::mutex> lock(mediaEventMutex);
-            if (callback) {
-                mpLoadResourceCallbacks.push_back(callback);
-            } else {
-                mpLoadResourceCallbacks.push_back([](int errorCode) {});
-            }
-        } else {
-            ZEGO_SWITCH_THREAD_PRE
-            if (callback) {
-                callback(errorCode);
-            }
-            ZEGO_SWITCH_THREAD_ING
-        }
-    }
-
-  private:
     std::shared_ptr<IZegoMediaPlayerVideoHandler> mpVideoHandler;
     std::shared_ptr<IZegoMediaPlayerEventHandler> mpEventHandler;
     std::shared_ptr<IZegoMediaPlayerAudioHandler> mpAudioHandler;
     std::shared_ptr<IZegoMediaPlayerBlockDataHandler> mpBlockDataHandler;
-    std::list<ZegoMediaPlayerLoadResourceCallback> mpLoadResourceCallbacks;
+    ZegoMediaPlayerLoadResourceCallback mpLoadResourceCallbacks;
     ZegoMediaPlayerTakeSnapshotCallback mpTakeSnapshotCallback;
     std::unordered_map<zego_seq, ZegoMediaPlayerSeekToCallback> mpSeekToCallbacks;
     std::mutex mediaEventMutex;

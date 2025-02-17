@@ -44,7 +44,6 @@ typedef zego_error(EXP_CALL *pfnzego_express_destroy_media_player)(
 /// Use case: Developers can load the absolute path to the local resource or the URL of the network resource incoming.
 /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
 /// Related APIs: Resources can be loaded through the [loadResourceWithPosition] or [loadResourceFromMediaData] function.
-/// Caution: If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
 ///
 /// @param path The absolute resource path or the URL of the network resource and cannot be NULL or "". Android can set this path string with Uri.
 #ifndef ZEGOEXP_EXPLICIT
@@ -62,8 +61,7 @@ typedef zego_error(EXP_CALL *pfnzego_express_media_player_load_resource)(
 /// Use case: Developers can load the absolute path to the local resource or the URL of the network resource incoming.
 /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
 /// Related APIs: Resources can be loaded through the [loadResource] or [loadResourceFromMediaData] function.
-/// Caution: 1.When [startPosition] exceeds the total playing time, it will start playing from the beginning.
-///  2.If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
+/// Caution: When [startPosition] exceeds the total playing time, it will start playing from the beginning.
 ///
 /// @param path The absolute resource path or the URL of the network resource and cannot be NULL or "". Android can set this path string with Uri.
 /// @param start_position The progress at which the playback started.
@@ -82,8 +80,7 @@ typedef zego_error(EXP_CALL *pfnzego_express_media_player_load_resource_with_pos
 /// Use case: Developers do not want to cache the audio data locally, and directly transfer the audio binary data to the media player, directly load and play the audio.
 /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
 /// Related APIs: Resources can be loaded through the [loadResource] or [loadResourceWithPosition] function.
-/// Caution: 1.When [startPosition] exceeds the total playing time, it will start playing from the beginning.
-///  2.If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
+/// Caution: When [startPosition] exceeds the total playing time, it will start playing from the beginning.
 ///
 /// @param media_data Binary audio data.
 /// @param media_data_length The length of the binary audio data.
@@ -104,8 +101,7 @@ typedef zego_error(EXP_CALL *pfnzego_express_media_player_load_resource_from_med
 /// Description: Load media resources, and specify the progress, in milliseconds, at which playback begins.
 /// Use case: Developers can load the resource ID of copyrighted music.
 /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
-/// Caution: 1.When [startPosition] exceeds the total playing time, it will start playing from the beginning.
-///  2.If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
+/// Caution: When [startPosition] exceeds the total playing time, it will start playing from the beginning.
 ///
 /// @param resource_id The resource ID obtained from the copyrighted music module.
 /// @param start_position The progress at which the playback started.
@@ -128,7 +124,6 @@ typedef zego_error(
 /// Use case: Developers can load the absolute path to the local resource or the URL of the network resource incoming.
 /// When to call: Called after the engine [createEngine] has been initialized and the media player [createMediaPlayer] has been created.
 /// Related APIs: Support for loading resources through the [loadResourceWithPosition] or [loadResourceFromMediaData] interface.
-/// Caution: If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
 ///
 /// @param resource Multimedia resources that need to be loaded.
 #ifndef ZEGOEXP_EXPLICIT
@@ -730,7 +725,7 @@ typedef zego_error(EXP_CALL *pfnzego_express_media_player_set_http_header)(
 ///
 /// Available since: 3.10.0
 /// Description: Configure the media stream type to be played. You can only play video streams or audio streams. This will take effect during the life cycle of the media player.
-/// Use cases: When only the video stream or audio stream needs to be played.
+/// Use cases: When the network resource needs to set special header information.
 /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
 /// Caution: Changing the media stream type during playing will take effect in the next playing.
 ///

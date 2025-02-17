@@ -290,10 +290,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
         oInternalOriginBridge->setAppOrientation((zego_orientation)orientation,
                                                  zego_publish_channel(channel));
     }
-
-    void setAppOrientationMode(ZegoOrientationMode mode) override {
-        oInternalOriginBridge->setAppOrientationMode((zego_orientation_mode)mode);
-    }
 #endif
 
     void setAudioConfig(ZegoAudioConfig audioConfig, ZegoPublishChannel channel) override {
@@ -367,8 +363,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
     }
 
     void setCaptureVolume(int volume) override { oInternalOriginBridge->setCaptureVolume(volume); }
-
-    int getCaptureVolume() override { return oInternalOriginBridge->getCaptureVolume(); }
 
     void setAudioCaptureStereoMode(ZegoAudioCaptureStereoMode mode) override {
         oInternalOriginBridge->setAudioCaptureStereoMode(zego_audio_capture_stereo_mode(mode));
@@ -518,16 +512,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
                 _config.adaptive_template_id_list[i] = config.adaptiveTemplateIDList[i];
             }
         }
-
-        struct zego_custom_player_resource_config customResourceConfig;
-        customResourceConfig.before_publish =
-            zego_resource_type(config.customResourceConfig.beforePublish);
-        customResourceConfig.publishing =
-            zego_resource_type(config.customResourceConfig.publishing);
-        customResourceConfig.after_publish =
-            zego_resource_type(config.customResourceConfig.afterPublish);
-        _config.custom_resource_config = &customResourceConfig;
-
         oInternalOriginBridge->startPlayingStreamWithConfig(stream_id, canvas ? &_canvas : nullptr,
                                                             _config);
 
@@ -541,7 +525,25 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
     }
 
     void startPlayingStream(const std::string &streamID, ZegoPlayerConfig config) override {
-        startPlayingStream(streamID, nullptr, config);
+        const char *stream_id = streamID.c_str();
+        zego_player_config _config;
+        memset(&_config, 0, sizeof(zego_player_config));
+        zego_cdn_config cdn_cofig;
+        memset(&cdn_cofig, 0, sizeof(zego_cdn_config));
+        if (config.cdnConfig) {
+            cdn_cofig = ZegoExpressConvert::O2ICDNConfig(*config.cdnConfig);
+            _config.cdn_config = &cdn_cofig;
+        } else {
+            _config.cdn_config = nullptr;
+        }
+        _config.resource_mode = zego_stream_resource_mode(config.resourceMode);
+        strncpy(_config.room_id, config.roomID.c_str(), ZEGO_EXPRESS_MAX_ROOMID_LEN);
+        _config.source_resource_type = zego_resource_type(config.sourceResourceType);
+        _config.codec_template_id = config.codecTemplateID;
+        _config.resource_switch_mode = zego_stream_resource_switch_mode(config.resourceSwitchMode);
+        _config.resource_when_stop_publish =
+            zego_stream_resource_type(config.resourceWhenStopPublish);
+        oInternalOriginBridge->startPlayingStreamWithConfig(stream_id, nullptr, _config);
     }
 
     virtual void startPlayingStreamInScene(const std::string &streamID, ZegoCanvas *canvas,
@@ -599,20 +601,9 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
         }
         _config.resource_mode = zego_stream_resource_mode(config.resourceMode);
         strncpy(_config.room_id, config.roomID.c_str(), ZEGO_EXPRESS_MAX_ROOMID_LEN);
-        _config.video_codec_id = zego_video_codec_id(config.videoCodecID);
         _config.source_resource_type = zego_resource_type(config.sourceResourceType);
         _config.codec_template_id = config.codecTemplateID;
         _config.resource_switch_mode = zego_stream_resource_switch_mode(config.resourceSwitchMode);
-
-        struct zego_custom_player_resource_config customResourceConfig;
-        customResourceConfig.before_publish =
-            zego_resource_type(config.customResourceConfig.beforePublish);
-        customResourceConfig.publishing =
-            zego_resource_type(config.customResourceConfig.publishing);
-        customResourceConfig.after_publish =
-            zego_resource_type(config.customResourceConfig.afterPublish);
-        _config.custom_resource_config = &customResourceConfig;
-
         oInternalOriginBridge->switchPlayingStream(fromStreamID.c_str(), toStreamID.c_str(),
                                                    &_config);
     }
@@ -670,16 +661,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
         const char *stream_id = streamID.c_str();
         oInternalOriginBridge->setPlayStreamBufferIntervalRange(stream_id, minBufferInterval,
                                                                 maxBufferInterval);
-    }
-
-    void setAudioMixMode(ZegoAudioMixMode mode,
-                         const std::vector<std::string> &streamList) override {
-        std::vector<const char *> stream_list_;
-        for (auto &item : streamList) {
-            stream_list_.push_back(item.c_str());
-        }
-        oInternalOriginBridge->setAudioMixMode(static_cast<zego_audio_mix_mode>(mode),
-                                               stream_list_.data(), stream_list_.size());
     }
 
     void setPlayStreamFocusOn(const std::string &streamID) override {
@@ -981,7 +962,7 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
                                                mute);
     }
 
-#if TARGET_OS_IPHONE || defined(ANDROID) || defined(_OS_OHOS_)
+#if TARGET_OS_IPHONE || defined(ANDROID)
     void setAudioDeviceMode(ZegoAudioDeviceMode deviceMode) override {
         oInternalOriginBridge->setAudioDeviceMode(zego_audio_device_mode(deviceMode));
     }
@@ -1049,7 +1030,7 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
     //     oInternalOriginBridge->enableAEC(enable, zego_publish_channel(channel));
     // }
 
-#if TARGET_OS_IPHONE || defined(ANDROID) || defined(_OS_OHOS_)
+#if TARGET_OS_IPHONE || defined(ANDROID)
     void enableHeadphoneAEC(bool enable) override {
         oInternalOriginBridge->enableHeadphoneAEC(enable);
     }
@@ -1242,7 +1223,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
 
         std::vector<zego_mixer_output> output_list;
         std::vector<std::shared_ptr<zego_mixer_output_video_config>> output_video_config_list;
-        std::vector<std::shared_ptr<zego_mixer_output_room_info>> output_room_info_list;
         {
             unsigned int cnt = 0;
             for (auto &output : task.outputList) {
@@ -1265,18 +1245,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
                 zego_mixer_output _output = ZegoExpressConvert::O2IMixerOutput(output);
                 output_video_config_list.push_back(videoConfig);
                 _output.video_config = output_video_config_list.at(cnt).get();
-
-                std::shared_ptr<zego_mixer_output_room_info> output_room_info =
-                    std::make_shared<zego_mixer_output_room_info>();
-                strncpy(output_room_info->room_id, output.targetRoom.roomID.c_str(),
-                        sizeof(output_room_info->room_id) - 1);
-                output_room_info->room_id[sizeof(output_room_info->room_id) - 1] = '\0';
-                strncpy(output_room_info->userid, output.targetRoom.userID.c_str(),
-                        sizeof(output_room_info->userid) - 1);
-                output_room_info->userid[sizeof(output_room_info->userid) - 1] = '\0';
-                output_room_info_list.push_back(output_room_info);
-                _output.target_room = output_room_info.get();
-
                 output_list.push_back(_output);
                 cnt++;
             }
@@ -2041,10 +2009,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
         oInternalOriginBridge->setAndroidEnv(jvm, ctx);
     }
 
-    static void setOhosEnv(void *env, void *exports) {
-        oInternalOriginBridge->setOhosEnv(env, exports);
-    }
-
     static void setEngineConfig(ZegoEngineConfig engineConfig) {
         if (!oInternalOriginBridge->getLibraryReady()) {
             return;
@@ -2278,11 +2242,6 @@ class ZegoExpressSDKInternal {
     static void setAndroidEnv(void *jvm, void *ctx) {
         return ZegoExpressEngineImp::setAndroidEnv(jvm, ctx);
     }
-
-    static void setOhosEnv(void *env, void *exports) {
-        return ZegoExpressEngineImp::setOhosEnv(env, exports);
-    }
-
     static void setApiCalledCallback(std::shared_ptr<IZegoApiCalledEventHandler> callback) {
         ZegoExpressEngineImp::setApiCalledCallback(callback);
     }

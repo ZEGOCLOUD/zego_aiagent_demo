@@ -134,7 +134,7 @@ typedef zego_error(EXP_CALL *pfnzego_express_copyrighted_music_get_lrc_lyric_wit
 /// Use case: Used to display lyrics word by word.
 /// When to call: After initializing the copyrighted music success [initCopyrightedMusic].
 ///
-/// @param krc_token The krcToken obtained when calling [requestResource] for accompaniment or climax clips, or when obtaining shared resources through the [getSharedResource] interface. For more details, please refer to https://doc-zh.zego.im/article/15079#2_2
+/// @param krc_token The krcToken obtained by calling requestAccompaniment.
 /// @param sequence [in/out] Context that identifies which invocation triggered this callback.
 #ifndef ZEGOEXP_EXPLICIT
 ZEGOEXP_API zego_error EXP_CALL
@@ -484,7 +484,7 @@ typedef zego_error(EXP_CALL *pfnzego_express_copyrighted_music_get_full_score)(
 /// Available since: 2.15.0
 /// Description: Get standard pitch data.
 /// Use case: Can be used to display standard pitch lines on the view.
-/// Caution: Only accompaniment or climactic clip assets have pitch lines.
+/// Cation: Only accompaniment or climactic clip assets have pitch lines.
 ///
 /// @param resource_id the resource ID corresponding to the accompaniment or accompaniment clip.
 /// @param sequence [in/out] Context that identifies which invocation triggered this callback.

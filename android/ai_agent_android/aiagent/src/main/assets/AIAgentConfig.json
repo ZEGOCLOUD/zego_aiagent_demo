@@ -59,7 +59,12 @@
             "id": "tongyi",
             "name": "通义千问",
             "icon": "https://zego-aigc-test.oss-accelerate.aliyuncs.com/airobotdemo/mipmap-xxxhdpi_logo_tongyi.png",
-            "is_supported": false
+            "is_supported": true,
+            "raw_properties": {
+                "AccountSource": "Zego",
+                "Type": "Qwen",
+                "Model": "qwen-plus"
+            }
         }
     ],
     "tts_list": [

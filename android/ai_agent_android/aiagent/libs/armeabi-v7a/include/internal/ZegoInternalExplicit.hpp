@@ -322,7 +322,6 @@
                              zego_express_get_audio_route_type)                                     \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_get_camera_max_zoom_factor,                            \
                              zego_express_get_camera_max_zoom_factor)                               \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_get_capture_volume, zego_express_get_capture_volume)   \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_get_current_audio_device,                              \
                              zego_express_get_current_audio_device)                                 \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_get_custom_video_capture_surface_texture,              \
@@ -333,7 +332,6 @@
                              zego_express_get_default_audio_device_id)                              \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_get_default_video_device_id,                           \
                              zego_express_get_default_video_device_id)                              \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_get_increase_seq, zego_express_get_increase_seq)       \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_get_network_time_info,                                 \
                              zego_express_get_network_time_info)                                    \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_get_room_stream_list,                                  \
@@ -694,7 +692,6 @@
                              zego_express_set_audio_device_volume)                                  \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_audio_equalizer_gain,                              \
                              zego_express_set_audio_equalizer_gain)                                 \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_audio_mix_mode, zego_express_set_audio_mix_mode)   \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_audio_mixing_volume,                               \
                              zego_express_set_audio_mixing_volume)                                  \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_audio_mixing_volume_with_type,                     \
@@ -766,7 +763,6 @@
         zego_express_set_min_video_resolution_for_traffic_control_by_channel)                       \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_mix_system_playout_volume,                         \
                              zego_express_set_mix_system_playout_volume)                            \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_ohos_env, zego_express_set_ohos_env)               \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_platform_language,                                 \
                              zego_express_set_platform_language)                                    \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_play_stream_buffer_interval_range,                 \
@@ -813,8 +809,6 @@
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_traffic_control_focus_on_by_channel,               \
                              zego_express_set_traffic_control_focus_on_by_channel)                  \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_video_config, zego_express_set_video_config)       \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_video_denoise_params,                              \
-                             zego_express_set_video_denoise_params)                                 \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_video_mirror_mode,                                 \
                              zego_express_set_video_mirror_mode)                                    \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_video_source, zego_express_set_video_source)       \
@@ -1337,8 +1331,6 @@
                              zego_register_upload_dump_data_callback)                               \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_upload_log_result_callback,                           \
                              zego_register_upload_log_result_callback)                              \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_video_backend_type_changed_callback,                  \
-                             zego_register_video_backend_type_changed_callback)                     \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_video_device_state_changed_callback,                  \
                              zego_register_video_device_state_changed_callback)                     \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_video_object_segmentation_state_changed_callback,     \
@@ -1627,8 +1619,6 @@
                                   zego_express_get_audio_route_type)                                \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_get_camera_max_zoom_factor,                       \
                                   zego_express_get_camera_max_zoom_factor)                          \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_get_capture_volume,                               \
-                                  zego_express_get_capture_volume)                                  \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_get_current_audio_device,                         \
                                   zego_express_get_current_audio_device)                            \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_get_custom_video_capture_surface_texture,         \
@@ -1639,7 +1629,6 @@
                                   zego_express_get_default_audio_device_id)                         \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_get_default_video_device_id,                      \
                                   zego_express_get_default_video_device_id)                         \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_get_increase_seq, zego_express_get_increase_seq)  \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_get_network_time_info,                            \
                                   zego_express_get_network_time_info)                               \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_get_room_stream_list,                             \
@@ -2004,8 +1993,6 @@
                                   zego_express_set_audio_device_volume)                             \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_audio_equalizer_gain,                         \
                                   zego_express_set_audio_equalizer_gain)                            \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_audio_mix_mode,                               \
-                                  zego_express_set_audio_mix_mode)                                  \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_audio_mixing_volume,                          \
                                   zego_express_set_audio_mixing_volume)                             \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_audio_mixing_volume_with_type,                \
@@ -2081,7 +2068,6 @@
                 zego_express_set_min_video_resolution_for_traffic_control_by_channel)               \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_mix_system_playout_volume,                    \
                                   zego_express_set_mix_system_playout_volume)                       \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_ohos_env, zego_express_set_ohos_env)          \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_platform_language,                            \
                                   zego_express_set_platform_language)                               \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_play_stream_buffer_interval_range,            \
@@ -2130,8 +2116,6 @@
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_traffic_control_focus_on_by_channel,          \
                                   zego_express_set_traffic_control_focus_on_by_channel)             \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_video_config, zego_express_set_video_config)  \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_video_denoise_params,                         \
-                                  zego_express_set_video_denoise_params)                            \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_video_mirror_mode,                            \
                                   zego_express_set_video_mirror_mode)                               \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_video_source, zego_express_set_video_source)  \
@@ -2668,8 +2652,6 @@
                                   zego_register_upload_dump_data_callback)                          \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_upload_log_result_callback,                      \
                                   zego_register_upload_log_result_callback)                         \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_video_backend_type_changed_callback,             \
-                                  zego_register_video_backend_type_changed_callback)                \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_video_device_state_changed_callback,             \
                                   zego_register_video_device_state_changed_callback)                \
             ZEGOEXP_LOAD_FUNC_PTR(                                                                  \
