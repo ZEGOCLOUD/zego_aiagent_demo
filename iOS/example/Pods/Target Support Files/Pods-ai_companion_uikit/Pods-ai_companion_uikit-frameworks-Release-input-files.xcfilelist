@@ -1,0 +1,12 @@
+${PODS_ROOT}/Target Support Files/Pods-ai_companion_uikit/Pods-ai_companion_uikit-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
+${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework
+${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework
+${BUILT_PRODUCTS_DIR}/ZIMKit/ZIMKit.framework
+${BUILT_PRODUCTS_DIR}/ZegoPluginAdapter/ZegoPluginAdapter.framework
+${BUILT_PRODUCTS_DIR}/ZegoUIKitSignalingPlugin/ZegoUIKitSignalingPlugin.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/ZIM/ZIM.framework/ZIM
+${PODS_XCFRAMEWORKS_BUILD_DIR}/ZPNs/ZPNs.framework/ZPNs
+${PODS_XCFRAMEWORKS_BUILD_DIR}/ZegoUIKitReport/ZegoUIKitReport.framework/ZegoUIKitReport
+${PODS_XCFRAMEWORKS_BUILD_DIR}/ZegoUIKitReport/ZegoConnection.framework/ZegoConnection

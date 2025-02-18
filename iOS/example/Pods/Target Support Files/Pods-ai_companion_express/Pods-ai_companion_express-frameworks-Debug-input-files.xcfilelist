@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-ai_companion_express/Pods-ai_companion_express-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
+${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework
+${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework

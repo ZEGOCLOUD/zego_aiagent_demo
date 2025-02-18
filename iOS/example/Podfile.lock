@@ -1,0 +1,58 @@
+PODS:
+  - Kingfisher (8.1.3)
+  - Masonry (1.1.0)
+  - SSZipArchive (2.4.3)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
+  - ZegoPluginAdapter (2.5.4)
+  - ZegoUIKitReport (0.2.10)
+  - ZegoUIKitSignalingPlugin (2.5.5):
+    - ZegoPluginAdapter
+    - ZegoUIKitReport (= 0.2.10)
+    - ZIM (>= 2.18.2)
+    - ZPNs (= 2.6.0)
+  - ZIM (2.18.2)
+  - ZIMKit (2.6.5):
+    - Kingfisher
+    - ZegoPluginAdapter (>= 2.5.4)
+    - ZegoUIKitSignalingPlugin (>= 2.5.5)
+  - ZPNs (2.6.0)
+
+DEPENDENCIES:
+  - Masonry (= 1.1.0)
+  - SSZipArchive
+  - YYKit (= 1.0.9)
+  - ZIMKit (from `./Libs/zego_uikit_ios/zego_zimkit`)
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+    - Masonry
+    - SSZipArchive
+    - YYKit
+    - ZegoPluginAdapter
+    - ZegoUIKitReport
+    - ZegoUIKitSignalingPlugin
+    - ZIM
+    - ZPNs
+
+EXTERNAL SOURCES:
+  ZIMKit:
+    :path: "./Libs/zego_uikit_ios/zego_zimkit"
+
+SPEC CHECKSUMS:
+  Kingfisher: f2af9028b16baf9dc6c07c570072bc41cbf009ef
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  ZegoPluginAdapter: 7603ee45d48ad07be13c823ef5475b21a8bc869e
+  ZegoUIKitReport: a993f7ccc5d243998a7e601a60e16fcd6c084417
+  ZegoUIKitSignalingPlugin: 25182eb267ce2e9a51b04fce1a54d4d0aba55bbd
+  ZIM: 2ddefef6aa62b42456beb256edf8cf91efd19fa4
+  ZIMKit: 78470886fe66dacda79fbc45b40d324892b51198
+  ZPNs: 73bad0046a74e37315201053f9a0e7ac625d9436
+
+PODFILE CHECKSUM: 9acb852af9614827843db9ccd422a573334014e0
+
+COCOAPODS: 1.15.2

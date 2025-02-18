@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8602D8C12D6464020046FBA9 /* ZegoExpressEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8602D8BB2D64638F0046FBA9 /* ZegoExpressEngine.xcframework */; };
+		8602D8C22D6464020046FBA9 /* ZegoExpressEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8602D8BB2D64638F0046FBA9 /* ZegoExpressEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		86235C822D22CF99006E5A06 /* ZegoTestSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235C802D22CF99006E5A06 /* ZegoTestSettingViewController.m */; };
 		86235C832D22CF99006E5A06 /* ZegoTestSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86235C812D22CF99006E5A06 /* ZegoTestSettingViewController.xib */; };
-		86235CA32D267F07006E5A06 /* ZegoExpressEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86235CA12D267EFF006E5A06 /* ZegoExpressEngine.xcframework */; };
-		86235CA42D267F07006E5A06 /* ZegoExpressEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86235CA12D267EFF006E5A06 /* ZegoExpressEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		86235CA82D267F68006E5A06 /* ZegoCallVCNameUIComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235CA72D267F68006E5A06 /* ZegoCallVCNameUIComponent.m */; };
 		8649AA782D102271003E1EB6 /* AIAgentLogUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA722D102271003E1EB6 /* AIAgentLogUtil.mm */; };
 		8649AA792D102271003E1EB6 /* LogUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA732D102271003E1EB6 /* LogUtil.cpp */; };
@@ -98,7 +98,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				86235CA42D267F07006E5A06 /* ZegoExpressEngine.xcframework in Embed Frameworks */,
+				8602D8C22D6464020046FBA9 /* ZegoExpressEngine.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,6 +108,7 @@
 /* Begin PBXFileReference section */
 		2A9550618B04AB7DB2FCC79B /* Pods_ai_companion_express.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ai_companion_express.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70124B2027B10F9EEB36C184 /* Pods-ai_companion_express.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ai_companion_express.debug.xcconfig"; path = "Target Support Files/Pods-ai_companion_express/Pods-ai_companion_express.debug.xcconfig"; sourceTree = "<group>"; };
+		8602D8BB2D64638F0046FBA9 /* ZegoExpressEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ZegoExpressEngine.xcframework; path = Libs/Express/Library/ZegoExpressEngine.xcframework; sourceTree = "<group>"; };
 		86235C7F2D22CF99006E5A06 /* ZegoTestSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZegoTestSettingViewController.h; path = ai_companion_uikit/ZegoTestSettingViewController.h; sourceTree = SOURCE_ROOT; };
 		86235C802D22CF99006E5A06 /* ZegoTestSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZegoTestSettingViewController.m; path = ai_companion_uikit/ZegoTestSettingViewController.m; sourceTree = SOURCE_ROOT; };
 		86235C812D22CF99006E5A06 /* ZegoTestSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZegoTestSettingViewController.xib; path = ai_companion_uikit/ZegoTestSettingViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -233,7 +234,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86235CA32D267F07006E5A06 /* ZegoExpressEngine.xcframework in Frameworks */,
+				8602D8C12D6464020046FBA9 /* ZegoExpressEngine.xcframework in Frameworks */,
 				8649AB8E2D102624003E1EB6 /* zlogger.xcframework in Frameworks */,
 				EC0C31D2AFCE6249E5BB83EA /* Pods_ai_companion_express.framework in Frameworks */,
 			);
@@ -472,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				86235CA12D267EFF006E5A06 /* ZegoExpressEngine.xcframework */,
+				8602D8BB2D64638F0046FBA9 /* ZegoExpressEngine.xcframework */,
 				86DD17042D09B9100098B1C0 /* zlogger.xcframework */,
 				8649AB8D2D102624003E1EB6 /* zlogger.xcframework */,
 				2A9550618B04AB7DB2FCC79B /* Pods_ai_companion_express.framework */,

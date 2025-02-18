@@ -1,0 +1,6 @@
+framework module Pods_ai_companion_express {
+  umbrella header "Pods-ai_companion_express-umbrella.h"
+
+  export *
+  module * { export * }
+}

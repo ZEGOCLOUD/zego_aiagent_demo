@@ -5,9 +5,6 @@
       location = "group:ai_companion_express.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/zego/Documents/AIPeiban/new_ai_agent_ios/ios/ai_companion_uikit.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
