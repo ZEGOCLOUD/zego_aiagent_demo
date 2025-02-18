@@ -25,6 +25,9 @@ namespace EXPRESS {
 #define oInternalCallbackCenter ZegoSingleton<ZegoInternalCallbackCenter>::CreateInstance()
 class ZegoInternalCallbackCenter {
   public:
+    struct ZegoEngineConfig engineConfig;
+
+  public:
     declearSingleShareMember(IZegoEventHandler);
     declearSingleShareMember(IZegoApiCalledEventHandler);
     declearMultiRawMember(zego_seq, ZegoRoomSetRoomExtraInfoCallback);
@@ -115,11 +118,19 @@ class ZegoInternalCallbackCenter {
         oInternalOriginBridge->registerOnApiCalledResultCallback(nullptr, nullptr);
     }
 
-    void registerCallback() {
-#if defined(_WIN32)
-        oInternalOriginBridge->registerRecvWindowsMessageCallback(
-            ZegoVoidPtr(&ZegoInternalCallbackCenter::zego_on_recv_win_massage), nullptr);
+    void registerCallback(bool callbackSwitchToMainThread) {
+        if (!callbackSwitchToMainThread) {
+#if defined(_WIN32) || TARGET_OS_OSX
+            oInternalOriginBridge->registerRecvZegoCallbackTask(
+                ZegoVoidPtr(&ZegoInternalCallbackCenter::zego_on_recv_callback_task), nullptr);
 #endif
+        } else {
+#if defined(_WIN32)
+            oInternalOriginBridge->registerRecvWindowsMessageCallback(
+                ZegoVoidPtr(&ZegoInternalCallbackCenter::zego_on_recv_win_massage), nullptr);
+#endif
+        }
+
         oInternalOriginBridge->registerEngineUninitCallback(
             ZegoVoidPtr(&ZegoInternalCallbackCenter::zego_on_engine_uninit), nullptr);
 
@@ -992,6 +1003,21 @@ class ZegoInternalCallbackCenter {
             (*pFunc)();
             delete pFunc;
         }
+    }
+#endif
+
+#if defined(_WIN32) || TARGET_OS_OSX
+    static void zego_on_recv_callback_task(void *call_back_task, bool excute) {
+        if (nullptr == call_back_task) {
+            return;
+        }
+
+        std::function<void(void)> *pFunc = (std::function<void(void)> *)call_back_task;
+        if (excute) {
+            (*pFunc)();
+        }
+
+        delete pFunc;
     }
 #endif
 
