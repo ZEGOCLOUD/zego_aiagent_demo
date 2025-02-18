@@ -24,25 +24,6 @@ typedef zego_error(EXP_CALL *pfnzego_express_set_low_light_enhancement)(
     enum zego_low_light_enhancement_mode mode, enum zego_publish_channel channel);
 #endif
 
-/// Set video denoise params.
-///
-/// Available since: 3.18.0
-/// Description: Set video denoise parameters, including mode and strength.
-/// Default value: Off.
-/// When to call: After creating the engine [createEngine].
-/// Platform differences: Only supports iOS and Android.
-/// Note: This function is only available in ZegoExpressVideo SDK!
-///
-/// @param params Video denoise params.
-/// @param channel Publish stream channel.
-#ifndef ZEGOEXP_EXPLICIT
-ZEGOEXP_API zego_error EXP_CALL zego_express_set_video_denoise_params(
-    struct zego_video_denoise_params params, enum zego_publish_channel channel);
-#else
-typedef zego_error(EXP_CALL *pfnzego_express_set_video_denoise_params)(
-    struct zego_video_denoise_params params, enum zego_publish_channel channel);
-#endif
-
 /// Whether to enable acoustic echo cancellation (AEC).
 ///
 /// Available since: 1.1.0

@@ -255,16 +255,6 @@ enum zego_engine_state {
 
 };
 
-/// Video backend type.
-enum zego_video_backend_type {
-    /// OpenGL2.0. For iOS and Android, it corresponds to OpenGLES2.0.
-    zego_video_backend_type_open_gl2 = 0,
-
-    /// OpenGL3.0. For iOS and Android, it corresponds to OpenGLES3.0.
-    zego_video_backend_type_open_gl3 = 1
-
-};
-
 /// Room state.
 enum zego_room_state {
     /// Unconnected state, enter this state before logging in and after exiting the room. If there is a steady state abnormality in the process of logging in to the room, such as AppID or Token are incorrect, or if the same user name is logged in elsewhere and the local end is KickOut, it will enter this state.
@@ -503,22 +493,22 @@ enum zego_voice_changer_preset {
     /// Minions effect
     zego_voice_changer_preset_minions = 23,
 
-    /// Sunshine effect
+    /// Sunshine effect, only support iOS
     zego_voice_changer_preset_sunshine = 24,
 
-    /// Gentle effect
+    /// Gentle effect, only support iOS
     zego_voice_changer_preset_gentle = 25,
 
-    /// Sweet effect
+    /// Sweet effect, only support iOS
     zego_voice_changer_preset_sweet = 26,
 
-    /// Sweet male effect
+    /// Sweet male effect, only support iOS
     zego_voice_changer_preset_sweet_male = 27,
 
-    /// Sweet female effec
+    /// Sweet female effect, only support iOS
     zego_voice_changer_preset_sweet_female = 28,
 
-    /// Bright effect
+    /// Bright effect, only support iOS
     zego_voice_changer_preset_bright = 29,
 
     /// Autobot effect
@@ -747,10 +737,7 @@ enum zego_aec_mode {
     zego_aec_mode_medium = 1,
 
     /// Comfortable echo cancellation, that is, echo cancellation does not affect the sound quality of the sound, and sometimes there may be a little echo, but it will not affect the normal listening.
-    zego_aec_mode_soft = 2,
-
-    /// AI echo cancellation. Supports intelligent recognition and elimination of echo, with a significant improvement in vocal fidelity compared to traditional AEC algorithms, without additional delay or power consumption increase.
-    zego_aec_mode_ai = 3
+    zego_aec_mode_soft = 2
 
 };
 
@@ -921,10 +908,7 @@ enum zego_stream_resource_mode {
     zego_stream_resource_mode_only_rtc = 3,
 
     /// @deprecated Legacy CDN Plus
-    zego_stream_resource_mode_cdn_plus = 4,
-
-    /// Custom mode. The SDK selects the streaming resource based on the customResourceConfig parameter of the streaming settings.
-    zego_stream_resource_mode_custom = 5
+    zego_stream_resource_mode_cdn_plus = 4
 
 };
 
@@ -1743,16 +1727,16 @@ enum zego_platform_language {
 
 /// VOD billing mode.
 enum zego_copyrighted_music_billing_mode {
-    /// Pay-per-use.Each time a user obtains a song resource, a charge is required, that is, the user will be charged for each time based on the actual call to obtain the song resource interface (such as [requestResource] etc.).
+    /// Pay-per-use.Each time a user obtains a song resource, a charge is required, that is, the user will be charged for each time based on the actual call to obtain the song resource interface (such as [requestSong], [requestAccompaniment], etc.).
     zego_copyrighted_music_billing_mode_count = 0,
 
-    /// Monthly billing by user.Billing for a single user is based on the monthly dimension, that is, the statistics call to obtain song resources (such as [requestResource], etc.) and the parameters are the user ID of the monthly subscription, and the charging is based on the monthly dimension.
+    /// Monthly billing by user.Billing for a single user is based on the monthly dimension, that is, the statistics call to obtain song resources (such as [requestSong], [requestAccompaniment], etc.) and the parameters are the user ID of the monthly subscription, and the charging is based on the monthly dimension.
     zego_copyrighted_music_billing_mode_user = 1,
 
-    /// Monthly billing by room.The room users are billed on a monthly basis, that is, statistical calls to obtain song resources (such as [requestResource], etc.) are passed as Roomid for a monthly subscription of the room, and fees are charged on a monthly basis.
+    /// Monthly billing by room.The room users are billed on a monthly basis, that is, statistical calls to obtain song resources (such as [requestSong], [requestAccompaniment], etc.) are passed as Roomid for a monthly subscription of the room, and fees are charged on a monthly basis.
     zego_copyrighted_music_billing_mode_room = 2,
 
-    /// Monthly billing by master. Every time a user obtains a resource, it is counted as the owner’s acquisition of resources, that is, according to the actual call to obtain the song resource interface (such as [requestResource], etc.), the parameters are passed as the Roomid of the room and the Masterid of the owner, and the fee is charged according to the owner.
+    /// Monthly billing by master. Every time a user obtains a resource, it is counted as the owner’s acquisition of resources, that is, according to the actual call to obtain the song resource interface (such as [requestSong], [requestAccompaniment], etc.), the parameters are passed as the Roomid of the room and the Masterid of the owner, and the fee is charged according to the owner.
     zego_copyrighted_music_billing_mode_master = 3
 
 };
@@ -2001,32 +1985,6 @@ enum zego_low_light_enhancement_mode {
 
     /// Automatic low-light enhancement, the brightness enhancement value of the captured picture is dynamically adjusted with the ambient brightness.
     zego_lowlight_enhancement_mode_auto = 2
-
-};
-
-/// Video denoise mode.
-enum zego_video_denoise_mode {
-    /// Turn off video denoise.
-    zego_video_denoise_mode_off = 0,
-
-    /// Turn on video denoise.
-    zego_video_denoise_mode_on = 1,
-
-    /// Automatic video noise reduction, where the SDK internally determines whether to enable noise reduction based on the level of noise in the captured footage.
-    zego_video_denoise_mode_auto = 2
-
-};
-
-/// Video denoise strength.
-enum zego_video_denoise_strength {
-    /// Light denoise strength.
-    zego_video_denoise_strength_light = 1,
-
-    /// Medium denoise strength.
-    zego_video_denoise_strength_medium = 2,
-
-    /// Heavy denoise strength.
-    zego_video_denoise_strength_heavy = 3
 
 };
 
@@ -2283,10 +2241,7 @@ enum zego_alpha_layout_type {
     zego_alpha_layout_type_right = 2,
 
     /// Alpha channel data is to the bottom of RGB/YUV data.
-    zego_alpha_layout_type_bottom = 3,
-
-    /// Alpha channel data is to the upper right of RGB/YUV data.
-    zego_alpha_layout_type_right_top = 4
+    zego_alpha_layout_type_bottom = 3
 
 };
 
@@ -2550,7 +2505,7 @@ struct zego_video_config {
     /// Encode resolution height, control the image height of the encoder when publishing stream. SDK requires this member to be set to an even number. The settings before and after publishing stream can be effective
     int encode_height;
 
-    /// Frame rate, control the frame rate of the camera and the frame rate of the encoder. Publishing stream set to 60 fps, playing stream to take effect need contact technical support
+    /// Frame rate, control the frame rate of the camera and the frame rate of the encoder. Only the camera is not started, the setting is effective. Publishing stream set to 60 fps, playing stream to take effect need contact technical support
     int fps;
 
     /// Bit rate in kbps. The settings before and after publishing stream can be effective. The SDK will automatically set the bit rate suitable for the scenario selected by the developer. If the bit rate manually set by the developer exceeds the reasonable range, the SDK will automatically process the bit rate according to the reasonable range. If you need to configure a high bit rate due to business needs, please contact ZEGO Business.
@@ -2878,9 +2833,6 @@ struct zego_cdn_config {
 
     /// QUIC establishes link mode. If the value is 1, quic 0 rtt is used preferentially to establish link. Otherwise, the link is established normally. If [protocol] has the QUIC protocol, this value takes effect.
     int quic_connect_mode;
-
-    /// custom param of URL. Please contact ZEGO technical support if you need to use it, otherwise this parameter can be ignored (set to null or empty string).
-    char custom_params[ZEGO_EXPRESS_MAX_COMMON_LEN];
 };
 
 /// Relay to CDN info.
@@ -2898,20 +2850,6 @@ struct zego_stream_relay_cdn_info {
 
     /// The timestamp when the state changed, UNIX timestamp, in milliseconds.
     unsigned long long state_time;
-};
-
-/// Custom play stream resource type configuration.
-///
-/// Custom play stream resource type configuration.
-struct zego_custom_player_resource_config {
-    /// The resource type selected by the play stream before starting the publish stream.
-    enum zego_resource_type before_publish;
-
-    /// The type of resource selected by the play stream in the publish stream.
-    enum zego_resource_type publishing;
-
-    /// The type of resource selected by the play stream after stopping the publish stream.
-    enum zego_resource_type after_publish;
 };
 
 /// Advanced player configuration.
@@ -2935,9 +2873,6 @@ struct zego_player_config {
 
     /// Preconfigured codec template ID, please contact ZEGO technical support if you need to use it, otherwise this parameter can be ignored.
     int codec_template_id;
-
-    /// Play stream resource type configuration when [resourceMode] is ZegoStreamResourceModeCustom.
-    struct zego_custom_player_resource_config *custom_resource_config;
 
     /// Play resource switching strategy mode, the default is zego_stream_resource_switch_mode_default
     zego_stream_resource_switch_mode resource_switch_mode;
@@ -3099,9 +3034,6 @@ struct zego_media_side_info {
 
     /// timestamp
     long long timestamp_ns;
-
-    /// SEI source module. Please contact ZEGO technical support.
-    int module_type;
 };
 
 /// Device Info.
@@ -3225,20 +3157,6 @@ struct zego_mixer_output_video_config {
     bool enable_low_bitrate_hd;
 };
 
-/// Room information for the output stream in a mixed stream.
-///
-/// Available since: 3.18.0
-/// Description: Setting room information for a single output stream; the mixed output stream can be added to the specified room, allowing users in the room to receive notifications of increased stream in the room.
-/// Use cases: Manual mixed stream scenario, such as Co-hosting.
-/// Restrictions: Dynamic updates during mixed stream are not supported.
-struct zego_mixer_output_room_info {
-    /// Specifies the room ID of the output stream. You need to ensure that the room is already present when mixing starts.
-    char room_id[ZEGO_EXPRESS_MAX_ROOMID_LEN];
-
-    /// Specifies the user ID of the output stream. It is not recommended to use the same userID as the actual user in the room to avoid conflicts with the SDK's stream addition behavior.
-    char userid[ZEGO_EXPRESS_MAX_USERID_LEN];
-};
-
 /// Font style.
 ///
 /// Description: Font style configuration, can be used to configure font type, font size, font color, font transparency.
@@ -3291,7 +3209,7 @@ struct zego_mixer_image_info {
     /// The image path, if not empty, the image will be displayed, otherwise, the video will be displayed. JPG and PNG formats are supported. There are 2 ways to use it: 1. URI: Provide the picture to ZEGO technical support for configuration. After the configuration is complete, the picture URI will be provided, for example: preset-id://xxx.jpg. 2. URL: Only HTTP protocol is supported.
     char url[ZEGO_EXPRESS_MAX_URL_LEN];
 
-    /// Image display mode. 0: Default. Use image to replace video content when url is not null. 1: Display image based on camera status. Display image when camera is turned off. Display video content when camera is turned on (no need to clear the url parameter). 2: Display image based on the input stream has video data or not. Display image when there is no video data in the input stream for 3 consecutive seconds. The default duration for judging that there is no video data is 3 seconds. If you need change this setting, please contact ZEGO technical support. Display video content when the input stream has video data.
+    /// Image display mode. 0: Default. Use image to replace video content when url is not null. 1: Display image based on camera status. Display image when camera is turned off. Display video content when camera is turned on (no need to clear the url parameter). 2: Display image based on the input stream is empty or not. Display image when the input stream is empty for 3 consecutive seconds. The default duration for determine a input stream is empty or not is 3 seconds. If you need change this setting, please contact ZEGO technical support. Display video content when the input stream has video data.On web platforms, this property does not take effect.
     int display_mode;
 };
 
@@ -3347,9 +3265,6 @@ struct zego_mixer_output {
 
     /// Mix stream output video config. On web platforms, this property does not take effect.
     zego_mixer_output_video_config *video_config;
-
-    /// Specifies the room information for the output stream.
-    zego_mixer_output_room_info *target_room;
 };
 
 /// Watermark object.
@@ -3881,10 +3796,10 @@ struct zego_copyrighted_music_request_config_v2 {
     /// the ID of the song.
     char song_id[ZEGO_EXPRESS_MAX_COMMON_LEN];
 
-    /// VOD billing mode. Refer to the value of [ZegoCopyrightedMusicBillingMode].
+    /// VOD billing mode.
     int mode;
 
-    /// Copyright music resource song copyright provider. Refer to the value of [ZegoCopyrightedMusicVendorID].
+    /// Copyright music resource song copyright provider.
     int vendor_id;
 
     /// The room ID, the single-room mode can not be passed, and the corresponding room ID must be passed in the multi-room mode. Indicate in which room to order song/accompaniment/accompaniment clip/accompaniment segment.
@@ -3896,7 +3811,7 @@ struct zego_copyrighted_music_request_config_v2 {
     /// The scene ID, indicate the actual business. For details, please consult ZEGO technical support.
     int scene_id;
 
-    /// The resource type of music. Refer to the value of [ZegoCopyrightedMusicResourceType].
+    /// The resource type of music.
     int resource_type;
 };
 
@@ -3917,7 +3832,7 @@ struct zego_copyrighted_music_get_shared_config_v2 {
     /// the ID of the song.
     char song_id[ZEGO_EXPRESS_MAX_COMMON_LEN];
 
-    /// Copyright music resource song copyright provider. Refer to the value of [ZegoCopyrightedMusicVendorID].
+    /// Copyright music resource song copyright provider.
     int vendor_id;
 
     /// The room ID, the single-room mode can not be passed, and the corresponding room ID must be passed in the multi-room mode. Indicates which room to get resources from.
@@ -3947,13 +3862,13 @@ struct zego_copyrighted_music_query_cache_config_v2 {
     /// the ID of the song.
     char song_id[ZEGO_EXPRESS_MAX_COMMON_LEN];
 
-    /// The resource type of music. Refer to the value of [ZegoCopyrightedMusicResourceType].
+    /// The resource type of music.
     int resource_type;
 
-    /// The resource quality type of music. Refer to the value of [ZegoCopyrightedMusicResourceQualityType].
+    /// The resource quality type of music.
     int resource_quality_type;
 
-    /// Copyright music resource song copyright provider. Refer to the value of [ZegoCopyrightedMusicVendorID].
+    /// Copyright music resource song copyright provider.
     int vendor_id;
 };
 
@@ -4286,15 +4201,6 @@ struct zego_color_enhancement_params {
 
     /// Description: Lip color protection level. Value range: [0,1], the larger the value, the greater the level of lip color protection. Default value: 0.
     float lip_color_protection_level;
-};
-
-/// Video denoise params.
-struct zego_video_denoise_params {
-    /// Description: Video denoise mode. Default value: Off.
-    enum zego_video_denoise_mode mode;
-
-    /// Description: Video denoise strength. Default value: Light.
-    enum zego_video_denoise_strength strength;
 };
 
 #endif /* __ZEGO_EXPRESS_DEFINE_H__ */

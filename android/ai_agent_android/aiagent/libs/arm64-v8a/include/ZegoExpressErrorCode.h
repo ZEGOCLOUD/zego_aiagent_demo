@@ -163,7 +163,7 @@ enum ZegoErrorCode {
     /// The key for room extra info is too long. <br>The length of the key for room extra info input by the [setRoomExtraInfo] function is greater than or equal to 128 bytes. <br>Please check the key for room extra info entered when calling the [setRoomExtraInfo] function to ensure that its length is less than 128 bytes.
     ZEGO_ERROR_CODE_ROOM_ROOM_EXTRA_INFO_KEY_TOO_LONG = 1002015,
 
-    /// The value for room extra info is too long. <br>The length of the value for room extra info input by the [setRoomExtraInfo] function is greater than or equal to 128 bytes. <br>Please check the value for room extra info entered when calling the [setRoomExtraInfo] function to ensure that its length is less than 128 bytes.
+    /// The value for room extra info is too long. <br>The length of the value for room extra info input by the [setRoomExtraInfo] function is greater than or equal to 4096 bytes. <br>Please check the value for room extra info entered when calling the [setRoomExtraInfo] function to ensure that its length is less than 4096 bytes.
     ZEGO_ERROR_CODE_ROOM_ROOM_EXTRA_INFO_VALUE_TOO_LONG = 1002016,
 
     /// Description: The number of keys set in the room additional message exceeds the maximum number of supported limits. <br>Cause: called setRoomExtraInfo Different keys have been passed in multiple times. <br> Solutions: please contact ZEGO technical support.
@@ -481,7 +481,7 @@ enum ZegoErrorCode {
     /// Description: Illegal format of mixed stream output target parameter. <br>Cause: When the target of the mixed stream output target is streamID, an illegal character is passed in. <br>Solutions: Please check whether the target of the mixed stream output target is of streamID type, if so, target only support numbers, English characters and '-', '_'.
     ZEGO_ERROR_CODE_MIXER_OUTPUT_TARGET_INVALID = 1005006,
 
-    /// Description: Failed to start the stream mixing task. <br>Cause: Requests are too frequent, exceeding the qps limit of the service. Network exceptions. An illegal mixed stream output URL was passed in. <br>Solutions: Please ensure that the qps of the mixing request is less than 100. Check the network. Pass in a valid mixed stream output URL.
+    /// Description: Failed to start the stream mixing task. <br>Cause: Requests are too frequent, exceeding the qps limit of the service. <br>Solutions: Please ensure that the qps of the mixing request is less than 100.
     ZEGO_ERROR_CODE_MIXER_START_REQUEST_ERROR = 1005010,
 
     /// Description: Failed to stop the stream mixing task. <br>Cause: May be the cause of the network error. <br>Solutions: Please check the network ring.
@@ -543,9 +543,6 @@ enum ZegoErrorCode {
 
     /// Description: Failed to mux input image. <br>Cause: The image size of the mixed stream input parameter exceeds the limit. <br>Solution: Image size is limited to 1M.
     ZEGO_ERROR_CODE_MIXER_INPUT_IMAGE_URL_SIZE_ERROR = 1005036,
-
-    /// Description: The mixed output stream target room is misconfigured. <br>Cause: The room doesn't exist when the mixing starts. <br>Solution: Please make sure that the room corresponding to the configured targetRoom exists.
-    ZEGO_ERROR_CODE_MIXER_OUTPUT_TARGET_ROOM_ERROR = 1005037,
 
     /// Description: Failed to start mixed stream. <br>Cause: Mixed-stream authentication failed. <br>Solutions: Contact ZEGO technical support.
     ZEGO_ERROR_CODE_MIXER_AUTHENTICATION_FAILED = 1005050,
@@ -705,12 +702,6 @@ enum ZegoErrorCode {
 
     /// Description: The copyrighted music resource ID is too long. <br>Cause: The copyrighted music resource ID is too long. The maximum length should be less than 512 bytes. <br> Solutions: Please copyrighted music resource ID less than 1024 bytes.
     ZEGO_ERROR_CODE_MEDIA_PLAYER_RESOURCE_ID_TOO_LONG = 1008012,
-
-    /// Description: User cancel. <br>Cause: After calling [Load] to load the resource, call [Stop] to stop the player. <br> Solutions: Expected behavior when calling [Stop] while loading a resource.
-    ZEGO_ERROR_CODE_MEDIA_PLAYER_USER_CANCEL = 1008013,
-
-    /// Description: The MediaPlayer is already start. <br>Cause: [Load] has been called. <br> Solutions: Please call [Stop] first, then call [Load].
-    ZEGO_ERROR_CODE_MEDIA_PLAYER_ALREADY_START = 1008014,
 
     /// Description: The MediaPlayer failed to seek. <br>Cause: The file hasn't been loaded yet. <br> Solutions: The media player loads the media resource [loadResource] before seeking [seekTo].
     ZEGO_ERROR_CODE_MEDIA_PLAYER_SEEK_ERROR = 1008016,
@@ -1051,7 +1042,7 @@ enum ZegoErrorCode {
     /// Description: Get lyric fail. <br>Cause: Lyrics not found. <br>Solutions: Please try again later.
     ZEGO_ERROR_CODE_COPYRIGHTED_MUSIC_GET_LYRIC_FAIL = 1017048,
 
-    /// Description: Get pitch fail. <br>Cause: Pitch not found. <br>Solutions: Please select correct song.
+    /// Description: Get pitch fail. <br>Cause: Pitch not found. <br>Solutions: Please try again later.
     ZEGO_ERROR_CODE_COPYRIGHTED_MUSIC_GET_PITCH_FAIL = 1017049,
 
     /// Description: This resource is not shared in the room. <br>Cause: No users in the room share this resource. <br>Solutions: Please any one user in the room to call the [requestresource] function to request resources and share them.

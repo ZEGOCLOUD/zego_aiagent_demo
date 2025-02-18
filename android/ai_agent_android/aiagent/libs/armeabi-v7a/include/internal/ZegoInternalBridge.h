@@ -57,8 +57,6 @@ class ZegoExpressEngineBridge {
 
     void setAndroidEnv(void *jvm, void *ctx) { zego_express_set_android_env(jvm, ctx); }
 
-    void setOhosEnv(void *env, void *exports) { zego_express_set_ohos_env(env, exports); }
-
     void setEngineConfig(zego_engine_config config) { zego_express_set_engine_config(config); }
 
     void setRoomMode(zego_room_mode mode) { zego_express_set_room_mode(mode); }
@@ -155,8 +153,6 @@ class ZegoExpressEngineBridge {
         zego_express_free_call_experimental_api_result(temp_result);
         return result;
     }
-
-    zego_seq getIncreaseSeq() { return zego_express_get_increase_seq(); }
 
     void setDummyCaptureImagePath(const std::string &filePath,
                                   ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) {
@@ -310,12 +306,6 @@ class ZegoExpressEngineBridge {
 
     void setCaptureVolume(int volume) { zego_express_set_capture_volume(volume); }
 
-    int getCaptureVolume() {
-        int volume = 0;
-        zego_express_get_capture_volume(&volume);
-        return volume;
-    }
-
     void setAudioCaptureStereoMode(zego_audio_capture_stereo_mode mode) {
         zego_express_set_audio_capture_stereo_mode(mode);
     }
@@ -405,10 +395,6 @@ class ZegoExpressEngineBridge {
         zego_express_set_app_orientation(orientation, channel);
     }
 
-    void setAppOrientationMode(zego_orientation_mode mode) {
-        zego_express_set_app_orientation_mode(mode);
-    }
-
     void startPlayingStream(const char *streamID, zego_canvas *canvas) {
         zego_express_start_playing_stream(streamID, canvas);
     }
@@ -456,10 +442,6 @@ class ZegoExpressEngineBridge {
                                           unsigned int maxBufferInterval) {
         zego_express_set_play_stream_buffer_interval_range(streamID, minBufferInterval,
                                                            maxBufferInterval);
-    }
-
-    void setAudioMixMode(zego_audio_mix_mode mode, const char **streamList, int num) {
-        zego_express_set_audio_mix_mode(mode, streamList, num);
     }
 
     void setPlayStreamFocusOn(const char *streamID) {
@@ -985,8 +967,10 @@ class ZegoExpressEngineBridge {
     }
 
     int mediaPlayerSeekTo(unsigned long long millisecond,
-                          zego_media_player_instance_index instance_index, zego_seq seq) {
-        return zego_express_media_player_seek_to(millisecond, instance_index, &seq);
+                          zego_media_player_instance_index instance_index) {
+        int seq = 0;
+        zego_express_media_player_seek_to(millisecond, instance_index, &seq);
+        return seq;
     }
 
     int mediaPlayerSetVolume(int volume, zego_media_player_instance_index instance_index) {
@@ -1053,18 +1037,6 @@ class ZegoExpressEngineBridge {
     int mediaPlayerSetAudioTrackIndex(unsigned int index,
                                       zego_media_player_instance_index instance_index) {
         int result = zego_express_media_player_set_audio_track_index(index, instance_index);
-        return result;
-    }
-
-    int mediaPlayerSetAudioTrackMode(zego_media_player_audio_track_mode mode,
-                                     zego_media_player_instance_index instance_index) {
-        int result = zego_express_media_player_set_audio_track_mode(mode, instance_index);
-        return result;
-    }
-
-    int mediaPlayerSetAudioTrackPublishIndex(unsigned int index,
-                                             zego_media_player_instance_index instance_index) {
-        int result = zego_express_media_player_set_audio_track_publish_index(index, instance_index);
         return result;
     }
 

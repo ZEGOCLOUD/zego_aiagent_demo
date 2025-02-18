@@ -442,7 +442,6 @@ class ZegoExpressConvert {
         zego_cdn_config _config;
         strncpy(_config.url, config.url.c_str(), ZEGO_EXPRESS_MAX_URL_LEN);
         strncpy(_config.auth_param, config.authParam.c_str(), ZEGO_EXPRESS_MAX_COMMON_LEN);
-        strncpy(_config.custom_params, config.customParams.c_str(), ZEGO_EXPRESS_MAX_COMMON_LEN);
         strncpy(_config.protocol, config.protocol.c_str(), ZEGO_EXPRESS_MAX_COMMON_LEN);
         strncpy(_config.quic_version, config.quicVersion.c_str(), ZEGO_EXPRESS_MAX_COMMON_LEN);
         _config.http_dns = static_cast<zego_http_dns_type>(config.httpdns);
@@ -704,7 +703,6 @@ class ZegoExpressConvert {
         info.SEIData = _info.sei_data;
         info.SEIDataLength = _info.sei_data_length;
         info.timestampNs = _info.timestamp_ns;
-        info.moduleType = _info.module_type;
         return info;
     }
 };
