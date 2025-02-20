@@ -193,7 +193,8 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
 -(void)setPlayVolumeInternal:(int)volume{
     ZAALogI(@"AudioPlay", @"setPlayVolumeInternal volume=%d", volume);
     self.curVolume = volume;
-    [ZegoExpressEngine.sharedEngine setPlayVolume:volume streamID:self.agentStreamID];
+    //从2025/2/20，v2.1.2开始，由服务端控制打断逻辑，客户端可以不考虑本地打断
+//    [ZegoExpressEngine.sharedEngine setPlayVolume:volume streamID:self.agentStreamID];
 }
 
 -(void)enable3A:(BOOL)enable{
@@ -520,7 +521,6 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
     long long round = [msgDict[@"round"] longLongValue];
     long timeStamp = [msgDict[@"timestamp"] longValue];
     NSDictionary* dataMap = msgDict[@"data"];
-    
     if(cmd == 3){
         // 收到 asr 文本，更新聊天信息
         NSString* content = dataMap[@"text"];
@@ -567,13 +567,24 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
                 fromUser.userName, cmd, seqId, timeStamp, speakStatus);
         if(speakStatus == 1){
             self.callVCNameStatusCom.chatStatusText = @"可以随时说话打断我";
-            ZAALogI(@"onInRoomMessageReceived cmd=2 speakStatus=2", @"可以随时说话打断我, setPlayVolume:100");
             [self setPlayVolumeInternal:100];
+            ZAALogI(@"onInRoomMessageReceived cmd=2 speakStatus=1", @"可以随时说话打断我,setPlayVolume:100");
             self.chatSessionState = ChatSessionState_AI_SPEAKING;
         }else if(speakStatus == 2){
             self.callVCNameStatusCom.chatStatusText= @"正在听...";
             self.chatSessionState = ChatSessionState_AI_LISTEN;
         }
+    }else if(cmd == 100){
+        long asr = [dataMap[@"asr"] longValue];
+        long custom_prompt = [dataMap[@"custom_prompt"] longValue];
+        long llm_first_sentence = [dataMap[@"llm_first_sentence"] longValue];
+        long tts_first_sentence = [dataMap[@"tts_first_sentence"] longValue];
+        long llm_first_token = [dataMap[@"llm_first_token"] longValue];
+        long tts_first_audio = [dataMap[@"tts_first_audio"] longValue];
+        long total = asr + custom_prompt + llm_first_token + tts_first_audio;
+        NSLog(@"onInRoomMessageReceived cmd=100, PerfStatics(ms), seqId=%lld round=%lld asr=%ld custom_prompt=%ld llm_first_sentence=%ld tts_first_sentence=%ld, llm_first_token=%ld tts_first_audio=%ld total=%ld ", seqId, round, asr, custom_prompt, llm_first_sentence, tts_first_sentence, llm_first_token, tts_first_audio, total);
+        ZAALogI(@"onInRoomMessageReceived cmd=100", @"PerfStatics(ms), seqId=%ld round=%ld asr=%ld custom_prompt=%ld llm_first_sentence=%ld tts_first_sentence=%ld llm_first_token=%ld tts_first_audio=%ld total=%ld ", seqId, round, asr, custom_prompt, llm_first_sentence, tts_first_sentence, llm_first_token, tts_first_audio, total);
+        
     }
 }
 

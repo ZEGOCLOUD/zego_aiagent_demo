@@ -96,10 +96,10 @@
 -(void)initZegoExpressEngine{
     [super initZegoExpressEngine];
 //    默认这个VAD侦听逻辑关闭
-    ZegoSoundLevelConfig* soundLevelConfig = [[ZegoSoundLevelConfig alloc]init];
-    soundLevelConfig.millisecond = 100;
-    soundLevelConfig.enableVAD = YES;
-    [[ZegoExpressEngine sharedEngine] startSoundLevelMonitorWithConfig:soundLevelConfig];
+//    ZegoSoundLevelConfig* soundLevelConfig = [[ZegoSoundLevelConfig alloc]init];
+//    soundLevelConfig.millisecond = 100;
+//    soundLevelConfig.enableVAD = YES;
+//    [[ZegoExpressEngine sharedEngine] startSoundLevelMonitorWithConfig:soundLevelConfig];
 }
 
 // 退出房间,子类重载
