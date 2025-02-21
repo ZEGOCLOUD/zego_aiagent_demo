@@ -142,7 +142,7 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
                 /*********************************************************************************************************/
 
                 if (errorCode == 0) {
-                    startSoundLevelMonitor();
+//                    startSoundLevelMonitor();
                     muteMicrophone(false);
                     // 开始推流
                     String streamID = ZegoAIAgentConfigController.getConfig().getCurrentCharacter().getStreamID();

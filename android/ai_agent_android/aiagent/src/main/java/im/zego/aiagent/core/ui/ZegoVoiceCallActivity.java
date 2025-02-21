@@ -329,9 +329,9 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
     }
 
     private void setPlayVolumeInternal(int volume) {
-        String agentStreamID = ZegoAIAgentConfigController.getConfig().getCurrentCharacter().getAgentStreamID();
-        rtcFunction.setPlayVolume(agentStreamID, volume);
-        mTestView.setPlayVolume(volume);
+//        String agentStreamID = ZegoAIAgentConfigController.getConfig().getCurrentCharacter().getAgentStreamID();
+//        rtcFunction.setPlayVolume(agentStreamID, volume);
+//        mTestView.setPlayVolume(volume);
     }
 
     private void graduallyMutePlayVolumeByWeightAverage(float weightAverage) {
@@ -536,7 +536,7 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
         @Override
         public void onCapturedSoundLevelInfoUpdate(ZegoSoundLevelInfo soundLevelInfo) {
             ZegoVoiceCallActivity instance = (ZegoVoiceCallActivity) mContext;
-            instance.onCapturedSoundLevelInfoUpdate(soundLevelInfo);
+//            instance.onCapturedSoundLevelInfoUpdate(soundLevelInfo);
         }
 
         @Override
