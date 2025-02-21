@@ -103,13 +103,15 @@ public class ZegoAgentTestView extends ConstraintLayout {
             if (roomMessage.cmd == 1 || roomMessage.cmd == 2) {
                 return "seq:" + roomMessage.seq_id + ",cmd:" + roomMessage.cmd + ",speak_status:"
                     + roomMessage.data.speak_status;
-            } else {
+            } else if (roomMessage.cmd == 3 || roomMessage.cmd == 4) {
                 String text = roomMessage.data.text;
                 if (roomMessage.data.text.length() > 20) {
                     text = text.substring(0, 10) + "...";
                 }
                 return "seq:" + roomMessage.seq_id + ",cmd:" + roomMessage.cmd + ",messageID:"
                     + roomMessage.data.message_id + ",text:" + text;
+            } else {
+                return "seq:" + roomMessage.seq_id + ",cmd:" + roomMessage.cmd;
             }
         }).reduce((s, s2) -> s + "\n" + s2).orElse("");
 

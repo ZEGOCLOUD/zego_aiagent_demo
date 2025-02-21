@@ -117,7 +117,7 @@ class IZegoExpressEngine {
     ///   2. SDK supports multi-room login, please call [setRoomMode] function to select multi-room mode before engine initialization, and then call [loginRoom] to log in to multi-room.
     ///   3. Calling [destroyEngine] will also automatically log out.
     ///
-    /// @param roomID Room ID, a string of up to 128 bytes in length.
+    /// @param roomID Room ID, a string of less 128 bytes in length.
     ///   Caution:
     ///   1. room ID is defined by yourself.
     ///   2. Only support numbers, English characters and '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '-', '`', ';', '’', ',', '.', '<', '>', '\'.
@@ -148,7 +148,7 @@ class IZegoExpressEngine {
     ///   2. SDK supports multi-room login, please call [setRoomMode] function to select multi-room mode before engine initialization, and then call [loginRoom] to log in to multi-room.
     ///   3. Calling [destroyEngine] will also automatically log out.
     ///
-    /// @param roomID Room ID, a string of up to 128 bytes in length.
+    /// @param roomID Room ID, a string of less 128 bytes in length.
     ///   Caution:
     ///   1. room ID is defined by yourself.
     ///   2. Only support numbers, English characters and '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '-', '`', ';', '’', ',', '.', '<', '>', '\'.
@@ -405,7 +405,7 @@ class IZegoExpressEngine {
     /// Description: Set the video frame rate, bit rate, video capture resolution, and video encoding output resolution.
     /// Default value: The default video capture resolution is 360p, the video encoding output resolution is 360p, the bit rate is 600 kbps, and the frame rate is 15 fps.
     /// When to call: After [createEngine].
-    /// Restrictions: It is necessary to set the relevant video configuration before [startPreview], and only support the modification of the encoding resolution and the bit rate after [startPreview].
+    /// Restrictions: It is necessary to set the relevant video configuration before [startPreview], and only support the modification of the encoding resolution, the bit rate and the frame rate after [startPreview].
     /// Caution: Developers should note that the wide and high resolution of the mobile end is opposite to the wide and high resolution of the PC. For example, in the case of 360p, the resolution of the mobile end is 360x640, and the resolution of the PC end is 640x360.
     /// Note: This function is only available in ZegoExpressVideo SDK!
     ///
@@ -605,7 +605,7 @@ class IZegoExpressEngine {
     /// Sets the minimum video frame rate threshold for traffic control.
     ///
     /// Available since: 2.17.0
-    /// Description: Set the control policy when the video frame rate reaches the lowest threshold when flow control.
+    /// Description: When enabling traffic control [enableTrafficControl], and its parameter [property] includes the attribute AdaptiveFPS, the minimum frame rate of the video will not be lower than the value set by the [setMinVideoFpsForTrafficControl] interface. A value of 0 indicates no limit.
     /// Default value: There is no control effect of the lowest threshold of video frame rate.
     /// When to call: The call takes effect after the engine [createEngine] is created.
     /// Restrictions: The traffic control must be turned on [enableTrafficControl]. And its parameter [property] must contain AdaptiveFPS, Please refer to [ZegoTrafficControlProperty] for details.
@@ -622,7 +622,7 @@ class IZegoExpressEngine {
     /// Sets the minimum video resolution threshold for traffic control.
     ///
     /// Available since: 2.17.0
-    /// Description: Set the control policy when the video resolution reaches the lowest threshold when flow control.
+    /// Description: When enabling traffic control [enableTrafficControl], and its parameter [property] includes the attribute AdaptiveResolution, the minimum resolution of the video will not be lower than the value set by the [setMinVideoResolutionForTrafficControl] interface. A value of 0 indicates no limit.
     /// Default value: There is no control effect of the lowest threshold of video resolution.
     /// When to call: The call takes effect after the engine [createEngine] is created.
     /// Restrictions: The traffic control must be turned on [enableTrafficControl]. And its parameter [property] must contain AdaptiveResolution, Please refer to [ZegoTrafficControlProperty] for details.
@@ -663,9 +663,19 @@ class IZegoExpressEngine {
     /// @param volume The volume gain percentage, the range is 0 ~ 200, and the default value is 100, which means 100% of the original collection volume of the device.
     virtual void setCaptureVolume(int volume) = 0;
 
+    /// Gets the audio recording volume for stream publishing.
+    ///
+    /// Available since: 1.13.0
+    /// Description: This function is used to get the device's collected volume.
+    /// When to call: After creating the engine [createEngine].
+    /// Related APIs: Set the capture stream volume [setCaptureVolume].
+    ///
+    /// @return The volume gain percentage.
+    virtual int getCaptureVolume() = 0;
+
     /// Set audio capture stereo mode.
     ///
-    /// Available since: 1.15.0 (iOS/Android/Windows); support macOS since 2.16.0
+    /// Available since: 1.15.0 (iOS/Android/Windows/OHOS); support macOS since 2.16.0
     /// Description: This function is used to set the audio capture channel mode. When the developer turns on the stereo capture, using a special stereo capture device, the stereo audio data can be captured and streamed.
     /// Use cases: In some professional scenes, users are particularly sensitive to sound effects, such as voice radio and musical instrument performance. At this time, support for stereo and high-quality sound is required.
     /// Default value: The default is None, which means mono capture.
@@ -859,12 +869,40 @@ class IZegoExpressEngine {
     ///   2. iOS: If it is a full path, add the prefix "file:", such as @"file:/var/image.png"; If it is a assets picture path, add the prefix "asset:", such as @"asset:watermark".
     ///   3. Android: If it is a full path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets directory path, add the prefix "asset:", such as "asset:watermark.png".
     ///   4. Flutter: If it is a absolute path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets resources directory path, add the prefix "flutter-asset://", such as "flutter-asset://assets/watermark.png".
+    ///   5. UniApp: Only absolute paths are supported. You need to add a "file:" prefix, such as: "file:/sdcard/image.png".
     ///
     /// @param filePath Picture file path
     /// @param channel Publish channel.
     virtual void
     setDummyCaptureImagePath(const std::string &filePath,
                              ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
+
+    /// Set the params of the static picture would be published when the camera is closed.
+    ///
+    /// Available: since 3.19.0
+    /// Description: Set the params of the static picture would be published when enableCamera(false) is called, it would start to publish static pictures, and when enableCamera(true) is called, it would end publishing static pictures.
+    /// Use case: The developer wants to display a static picture when the camera is closed. For example, when the anchor exits the background, the camera would be actively closed. At this time, the audience side needs to display the image of the anchor temporarily leaving.
+    /// When to call: After the engine is initialized, call this API to configure the parameters before closing the camera.
+    /// Restrictions:
+    ///   1. Supported picture types are JPEG/JPG, PNG, BMP, HEIF.
+    ///   2. The function is only for SDK video capture and does not take effect for custom video capture.
+    ///   3. Not supported that the filePath is a network link.
+    /// Caution:
+    ///   1. The static picture cannot be seen in the local preview.
+    ///   2. External filters, mirroring, watermarks, and snapshots are all invalid.
+    ///   3. If the picture aspect ratio is inconsistent with the set code aspect ratio, it will be cropped according to the code aspect ratio.
+    /// Platform differences:
+    ///   1. Windows: Fill in the location of the picture directly, such as "D://dir//image.jpg".
+    ///   2. iOS: If it is a full path, add the prefix "file:", such as @"file:/var/image.png"; If it is a assets picture path, add the prefix "asset:", such as @"asset:watermark".
+    ///   3. Android: If it is a full path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets directory path, add the prefix "asset:", such as "asset:watermark.png".
+    ///   4. Flutter: If it is a absolute path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets resources directory path, add the prefix "flutter-asset://", such as "flutter-asset://assets/watermark.png".
+    ///   5. UniApp: Only absolute paths are supported. You need to add a "file:" prefix, such as: "file:/sdcard/image.png".
+    ///
+    /// @param params Dummy capture image params.
+    /// @param channel Publish channel.
+    virtual void
+    setDummyCaptureImageParams(ZegoDummyCaptureImageParams params,
+                               ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
 
     /// Whether to enable H.265 encoding to automatically downgrade to H.264 encoding.
     ///
@@ -884,7 +922,7 @@ class IZegoExpressEngine {
     /// Available since: 2.12.0 and above
     /// Description: Whether the specified video encoding is supported depends on the following aspects, whether the hardware model supports hard encoding, whether the performance of the hardware model supports soft encoding, and whether the SDK has the encoding module.
     /// When to call: After creating the engine.
-    /// Caution: It is recommended that users call this interface to obtain H.265 encoding support capability before publish stream with H.265 encoding, if not supported, you can use other encodings for publish, such as H.264.On the mobile platform, the SDK only supports H.265 hardware encoding, and it is affected by the model and hardware capabilities. You need to call the [enableHardwareEncoder] function to enable hardware encoding, and then use this function to determine whether H.265 hardware encoding is supported.
+    /// Caution: It is recommended that users call this interface to obtain H.265 encoding support capability before publish stream with H.265 encoding, if not supported, you can use other encodings for publish, such as H.264.On the mobile platform, the SDK only supports H.265 hardware encoding, and it is affected by the model and hardware capabilities.
     ///
     /// @param codecID Video codec id. Required: Yes.
     /// @return Whether the specified video encoding is supported.Value range: true means support, you can use this encoding format for publish; false means the is not supported, and the encoding format cannot be used for publish.
@@ -895,13 +933,30 @@ class IZegoExpressEngine {
     /// Available since: 3.0.0 and above
     /// Description: Whether the specified video encoding is supported depends on the following aspects, whether the hardware model supports hard encoding, whether the performance of the hardware model supports soft encoding, and whether the SDK has the encoding module.
     /// When to call: After creating the engine.
-    /// Caution: It is recommended that users call this interface to obtain H.265 encoding support capability before publish stream with H.265 encoding, if not supported, you can use other encodings for publish, such as H.264.On the mobile platform, the SDK only supports H.265 hardware encoding, and it is affected by the model and hardware capabilities. You need to call the [enableHardwareEncoder] function to enable hardware encoding, and then use this function to determine whether H.265 hardware encoding is supported.
+    /// Caution: It is recommended that users call this interface to obtain H.265 encoding support capability before publish stream with H.265 encoding, if not supported, you can use other encodings for publish, such as H.264.On the mobile platform, the SDK only supports H.265 hardware encoding, and it is affected by the model and hardware capabilities.
     ///
     /// @param codecID Video codec id. Required: Yes.
     /// @param codecBackend Backend implementation of encoder. Required: Yes.
     /// @return Whether the specified video encoding format is supported; 0 means not supported, and the encoding format cannot be used for publish stream; 1 means support, you can use this encoding format for publish stream; 2 means not confirmed, it is recommended to call this interface later.
     virtual int isVideoEncoderSupported(ZegoVideoCodecID codecID,
                                         ZegoVideoCodecBackend codecBackend) = 0;
+
+#if TARGET_OS_IPHONE || defined(ANDROID) || defined(_OS_OHOS_)
+    /// Set the orientation mode of the video.
+    ///
+    /// Available since: 2.23.0
+    /// Description: In order to simplify the complexity of processing video screen rotation for mobile developers, the SDK supports setting multiple video orientation modes, and developers can choose different modes according to the needs of the scene.
+    /// Use cases: Scenarios for live streaming or video calls using mobile devices.
+    /// Default value: Custom mode.
+    /// When to call: This function needs to be valid after calling [createEngine] and before calling preview [startPreview] or push stream [startPublishingStream].
+    /// Caution:
+    ///   1. It is valid for all channels.
+    ///   2. The adaptive mode takes effect in preview, streaming, and mixed streaming scenarios. It does not support external video capture, media player, cloud recording, local recording, or publishing/playing stream through CDN.
+    /// Related APIs: You can call the [setAppOrientation] function to set the orientation of the App in custom mode.
+    ///
+    /// @param mode Orientation mode of the video.
+    virtual void setAppOrientationMode(ZegoOrientationMode mode) = 0;
+#endif
 
     /// Set low light enhancement.
     ///
@@ -916,6 +971,20 @@ class IZegoExpressEngine {
     /// @param channel Publish stream channel.
     virtual void setLowlightEnhancement(ZegoLowlightEnhancementMode mode,
                                         ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
+
+    /// Set low light enhancement params.
+    ///
+    /// Available since: 3.19.0
+    /// Description: According to the set low-light enhancement mode, the brightness of the image captured by the camera is enhanced, which is compatible with the beauty function. Users can watch the effect while previewing and toggle the low-light enhancement mode in real time.
+    /// Use cases: The environment on the streaming end is dark, or the frame rate set by the camera is high, which causes the picture to be dark, and the subject cannot be displayed or recognized normally.
+    /// When to call: After creating the engine [createEngine].
+    /// Note: This function is only available in ZegoExpressVideo SDK!
+    ///
+    /// @param params Low light enhancement params.
+    /// @param channel Publish stream channel.
+    virtual void
+    setLowlightEnhancementParams(ZegoExpLowlightEnhancementParams params,
+                                 ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
 
     /// Set video capture source.
     ///
@@ -1080,6 +1149,16 @@ class IZegoExpressEngine {
     enableAlphaChannelVideoEncoder(bool enable, ZegoAlphaLayoutType alphaLayout,
                                    ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
 
+    /// Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM.
+    ///
+    /// Available since: 3.18.0
+    /// Description: Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM to balance the volume of the human voice and the BGM. Default is off.
+    /// When to call: Called after the engine is created [createEngine].
+    /// Restrictions: This interface will take effect only when the [EnableAux] interface of the media player is called to enable aux.
+    ///
+    /// @param enable Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM.
+    virtual void enableAuxBgmBalance(bool enable) = 0;
+
     /// Starts playing a stream from ZEGO RTC server.
     ///
     /// Available since: 1.1.0
@@ -1207,7 +1286,8 @@ class IZegoExpressEngine {
     /// Use cases: In the real-time scenario, developers can listen to the [onRoomStreamUpdate] event callback to obtain the delete stream information in the room where they are located, and call this interface to pass in streamID for stop play streams.
     /// When to call: After [loginRoom].
     /// Restrictions: None.
-    /// Caution: When stopped, the attributes set for this stream previously, such as [setPlayVolume], [mutePlayStreamAudio], [mutePlayStreamVideo], etc., will be invalid and need to be reset when playing the the stream next time.
+    /// Caution: 1. When stopped, the attributes set for this stream previously, such as [setPlayVolume], [mutePlayStreamAudio], [mutePlayStreamVideo], etc., will be invalid and need to be reset when playing the the stream next time.
+    ///  2. After stopping pulling, the iOS platform view will clear the last frame by default and keep the background color of the view. The Android platform view remains at the last frame by default. If you need to clear the last frame, please contact ZEGO technical support.
     ///
     /// @param streamID Stream ID.
     virtual void stopPlayingStream(const std::string &streamID) = 0;
@@ -1309,6 +1389,18 @@ class IZegoExpressEngine {
                                                   unsigned int minBufferInterval,
                                                   unsigned int maxBufferInterval) = 0;
 
+    /// Set the playing stream ID to highlight when multiple streams are mixed. Streams in the stream list will be highlighted when multiple streams sound at the same time.
+    ///
+    /// Available since: 3.15.0
+    /// Set the playing stream ID to highlight when multiple streams are mixed. Streams in the stream list will be highlighted when multiple streams sound at the same time.
+    /// When to call: after called [createEngine].
+    /// Restrictions: None.
+    ///
+    /// @param mode audio mix mode.
+    /// @param streamList stream list.
+    virtual void setAudioMixMode(ZegoAudioMixMode mode,
+                                 const std::vector<std::string> &streamList) = 0;
+
     /// Set the weight of the pull stream priority.
     ///
     /// Available since: 1.1.0
@@ -1355,7 +1447,7 @@ class IZegoExpressEngine {
     /// @param mute Whether it is possible to receive the video data of the specified remote user when streaming, "true" means prohibition, "false" means receiving, the default value is "false". The default value for automatically played streams within the SDK is false.
     virtual void mutePlayStreamVideo(const std::string &streamID, bool mute) = 0;
 
-    /// Can the pull stream receive all audio data.
+    /// Can the pull stream receive all audio data. (When set to true, calling [mutePlayStreamAudio] will not take effect)
     ///
     /// Available since: 2.4.0
     /// Description: In the process of real-time audio and video interaction, local users can use this function to control whether to receive audio data from all remote users when pulling streams (including the audio streams pushed by users who have newly joined the room after calling this function). By default, users can receive audio data pushed by all remote users after joining the room. When the developer does not receive the audio receipt, the hardware and network overhead can be reduced.
@@ -1379,7 +1471,7 @@ class IZegoExpressEngine {
     /// @param mute Whether it is possible to receive audio data from all remote users when streaming, "true" means prohibition, "false" means receiving, and the default value is "false".
     virtual void muteAllPlayAudioStreams(bool mute) = 0;
 
-    /// Can the pull stream receive all video data.
+    /// Can the pull stream receive all video data. (When set to true, calling [mutePlayStreamVideo] will not take effect)
     ///
     /// Available since: 2.4.0
     /// Description: In the process of real-time video and video interaction, local users can use this function to control whether to receive all remote users' video data when pulling the stream (including the video stream pushed by the new user who joins the room after calling this function). By default, users can receive video data pushed by all remote users after joining the room. When the developer does not receive the video data, the hardware and network overhead can be reduced.
@@ -1518,7 +1610,7 @@ class IZegoExpressEngine {
     /// Available: since 3.4.0
     /// Description: This interface will update playing view.
     /// Use case: The user can call this function to update canvas display video.
-    /// When to call: After receiving a successful playing stream from the [onPlayerStateUpdate] or [onUserStreamStateUpdate] callback.
+    /// When to call: After calling the [startPlayingStream] interface.
     /// Restrictions: None.
     /// Caution: None.
     /// Note: This function is only available in ZegoExpressVideo SDK!
@@ -1743,7 +1835,7 @@ class IZegoExpressEngine {
     virtual void muteAudioDevice(ZegoAudioDeviceType deviceType, const std::string &deviceID,
                                  bool mute) = 0;
 
-#if TARGET_OS_IPHONE || defined(ANDROID)
+#if TARGET_OS_IPHONE || defined(ANDROID) || defined(_OS_OHOS_)
     /// Set the audio device mode.
     ///
     /// Available since: 2.22.0
@@ -1769,7 +1861,7 @@ class IZegoExpressEngine {
     /// Enables or disables the audio capture device.
     ///
     /// Available since: 1.1.0
-    /// Description: This function is used to control whether to use the audio collection device. When the audio collection device is turned off, the SDK will no longer occupy the audio device. Of course, if the stream is being published at this time, by default, mute data will be used as audio data for streaming.
+    /// Description: This function is used to control whether to use the audio collection device. When the audio collection device is turned off, the SDK will no longer occupy the audio device. Of course, if the stream is being published at this time, by default, mute data will be used as audio data for streaming. not support Linux.
     /// Use cases: When the user never needs to use the audio, you can call this function to close the audio collection.
     /// Default value: The default is `true`.
     /// When to call: After creating the engine [createEngine].
@@ -2049,7 +2141,7 @@ class IZegoExpressEngine {
     /// When to call: After the engine is created [createEngine].
     /// Caution: [onCapturedAudioSpectrumUpdate] and [onRemoteAudioSpectrumUpdate] callback notification period is the value set by the parameter.
     ///
-    /// @param millisecond Monitoring time period of the audio spectrum, in milliseconds, has a value range of [100, 3000]. Default is 100 ms.
+    /// @param millisecond Monitoring time period of the audio spectrum, in milliseconds, the minimum value is 10. Default is 500 ms.
     virtual void startAudioSpectrumMonitor(unsigned int millisecond = 100) = 0;
 
     /// Stops audio spectrum monitoring.
@@ -2556,7 +2648,7 @@ class IZegoExpressEngine {
     /// Related callbacks: The room broadcast message can be received through [onIMRecvBroadcastMessage].
     /// Related APIs: Barrage messages can be sent through the [sendBarrageMessage] function, and custom command can be sent through the [sendCustomCommand] function.
     ///
-    /// @param roomID Room ID, a string of up to 128 bytes in length.
+    /// @param roomID Room ID, a string of less 128 bytes in length.
     ///   Caution:
     ///   1. room ID is defined by yourself.
     ///   2. Only support numbers, English characters and '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '-', '`', ';', '’', ',', '.', '<', '>', '\'.
@@ -2576,7 +2668,7 @@ class IZegoExpressEngine {
     /// Related callbacks: The room barrage message can be received through [onIMRecvBarrageMessage].
     /// Related APIs: Broadcast messages can be sent through the [sendBroadcastMessage] function, and custom command can be sent through the [sendCustomCommand] function.
     ///
-    /// @param roomID Room ID, a string of up to 128 bytes in length.
+    /// @param roomID Room ID, a string of less 128 bytes in length.
     ///   Caution:
     ///   1. room ID is defined by yourself.
     ///   2. Only support numbers, English characters and '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '-', '`', ';', '’', ',', '.', '<', '>', '\'.
@@ -2597,7 +2689,7 @@ class IZegoExpressEngine {
     /// Related APIs: Broadcast messages can be sent through the [sendBroadcastMessage] function, and barrage messages can be sent through the [sendBarrageMessage] function.
     /// Privacy reminder: Please do not fill in sensitive user information in this interface, including but not limited to mobile phone number, ID number, passport number, real name, etc.
     ///
-    /// @param roomID Room ID, a string of up to 128 bytes in length.
+    /// @param roomID Room ID, a string of less 128 bytes in length.
     ///   Caution:
     ///   1. room ID is defined by yourself.
     ///   2. Only support numbers, English characters and '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '-', '`', ';', '’', ',', '.', '<', '>', '\'.
@@ -2619,7 +2711,7 @@ class IZegoExpressEngine {
     /// Related callbacks: When sending a message, Mode is specified for ZegoRoomTransparentMessageModeOnlyClient or ZegoRoomTransparentMessageModeClientAndServer can pass [onRecvRoomTransparentMessage] received sends the message content.
     /// Privacy reminder: Please do not fill in sensitive user information in this interface, including but not limited to mobile phone number, ID number, passport number, real name, etc.
     ///
-    /// @param roomID Room ID, a string of up to 128 bytes in length.
+    /// @param roomID Room ID, a string of less 128 bytes in length.
     ///   Caution:
     ///   1. room ID is defined by yourself.
     ///   2. Only support numbers, English characters and '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '-', '`', ';', '’', ',', '.', '<', '>', '\'.
@@ -2801,7 +2893,7 @@ class IZegoExpressEngine {
     /// Available since: 1.20.0
     /// Description: This function supports uplink/downlink network speed test when the network can be connected.
     /// Use cases: This function can be used to detect whether the network environment is suitable for pushing/pulling streams with specified bitrates.
-    /// When to call: It needs to be called after [createEngine], and before [startPublishingStream]. If you call [startPublishingStream] while speed testing, the speed test will automatically stop.
+    /// When to call: It needs to be called after [loginRoom]. If you call [startPublishingStream]/[startPlayingStream] while speed testing, the speed test will automatically stop.
     /// Restrictions: The default maximum allowable test time for a single network speed test is 30 seconds.
     /// Caution: Developers can register [onNetworkSpeedTestQualityUpdate] callback to get the speed test result, which will be triggered every 3 seconds. If an error occurs during the speed test process, [onNetworkSpeedTestError] callback will be triggered. If this function is repeatedly called multiple times, the last functioh call's configuration will be used.
     /// Related APIs: Call [stopNetworkSpeedTest] to stop network speed test.
@@ -3228,7 +3320,7 @@ class IZegoExpressEngine {
     /// Enable custom audio processing for SDK playback audio data.
     ///
     /// Available since: 1.13.0
-    /// Description: Enable remote streaming custom audio processing, developers can receive remote streaming audio frames through [onProcessRemoteAudioData], and can modify the audio data.
+    /// Description: Enable remote streaming custom audio processing, developers can receive remote streaming audio frames through [onProcessPlaybackAudioData], and can modify the audio data.
     /// Use cases: If the developer wants to implement special functions (such as voice change, bel canto, etc.) through custom processing after collecting audio data.
     /// When to call: It needs to be called before [startPublishingStream], [startPlayingStream], [startPreview], [createMediaPlayer], [createAudioEffectPlayer] and [createRealTimeSequentialDataManager] to be effective.
     /// Restrictions: None.
@@ -3665,6 +3757,7 @@ class IZegoMediaPlayer {
     /// Use case: Developers can load the absolute path to the local resource or the URL of the network resource incoming.
     /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
     /// Related APIs: Resources can be loaded through the [loadResourceWithPosition] or [loadResourceFromMediaData] function.
+    /// Caution: If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
     ///
     /// @param path The absolute resource path or the URL of the network resource and cannot be nullptr or "". Android can set this path string with Uri.
     /// @param callback Notification of resource loading results
@@ -3678,7 +3771,8 @@ class IZegoMediaPlayer {
     /// Use case: Developers can load the absolute path to the local resource or the URL of the network resource incoming.
     /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
     /// Related APIs: Resources can be loaded through the [loadResource] or [loadResourceFromMediaData] function.
-    /// Caution: When [startPosition] exceeds the total playing time, it will start playing from the beginning.
+    /// Caution: 1.When [startPosition] exceeds the total playing time, it will start playing from the beginning.
+    ///  2.If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
     ///
     /// @param path The absolute resource path or the URL of the network resource and cannot be nullptr or "". Android can set this path string with Uri.
     /// @param startPosition The progress at which the playback started.
@@ -3693,7 +3787,8 @@ class IZegoMediaPlayer {
     /// Use case: Developers do not want to cache the audio data locally, and directly transfer the audio binary data to the media player, directly load and play the audio.
     /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
     /// Related APIs: Resources can be loaded through the [loadResource] or [loadResourceWithPosition] function.
-    /// Caution: When [startPosition] exceeds the total playing time, it will start playing from the beginning.
+    /// Caution: 1.When [startPosition] exceeds the total playing time, it will start playing from the beginning.
+    ///  2.If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
     ///
     /// @param mediaData Binary audio data.
     /// @param mediaDataLength The length of the binary audio data.
@@ -3709,7 +3804,8 @@ class IZegoMediaPlayer {
     /// Description: Load media resources, and specify the progress, in milliseconds, at which playback begins.
     /// Use case: Developers can load the resource ID of copyrighted music.
     /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
-    /// Caution: When [startPosition] exceeds the total playing time, it will start playing from the beginning.
+    /// Caution: 1.When [startPosition] exceeds the total playing time, it will start playing from the beginning.
+    ///  2.If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
     ///
     /// @param resourceID The resource ID obtained from the copyrighted music module.
     /// @param startPosition The progress at which the playback started.
@@ -3726,6 +3822,7 @@ class IZegoMediaPlayer {
     /// Use case: Developers can load the absolute path to the local resource or the URL of the network resource incoming.
     /// When to call: Called after the engine [createEngine] has been initialized and the media player [createMediaPlayer] has been created.
     /// Related APIs: Support for loading resources through the [loadResourceWithPosition] or [loadResourceFromMediaData] interface.
+    /// Caution: If the mediaplayer has already loaded resources or is in the process of playing, please first call the [stop] interface to halt the playback, and then proceed to call the interface to load the media resources; failure to do so will result in an unsuccessful load.
     ///
     /// @param resource Multimedia resources that need to be loaded.
     /// @param callback Notification of resource loading results
@@ -3868,6 +3965,29 @@ class IZegoMediaPlayer {
     /// @param index Audio track index, the number of audio tracks can be obtained through the [getAudioTrackCount] function.
     virtual void setAudioTrackIndex(unsigned int index) = 0;
 
+    /// Set the audio track mode of the player.
+    ///
+    /// Available since: 3.1.0
+    /// Description: Set the audio track mode of the player.
+    /// Use case: Under the real-time chorus (KTV), call the interface enable multi-track mode, call the interface [setAudioTrackIndex] to specify the original track to play, call interface [setAudioTrackPublishIndex] specified need publish of accompaniment tracks.
+    /// When to call: The call takes effect before [start] starts playing
+    /// Related APIs: Call [setAudioTrackIndex] to specified the play track of media file and call [setAudioTrackPublishIndex] to specified the publish track of media file.
+    /// Caution: When multi-track mode is enabled, the resource consumption of the hardware device is increased.
+    ///
+    /// @param mode Audio track mode.
+    virtual void setAudioTrackMode(ZegoMediaPlayerAudioTrackMode mode) = 0;
+
+    /// Set the audio track for the media file to be publish.
+    ///
+    /// Available since: 3.1.0
+    /// Description: Set the audio track for the media file to be publish.
+    /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
+    /// Related APIs: The number of audio tracks can be obtained through the [getAudioTrackCount] function.
+    /// Caution: This call takes effect only after multitrack mode is enabled by calling the interface [setAudioTrackMode].
+    ///
+    /// @param index Audio track index, the number of audio tracks can be obtained through the [getAudioTrackCount] function.
+    virtual void setAudioTrackPublishIndex(unsigned int index) = 0;
+
     /// Enable voice changer, set up the specific voice changer parameters.
     ///
     /// Available since: 3.15.0
@@ -3957,7 +4077,7 @@ class IZegoMediaPlayer {
     /// Related APIs: After it is turned on, user can use the [onMediaPlayerFrequencySpectrumUpdate] callback to monitor frequency spectrum updates.
     ///
     /// @param enable Whether to enable monitoring, true is enabled, false is disabled.
-    /// @param millisecond Monitoring time period of the frequency spectrum, in milliseconds, has a value range of [100, 3000].
+    /// @param millisecond Monitoring time period of the frequency spectrum, in milliseconds, has a value range of [10, 3000]. Note that on v3.19.0 and older version, the value range is [100, 3000].
     virtual void enableFrequencySpectrumMonitor(bool enable, unsigned int millisecond) = 0;
 
     /// Set the playback channel.
@@ -4012,7 +4132,7 @@ class IZegoMediaPlayer {
     ///
     /// Available since: 3.10.0
     /// Description: Configure the media stream type to be played. You can only play video streams or audio streams. This will take effect during the life cycle of the media player.
-    /// Use cases: When the network resource needs to set special header information.
+    /// Use cases: When only the video stream or audio stream needs to be played.
     /// When to call: It can be called after the engine by [createEngine] has been initialized and the media player has been created by [createMediaPlayer].
     /// Caution: Changing the media stream type during playing will take effect in the next playing.
     ///
@@ -4697,7 +4817,7 @@ class IZegoCopyrightedMusic {
     /// Use case: Used to display lyrics word by word.
     /// When to call: After initializing the copyrighted music success [initCopyrightedMusic].
     ///
-    /// @param krcToken The krcToken obtained by calling requestAccompaniment.
+    /// @param krcToken The krcToken obtained when calling [requestResource] for accompaniment or climax clips, or when obtaining shared resources through the [getSharedResource] interface. For more details, please refer to https://doc-zh.zego.im/article/15079#2_2
     /// @param callback get lyrics result.
     virtual void getKrcLyricByToken(const std::string &krcToken,
                                     ZegoCopyrightedMusicGetKrcLyricByTokenCallback callback) = 0;
@@ -4930,7 +5050,7 @@ class IZegoCopyrightedMusic {
     /// Available since: 2.15.0
     /// Description: Get standard pitch data.
     /// Use case: Can be used to display standard pitch lines on the view.
-    /// Cation: Only accompaniment or climactic clip assets have pitch lines.
+    /// Caution: Only accompaniment or climactic clip assets have pitch lines.
     ///
     /// @param resourceID the resource ID corresponding to the accompaniment or accompaniment clip.
     /// @param callback get standard pitch data result.
