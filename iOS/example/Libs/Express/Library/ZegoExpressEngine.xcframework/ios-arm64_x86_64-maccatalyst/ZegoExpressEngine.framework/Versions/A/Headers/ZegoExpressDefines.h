@@ -2444,6 +2444,14 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 @end
 
+/// Position information used by the face detection.
+@interface ZegoFacePositionInfo : NSObject
+
+/// Coordinates used by the face detection.
+@property (nonatomic, assign) CGRect position;
+
+@end
+
 /// View object.
 ///
 /// Configure view object, view Mode, background color
@@ -2599,6 +2607,22 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 /// The timestamp when the state changed, UNIX timestamp, in milliseconds.
 @property (nonatomic, assign) unsigned long long stateTime;
+
+@end
+
+/// Face detection info.
+///
+/// Face detection info.
+@interface ZegoFaceDetectionInfo : NSObject
+
+/// The image width captured by the camera
+@property (nonatomic, assign) int imageWidth;
+
+/// The image height captured by the camera
+@property (nonatomic, assign) int imageHeight;
+
+/// Face position information list
+@property (nonatomic, strong) NSArray<ZegoFacePositionInfo *> *facePositionList;
 
 @end
 
@@ -3698,6 +3722,32 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 @end
 
+/// RTC Network Statistics
+@interface ZegoRtcStatsInfo : NSObject
+
+/// total upstream bandwidth, in kbps
+@property (nonatomic, assign) double totalTxBandwidth;
+
+/// upstream average rtt, in milliseconds
+@property (nonatomic, assign) unsigned int avgTxRtt;
+
+/// upstream average packet lost rate. in percentage, 0.0 ~ 1.0
+@property (nonatomic, assign) double avgTxPacketLostRate;
+
+/// total downlink bandwidth, in kbps
+@property (nonatomic, assign) double totalRxBandwidth;
+
+/// downlink average rtt, in milliseconds
+@property (nonatomic, assign) unsigned int avgRxRtt;
+
+/// downlink average packet lost rate. in percentage, 0.0 ~ 1.0
+@property (nonatomic, assign) double avgRxPacketLostRate;
+
+/// average peer to peer delay, in milliseconds
+@property (nonatomic, assign) unsigned int avgPeerToPeerDelay;
+
+@end
+
 /// The NTP info
 @interface ZegoNetworkTimeInfo : NSObject
 
@@ -4004,6 +4054,19 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 /// The image content of the icon.
 @property (nonatomic, copy) ZGImage *_Nullable iconImage;
+
+@end
+
+/// Layer border configuration.
+///
+/// Customize the size, color, etc. of the layer border.
+@interface ZegoLayerBorderConfig : NSObject
+
+/// Border size, default value 4, the maximum value is 100.
+@property (nonatomic, assign) unsigned int width;
+
+/// Background color, the format is 0xRRGGBB, default is green, which is 0x00FF00
+@property (nonatomic, assign) int color;
 
 @end
 
@@ -6459,6 +6522,19 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 ///
 /// @param visible Whether to show the cursor. YES to show the cursor, NO to not show the cursor, the default is NO.
 - (void)enableCursorVisible:(BOOL)visible;
+#endif
+
+#if TARGET_OS_OSX
+/// Set whether to highlight the capture area
+///
+/// Available since: 3.20.0
+/// Description: Set whether to highlight the capture area.
+/// When to call: It can be called after the engine by [createScreenCaptureSource] has been initialized.
+/// Restrictions: Only available on Windows/macOS.
+///
+/// @param enable Whether to highlight the capture area. YES to highlight, NO to not highlight, the default is NO.
+/// @param config Highlight capture area border configuration.
+- (void)enableHightLight:(BOOL)enable config:(ZegoLayerBorderConfig *)config;
 #endif
 
 #if TARGET_OS_OSX

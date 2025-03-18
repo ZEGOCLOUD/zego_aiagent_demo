@@ -1134,6 +1134,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param enable Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM.
 - (void)enableAuxBgmBalance:(BOOL)enable;
 
+/// Turn on or off the face detection.
+///
+/// Available since: 3.20.0
+/// Description: Turn on or off the face detection. Default is on.
+/// When to call: Called after the engine is created [createEngine].
+/// Related callbacks: Detect results will be called back through [onPublisherFaceDetectInfo].
+///
+/// @param enable Turn on or off the face detection.
+/// @param channel Publish stream channel.
+- (void)enableFaceDetection:(BOOL)enable channel:(ZegoPublishChannel)channel;
+
 @end
 
 NS_ASSUME_NONNULL_END

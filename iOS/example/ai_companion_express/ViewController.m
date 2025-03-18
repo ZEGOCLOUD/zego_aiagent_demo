@@ -8,7 +8,7 @@
 #import "ViewController.h"
 #import "ZegoAIAgentExpressHelper.h"
 #import "AiCompanionConfig.h"
-#import "ZegoTestSettingViewController.h"
+#import "ZegoSettingsViewControllerNew.h"
 
 @interface ViewController ()
 @property (nonatomic, copy) NSString * userID;
@@ -57,7 +57,7 @@
 
 // 显示性能监控窗口
 - (void)handlelongGesture:(UILongPressGestureRecognizer*)longPress {
-    ZegoTestSettingViewController * testViewController = [[ZegoTestSettingViewController alloc] initWithNibName:@"ZegoTestSettingViewController" bundle:nil];
+    ZegoSettingsViewControllerNew* testViewController = [[ZegoSettingsViewControllerNew alloc]init];
     [self presentViewController:testViewController animated:YES completion:nil];
 }
 
@@ -93,6 +93,10 @@
             prefix = @"uib";
         }else if(env_type.integerValue == ZegoEnvType_Publish){
             prefix = @"uip";
+        }else if(env_type.integerValue == ZegoEnvType_Delta){
+            prefix = @"uid";
+        }else if(env_type.integerValue == ZegoEnvType_gamma){
+            prefix = @"uig";
         }
     }
     

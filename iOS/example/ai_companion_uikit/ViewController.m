@@ -8,7 +8,8 @@
 #import "ViewController.h"
 #import "ZegoAIAgentHelper.h"
 #import "AiCompanionConfig.h"
-#import "ZegoTestSettingViewController.h"
+//#import "ZegoTestSettingViewController.h"
+#import "ZegoSettingsViewControllerNew.h"
 
 
 @interface ViewController ()
@@ -53,7 +54,8 @@
 
 // 显示性能监控窗口
 - (void)handlelongGesture:(UILongPressGestureRecognizer*)longPress {
-    ZegoTestSettingViewController * testViewController = [[ZegoTestSettingViewController alloc] initWithNibName:@"ZegoTestSettingViewController" bundle:nil];
+    ZegoSettingsViewControllerNew* testViewController = [[ZegoSettingsViewControllerNew alloc]init];
+//    ZegoTestSettingViewController * testViewController = [[ZegoTestSettingViewController alloc] initWithNibName:@"ZegoTestSettingViewController" bundle:nil];
     [self presentViewController:testViewController animated:YES completion:nil];
 }
 
@@ -70,13 +72,19 @@
     [self.view addGestureRecognizer:longPress];
     
     NSNumber *env_type =  [[NSUserDefaults standardUserDefaults] objectForKey:@"env_type"];
+
     NSString* prefix = @"iu";
     if (env_type.integerValue == 0) {
         env_type = @(ZegoEnvType_Test_Beta);
         prefix = @"uib";
+//#ifdef FINAL_RELEASE
+//        env_type = @(ZegoEnvType_Publish);
+//        prefix = @"uip";
+//#endif
+        
 #ifdef FINAL_RELEASE
-        env_type = @(ZegoEnvType_Publish);
-        prefix = @"uip";
+        env_type = @(ZegoEnvType_Dev_Alpha);
+        prefix = @"uia";
 #endif
 
 #ifdef DEBUG
@@ -90,6 +98,10 @@
             prefix = @"uib";
         }else if(env_type.integerValue == ZegoEnvType_Publish){
             prefix = @"uip";
+        }else if(env_type.integerValue == ZegoEnvType_Delta){
+            prefix = @"uid";
+        }else if(env_type.integerValue == ZegoEnvType_gamma){
+            prefix = @"uig";
         }
     }
     

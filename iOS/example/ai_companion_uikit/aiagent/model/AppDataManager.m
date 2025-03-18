@@ -12,6 +12,13 @@
 #import "ZegoAiCompanionHttpHelper.h"
 #import "ZegoAiCompanionUtil.h"
 
+#define KAGC_ENABLE @"AGC_ENABLE"
+
+#define KAEC_ENABLE @"AEC_ENABLE"
+#define KAEC_MODE @"AEC_MODE"
+
+#define KANS_ENABLE @"ANS_ENABLE"
+#define KANS_MODE @"ANS_MODE"
 
 static AppDataManager *_sharedInstance;
 
@@ -32,9 +39,83 @@ static AppDataManager *_sharedInstance;
 
         self.appExtraConfig = [[AppExtraConfig alloc]init];
         self.conversationList = [[NSMutableArray alloc]init];
+        
+        NSNumber* aec_enabel_serialize = [[NSUserDefaults standardUserDefaults] objectForKey:KAEC_ENABLE];
+        if (aec_enabel_serialize) {
+            self.aecEnable = [aec_enabel_serialize boolValue];
+        }else{
+            self.aecEnable = YES;
+        }
+        
+
+        NSNumber* ans_enabel_serialize = [[NSUserDefaults standardUserDefaults] objectForKey:KANS_ENABLE];
+        if (ans_enabel_serialize) {
+            self.ansEnable = [ans_enabel_serialize boolValue];
+        }else{
+            self.ansEnable = YES;
+        }
+        
+        NSNumber* agc_enabel_serialize = [[NSUserDefaults standardUserDefaults] objectForKey:KAGC_ENABLE];
+        if (agc_enabel_serialize) {
+            self.agcEnable = [agc_enabel_serialize boolValue];
+        }else{
+            self.agcEnable = YES;
+        }
+        
+        
+        NSNumber* aec_mode_serialize = [[NSUserDefaults standardUserDefaults] objectForKey:KAEC_MODE];
+        if (aec_mode_serialize) {
+            self.aecMode = [aec_mode_serialize longValue];
+        }else{
+            self.aecMode =3;    //ZegoAECModeSoft = 2,
+        }
+        
+        
+        NSNumber* ans_mode_serialize = [[NSUserDefaults standardUserDefaults] objectForKey:KANS_MODE];
+        if (ans_mode_serialize) {
+            self.ansMode = [ans_mode_serialize longValue];
+        }else{
+            self.ansMode =4;    //ZegoANSModeAIBalanced = 4,
+        }
+        
+        self.bgmVolume = 80;
+        self.ttsVolume = 100;
+        self.echoEnergyAdaptive = NO;
+        self.audioVolumeDucking = NO;
+        
         NSLog(@"AppDataManager init, userID: %@", _userID);
     }
     return self;
+}
+
+-(void)setAecMode:(long)aecMode{
+    _aecMode = aecMode;
+    [[NSUserDefaults standardUserDefaults] setInteger:aecMode  forKey:KAEC_MODE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)setAnsMode:(long)ansMode{
+    _ansMode = ansMode;
+    [[NSUserDefaults standardUserDefaults] setInteger:ansMode  forKey:KANS_MODE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)setAgcEnable:(BOOL)agcEnable{
+    _agcEnable = agcEnable;
+    [[NSUserDefaults standardUserDefaults] setBool:agcEnable forKey:KAGC_ENABLE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)setAecEnable:(BOOL)aecEnable{
+    _aecEnable = aecEnable;
+    [[NSUserDefaults standardUserDefaults] setBool:aecEnable forKey:KAEC_ENABLE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)setAnsEnable:(BOOL)ansEnable{
+    _ansEnable = ansEnable;
+    [[NSUserDefaults standardUserDefaults] setBool:ansEnable forKey:KANS_ENABLE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (ConversionConfigInfo *)getConversationConfigById:(NSString*)conversationId{

@@ -129,6 +129,20 @@
 @property (nonatomic, strong) AppExtraConfig *appExtraConfig;
 @property (nonatomic, strong) NSMutableArray<ConversionConfigInfo*> *conversationList;
 @property (nonatomic, strong) CharacterConfig* curCharacterConfig;
+@property (nonatomic, assign) long aecMode;
+@property (nonatomic, assign) long ansMode;
+
+@property (nonatomic, assign) BOOL aecEnable;
+@property (nonatomic, assign) BOOL ansEnable;
+@property (nonatomic, assign) BOOL agcEnable;
+
+@property (nonatomic, assign) long bgmVolume;
+@property (nonatomic, assign) long ttsVolume;
+
+
+@property (nonatomic, assign) BOOL audioVolumeDucking;
+@property (nonatomic, assign) BOOL echoEnergyAdaptive;
+
 + (instancetype)sharedInstance;
 
 - (CharacterConfig *)getCurrentCharacter;

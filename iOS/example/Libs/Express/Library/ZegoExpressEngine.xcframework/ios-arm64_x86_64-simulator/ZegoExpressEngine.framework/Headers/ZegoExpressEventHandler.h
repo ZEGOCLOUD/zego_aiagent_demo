@@ -373,6 +373,17 @@ NS_ASSUME_NONNULL_BEGIN
                                          path:(NSString *)path
                                       channel:(ZegoPublishChannel)channel;
 
+/// Face detection information update notification.
+///
+/// Available since: 3.20.0
+/// Description: The notification for face detection.
+/// When to trigger: Turn on face detection through the [enableFaceDetection] interface, and this callback will be triggered when the camera is started or the number of faces changes.
+/// Caution: The callback is low-frequency and cannot be used with the custom video pre-processing function.
+///
+/// @param info Face detection information.
+/// @param channel Publishing stream channel.If you only publish one audio and video stream, you can ignore this parameter.
+- (void)onPublisherFaceDetectInfo:(ZegoFaceDetectionInfo *)info channel:(ZegoPublishChannel)channel;
+
 #pragma mark Player Callback
 
 /// The callback triggered when the state of stream playing changes.
@@ -953,6 +964,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)onNetworkQuality:(NSString *)userID
          upstreamQuality:(ZegoStreamQualityLevel)upstreamQuality
        downstreamQuality:(ZegoStreamQualityLevel)downstreamQuality;
+
+/// RTC network statistics callback.
+///
+/// Available since: 3.20.0
+/// Description: RTC network statistics callback.
+/// Use cases: When a developer wants to analyze the local network situation.
+/// When to Trigger: After calling [startPublishingStream] to start pushing the RTC stream, it will call back the upstream statistics. After calling [startPlayingStream] to start playing the RTC or L3 stream, it will call back the downlink statistics. The default callback period is 3 seconds.
+/// Restrictions: None.
+/// Caution: None.
+///
+/// @param info statistical information.
+- (void)onRtcStats:(ZegoRtcStatsInfo *)info;
 
 /// Successful callback of network time synchronization.
 ///

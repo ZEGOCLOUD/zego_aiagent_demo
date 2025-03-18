@@ -1,6 +1,0 @@
-framework module ZPNs {
-  umbrella header "ZPNs.h"
-
-  export *
-  module * { export * }
-}

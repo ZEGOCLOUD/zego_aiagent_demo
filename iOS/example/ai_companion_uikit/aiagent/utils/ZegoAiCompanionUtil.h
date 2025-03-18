@@ -21,4 +21,9 @@
                      limitCount:(NSInteger)limitCount;
 
 +(NSDictionary *)dictFromJson:(NSString *)jsonString;
++(NSString*)aecTextFromEnumValue:(int)aecMode;
++(int)aecEnumValueFromText:(NSString*)aecMode;
+
++(NSString*)ansTextFromEnumValue:(int)ansMode;
++(int)ansEnumValueFromText:(NSString*)ansMode;
 @end

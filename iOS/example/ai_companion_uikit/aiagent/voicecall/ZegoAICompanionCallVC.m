@@ -54,6 +54,17 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(switchLocalMuteClick:)
                                                      name:@"switch_local_mute" object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(switchBGMClick:)
+                                                     name:@"switch_bgm" object:nil];
+        
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(adjustBGMVolume:)
+                                                     name:@"adjust_bgm_volume" object:nil];
+        
+                
         self.localMuteFlag = NO;
     }
     return self;
@@ -121,7 +132,7 @@
     CGFloat barH = [[UIApplication sharedApplication] statusBarFrame].size.height;
     [self.zegoStaticsLogView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(350);
-        make.height.mas_equalTo(250);
+        make.height.mas_equalTo(350);
         make.left.equalTo(self.view).offset(20);
         make.top.equalTo(self.view).offset(barH + 100);
     }];
@@ -159,7 +170,29 @@
     }
 }
 
+- (void)switchBGMClick: (NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    NSNumber* isOn = userInfo[@"on"];
+    if([isOn boolValue]){
+        if (self.mediaPlayer) {
+            [self.mediaPlayer start];
+        }
+    }else{
+        if (self.mediaPlayer) {
+            [self.mediaPlayer stop];
+        }
+    }
+}
+
+- (void)adjustBGMVolume: (NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    NSNumber* direct = userInfo[@"bgmVolume"];
+    int volume = [direct intValue];
+    [self.mediaPlayer setVolume:volume];
+}
+
 - (void)enableLocalMute:(BOOL)enable {
+    self.localVadSwitch = enable;
     if (enable) {
         //开启vad
         ZegoSoundLevelConfig* soundLevelConfig = [[ZegoSoundLevelConfig alloc]init];

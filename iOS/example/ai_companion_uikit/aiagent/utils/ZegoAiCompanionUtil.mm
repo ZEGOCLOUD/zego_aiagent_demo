@@ -130,4 +130,75 @@
     return dic;
 }
 
++(NSString*)aecTextFromEnumValue:(int)aecMode{
+    NSString* aecModeText = @"UNKOWN";
+    if (aecMode == 0) {
+        aecModeText = @"AGGRESSIVE";
+    }else if(aecMode == 1){
+        aecModeText = @"MEDIUM";
+    }else if(aecMode == 2){
+        aecModeText = @"SOFT";
+    }else if(aecMode == 3){
+        aecModeText = @"AI";
+    }
+    
+    return aecModeText;
+}
+
++(int)aecEnumValueFromText:(NSString*)aecMode{
+    int aceModeEnum = -1;
+    if ([aecMode isEqualToString:@"AGGRESSIVE"]) {
+        aceModeEnum = 0;
+    }else if([aecMode isEqualToString:@"MEDIUM"]){
+        aceModeEnum = 1;
+    }else if([aecMode isEqualToString:@"SOFT"]){
+        aceModeEnum = 2;
+    }else if([aecMode isEqualToString:@"AI"]){
+        aceModeEnum = 3;
+    }
+    return aceModeEnum;
+}
+
++(NSString*)ansTextFromEnumValue:(int)ansMode{
+    NSString* ansModeText =@"UNKOWN";
+    if (ansMode == 0) {
+        ansModeText = @"SOFT";
+    }else if(ansMode == 1){
+        ansModeText = @"MEDIUM";
+    }else if(ansMode == 2){
+        ansModeText = @"AGGRESSIVE";
+    }else if(ansMode == 3){
+        ansModeText = @"AI";
+    }else if(ansMode == 4){
+        ansModeText = @"AIBalanced";
+    }else if(ansMode == 5){
+        ansModeText = @"AILowLatency";
+    }else if(ansMode == 6){
+        ansModeText = @"AIAggressive";
+    }
+    
+    return ansModeText;
+}
+
++(int)ansEnumValueFromText:(NSString*)ansMode{
+    int ansModeEnum = -1;
+    if ([ansMode isEqualToString:@"SOFT"]) {
+        ansModeEnum = 0;
+    }else if([ansMode isEqualToString:@"MEDIUM"]){
+        ansModeEnum = 1;
+    }else if([ansMode isEqualToString:@"AGGRESSIVE"]){
+        ansModeEnum = 2;
+    }else if([ansMode isEqualToString:@"AI"]){
+        ansModeEnum = 3;
+    }else if([ansMode isEqualToString:@"AIBalanced"]){
+        ansModeEnum = 4;
+    }else if([ansMode isEqualToString:@"AILowLatency"]){
+        ansModeEnum = 5;
+    }else if([ansMode isEqualToString:@"AIAggressive"]){
+        ansModeEnum = 6;
+    }
+    
+    return ansModeEnum;
+}
+
 @end

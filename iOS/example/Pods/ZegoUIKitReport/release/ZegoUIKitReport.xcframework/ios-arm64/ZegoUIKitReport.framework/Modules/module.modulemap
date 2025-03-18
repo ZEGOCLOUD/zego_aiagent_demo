@@ -1,6 +1,0 @@
-framework module ZegoUIKitReport {
-  umbrella header "ZegoUIKitReport.h"
-  export *
-
-  module * { export * }
-}

@@ -39,12 +39,11 @@
 		862C9CD72C809BDD00BE1DA9 /* zhibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CC12C809BD000BE1DA9 /* zhibo.png */; };
 		862C9CDF2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 862C9CDD2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.m */; };
 		862C9CE42C81E26800BE1DA9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 862C9CE22C81E26800BE1DA9 /* SceneDelegate.m */; };
+		863DE9F02D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DE9EF2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m */; };
 		8649AA012D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA002D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m */; };
 		8649AB8C2D1024A2003E1EB6 /* zlogger.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8649AB8B2D1024A2003E1EB6 /* zlogger.xcframework */; };
 		86756CA32CEF401E00A84E20 /* ZegoRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86756CA22CEF401E00A84E20 /* ZegoRadioButton.m */; };
 		86756CA52CF022E500A84E20 /* AiCompanionConfig.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86756CA42CF022E500A84E20 /* AiCompanionConfig.mm */; };
-		86756CA92CF02DE600A84E20 /* ZegoTestSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86756CA62CF02DE600A84E20 /* ZegoTestSettingViewController.m */; };
-		86756CAA2CF02DE600A84E20 /* ZegoTestSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86756CA72CF02DE600A84E20 /* ZegoTestSettingViewController.xib */; };
 		86756CB82CF420C600A84E20 /* icon_mic_jinyong.png in Resources */ = {isa = PBXBuildFile; fileRef = 86756CB52CF420C600A84E20 /* icon_mic_jinyong.png */; };
 		86756CB92CF420C600A84E20 /* icon_mic_jinyong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86756CB62CF420C600A84E20 /* icon_mic_jinyong@2x.png */; };
 		86756CBA2CF420C600A84E20 /* icon_mic_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 86756CB72CF420C600A84E20 /* icon_mic_normal.png */; };
@@ -65,6 +64,7 @@
 		86B5C1A32CA1848500333A13 /* ZegoAiCompanionUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86B5C1A22CA1848500333A13 /* ZegoAiCompanionUtil.mm */; };
 		86B5C1A62CA2DA5600333A13 /* ZegoSettingsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B5C1A52CA2DA5600333A13 /* ZegoSettingsContainerView.m */; };
 		86C493132D23D487005090F1 /* AVAudioSession+Switch.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C493122D23D487005090F1 /* AVAudioSession+Switch.m */; };
+		86D1AE6C2D7AB27B00683735 /* banzou1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86D1AE6B2D7AB27B00683735 /* banzou1.wav */; };
 		86D32CA82CA93B6B008F6FA1 /* ZegoAIComponionMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CA72CA93B6B008F6FA1 /* ZegoAIComponionMainView.m */; };
 		86D32CCA2CC11C17008F6FA1 /* ZegoAIComConversationListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D32CC92CC11C17008F6FA1 /* ZegoAIComConversationListVC.swift */; };
 		86D32CD12CC20F3A008F6FA1 /* nav-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D32CCF2CC20F3A008F6FA1 /* nav-back@2x.png */; };
@@ -169,15 +169,14 @@
 		862C9CDE2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoCustomCollectionViewCell.h; sourceTree = "<group>"; };
 		862C9CE22C81E26800BE1DA9 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		862C9CE32C81E26800BE1DA9 /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		863DE9EE2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZegoSettingsViewControllerNew.h; sourceTree = "<group>"; };
+		863DE9EF2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZegoSettingsViewControllerNew.m; sourceTree = "<group>"; };
 		8649A9FF2D0C5AA8003E1EB6 /* ZegoAudioChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatTableView.h; sourceTree = "<group>"; };
 		8649AA002D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatTableView.m; sourceTree = "<group>"; };
 		8649AB8B2D1024A2003E1EB6 /* zlogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = zlogger.xcframework; path = Libs/Zlogger/libs/ios/zlogger.xcframework; sourceTree = "<group>"; };
 		86756CA12CEF401E00A84E20 /* ZegoRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoRadioButton.h; sourceTree = "<group>"; };
 		86756CA22CEF401E00A84E20 /* ZegoRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoRadioButton.m; sourceTree = "<group>"; };
 		86756CA42CF022E500A84E20 /* AiCompanionConfig.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AiCompanionConfig.mm; sourceTree = "<group>"; };
-		86756CA62CF02DE600A84E20 /* ZegoTestSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoTestSettingViewController.m; sourceTree = "<group>"; };
-		86756CA72CF02DE600A84E20 /* ZegoTestSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZegoTestSettingViewController.xib; sourceTree = "<group>"; };
-		86756CA82CF02DE600A84E20 /* ZegoTestSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoTestSettingViewController.h; sourceTree = "<group>"; };
 		86756CB52CF420C600A84E20 /* icon_mic_jinyong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mic_jinyong.png; sourceTree = "<group>"; };
 		86756CB62CF420C600A84E20 /* icon_mic_jinyong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_mic_jinyong@2x.png"; sourceTree = "<group>"; };
 		86756CB72CF420C600A84E20 /* icon_mic_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mic_normal.png; sourceTree = "<group>"; };
@@ -212,6 +211,7 @@
 		86B5C1A52CA2DA5600333A13 /* ZegoSettingsContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoSettingsContainerView.m; sourceTree = "<group>"; };
 		86C493112D23D487005090F1 /* AVAudioSession+Switch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVAudioSession+Switch.h"; sourceTree = "<group>"; };
 		86C493122D23D487005090F1 /* AVAudioSession+Switch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVAudioSession+Switch.m"; sourceTree = "<group>"; };
+		86D1AE6B2D7AB27B00683735 /* banzou1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = banzou1.wav; sourceTree = "<group>"; };
 		86D32CA62CA93B6B008F6FA1 /* ZegoAIComponionMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAIComponionMainView.h; sourceTree = "<group>"; };
 		86D32CA72CA93B6B008F6FA1 /* ZegoAIComponionMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAIComponionMainView.m; sourceTree = "<group>"; };
 		86D32CAC2CA972D1008F6FA1 /* AiCompanionConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AiCompanionConfig.h; sourceTree = "<group>"; };
@@ -376,6 +376,7 @@
 		862C9CC22C809BD000BE1DA9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				86D1AE6B2D7AB27B00683735 /* banzou1.wav */,
 				86DD163A2CFEBA500098B1C0 /* icon_close.png */,
 				86DD163B2CFEBA500098B1C0 /* icon_close@2x.png */,
 				86D32CDF2CCA61A4008F6FA1 /* icon_add.png */,
@@ -458,9 +459,8 @@
 				867C228F2C00446C00F4717E /* ViewController.h */,
 				867C22902C00446C00F4717E /* ViewController.m */,
 				867C22922C00446C00F4717E /* Main.storyboard */,
-				86756CA82CF02DE600A84E20 /* ZegoTestSettingViewController.h */,
-				86756CA62CF02DE600A84E20 /* ZegoTestSettingViewController.m */,
-				86756CA72CF02DE600A84E20 /* ZegoTestSettingViewController.xib */,
+				863DE9EE2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.h */,
+				863DE9EF2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m */,
 				867C22952C00446D00F4717E /* Assets.xcassets */,
 				867C22972C00446D00F4717E /* LaunchScreen.storyboard */,
 				867C229A2C00446D00F4717E /* Info.plist */,
@@ -686,7 +686,6 @@
 				86D32CDC2CCA467F008F6FA1 /* gender-arrow.png in Resources */,
 				862C9CCE2C809BDD00BE1DA9 /* icon_zhinengti.png in Resources */,
 				86D32CE12CCA61A4008F6FA1 /* icon_add.png in Resources */,
-				86756CAA2CF02DE600A84E20 /* ZegoTestSettingViewController.xib in Resources */,
 				86756CB82CF420C600A84E20 /* icon_mic_jinyong.png in Resources */,
 				86DBC04B2C94563200B2A1AB /* icon_iphone@2x.png in Resources */,
 				86756CBC2CF4230000A84E20 /* icon_iphone.png in Resources */,
@@ -698,6 +697,7 @@
 				862C9CD12C809BDD00BE1DA9 /* main_bg.png in Resources */,
 				862C9CD22C809BDD00BE1DA9 /* main_more.png in Resources */,
 				862C9CD32C809BDD00BE1DA9 /* main_title.png in Resources */,
+				86D1AE6C2D7AB27B00683735 /* banzou1.wav in Resources */,
 				86DBC0B22CA1137D00B2A1AB /* AppExtraConfig.json in Resources */,
 				86D32CD22CC20F3A008F6FA1 /* nav-back.png in Resources */,
 				86DBC0542C94572200B2A1AB /* icon_mic_normal@2x.png in Resources */,
@@ -726,9 +726,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ai_companion_uikit/Pods-ai_companion_uikit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ai_companion_uikit/Pods-ai_companion_uikit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -775,7 +779,6 @@
 				86D32D052CD48303008F6FA1 /* ZLoggerWrapper.cpp in Sources */,
 				86DBC0AC2C9D6E0000B2A1AB /* ZegoTTSComponySelectView.m in Sources */,
 				86D32CF82CD094A6008F6FA1 /* ZegoPhotoSelectView.m in Sources */,
-				86756CA92CF02DE600A84E20 /* ZegoTestSettingViewController.m in Sources */,
 				869E4C572CEB16F4000AA962 /* ZegoStaticsLogView.m in Sources */,
 				86DBC0612C9A80B100B2A1AB /* ZegoAudioChatCellLabelView.m in Sources */,
 				86DD16D92D09B3B80098B1C0 /* ZegoPopupMenuItem.m in Sources */,
@@ -804,6 +807,7 @@
 				862C9C7D2C7F15D900BE1DA9 /* ZegoAiCompanionHttpHelper.mm in Sources */,
 				869E4C562CEB16F4000AA962 /* ZegoAskAnswerTableViewCell.m in Sources */,
 				86235C8B2D2675BC006E5A06 /* ZegoAICompanionCallVCWithExpress.m in Sources */,
+				863DE9F02D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m in Sources */,
 				867C229C2C00446D00F4717E /* main.m in Sources */,
 				862C9C772C7ED94000BE1DA9 /* AppDataManager.m in Sources */,
 				86DD16D72D09B3B80098B1C0 /* ZegoPopupMenuViewCell.m in Sources */,
@@ -972,7 +976,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.1.2;
+				CURRENT_PROJECT_VERSION = 2.1.7;
 				DEVELOPMENT_TEAM = B82BHJ5H89;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1009,7 +1013,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.2;
+				MARKETING_VERSION = 2.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = im.zego.aicompanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1030,7 +1034,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.1.2;
+				CURRENT_PROJECT_VERSION = 2.1.7;
 				DEVELOPMENT_TEAM = B82BHJ5H89;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1068,7 +1072,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.2;
+				MARKETING_VERSION = 2.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = im.zego.aicompanion;
 				PRODUCT_NAME = ai_companion_uikit;
 				SWIFT_EMIT_LOC_STRINGS = YES;

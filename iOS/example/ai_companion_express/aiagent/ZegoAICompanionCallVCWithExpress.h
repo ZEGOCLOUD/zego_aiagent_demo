@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZegoCallVCNameUIComponent.h"
+#import <ZegoExpressEngine/ZegoExpressEngine.h>
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, ChatSessionState) {
@@ -23,7 +24,10 @@ typedef NS_ENUM(NSInteger, ChatSessionState) {
 @property (nonatomic, strong) NSString *streamID;
 @property (nonatomic, strong) NSString *agentStreamID;
 @property (nonatomic, assign) ChatSessionState chatSessionState;
+@property (nonatomic, assign) BOOL localVadSwitch;
 @property (nonatomic, strong) ZegoCallVCNameUIComponent *callVCNameStatusCom;
+@property (nonatomic, strong) ZegoMediaPlayer* mediaPlayer;
+@property (nonatomic, assign) int curBGMVolume;
 
 //暴露出方法给子类重载
 -(void)onLeaveButtonClicked:(UIButton *)sender;

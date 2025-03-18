@@ -1166,6 +1166,23 @@ ZEGOEXP_API zego_error EXP_CALL zego_express_enable_aux_bgm_balance(bool enable)
 typedef zego_error(EXP_CALL *pfnzego_express_enable_aux_bgm_balance)(bool enable);
 #endif
 
+/// Turn on or off the face detection.
+///
+/// Available since: 3.20.0
+/// Description: Turn on or off the face detection. Default is on.
+/// When to call: Called after the engine is created [createEngine].
+/// Related callbacks: Detect results will be called back through [onPublisherFaceDetectInfo].
+///
+/// @param enable Turn on or off the face detection.
+/// @param channel Publish stream channel.
+#ifndef ZEGOEXP_EXPLICIT
+ZEGOEXP_API zego_error EXP_CALL
+zego_express_enable_face_detection(bool enable, enum zego_publish_channel channel);
+#else
+typedef zego_error(EXP_CALL *pfnzego_express_enable_face_detection)(
+    bool enable, enum zego_publish_channel channel);
+#endif
+
 /// The callback triggered when the state of stream publishing changes.
 ///
 /// Available since: 1.1.0
@@ -1475,6 +1492,28 @@ ZEGOEXP_API void EXP_CALL zego_register_publisher_dummy_capture_image_path_error
 #else
 typedef void(EXP_CALL *pfnzego_register_publisher_dummy_capture_image_path_error_callback)(
     zego_on_publisher_dummy_capture_image_path_error callback_func, void *user_context);
+#endif
+
+/// Face detection information update notification.
+///
+/// Available since: 3.20.0
+/// Description: The notification for face detection.
+/// When to trigger: Turn on face detection through the [enableFaceDetection] interface, and this callback will be triggered when the camera is started or the number of faces changes.
+/// Caution: The callback is low-frequency and cannot be used with the custom video pre-processing function.
+///
+/// @param info Face detection information.
+/// @param channel Publishing stream channel.If you only publish one audio and video stream, you can ignore this parameter.
+/// @param user_context Context of user.
+typedef void (*zego_on_publisher_face_detect_info)(struct zego_face_detection_info info,
+                                                   enum zego_publish_channel channel,
+                                                   void *user_context);
+
+#ifndef ZEGOEXP_EXPLICIT
+ZEGOEXP_API void EXP_CALL zego_register_publisher_face_detect_info_callback(
+    zego_on_publisher_face_detect_info callback_func, void *user_context);
+#else
+typedef void(EXP_CALL *pfnzego_register_publisher_face_detect_info_callback)(
+    zego_on_publisher_face_detect_info callback_func, void *user_context);
 #endif
 
 /// Callback for setting stream extra information.

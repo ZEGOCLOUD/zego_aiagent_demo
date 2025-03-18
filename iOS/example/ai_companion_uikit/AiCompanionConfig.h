@@ -6,6 +6,10 @@ typedef NS_ENUM(NSUInteger, ZegoEnvType) {
     ZegoEnvType_Dev_Alpha = 1, //开发环境
     ZegoEnvType_Test_Beta = 2, //提测用
     ZegoEnvType_Publish   = 3, //发布用
+    ZegoEnvType_Delta   = 4, //delta环境
+    ZegoEnvType_gamma   = 5, //gamma
+    ZegoEnvType_Huiwan   = 9, //会玩
+    
 };
 
 
@@ -21,4 +25,7 @@ typedef NS_ENUM(NSUInteger, ZegoEnvType) {
 + (ZegoConnectionConfig*)DevAlphaEnv;
 + (ZegoConnectionConfig*)TestBetaEnv;
 + (ZegoConnectionConfig*)PublishEnv;
++ (ZegoConnectionConfig*)DeltaEnv;
++ (ZegoConnectionConfig*)GammaEnv;
++ (ZegoConnectionConfig*)HuiwanEnv;
 @end

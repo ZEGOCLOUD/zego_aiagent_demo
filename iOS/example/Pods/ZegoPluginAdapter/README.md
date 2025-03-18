@@ -1,1 +1,0 @@
-# zego_plugin_adapter
