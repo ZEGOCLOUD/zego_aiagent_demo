@@ -6,10 +6,13 @@ package im.zego.aiagent.core.data;
 public class RTCRoomMessage {
 
     public long timestamp;
+    public long timestamp_ms;
     public int seq_id;
     public int round;
     public int cmd;
     public Data data;
+    public long local_timestamp;
+
 
     public static class Data {
 
@@ -17,7 +20,6 @@ public class RTCRoomMessage {
         public String text;
         public String message_id;
         public boolean end_flag;
-
 
         @Override
         public String toString() {
@@ -33,7 +35,8 @@ public class RTCRoomMessage {
     @Override
     public String toString() {
         return "RTCMessageContent{" +
-            "timestamp=" + timestamp +
+            "local_timestamp=" + local_timestamp +
+            ", timestamp_ms=" + timestamp_ms +
             ", seq_id=" + seq_id +
             ", round=" + round +
             ", cmd=" + cmd +

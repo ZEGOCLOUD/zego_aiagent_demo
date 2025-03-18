@@ -11,9 +11,9 @@ android {
         minSdk 26
         targetSdk 34
         versionCode 1
-        versionName "v2.1.0"
+        versionName "v2.1.7"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resValue "string", "app_name", "\"AI陪伴_${versionName}\""
     }
 
     signingConfigs {
@@ -56,12 +56,6 @@ android {
             outputFileName = "AI陪伴_${variant.versionName}.apk"
         }
     }
-
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
 }
 
 dependencies {
@@ -69,9 +63,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.5.1"
     implementation "com.google.android.material:material:1.6.1"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
     implementation project(path: ':aiagent')
     // 崩溃捕获
@@ -82,7 +73,9 @@ dependencies {
 
     implementation('com.github.ZEGOCLOUD:zego_inapp_chat_uikit_android:2.8.2') {
         exclude group: 'im.zego', module: 'zim'
+        exclude group: 'com.github.ZEGOCLOUD', module: 'zego_uikit_signaling_plugin_android'
     }
+    implementation 'com.github.ZEGOCLOUD:zego_uikit_signaling_plugin_android:2.9.8.private'
     implementation 'im.zego:zim:2.19.0'
 //    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }

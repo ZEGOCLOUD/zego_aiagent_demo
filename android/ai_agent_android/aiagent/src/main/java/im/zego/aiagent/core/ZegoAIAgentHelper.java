@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -212,14 +213,12 @@ public class ZegoAIAgentHelper {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 String authority = context.getPackageName() + ".aiAgent.fileProvider";
                 contentUri = FileProvider.getUriForFile(context, authority, zipFile);
-                context.grantUriPermission(context.getPackageName(), contentUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             } else {
                 contentUri = Uri.fromFile(zipFile);
             }
             intent.putExtra(Intent.EXTRA_STREAM, contentUri);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             context.startActivity(Intent.createChooser(intent, "分享文件"));
-
         } else {
             ToastUtils.show("分享文件不存在");
         }
@@ -235,6 +234,12 @@ public class ZegoAIAgentHelper {
         File externalFilesDir = context.getExternalFilesDir(null);
         String crashLogs = externalFilesDir + File.separator + "crashes";
         showFileListDialog(context, crashLogs, "崩溃堆栈目录");
+    }
+
+    public static void showASRLog(Context context) {
+        File externalFilesDir = context.getExternalFilesDir(null);
+        String asrLogs = externalFilesDir + File.separator + "asr";
+        showFileListDialog(context, asrLogs, "本地音频 ASR 记录");
     }
 
     private static void showFileListDialog(Context context, String dirPath, String title) {
@@ -319,6 +324,8 @@ public class ZegoAIAgentHelper {
         String zimLogs = externalFilesDir + File.separator + "ZIMLogs";
         String crashFiles = externalFilesDir + File.separator + "crashes";
         List<String> expressLogs = ZipUtils.findFilesWithPrefix(externalFilesDir.getAbsolutePath(), "zegoavlog");
+        // 把 externalFilesDir 下的所有符合 dump_{时间}的目录也手机起来，如：dump_1741248013，dump_1741249932
+        List<String> dumpLogs = ZipUtils.findDirsWithPrefix(externalFilesDir.getAbsolutePath(), "dump_");
 
         List<String> logPaths = new ArrayList<>();
         logPaths.add(uikitLogs);
@@ -326,6 +333,9 @@ public class ZegoAIAgentHelper {
         logPaths.add(crashFiles);
         if (!expressLogs.isEmpty()) {
             logPaths.addAll(expressLogs);
+        }
+        if (!dumpLogs.isEmpty()) {
+            logPaths.addAll(dumpLogs);
         }
         return logPaths;
     }

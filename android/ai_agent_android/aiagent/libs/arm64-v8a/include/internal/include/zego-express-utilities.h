@@ -308,6 +308,27 @@ typedef void(EXP_CALL *pfnzego_register_network_quality_callback)(
     zego_on_network_quality callback_func, void *user_context);
 #endif
 
+/// RTC network statistics callback.
+///
+/// Available since: 3.20.0
+/// Description: RTC network statistics callback.
+/// Use cases: When a developer wants to analyze the local network situation.
+/// When to Trigger: After calling [startPublishingStream] to start pushing the RTC stream, it will call back the upstream statistics. After calling [startPlayingStream] to start playing the RTC or L3 stream, it will call back the downlink statistics. The default callback period is 3 seconds.
+/// Restrictions: None.
+/// Caution: None.
+///
+/// @param info statistical information.
+/// @param user_context Context of user.
+typedef void (*zego_on_rtc_stats)(const struct zego_rtc_stats_info info, void *user_context);
+
+#ifndef ZEGOEXP_EXPLICIT
+ZEGOEXP_API void EXP_CALL zego_register_rtc_stats_callback(zego_on_rtc_stats callback_func,
+                                                           void *user_context);
+#else
+typedef void(EXP_CALL *pfnzego_register_rtc_stats_callback)(zego_on_rtc_stats callback_func,
+                                                            void *user_context);
+#endif
+
 /// Successful callback of network time synchronization.
 ///
 /// Available since: 2.12.0

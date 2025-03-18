@@ -4,12 +4,17 @@ import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import im.zego.aiagent.core.ZegoAIAgentSettings;
 import im.zego.aiagent.core.callback.AIAgentCallBack;
 import im.zego.aiagent.core.controller.ZegoAIAgentConfigController;
 import im.zego.aiagent.core.utils.AudioFileUtils;
+import im.zego.aiagent.core.utils.Utils;
 import im.zego.zegoexpress.ZegoExpressEngine;
+import im.zego.zegoexpress.ZegoMediaPlayer;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
+import im.zego.zegoexpress.callback.IZegoMediaPlayerLoadResourceCallback;
 import im.zego.zegoexpress.callback.IZegoRoomLoginCallback;
+import im.zego.zegoexpress.constants.ZegoAECMode;
 import im.zego.zegoexpress.constants.ZegoANSMode;
 import im.zego.zegoexpress.constants.ZegoAudioDeviceMode;
 import im.zego.zegoexpress.constants.ZegoAudioSampleRate;
@@ -47,25 +52,45 @@ import timber.log.Timber;
 
 public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
 
-    // ----- 都是为了测试用本地音频文件推流  -----
-    public static boolean customAudioCapture = false;
-    public static String audioPath;
+
     private final Handler mUIHandler = new Handler(Looper.getMainLooper());
     public static SendMediaCallBack sendMediaCallBack;
-    // --------------------------------------------
-    // 设置页面开关参数
-    public static boolean AEC = true;
-    public static boolean AGC = true;
-    public static boolean ANS = true;
-    public static boolean AI_AGGRESSIVE = true;
-    // --------------------------------------------
+
+    public static boolean customAudioAcc = false; // 没做
+    public static String accAudioPath; // 没做
+    public static boolean customAudioCapture;
+    public static String capAudioPath;
+
+
+    private boolean isDumpData = false;
+    private ZegoMediaPlayer mediaPlayer;
 
     @Override
     public void init(Application application) {
+
+        Timber.d("appID: " + ZegoAIAgentConfigController.getInstance().appID);
+        Timber.d("AEC: " + ZegoAIAgentSettings.AEC);
+        Timber.d("AGC: " + ZegoAIAgentSettings.AGC);
+        Timber.d("ANS: " + ZegoAIAgentSettings.ANS);
+        Timber.d("ANS_MODE: " + ZegoANSMode.getZegoANSMode(ZegoAIAgentSettings.ANS_MODE));
+        Timber.d("AEC_MODE: " + ZegoAECMode.getZegoAECMode(ZegoAIAgentSettings.AEC_MODE));
+        Timber.d("SCENARIO: " + ZegoScenario.getZegoScenario(ZegoAIAgentSettings.SCENARIO));
+        Timber.d(
+            "AUDIO_DEVICE_MODE: " + ZegoAudioDeviceMode.getZegoAudioDeviceMode(ZegoAIAgentSettings.AUDIO_DEVICE_MODE));
+        Timber.d("LOCAL_VAD: " + ZegoAIAgentSettings.LOCAL_VAD);
+        Timber.d("Latency_Mode: " + ZegoAIAgentSettings.Latency_Mode);
+        Timber.d("AUDIO_DUCK: " + ZegoAIAgentSettings.AUDIO_DUCK);
+        Timber.d("ECHO_ADAPTIVE: " + ZegoAIAgentSettings.ECHO_ADAPTIVE);
+        Timber.d("mediaPlayerVolume: " + ZegoAIAgentSettings.mediaPlayerVolume);
+        Timber.d("playStreamVolume: " + ZegoAIAgentSettings.playStreamVolume);
+        Timber.d("defaultShowTestView: " + ZegoAIAgentSettings.defaultShowTestView);
+        Timber.d("autoDump: " + ZegoAIAgentSettings.autoDump);
+        Timber.d("MergeLLM: " + ZegoAIAgentSettings.MergeLLM);
+
         ZegoEngineProfile profile = new ZegoEngineProfile();
         profile.appID = ZegoAIAgentConfigController.getInstance().appID;
         profile.appSign = ZegoAIAgentConfigController.getInstance().appSign;
-        profile.scenario = ZegoScenario.STANDARD_VOICE_CALL;
+        profile.scenario = ZegoScenario.getZegoScenario(ZegoAIAgentSettings.SCENARIO);
         profile.application = application;
 
         ZegoEngineConfig config = new ZegoEngineConfig();
@@ -76,6 +101,9 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
         /**下面的设置用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
         advanceConfig.put("enforce_audio_loopback_in_sync", "true");  // 应答延迟优化
         /*********************************************************************************************************/
+
+        advanceConfig.put("set_audio_volume_ducking_mode", String.valueOf(ZegoAIAgentSettings.AUDIO_DUCK));
+        advanceConfig.put("enable_echo_energy_adaptive", String.valueOf(ZegoAIAgentSettings.ECHO_ADAPTIVE));
 
         if (customAudioCapture) {
             advanceConfig.put("ext_capture_and_inner_render", "true");
@@ -92,8 +120,8 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
             customAudioConfig.sourceType = ZegoAudioSourceType.CUSTOM;
             ZegoExpressEngine.getEngine().enableCustomAudioIO(true, customAudioConfig);
         }
-
     }
+
 
     @Override
     public void loginUser(String userID, String userName, String avatarUrl, AIAgentCallBack callBack) {
@@ -105,21 +133,22 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
 
     @Override
     public void loginRoom(String roomID, AIAgentCallBack callBack) {
-        ZegoExpressEngine.getEngine().setRoomScenario(ZegoScenario.STANDARD_VOICE_CALL);
-        ZegoExpressEngine.getEngine().setAudioDeviceMode(ZegoAudioDeviceMode.GENERAL);
+        ZegoExpressEngine.getEngine().setRoomScenario(ZegoScenario.getZegoScenario(ZegoAIAgentSettings.SCENARIO));
 
-        if (AEC) {
-            ZegoExpressEngine.getEngine().enableAEC(AEC);
+        ZegoExpressEngine.getEngine()
+            .setAudioDeviceMode(ZegoAudioDeviceMode.getZegoAudioDeviceMode(ZegoAIAgentSettings.AUDIO_DEVICE_MODE));
+
+        if (ZegoAIAgentSettings.AEC) {
+            ZegoExpressEngine.getEngine().enableAEC(ZegoAIAgentSettings.AEC);
+            ZegoExpressEngine.getEngine().setAECMode(ZegoAECMode.getZegoAECMode(ZegoAIAgentSettings.AEC_MODE));
         }
-        if (AGC) {
-            ZegoExpressEngine.getEngine().enableAGC(AGC);
+        if (ZegoAIAgentSettings.AGC) {
+            ZegoExpressEngine.getEngine().enableAGC(ZegoAIAgentSettings.AGC);
         }
-        if (ANS) {
-            ZegoExpressEngine.getEngine().enableANS(ANS);
-        }
-        /**下面设置用来做远近人声降噪的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
-        if (AI_AGGRESSIVE) {
-            ZegoExpressEngine.getEngine().setANSMode(ZegoANSMode.AI_AGGRESSIVE);
+        if (ZegoAIAgentSettings.ANS) {
+            ZegoExpressEngine.getEngine().enableANS(ZegoAIAgentSettings.ANS);
+            /**下面设置用来做远近人声降噪的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
+            ZegoExpressEngine.getEngine().setANSMode(ZegoANSMode.getZegoANSMode(ZegoAIAgentSettings.ANS_MODE));
         }
 
         ZegoAIAgentConfigController.CharacterConfig curUser = ZegoAIAgentConfigController.getConfig()
@@ -134,29 +163,38 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
             @Override
             public void onRoomLoginResult(int errorCode, JSONObject extendedData) {
 
-                /**下面用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
-                String expParam = "{\"method\":\"liveroom.audio.set_publish_latency_mode\",\"params\":{\"mode\":1,\"channel\":0}}";
-                ZegoExpressEngine.getEngine().callExperimentalAPI(expParam);
-                String deviceExpParam = "{\"method\":\"liveroom.audio.set_device_latency_mode\",\"params\": {\"mode\":2}}";
-                ZegoExpressEngine.getEngine().callExperimentalAPI(deviceExpParam);
-                /*********************************************************************************************************/
+                if (ZegoAIAgentSettings.Latency_Mode) {
+                    /**下面用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
+                    String expParam = "{\"method\":\"liveroom.audio.set_publish_latency_mode\",\"params\":{\"mode\":1,\"channel\":0}}";
+                    ZegoExpressEngine.getEngine().callExperimentalAPI(expParam);
+                    String deviceExpParam = "{\"method\":\"liveroom.audio.set_device_latency_mode\",\"params\": {\"mode\":2}}";
+                    ZegoExpressEngine.getEngine().callExperimentalAPI(deviceExpParam);
+                    /*********************************************************************************************************/
+                }
 
                 if (errorCode == 0) {
-//                    startSoundLevelMonitor();
+                    if (ZegoAIAgentSettings.LOCAL_VAD) {
+                        startSoundLevelMonitor();
+                    }
                     muteMicrophone(false);
                     // 开始推流
                     String streamID = ZegoAIAgentConfigController.getConfig().getCurrentCharacter().getStreamID();
                     ZegoExpressEngine.getEngine().startPublishingStream(streamID, ZegoPublishChannel.MAIN);
 
                     if (customAudioCapture) {
-                        File file = new File(audioPath);
+                        File file = new File(capAudioPath);
                         if (file.exists() && file.length() > 0) {
                             isCaptureMedia = true;
                             captureMedia(new SendMediaCallBack() {
                                 @Override
+                                public void onSendStarted() {
+
+                                }
+
+                                @Override
                                 public void onSendFinished() {
                                     isCaptureMedia = false; // 停止发送
-                                    String message = "文件 " + ZegoVoiceCallExpressImpl.audioPath + " 发送完毕";
+                                    String message = "文件 " + ZegoVoiceCallExpressImpl.capAudioPath + " 发送完毕";
                                     Timber.d(message);
 
                                     mUIHandler.post(new Runnable() {
@@ -206,13 +244,16 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
                     for (int i = 0; i < streamList.size(); i++) {
                         ZegoStream item = streamList.get(i);
                         if (item.streamID.equals(robotStreamId)) {
+                            setPlayStreamVolume(ZegoAIAgentSettings.playStreamVolume);
                             ZegoExpressEngine.getEngine().startPlayingStream(robotStreamId);
-                            /**下面用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
-                            String expParam =
-                                "{\"method\":\"liveroom.audio.set_play_latency_mode\",\"params\":{\"mode\":1,\"stream_id\":\""
-                                    + robotStreamId + "\"}}";
-                            ZegoExpressEngine.getEngine().callExperimentalAPI(expParam);
-                            /*********************************************************************************************************/
+                            if (ZegoAIAgentSettings.Latency_Mode) {
+                                /**下面用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
+                                String expParam =
+                                    "{\"method\":\"liveroom.audio.set_play_latency_mode\",\"params\":{\"mode\":1,\"stream_id\":\""
+                                        + robotStreamId + "\"}}";
+                                ZegoExpressEngine.getEngine().callExperimentalAPI(expParam);
+                                /*********************************************************************************************************/
+                            }
                         }
                     }
                 }
@@ -337,23 +378,100 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
     }
 
     @Override
-    public void setPlayVolume(String streamID, int volume) {
-        Timber.d("setPlayVolume() called with: streamID = [" + streamID + "], volume = [" + volume + "]");
-        ZegoExpressEngine.getEngine().setPlayVolume(streamID, volume);
+    public void setPlayStreamVolume(String streamID, int volume) {
+        if (ZegoAIAgentSettings.LOCAL_VAD) {
+            Timber.d("setPlayVolume() called with: streamID = [" + streamID + "], volume = [" + volume + "]");
+            ZegoExpressEngine.getEngine().setPlayVolume(streamID, volume);
+            ZegoAIAgentSettings.playStreamVolume = volume;
+        }
     }
 
     @Override
     public void startDumpData() {
+        if (isDumpData) {
+            return;
+        }
+        isDumpData = true;
+        Log.d(TAG, "startDumpData() called");
         ZegoDumpDataConfig config = new ZegoDumpDataConfig();
         config.dataType = ZegoDumpDataType.AUDIO;
         ZegoExpressEngine.getEngine().startDumpData(config);
     }
 
+    public boolean isDumpData() {
+        return isDumpData;
+    }
+
     @Override
     public void stopDumpData() {
+        if (!isDumpData) {
+            return;
+        }
+        isDumpData = false;
+        Log.d(TAG, "stopDumpData() called");
         ZegoExpressEngine.getEngine().stopDumpData();
     }
 
+    @Override
+    public void loadAudio(String audio, IZegoMediaPlayerLoadResourceCallback callback) {
+        if (mediaPlayer != null) {
+            mediaPlayer.loadResource(audio, callback);
+        }
+    }
+
+    @Override
+    public void startPlay() {
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
+    }
+
+    @Override
+    public void stopPlay() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
+    }
+
+    @Override
+    public void createMediaPlayer() {
+        mediaPlayer = ZegoExpressEngine.getEngine().createMediaPlayer();
+        mediaPlayer.enableRepeat(true);
+        mediaPlayer.setPlayVolume(ZegoAIAgentSettings.mediaPlayerVolume);
+    }
+
+    @Override
+    public void destroyMediaPlayer() {
+        if (mediaPlayer != null) {
+            ZegoExpressEngine.getEngine().destroyMediaPlayer(mediaPlayer);
+        }
+        mediaPlayer = null;
+    }
+
+    @Override
+    public int getMediaPlayerVolume() {
+        return ZegoAIAgentSettings.mediaPlayerVolume;
+    }
+
+    @Override
+    public void setMediaPlayerVolume(int volume) {
+        ZegoAIAgentSettings.mediaPlayerVolume = volume;
+        if (mediaPlayer != null) {
+            mediaPlayer.setPlayVolume(volume);
+        }
+    }
+
+    @Override
+    public int getPlayStreamVolume() {
+        return ZegoAIAgentSettings.playStreamVolume;
+    }
+
+    @Override
+    public void setPlayStreamVolume(int volume) {
+        ZegoAIAgentSettings.playStreamVolume = volume;
+        String robotStreamId = ZegoAIAgentConfigController.getConfig().getCurrentCharacter().getAgentStreamID();
+        ZegoExpressEngine.getEngine().setPlayVolume(robotStreamId, volume);
+    }
 
     ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
     byte[] mediaByte;
@@ -366,11 +484,15 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
     private Thread captureThread;
 
     private void captureMedia(SendMediaCallBack callBack) {
-        final int sampleRate = AudioFileUtils.getWavSampleRate(ZegoVoiceCallExpressImpl.audioPath);
-        final int audioChannels = AudioFileUtils.getWavAudioChannels(ZegoVoiceCallExpressImpl.audioPath);
-        final int bytesPerSample = AudioFileUtils.getWavBitsPerSample(ZegoVoiceCallExpressImpl.audioPath);
+        final int sampleRate = AudioFileUtils.getWavSampleRate(ZegoVoiceCallExpressImpl.capAudioPath);
+        final int audioChannels = AudioFileUtils.getWavAudioChannels(ZegoVoiceCallExpressImpl.capAudioPath);
+        final int bytesPerSample = AudioFileUtils.getWavBitsPerSample(ZegoVoiceCallExpressImpl.capAudioPath);
         Log.d(TAG, "captureMedia() called with: sampleRate = [" + sampleRate + "], audioChannels = [" + audioChannels
             + "], bytesPerSample=[" + bytesPerSample + "], duration = [" + duration + "]");
+
+        if (callBack != null) {
+            callBack.onSendStarted();
+        }
 
         captureThread = new Thread(new Runnable() {
             @Override
@@ -379,7 +501,7 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
                     if (mediaBuffer != null) {
                         mediaBuffer.clear();
                     }
-                    InputStream is = Files.newInputStream(new File(audioPath).toPath());
+                    InputStream is = Files.newInputStream(new File(capAudioPath).toPath());
                     mediaByte = new byte[is.available()];
                     is.read(mediaByte);
                     is.close();
@@ -431,8 +553,11 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
 
     public interface SendMediaCallBack {
 
+        void onSendStarted();
+
         void onSendFinished();
 
         void onError();
+
     }
 }

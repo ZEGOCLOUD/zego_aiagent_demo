@@ -549,6 +549,8 @@ class ZegoInternalCallbackCenter {
             ZegoVoidPtr(this));
         oInternalOriginBridge->registerNetworkQualityCallback(
             ZegoVoidPtr(&ZegoInternalCallbackCenter::zego_on_network_quality), ZegoVoidPtr(this));
+        oInternalOriginBridge->registerRtcStatsCallback(
+            ZegoVoidPtr(&ZegoInternalCallbackCenter::zego_on_rtc_stats), ZegoVoidPtr(this));
 
         oInternalOriginBridge->registerCopyrightedMusicDownloadProcessUpdateCallback(
             ZegoVoidPtr(
@@ -2980,6 +2982,26 @@ class ZegoInternalCallbackCenter {
         auto handler = weakHandler.lock();
         if (handler) {
             handler->onNetworkQuality(userID, upstreamQuality, downstreamQuality);
+        }
+        ZEGO_SWITCH_THREAD_ING
+    }
+
+    static void zego_on_rtc_stats(const struct zego_rtc_stats_info info, void *user_context) {
+        ZEGO_UNUSED_VARIABLE(user_context);
+        auto weakHandler =
+            std::weak_ptr<IZegoEventHandler>(oInternalCallbackCenter->getIZegoEventHandler());
+        ZegoRtcStatsInfo stats;
+        stats.totalTxBandwidth = info.total_tx_bandwidth;
+        stats.avgTxRtt = info.avg_tx_rtt;
+        stats.avgTxPacketLostRate = info.avg_tx_packet_lost_rate;
+        stats.totalRxBandwidth = info.total_rx_bandwidth;
+        stats.avgRxRtt = info.avg_rx_rtt;
+        stats.avgRxPacketLostRate = info.avg_rx_packet_lost_rate;
+        stats.avgPeerToPeerDelay = info.avg_peer_to_peer_delay;
+        ZEGO_SWITCH_THREAD_PRE_STATIC
+        auto handler = weakHandler.lock();
+        if (handler) {
+            handler->onRtcStats(stats);
         }
         ZEGO_SWITCH_THREAD_ING
     }

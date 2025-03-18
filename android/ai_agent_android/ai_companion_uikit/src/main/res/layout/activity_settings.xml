@@ -24,18 +24,18 @@
         android:id="@+id/settings_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         android:text="设置"
-        android:textSize="24sp" />
+        android:textSize="22sp" />
 
-      <TextView
+      <Button
         android:id="@+id/restart"
         android:layout_width="64dp"
-        android:layout_height="match_parent"
+        android:layout_height="48dp"
         android:layout_alignParentEnd="true"
         android:gravity="center"
-        android:text="重启"
-        android:textSize="18sp" />
+        android:text="重启" />
 
       <!--      <TextView-->
       <!--        android:id="@+id/about"-->
@@ -47,12 +47,24 @@
       <!--        android:textSize="18sp" />-->
     </RelativeLayout>
 
+    <TextView
+      android:id="@+id/sub_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="环境变更需要重启app，重启后会记住上次选择的appId
+        \n其他设置进入语音｜视频生效，不需要重启,重启后重置"
+      android:textColor="@color/black"
+      android:textStyle="bold"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/top" />
+
     <LinearLayout
       android:id="@+id/message"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
-      app:layout_constraintTop_toBottomOf="@+id/top">
+      app:layout_constraintTop_toBottomOf="@+id/sub_title">
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +75,7 @@
 
         <TextView
           android:layout_width="96dp"
-          android:layout_height="48dp"
+          android:layout_height="24dp"
           android:gravity="center_vertical"
           android:text="appID"
           android:textColor="#000000" />
@@ -71,9 +83,10 @@
         <TextView
           android:id="@+id/app_id"
           android:layout_width="match_parent"
-          android:layout_height="48dp"
+          android:layout_height="24dp"
           android:gravity="center_vertical"
-          android:textColor="#000000" />
+          android:textColor="#000000"
+          android:textIsSelectable="true" />
       </LinearLayout>
 
       <LinearLayout
@@ -85,7 +98,7 @@
 
         <TextView
           android:layout_width="96dp"
-          android:layout_height="48dp"
+          android:layout_height="24dp"
           android:gravity="center_vertical"
           android:text="userID"
           android:textColor="#000000" />
@@ -93,9 +106,10 @@
         <TextView
           android:id="@+id/user_id"
           android:layout_width="match_parent"
-          android:layout_height="48dp"
+          android:layout_height="24dp"
           android:gravity="center_vertical"
-          android:textColor="#000000" />
+          android:textColor="#000000"
+          android:textIsSelectable="true" />
       </LinearLayout>
 
       <LinearLayout
@@ -107,17 +121,18 @@
 
         <TextView
           android:layout_width="96dp"
-          android:layout_height="48dp"
+          android:layout_height="24dp"
           android:gravity="center_vertical"
-          android:text="userName"
+          android:text="app包名"
           android:textColor="#000000" />
 
         <TextView
           android:id="@+id/user_name"
           android:layout_width="match_parent"
-          android:layout_height="48dp"
+          android:layout_height="24dp"
           android:gravity="center_vertical"
-          android:textColor="#000000" />
+          android:textColor="#000000"
+          android:textIsSelectable="true" />
       </LinearLayout>
 
       <LinearLayout
@@ -129,7 +144,7 @@
 
         <TextView
           android:layout_width="96dp"
-          android:layout_height="48dp"
+          android:layout_height="24dp"
           android:gravity="center_vertical"
           android:text="express版本"
           android:textColor="#000000" />
@@ -137,7 +152,30 @@
         <TextView
           android:id="@+id/express_version"
           android:layout_width="match_parent"
-          android:layout_height="48dp"
+          android:layout_height="24dp"
+          android:gravity="center_vertical"
+          android:textColor="#000000"
+          android:textIsSelectable="true" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <TextView
+          android:layout_width="96dp"
+          android:layout_height="24dp"
+          android:gravity="center_vertical"
+          android:text="app 版本"
+          android:textColor="#000000" />
+
+        <TextView
+          android:id="@+id/app_version_name"
+          android:layout_width="match_parent"
+          android:layout_height="24dp"
           android:gravity="center_vertical"
           android:textColor="#000000" />
       </LinearLayout>
@@ -165,12 +203,144 @@
 
           <TextView
             android:id="@+id/text_env"
-            android:layout_width="128dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="运行环境\n(修改后重启生效)" />
+            android:text="运行环境(切换后需要重启)" />
 
           <Spinner
             android:id="@+id/spinner_env"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1" />
+        </LinearLayout>
+
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="#eeeeee"
+          android:visibility="gone" />
+
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+          android:id="@+id/enable_aec"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:text="回声消除(AEC) " />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center_vertical"
+          android:orientation="horizontal"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp">
+
+          <TextView
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:text="AEC_MODE" />
+
+          <Spinner
+            android:id="@+id/spinner_aec_mode"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1" />
+        </LinearLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+          android:id="@+id/enable_agc"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:text="自动增益控制(AGC)" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+          android:id="@+id/enable_ans"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:text="自动降噪(ANS)" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center_vertical"
+          android:orientation="horizontal"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp">
+
+          <TextView
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:text="ANS_MODE" />
+
+          <Spinner
+            android:id="@+id/spinner_ans_mode"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1" />
+        </LinearLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+          android:id="@+id/audio_ducking"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:text="音量闪避" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+          android:id="@+id/echo_adapter"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:text="回声能量自适应" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+          android:id="@+id/local_vad"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:text="本地vad和打断" />
+
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+          android:id="@+id/latency_mode"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:text="延迟优化" />
+
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center_vertical"
+          android:orientation="horizontal"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp">
+
+          <TextView
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:text="AUDIO_DEVICE_MODE" />
+
+          <Spinner
+            android:id="@+id/spinner_audio_device_mode"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginTop="4dp"
@@ -214,6 +384,21 @@
           android:background="#eeeeee" />
 
         <TextView
+          android:id="@+id/show_asr_files"
+          android:layout_width="match_parent"
+          android:layout_height="48dp"
+          android:background="?android:attr/selectableItemBackground"
+          android:clickable="true"
+          android:gravity="center"
+          android:text="查看本地音频 ASR 目录"
+          android:textColor="#000000" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="#eeeeee" />
+
+        <TextView
           android:id="@+id/show_app_log_files"
           android:layout_width="match_parent"
           android:layout_height="48dp"
@@ -237,6 +422,48 @@
           android:gravity="center"
           android:text="查看crash日志目录"
           android:textColor="#000000" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+          android:id="@+id/use_local_audio_acc"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:text="使用本地音频进行伴奏"
+          android:visibility="gone" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="#eeeeee"
+          android:visibility="gone" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:visibility="gone">
+
+          <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="本地伴奏音频文件："
+            android:textColor="#000000"
+            android:visibility="gone" />
+
+          <TextView
+            android:id="@+id/local_audio_acc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="#000000"
+            android:visibility="gone" />
+        </LinearLayout>
+
 
         <View
           android:layout_width="match_parent"
@@ -269,7 +496,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="本地音频文件："
+            android:text="本地语音音频文件："
             android:textColor="#000000" />
 
           <TextView
@@ -297,7 +524,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="本地音频文件采样率："
+            android:text="本地语音文件采样率："
             android:textColor="#000000" />
 
           <TextView
@@ -308,38 +535,6 @@
             android:textColor="#000000" />
         </LinearLayout>
 
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-          android:id="@+id/enable_aec"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingStart="8dp"
-          android:paddingEnd="8dp"
-          android:text="回声消除(AEC) " />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-          android:id="@+id/enable_agc"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingStart="8dp"
-          android:paddingEnd="8dp"
-          android:text="自动增益控制(AGC)" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-          android:id="@+id/enable_ans"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingStart="8dp"
-          android:paddingEnd="8dp"
-          android:text="自动降噪(ANS)" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-          android:id="@+id/ai_aggressive"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingStart="8dp"
-          android:paddingEnd="8dp"
-          android:text="AI激进降噪(AI_AGGRESSIVE)" />
       </LinearLayout>
     </ScrollView>
   </androidx.constraintlayout.widget.ConstraintLayout>

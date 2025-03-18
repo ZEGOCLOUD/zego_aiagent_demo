@@ -26,9 +26,12 @@ import androidx.core.content.ContextCompat;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import im.zego.aiagent.R;
+import im.zego.aiagent.core.ASRChecker;
 import im.zego.aiagent.core.ZegoAIAgentHelper;
+import im.zego.aiagent.core.ZegoAIAgentSettings;
 import im.zego.aiagent.core.callback.AIAgentCommonCallBack;
 import im.zego.aiagent.core.controller.ZegoAIAgentConfigController;
+import im.zego.aiagent.core.controller.ZegoAIAgentConfigController.AppExtraConfig;
 import im.zego.aiagent.core.controller.ZegoAIAgentConfigController.AppUserInfo;
 import im.zego.aiagent.core.controller.ZegoAIAgentMonitor;
 import im.zego.aiagent.core.data.RTCRoomMessage;
@@ -36,13 +39,16 @@ import im.zego.aiagent.core.net.ZegoAIAgentRequest;
 import im.zego.aiagent.core.sdkapi.ZegoVoiceCallExpressImpl;
 import im.zego.aiagent.core.sdkapi.ZegoVoiceCallExpressImpl.SendMediaCallBack;
 import im.zego.aiagent.core.sdkapi.ZegoVoiceCallProxy;
+import im.zego.aiagent.core.utils.Utils;
 import im.zego.aiagent.core.widget.ZegoAgentTestView;
 import im.zego.aiagent.core.widget.ZegoSwitchTTSWindow;
 import im.zego.aiagent.core.widget.ZegoVoiceActivityChecker;
 import im.zego.aiagent.core.widget.ZegoVoiceActivityChecker.VadCheckerInfo;
 import im.zego.aiagent.core.widget.ZegoVoiceCallMessageAdapter;
+import im.zego.zegoexpress.ZegoExpressEngine;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
 import im.zego.zegoexpress.constants.ZegoStreamEvent;
+import im.zego.zegoexpress.entity.ZegoNetworkTimeInfo;
 import im.zego.zegoexpress.entity.ZegoPlayStreamQuality;
 import im.zego.zegoexpress.entity.ZegoPublishStreamQuality;
 import im.zego.zegoexpress.entity.ZegoSoundLevelInfo;
@@ -109,6 +115,14 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
         rtcFunction = ZegoAIAgentHelper.getVoiceCallProxy();
         configuration = ViewConfiguration.get(this);
 
+        AppExtraConfig config = ZegoAIAgentConfigController.getConfig();
+        if (config == null && savedInstanceState != null) {
+            //有可能是在后台被系统杀了，恢复到这个页面，此时启动整个app的第一个页面（可酌情处理）
+            Utils.startLauncherActivity(this);
+            finish();
+            return;
+        }
+
         if (rtcFunction == null) {
             rtcFunction = new ZegoVoiceCallExpressImpl();
             ZegoAIAgentHelper.setVoiceCallProxy(rtcFunction);
@@ -129,6 +143,8 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
 
         mVadChecker = new ZegoVoiceActivityChecker();
         rtcFunction.init(getApplication());
+        rtcFunction.createMediaPlayer();
+        ASRChecker.getInstance().setContext(getApplication());
 
         AppUserInfo userInfo = ZegoAIAgentConfigController.getUserInfo();
         rtcFunction.loginUser(userInfo.userID, userInfo.userName, "", null);
@@ -136,11 +152,24 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
 
         ZegoVoiceCallExpressImpl.sendMediaCallBack = new SendMediaCallBack() {
             @Override
+            public void onSendStarted() {
+                ASRChecker.getInstance().onSendStarted(ZegoVoiceCallExpressImpl.capAudioPath);
+            }
+
+            @Override
             public void onSendFinished() {
-                File file = new File(ZegoVoiceCallExpressImpl.audioPath);
+                File file = new File(ZegoVoiceCallExpressImpl.capAudioPath);
                 String message = "文件 " + file.getName() + " 发送完毕";
                 Toast.makeText(ZegoVoiceCallActivity.this, message, Toast.LENGTH_SHORT).show();
-                updateStatusText(message);
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateStatusText(message);
+                        ASRChecker.getInstance()
+                            .onSendFinished(ZegoVoiceCallActivity.this, ZegoVoiceCallExpressImpl.capAudioPath);
+                    }
+                }, 5000);
             }
 
             @Override
@@ -193,6 +222,7 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
                         .getCurrentCharacter();
                     mTestView.setRoomID(characterConfig.getRoomID());
                     mTestView.setConversationID(characterConfig.conversationId);
+                    mTestView.setIsDumpData(rtcFunction.isDumpData());
                 } else {
                     updateStatusText("startRtcChat,errorCode：" + errorCode + ",message:" + message);
                 }
@@ -207,6 +237,11 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause() called");
+        AppExtraConfig config = ZegoAIAgentConfigController.getConfig();
+        if (config == null) {
+            //有可能是在后台被系统杀了
+            return;
+        }
         if (isFinishing()) {
             // 正常 finish,直接 clear
             // 比如反复进出此页面，不会引起时序的问题。
@@ -219,6 +254,11 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
     protected void onDestroy() {
         Log.d(TAG, "onDestroy() called");
         super.onDestroy();
+        AppExtraConfig config = ZegoAIAgentConfigController.getConfig();
+        if (config == null) {
+            //有可能是在后台被系统杀了
+            return;
+        }
         if (!finishedInOnPauseLifeCycle) {
             clearResources();
         }
@@ -227,10 +267,15 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
     private void clearResources() {
         Log.d(TAG, "clearResources() called");
         stopRtcChat();
-        rtcFunction.logoutRoom();
-        rtcFunction.logoutUser();
-        rtcFunction.setEventHandler(null);
-        rtcFunction.destroyEngine();
+        if (rtcFunction != null) {
+            rtcFunction.stopPlay();
+            rtcFunction.destroyMediaPlayer();
+            rtcFunction.stopDumpData();
+            rtcFunction.logoutRoom();
+            rtcFunction.logoutUser();
+            rtcFunction.setEventHandler(null);
+            rtcFunction.destroyEngine();
+        }
         ZegoAIAgentHelper.setVoiceCallProxy(null);
         ZegoVoiceCallExpressImpl.sendMediaCallBack = null;
     }
@@ -244,7 +289,7 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
         updateStatusText("已连接");
 
         if (ZegoVoiceCallExpressImpl.customAudioCapture) {
-            File file = new File(ZegoVoiceCallExpressImpl.audioPath);
+            File file = new File(ZegoVoiceCallExpressImpl.capAudioPath);
             updateStatusText("使用本地音频：" + file.getName());
         }
     }
@@ -271,6 +316,7 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
         mMicButton.setOnClickListener(v -> switchMicState(!mIsMicOn));
         findViewById(R.id.end_call).setOnClickListener(v -> finish());
         mTestView = findViewById(R.id.atv_test_view);
+        mTestView.setVisibility(ZegoAIAgentSettings.defaultShowTestView ? View.VISIBLE : View.GONE);
 
         // 判断需要自动滚动到底部，用户在浏览态下不要自动滚动到底部
         // 浏览态定义：用户手动滑动列表浏览历史消息
@@ -329,9 +375,11 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
     }
 
     private void setPlayVolumeInternal(int volume) {
-//        String agentStreamID = ZegoAIAgentConfigController.getConfig().getCurrentCharacter().getAgentStreamID();
-//        rtcFunction.setPlayVolume(agentStreamID, volume);
-//        mTestView.setPlayVolume(volume);
+        if (ZegoAIAgentSettings.LOCAL_VAD) {
+            String agentStreamID = ZegoAIAgentConfigController.getConfig().getCurrentCharacter().getAgentStreamID();
+            rtcFunction.setPlayStreamVolume(agentStreamID, volume);
+            mTestView.setPlayVolume(volume);
+        }
     }
 
     private void graduallyMutePlayVolumeByWeightAverage(float weightAverage) {
@@ -437,9 +485,12 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
             Timber.d("onIMRecvCustomCommand command is null");
             return;
         }
-
+        ZegoNetworkTimeInfo timeInfo = ZegoExpressEngine.getEngine().getNetworkTimeInfo();
+        long currentTime = timeInfo.timestamp;
+        ASRChecker.getInstance().onIMRecvCustomCommand(command);
         try {
             RTCRoomMessage roomMessage = gson.fromJson(command, RTCRoomMessage.class);
+            roomMessage.local_timestamp = currentTime;
             mTestView.onIMRecvCustomCommand(roomMessage);
 
             switch (roomMessage.cmd) {
@@ -500,8 +551,11 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
 
     private void onPublisherStreamEvent(ZegoStreamEvent eventID, String streamID, String extraInfo) {
         if (eventID == ZegoStreamEvent.PUBLISH_SUCCESS) {
-            if (rtcFunction != null) {
-                rtcFunction.startDumpData();
+            if (ZegoAIAgentSettings.autoDump) {
+                mTestView.startDumpData();
+            }
+            if (ZegoAIAgentSettings.autoPlayAcc) {
+                mTestView.loadAndPlayAcc("第二街区 cut.mp3");
             }
         }
     }
@@ -536,7 +590,9 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
         @Override
         public void onCapturedSoundLevelInfoUpdate(ZegoSoundLevelInfo soundLevelInfo) {
             ZegoVoiceCallActivity instance = (ZegoVoiceCallActivity) mContext;
-//            instance.onCapturedSoundLevelInfoUpdate(soundLevelInfo);
+            if (ZegoAIAgentSettings.LOCAL_VAD) {
+                instance.onCapturedSoundLevelInfoUpdate(soundLevelInfo);
+            }
         }
 
         @Override
@@ -577,7 +633,7 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
                     public void run() {
                         performLongClickAction();
                     }
-                }, 3000);
+                }, ViewConfiguration.getLongPressTimeout());
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (Math.abs(event.getX() - downX) > configuration.getScaledTouchSlop()
@@ -600,5 +656,6 @@ public class ZegoVoiceCallActivity extends AppCompatActivity {
         } else {
             mTestView.setVisibility(View.VISIBLE);
         }
+        mTestView.setIsDumpData(rtcFunction.isDumpData());
     }
 }

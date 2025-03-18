@@ -1,5 +1,6 @@
 package im.zego.aicompanion.uikit.settings;
 
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -29,6 +30,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentActivity;
 import im.zego.aiagent.core.ZegoAIAgentHelper;
+import im.zego.aiagent.core.ZegoAIAgentSettings;
 import im.zego.aiagent.core.controller.ZegoAIAgentConfigController;
 import im.zego.aiagent.core.sdkapi.ZegoVoiceCallExpressImpl;
 import im.zego.aiagent.core.utils.AudioFileUtils;
@@ -37,6 +39,9 @@ import im.zego.aicompanion.uikit.app.AiCompanionConfig;
 import im.zego.aicompanion.uikit.app.MainActivity;
 import im.zego.aicompanion.uikit.databinding.ActivitySettingsBinding;
 import im.zego.zegoexpress.ZegoExpressEngine;
+import im.zego.zegoexpress.constants.ZegoAECMode;
+import im.zego.zegoexpress.constants.ZegoANSMode;
+import im.zego.zegoexpress.constants.ZegoAudioDeviceMode;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,6 +51,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -71,9 +77,9 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                     saveFileFromUri(SettingsActivity.this, uri, file.getPath());
                     ZegoVoiceCallExpressImpl.customAudioCapture = true;
-                    ZegoVoiceCallExpressImpl.audioPath = file.getPath();
-                    binding.localAudioFile.setText(ZegoVoiceCallExpressImpl.audioPath);
-                    int sampleRate = AudioFileUtils.getWavSampleRate(ZegoVoiceCallExpressImpl.audioPath);
+                    ZegoVoiceCallExpressImpl.capAudioPath = file.getPath();
+                    binding.localAudioFile.setText(ZegoVoiceCallExpressImpl.capAudioPath);
+                    int sampleRate = AudioFileUtils.getWavSampleRate(ZegoVoiceCallExpressImpl.capAudioPath);
                     if (sampleRate == -1) {
                         binding.localAudioFileSampleRate.setText("");
                     } else {
@@ -81,14 +87,14 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 } else {
                     ZegoVoiceCallExpressImpl.customAudioCapture = false;
-                    ZegoVoiceCallExpressImpl.audioPath = "";
+                    ZegoVoiceCallExpressImpl.capAudioPath = "";
                     binding.localAudioFile.setText("");
                     binding.localAudioFileSampleRate.setText("");
                     binding.useLocalAudioFile.setChecked(false);
                 }
             }
         });
-    private ActivityResultLauncher<String[]> permissionLauncher = registerForActivityResult(
+    private ActivityResultLauncher<String[]> pickAudioFilePermissionLauncher = registerForActivityResult(
         new RequestMultiplePermissions(), new ActivityResultCallback<Map<String, Boolean>>() {
             @Override
             public void onActivityResult(Map<String, Boolean> result) {
@@ -108,7 +114,64 @@ public class SettingsActivity extends AppCompatActivity {
                     pickAudioFileLauncher.launch(intent);
                 } else {
                     ZegoVoiceCallExpressImpl.customAudioCapture = false;
-                    ZegoVoiceCallExpressImpl.audioPath = "";
+                    ZegoVoiceCallExpressImpl.capAudioPath = "";
+                    binding.localAudioFile.setText("");
+                    binding.localAudioFileSampleRate.setText("");
+                }
+            }
+        });
+
+    private ActivityResultLauncher<Intent> pickAudioAccLauncher = registerForActivityResult(
+        new StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                //Get uri, followed by the process of converting uri to file.
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    String filesDir = getExternalFilesDir(null).getPath() + File.separator + "fileCache";
+                    File dir = new File(filesDir);
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
+                    Uri uri = result.getData().getData();
+                    String fileName = getFileName(SettingsActivity.this, uri);
+                    File file = new File(filesDir, fileName);
+                    if (file.exists()) {
+                        file.delete();
+                    }
+                    saveFileFromUri(SettingsActivity.this, uri, file.getPath());
+                    ZegoVoiceCallExpressImpl.customAudioAcc = true;
+                    ZegoVoiceCallExpressImpl.accAudioPath = file.getPath();
+                    binding.localAudioAcc.setText(ZegoVoiceCallExpressImpl.accAudioPath);
+                } else {
+                    ZegoVoiceCallExpressImpl.customAudioAcc = false;
+                    ZegoVoiceCallExpressImpl.accAudioPath = "";
+                    binding.localAudioAcc.setText("");
+                    binding.useLocalAudioAcc.setChecked(false);
+                }
+            }
+        });
+
+    private ActivityResultLauncher<String[]> pickAudioAccPermissionLauncher = registerForActivityResult(
+        new RequestMultiplePermissions(), new ActivityResultCallback<Map<String, Boolean>>() {
+            @Override
+            public void onActivityResult(Map<String, Boolean> result) {
+                boolean allGranted = true;
+                for (Map.Entry<String, Boolean> entry : result.entrySet()) {
+                    String permission = entry.getKey();
+                    boolean isGranted = entry.getValue();
+                    if (!isGranted) {
+                        allGranted = false;
+                        break;
+                    }
+                }
+                if (allGranted) {
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("audio/*");
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    pickAudioAccLauncher.launch(intent);
+                } else {
+                    ZegoVoiceCallExpressImpl.customAudioCapture = false;
+                    ZegoVoiceCallExpressImpl.capAudioPath = "";
                     binding.localAudioFile.setText("");
                     binding.localAudioFileSampleRate.setText("");
                 }
@@ -126,16 +189,22 @@ public class SettingsActivity extends AppCompatActivity {
             return insets;
         });
 
-        ArrayAdapter<CharSequence> envAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-            Arrays.asList("alpha", "beta", "prod"));
+        ArrayAdapter<CharSequence> envAdapter;
+        envAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+            Arrays.asList("alpha", "beta", "prod", "delta", "gamma","trial"));
         envAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerEnv.setAdapter(envAdapter);
         // 0, alpha , 1 beta,  2, prod
+        if (envAdapter.getCount() <= Storage.env()) {
+            Storage.set_env(0);
+        }
         binding.spinnerEnv.setSelection(Storage.env());
         binding.spinnerEnv.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Storage.set_env(position);
+                Storage.set_env(position);
+                ZegoAIAgentSettings.MergeLLM = (Storage.env() == 3);
             }
 
             @Override
@@ -162,22 +231,42 @@ public class SettingsActivity extends AppCompatActivity {
             ZegoAIAgentHelper.showCrashLog(v.getContext());
         });
 
+        binding.showAsrFiles.setOnClickListener(v -> {
+            ZegoAIAgentHelper.showASRLog(v.getContext());
+        });
+
+        binding.useLocalAudioAcc.setChecked(ZegoVoiceCallExpressImpl.customAudioAcc);
+        binding.useLocalAudioAcc.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    List<String> permissions = requestReadSDCardPermissionIfNeed(SettingsActivity.this);
+                    pickAudioAccPermissionLauncher.launch(permissions.toArray(new String[0]));
+                } else {
+                    ZegoVoiceCallExpressImpl.customAudioAcc = false;
+                    ZegoVoiceCallExpressImpl.accAudioPath = "";
+                    binding.localAudioAcc.setText("");
+                }
+            }
+        });
+
         binding.useLocalAudioFile.setChecked(ZegoVoiceCallExpressImpl.customAudioCapture);
         binding.useLocalAudioFile.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    requestReadSDCardPermissionIfNeed(SettingsActivity.this);
+                    List<String> permissions = requestReadSDCardPermissionIfNeed(SettingsActivity.this);
+                    pickAudioFilePermissionLauncher.launch(permissions.toArray(new String[0]));
                 } else {
                     ZegoVoiceCallExpressImpl.customAudioCapture = false;
-                    ZegoVoiceCallExpressImpl.audioPath = "";
+                    ZegoVoiceCallExpressImpl.capAudioPath = "";
                     binding.localAudioFile.setText("");
                     binding.localAudioFileSampleRate.setText("");
                 }
             }
         });
-        binding.localAudioFile.setText(ZegoVoiceCallExpressImpl.audioPath);
-        int sampleRate = AudioFileUtils.getWavSampleRate(ZegoVoiceCallExpressImpl.audioPath);
+        binding.localAudioFile.setText(ZegoVoiceCallExpressImpl.capAudioPath);
+        int sampleRate = AudioFileUtils.getWavSampleRate(ZegoVoiceCallExpressImpl.capAudioPath);
         if (sampleRate == -1) {
             binding.localAudioFileSampleRate.setText("");
         } else {
@@ -186,42 +275,144 @@ public class SettingsActivity extends AppCompatActivity {
 
         binding.appId.setText(AiCompanionConfig.getAppID() + "");
         binding.userId.setText(ZegoAIAgentConfigController.getUserInfo().userID);
-        binding.userName.setText(ZegoAIAgentConfigController.getUserInfo().userName);
+        binding.userName.setText(getPackageName());
         binding.expressVersion.setText(ZegoExpressEngine.getVersion());
+        binding.appVersionName.setText(getString(R.string.app_name));
 
-        binding.enableAec.setChecked(Storage.aec());
+        binding.enableAec.setChecked(ZegoAIAgentSettings.AEC);
         binding.enableAec.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Storage.set_aec(isChecked);
-                ZegoVoiceCallExpressImpl.AEC = isChecked;
+                ZegoAIAgentSettings.AEC = isChecked;
             }
         });
 
-        binding.enableAgc.setChecked(Storage.agc());
+        List<String> aecModeList = Arrays.stream(ZegoAECMode.values()).map(Enum::name).collect(Collectors.toList());
+        ArrayAdapter<String> aecAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, aecModeList);
+        aecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        binding.spinnerAecMode.setAdapter(aecAdapter);
+
+        if (aecAdapter.getCount() <= ZegoAIAgentSettings.AEC_MODE) {
+            ZegoAIAgentSettings.AEC_MODE = 0;
+            Storage.set_aec_mode(ZegoAIAgentSettings.AEC_MODE);
+        }
+        binding.spinnerAecMode.setSelection(ZegoAIAgentSettings.AEC_MODE);
+        binding.spinnerAecMode.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Storage.set_aec_mode(position);
+                ZegoAIAgentSettings.AEC_MODE = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.enableAgc.setChecked(ZegoAIAgentSettings.AGC);
         binding.enableAgc.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Storage.set_agc(isChecked);
-                ZegoVoiceCallExpressImpl.AGC = isChecked;
+                ZegoAIAgentSettings.AGC = isChecked;
             }
         });
 
-        binding.enableAns.setChecked(Storage.ans());
+        binding.enableAns.setChecked(ZegoAIAgentSettings.ANS);
         binding.enableAns.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Storage.set_ans(isChecked);
-                ZegoVoiceCallExpressImpl.ANS = isChecked;
+                ZegoAIAgentSettings.ANS = isChecked;
             }
         });
 
-        binding.aiAggressive.setChecked(Storage.ai_aggressive());
-        binding.aiAggressive.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        List<String> ansModeList = Arrays.stream(ZegoANSMode.values()).map(Enum::name).collect(Collectors.toList());
+        ArrayAdapter<String> ansAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, ansModeList);
+        ansAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.spinnerAnsMode.setAdapter(ansAdapter);
+        if (ansAdapter.getCount() <= ZegoAIAgentSettings.ANS_MODE) {
+            ZegoAIAgentSettings.ANS_MODE = 0;
+            Storage.set_ans_mode(ZegoAIAgentSettings.ANS_MODE);
+        }
+        binding.spinnerAnsMode.setSelection(ZegoAIAgentSettings.ANS_MODE);
+        binding.spinnerAnsMode.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Storage.set_ans_mode(position);
+                ZegoAIAgentSettings.ANS_MODE = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.localVad.setChecked(ZegoAIAgentSettings.LOCAL_VAD);
+        binding.localVad.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Storage.set_ai_aggressive(isChecked);
-                ZegoVoiceCallExpressImpl.AI_AGGRESSIVE = isChecked;
+                Storage.set_local_vad(isChecked);
+                ZegoAIAgentSettings.LOCAL_VAD = isChecked;
+            }
+        });
+
+        binding.latencyMode.setChecked(ZegoAIAgentSettings.Latency_Mode);
+        binding.latencyMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Storage.set_latency_mode(isChecked);
+                ZegoAIAgentSettings.Latency_Mode = isChecked;
+            }
+        });
+
+        List<String> audioDeivceModeList = Arrays.stream(ZegoAudioDeviceMode.values()).map(Enum::name)
+            .collect(Collectors.toList());
+        ArrayAdapter<String> audioDeviceModeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+            audioDeivceModeList);
+        audioDeviceModeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.spinnerAudioDeviceMode.setAdapter(audioDeviceModeAdapter);
+        //  audioDeivceMode 枚举值是从1开始的，也就是 第一个枚举值 postion 是 0 ，所以要 - 1
+        if (audioDeviceModeAdapter.getCount() < ZegoAIAgentSettings.AUDIO_DEVICE_MODE) {
+            int position = 1;
+            ZegoAIAgentSettings.AUDIO_DEVICE_MODE = position + 1;
+            Storage.set_audio_device_mode(position + 1);
+        }
+        binding.spinnerAudioDeviceMode.setSelection(ZegoAIAgentSettings.AUDIO_DEVICE_MODE - 1);
+        binding.spinnerAudioDeviceMode.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //  audioDeivceMode 枚举值是从1开始的，也就是 第一个枚举值postion 是 0 ，所以要 + 1
+                int deviceMode = position + 1;
+                Storage.set_audio_device_mode(deviceMode);
+                ZegoAIAgentSettings.AUDIO_DEVICE_MODE = deviceMode;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        boolean open = ZegoAIAgentSettings.AUDIO_DUCK == 1;
+        binding.audioDucking.setChecked(open);
+        binding.audioDucking.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int open = isChecked ? 1 : 0;
+                ZegoAIAgentSettings.AUDIO_DUCK = open;
+            }
+        });
+
+        binding.echoAdapter.setChecked(ZegoAIAgentSettings.ECHO_ADAPTIVE);
+        binding.echoAdapter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ZegoAIAgentSettings.ECHO_ADAPTIVE = isChecked;
             }
         });
     }
@@ -295,7 +486,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    public void requestReadSDCardPermissionIfNeed(FragmentActivity activity) {
+    public List<String> requestReadSDCardPermissionIfNeed(FragmentActivity activity) {
         List<String> permissions = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             int targetSdkVersion = activity.getApplicationInfo().targetSdkVersion;
@@ -309,7 +500,6 @@ public class SettingsActivity extends AppCompatActivity {
         } else {
             permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
-
-        permissionLauncher.launch(permissions.toArray(new String[0]));
+        return permissions;
     }
 }
