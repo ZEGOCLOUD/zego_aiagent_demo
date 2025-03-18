@@ -2804,6 +2804,12 @@ struct zego_roi_rect {
     int strength;
 };
 
+/// Position information used by the face detection.
+struct zego_face_position_info {
+    /// Coordinates used by the face detection.
+    struct zego_rect position;
+};
+
 /// View object.
 ///
 /// Configure view object, view Mode, background color
@@ -2938,6 +2944,23 @@ struct zego_stream_relay_cdn_info {
 
     /// The timestamp when the state changed, UNIX timestamp, in milliseconds.
     unsigned long long state_time;
+};
+
+/// Face detection info.
+///
+/// Face detection info.
+struct zego_face_detection_info {
+    /// The image width captured by the camera
+    int image_width;
+
+    /// The image height captured by the camera
+    int image_height;
+
+    /// Face position information list
+    struct zego_face_position_info *face_position_list;
+
+    /// Length of face position information list
+    unsigned int face_position_count;
 };
 
 /// Custom play stream resource type configuration.
@@ -3850,6 +3873,30 @@ struct zego_network_speed_test_quality {
     enum zego_stream_quality_level quality;
 };
 
+/// RTC Network Statistics
+struct zego_rtc_stats_info {
+    /// total upstream bandwidth, in kbps
+    double total_tx_bandwidth;
+
+    /// upstream average rtt, in milliseconds
+    unsigned int avg_tx_rtt;
+
+    /// upstream average packet lost rate. in percentage, 0.0 ~ 1.0
+    double avg_tx_packet_lost_rate;
+
+    /// total downlink bandwidth, in kbps
+    double total_rx_bandwidth;
+
+    /// downlink average rtt, in milliseconds
+    unsigned int avg_rx_rtt;
+
+    /// downlink average packet lost rate. in percentage, 0.0 ~ 1.0
+    double avg_rx_packet_lost_rate;
+
+    /// average peer to peer delay, in milliseconds
+    unsigned int avg_peer_to_peer_delay;
+};
+
 /// The NTP info
 struct zego_network_time_info {
     /// Network timestamp after synchronization, 0 indicates not yet synchronized
@@ -4133,6 +4180,17 @@ struct zego_screen_capture_source_info {
 
     /// The image content of the icon.
     struct zego_image_buffer icon_image;
+};
+
+/// Layer border configuration.
+///
+/// Customize the size, color, etc. of the layer border.
+struct zego_layer_border_config {
+    /// Border size, default value 4, the maximum value is 100.
+    unsigned int width;
+
+    /// Background color, the format is 0xRRGGBB, default is green, which is 0x00FF00
+    int color;
 };
 
 /// Audio source mix config

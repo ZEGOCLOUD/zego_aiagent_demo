@@ -1963,6 +1963,16 @@ class ZegoExpressEngineBridge {
         return result;
     }
 
+    int screenCaptureEnableHightLight(bool enable, ZegoLayerBorderConfig config,
+                                      int instance_index) {
+        zego_layer_border_config border_config;
+        border_config.color = config.color;
+        border_config.width = config.width;
+        int result =
+            zego_express_screen_capture_enable_hight_light(enable, border_config, instance_index);
+        return result;
+    }
+
     int screenCaptureEnableAudioCapture(bool enable, ZegoAudioFrameParam audioParam,
                                         int instance_index) {
         zego_audio_frame_param audio_param;
@@ -2880,6 +2890,10 @@ class ZegoExpressEngineBridge {
     void registerNetworkQualityCallback(void *callback_func, void *user_context) {
         zego_register_network_quality_callback(zego_on_network_quality(callback_func),
                                                user_context);
+    }
+
+    void registerRtcStatsCallback(void *callback_func, void *user_context) {
+        zego_register_rtc_stats_callback(zego_on_rtc_stats(callback_func), user_context);
     }
 
     void registerCopyrightedMusicDownloadProcessUpdateCallback(void *callback_func,

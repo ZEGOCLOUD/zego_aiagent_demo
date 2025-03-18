@@ -5706,6 +5706,18 @@ class IZegoScreenCaptureSource {
     /// @param visible Whether to show the cursor. true to show the cursor, false to not show the cursor, the default is false.
     virtual void enableCursorVisible(bool visible) = 0;
 
+    /// Set whether to highlight the capture area
+    ///
+    /// Available since: 3.20.0
+    /// Description: Set whether to highlight the capture area.
+    /// When to call: It can be called after the engine by [createScreenCaptureSource] has been initialized.
+    /// Restrictions: Only available on Windows/macOS.
+    ///
+    /// @param enable Whether to highlight the capture area. true to highlight, false to not highlight, the default is false.
+    /// @param config Highlight capture area border configuration.
+    virtual void enableHightLight(bool enable,
+                                  ZegoLayerBorderConfig config = ZegoLayerBorderConfig()) = 0;
+
     /// Whether to collect the sound of the window process during window collection
     ///
     /// Available since: 3.13.0

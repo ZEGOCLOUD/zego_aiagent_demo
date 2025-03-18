@@ -57,6 +57,7 @@ public class ZegoAIAgentConfigController {
         Log.d(TAG, "AppSettings init, userID: " + getUserInfo().userID);
     }
 
+
     public static AppExtraConfig getConfig() {
         return getInstance().appExtraConfig;
     }
@@ -163,7 +164,8 @@ public class ZegoAIAgentConfigController {
 
                                                 @Override
                                                 public void onFailed(int errorCode, String errorMsg) {
-                                                    ToastUtils.show("创建会话失败：errorCode:" + errorCode +",errorMsg:" + errorMsg);
+                                                    ToastUtils.show("创建会话失败：errorCode:" + errorCode + ",errorMsg:"
+                                                        + errorMsg);
                                                 }
                                             });
 

@@ -4,12 +4,15 @@ import android.content.Context;
 import android.text.method.ScrollingMovementMethod;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import com.google.android.material.slider.Slider;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import im.zego.aiagent.MusicDialogManager;
 import im.zego.aiagent.R;
 import im.zego.aiagent.core.ZegoAIAgentHelper;
 import im.zego.aiagent.core.data.RTCRoomMessage;
@@ -30,8 +33,22 @@ public class ZegoAgentTestView extends ConstraintLayout {
     private TextView cmdText;
     private TextView room_id;
     private TextView conversation_id;
+    private TextView currentTimeText;
+    private android.os.Handler timeHandler = new android.os.Handler(android.os.Looper.getMainLooper());
+    private final Runnable timeUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (currentTimeText != null) {
+                currentTimeText.setText(String.valueOf(System.currentTimeMillis()));
+            }
+            timeHandler.postDelayed(this, 1);
+        }
+    };
     private LinkedList<RTCRoomMessage> cmdList = new LinkedList<>();
     private static final int MAX_LOG_COUNT = 8;
+    private boolean isDumpData;
+    private Button buttonAcc;
+    private MusicDialogManager dialogManager = new MusicDialogManager(getContext());
 
     public ZegoAgentTestView(@NonNull Context context) {
         super(context);
@@ -51,6 +68,7 @@ public class ZegoAgentTestView extends ConstraintLayout {
     private void initView() {
         LayoutInflater.from(getContext()).inflate(R.layout.view_agent_test, this, true);
         mAudioDumpSwitch = findViewById(R.id.switch_audio_dump);
+        mAudioDumpSwitch.setChecked(isDumpData);
         mAudioDumpSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -78,7 +96,44 @@ public class ZegoAgentTestView extends ConstraintLayout {
 
         room_id = findViewById(R.id.log_room_id);
         conversation_id = findViewById(R.id.log_conversation_id);
+        currentTimeText = findViewById(R.id.current_time);
+        timeHandler.post(timeUpdateRunnable);
+
+        buttonAcc = findViewById(R.id.btn_bg_acc);
+        buttonAcc.setOnClickListener(v -> {
+            dialogManager.showMusicDialog();
+        });
+
+        ZegoVoiceCallProxy rtcFunction = ZegoAIAgentHelper.getVoiceCallProxy();
+
+        Slider accSlider = findViewById(R.id.acc_volumn);
+        accSlider.setValueFrom(0f);
+        accSlider.setValueTo(200);
+        accSlider.setValue(rtcFunction.getMediaPlayerVolume());
+
+        TextView accTitle = findViewById(R.id.acc_volumn_title);
+        accTitle.setText("伴奏音量调节(" + rtcFunction.getMediaPlayerVolume() + ")");
+
+        accSlider.addOnChangeListener((slider, value, fromUser) -> {
+            rtcFunction.setMediaPlayerVolume((int) value);
+            accTitle.setText("伴奏音量调节(" + value + ")");
+        });
+
+        Slider playSlider = findViewById(R.id.play_volumn);
+        playSlider.setValueFrom(0f);
+        playSlider.setValueTo(200);
+        playSlider.setValue(rtcFunction.getPlayStreamVolume());
+
+        TextView playTitle = findViewById(R.id.play_volumn_title);
+        playTitle.setText("拉流音量调节(" + rtcFunction.getPlayStreamVolume() + ")");
+
+        playSlider.addOnChangeListener((slider, value, fromUser) -> {
+            rtcFunction.setPlayStreamVolume((int) value);
+            playTitle.setText("拉流音量调节(" + value + ")");
+        });
     }
+
+    private static final String TAG = "ZegoAgentTestView";
 
     public void onPublisherQualityUpdate(String streamID, ZegoPublishStreamQuality quality) {
         publishText.setText("推流质量 : audioCaptureFPS = [" + ((int) quality.audioCaptureFPS) + "], audioSendFPS = ["
@@ -91,7 +146,9 @@ public class ZegoAgentTestView extends ConstraintLayout {
     }
 
     public void setPlayVolume(int volume) {
-        playVolume.setText("拉流音量：" + String.valueOf(volume));
+        //        playVolume.setText("拉流音量：" + String.valueOf(volume));
+        Slider playSlider = findViewById(R.id.play_volumn);
+        playSlider.setValue(volume);
     }
 
     public void onIMRecvCustomCommand(RTCRoomMessage command) {
@@ -124,5 +181,29 @@ public class ZegoAgentTestView extends ConstraintLayout {
 
     public void setConversationID(String conversationId) {
         conversation_id.setText("后台会话ID:" + conversationId);
+    }
+
+    public void setIsDumpData(boolean isDumpData) {
+        this.isDumpData = isDumpData;
+        if (mAudioDumpSwitch != null) {
+            mAudioDumpSwitch.setChecked(isDumpData);
+        }
+    }
+
+    public void loadAndPlayAcc(String name){
+        dialogManager.loadAndPlayAcc(name);
+    }
+
+
+    public void startDumpData() {
+        ZegoVoiceCallProxy rtcFunction = ZegoAIAgentHelper.getVoiceCallProxy();
+        rtcFunction.startDumpData();
+        setIsDumpData(true);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        timeHandler.removeCallbacks(timeUpdateRunnable);
     }
 }

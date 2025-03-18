@@ -258,6 +258,8 @@
                              zego_express_enable_debug_assistant)                                   \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_effects_beauty,                                 \
                              zego_express_enable_effects_beauty)                                    \
+    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_face_detection,                                 \
+                             zego_express_enable_face_detection)                                    \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_h_265_encode_fallback,                          \
                              zego_express_enable_h_265_encode_fallback)                             \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_hardware_decoder,                               \
@@ -615,6 +617,8 @@
                              zego_express_screen_capture_enable_audio_capture)                      \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_screen_capture_enable_cursor_visible,                  \
                              zego_express_screen_capture_enable_cursor_visible)                     \
+    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_screen_capture_enable_hight_light,                     \
+                             zego_express_screen_capture_enable_hight_light)                        \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_screen_capture_enable_window_activate,                 \
                              zego_express_screen_capture_enable_window_activate)                    \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_screen_capture_get_capture_source_rect,                \
@@ -1178,6 +1182,8 @@
                              zego_register_publisher_captured_video_first_frame_callback)           \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_publisher_dummy_capture_image_path_error_callback,    \
                              zego_register_publisher_dummy_capture_image_path_error_callback)       \
+    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_publisher_face_detect_info_callback,                  \
+                             zego_register_publisher_face_detect_info_callback)                     \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_publisher_low_fps_warning_callback,                   \
                              zego_register_publisher_low_fps_warning_callback)                      \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_publisher_quality_update_callback,                    \
@@ -1321,6 +1327,8 @@
                              zego_register_room_token_will_expire_callback)                         \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_room_user_update_callback,                            \
                              zego_register_room_user_update_callback)                               \
+    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_rtc_stats_callback,                                   \
+                             zego_register_rtc_stats_callback)                                      \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_screen_capture_mobile_exception_occurred_callback,    \
                              zego_register_screen_capture_mobile_exception_occurred_callback)       \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_screen_capture_mobile_start_callback,                 \
@@ -1573,6 +1581,8 @@
                                   zego_express_enable_debug_assistant)                              \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_effects_beauty,                            \
                                   zego_express_enable_effects_beauty)                               \
+            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_face_detection,                            \
+                                  zego_express_enable_face_detection)                               \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_h_265_encode_fallback,                     \
                                   zego_express_enable_h_265_encode_fallback)                        \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_hardware_decoder,                          \
@@ -1935,6 +1945,8 @@
                                   zego_express_screen_capture_enable_audio_capture)                 \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_screen_capture_enable_cursor_visible,             \
                                   zego_express_screen_capture_enable_cursor_visible)                \
+            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_screen_capture_enable_hight_light,                \
+                                  zego_express_screen_capture_enable_hight_light)                   \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_screen_capture_enable_window_activate,            \
                                   zego_express_screen_capture_enable_window_activate)               \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_screen_capture_get_capture_source_rect,           \
@@ -2515,6 +2527,8 @@
             ZEGOEXP_LOAD_FUNC_PTR(                                                                  \
                 pfnzego_register_publisher_dummy_capture_image_path_error_callback,                 \
                 zego_register_publisher_dummy_capture_image_path_error_callback)                    \
+            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_publisher_face_detect_info_callback,             \
+                                  zego_register_publisher_face_detect_info_callback)                \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_publisher_low_fps_warning_callback,              \
                                   zego_register_publisher_low_fps_warning_callback)                 \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_publisher_quality_update_callback,               \
@@ -2660,6 +2674,8 @@
                                   zego_register_room_token_will_expire_callback)                    \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_room_user_update_callback,                       \
                                   zego_register_room_user_update_callback)                          \
+            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_rtc_stats_callback,                              \
+                                  zego_register_rtc_stats_callback)                                 \
             ZEGOEXP_LOAD_FUNC_PTR(                                                                  \
                 pfnzego_register_screen_capture_mobile_exception_occurred_callback,                 \
                 zego_register_screen_capture_mobile_exception_occurred_callback)                    \

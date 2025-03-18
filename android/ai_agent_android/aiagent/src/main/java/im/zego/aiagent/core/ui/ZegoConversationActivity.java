@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import im.zego.aiagent.R;
 import im.zego.aiagent.core.ZegoAIAgentHelper;
 import im.zego.aiagent.core.sdkapi.ZegoIMProxy;
+import im.zego.aiagent.core.utils.Utils;
 
 public class ZegoConversationActivity extends AppCompatActivity {
 
@@ -16,6 +17,13 @@ public class ZegoConversationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zego_conversation);
+
+        if (savedInstanceState != null) {
+            //有可能是在后台被系统杀了，恢复到这个页面，此时启动整个app的第一个页面（可酌情处理）
+            Utils.startLauncherActivity(this);
+            finish();
+            return;
+        }
 
         ZegoIMProxy imProxy = ZegoAIAgentHelper.getImProxy();
         if (imProxy != null) {

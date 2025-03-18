@@ -93,9 +93,8 @@
   <im.zego.aiagent.core.widget.ZegoAgentTestView
     android:id="@+id/atv_test_view"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="220dp"
     android:layout_marginTop="100dp"
-    android:visibility="gone"
     app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

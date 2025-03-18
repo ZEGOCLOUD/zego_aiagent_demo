@@ -3,6 +3,7 @@ package im.zego.aiagent.core.sdkapi;
 import android.app.Application;
 import im.zego.aiagent.core.callback.AIAgentCallBack;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
+import im.zego.zegoexpress.callback.IZegoMediaPlayerLoadResourceCallback;
 
 public interface ZegoVoiceCallProxy {
 
@@ -22,9 +23,29 @@ public interface ZegoVoiceCallProxy {
 
     void destroyEngine();
 
-    void setPlayVolume(String streamID, int volume);
+    void setPlayStreamVolume(String streamID, int volume);
 
     void startDumpData();
 
+    boolean isDumpData();
+
     void stopDumpData();
+
+    void loadAudio(String audio, IZegoMediaPlayerLoadResourceCallback callback);
+
+    void startPlay();
+
+    void stopPlay();
+
+    void createMediaPlayer();
+
+    void destroyMediaPlayer();
+
+    int getMediaPlayerVolume();
+
+    void setMediaPlayerVolume(int volume);
+
+    int getPlayStreamVolume();
+
+    void setPlayStreamVolume(int volume);
 }

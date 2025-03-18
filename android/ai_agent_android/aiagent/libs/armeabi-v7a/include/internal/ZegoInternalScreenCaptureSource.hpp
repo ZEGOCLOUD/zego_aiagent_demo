@@ -63,6 +63,10 @@ class ZegoExpressScreenCaptureSourceImp : public IZegoScreenCaptureSource {
         oInternalOriginBridge->screenCaptureEnableCursorVisible(visible, instance_index_);
     }
 
+    void enableHightLight(bool enable, ZegoLayerBorderConfig config) override {
+        oInternalOriginBridge->screenCaptureEnableHightLight(enable, config, instance_index_);
+    }
+
     void enableAudioCapture(bool enable, ZegoAudioFrameParam audioParam) override {
         oInternalOriginBridge->screenCaptureEnableAudioCapture(enable, audioParam, instance_index_);
     }

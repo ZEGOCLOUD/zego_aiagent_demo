@@ -15,10 +15,10 @@ public class ZegoVoiceActivityChecker {
     private long checkSeq;
 
     public ZegoVoiceActivityChecker() {
-        this.capacity = 5; // 默认窗口500ms尺寸
+        this.capacity = 7; // 默认窗口500ms尺寸
         this.queue = new ArrayList<>(capacity);
         this.voiceActivity = false;
-        this.threshold = 11.0f / 15.0f;
+        this.threshold = 23.0f / 28.0f;
         this.checkSeq = 0;
         for (int i = 0; i < capacity; i++) {
             enqueue(0);
@@ -37,7 +37,7 @@ public class ZegoVoiceActivityChecker {
         float weightAverage = 0.0f;
         for (int i = queue.size(); i > 0; i--) {
             int item = queue.get(i - 1);
-            weightAverage += (i * item) / 15.0f;
+            weightAverage += (i * item) / 28.0f;
         }
         if (weightAverage >= threshold) {
             if (!voiceActivity) {

@@ -3800,6 +3800,30 @@ struct ZegoNetworkSpeedTestQuality {
     ZegoStreamQualityLevel quality;
 };
 
+/// RTC Network Statistics
+struct ZegoRtcStatsInfo {
+    /// total upstream bandwidth, in kbps
+    double totalTxBandwidth;
+
+    /// upstream average rtt, in milliseconds
+    unsigned int avgTxRtt;
+
+    /// upstream average packet lost rate. in percentage, 0.0 ~ 1.0
+    double avgTxPacketLostRate;
+
+    /// total downlink bandwidth, in kbps
+    double totalRxBandwidth;
+
+    /// downlink average rtt, in milliseconds
+    unsigned int avgRxRtt;
+
+    /// downlink average packet lost rate. in percentage, 0.0 ~ 1.0
+    double avgRxPacketLostRate;
+
+    /// average peer to peer delay, in milliseconds
+    unsigned int avgPeerToPeerDelay;
+};
+
 /// The NTP info
 struct ZegoNetworkTimeInfo {
     /// Network timestamp after synchronization, 0 indicates not yet synchronized
@@ -4120,6 +4144,22 @@ struct ZegoScreenCaptureSourceInfo {
 
     /// The image content of the icon.
     ZegoImageBuffer iconImage;
+};
+
+/// Layer border configuration.
+///
+/// Customize the size, color, etc. of the layer border.
+struct ZegoLayerBorderConfig {
+    /// Border size, default value 4, the maximum value is 100.
+    unsigned int width;
+
+    /// Background color, the format is 0xRRGGBB, default is green, which is 0x00FF00
+    int color;
+
+    ZegoLayerBorderConfig() {
+        width = 4;
+        color = 0x00FF00;
+    }
 };
 
 /// Audio source mix config

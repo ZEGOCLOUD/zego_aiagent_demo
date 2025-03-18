@@ -71,4 +71,6 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    implementation 'org.apache.commons:commons-text:1.10.0'
 }
