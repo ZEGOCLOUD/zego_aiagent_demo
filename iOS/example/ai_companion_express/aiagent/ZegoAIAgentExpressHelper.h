@@ -105,4 +105,19 @@ typedef void (^AIAgentCommonCallBack)(NSInteger errorCode, NSString* errMsg, NSS
 -(void)stopRtcChat:(NSString*)conversationId
         withUserId:(NSString*)userId
       withCallback:(AIAgentCommonCallBack)complete;
+
+
+/**
+ * 语音对话过程中，自定义调用TTS，通常用于AI主动发言。
+ * 对应pass接口：Action：SendAgentTTSInput, https://zegocloud.feishu.cn/wiki/FpwqwwQeyiIs3KkhlQhcDfFvn5i
+ * @param conversationId 会话Id，创建会话步骤得到的
+ * @param complete 回调，返回结果
+**/
+-(void)sendAgentTTSInput:(NSString*)conversationId
+              withUserId:(NSString*)userId
+             withAgentId:(NSString*)AgentId
+                withText:(NSString*)Text
+    withRemoveMsgHistory:(BOOL)flag
+            withCallback:(AIAgentCommonCallBack)complete;
+
 @end

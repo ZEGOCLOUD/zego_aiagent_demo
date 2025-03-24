@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSMutableDictionary<NSNumber*,ZegoAudioChatMsgModel*>* chatMsgList;
 @property (nonatomic, strong) NSMutableDictionary<NSString*,ZegoAudioChatMsgModel*>* tempAsrMsgList;
 @property (nonatomic, strong) NSMutableDictionary<NSString*,NSMutableDictionary<NSNumber*, ZegoAudioChatMsgModel*>*>* tempLLMMsgList;
+@property (nonatomic, strong) NSMutableArray<NSString*>* tempDelayRemoveLLMsgList;
 
 @end
 
@@ -26,6 +27,7 @@
         self.msgTotalCount = 0;
         self.tempAsrMsgList = [[NSMutableDictionary alloc] initWithCapacity:5];
         self.tempLLMMsgList = [[NSMutableDictionary alloc] initWithCapacity:5];
+        self.tempDelayRemoveLLMsgList = [[NSMutableArray alloc] initWithCapacity:5];
 
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableFooterView = [[UIView alloc] init];
@@ -157,25 +159,31 @@
             [self reloadTableViewInternal];
         }
     }
-    
     if (end_flag) {
-        //代码代码主要用来打日志
-        NSMutableDictionary<NSNumber*,ZegoAudioChatMsgModel*>* tempLLMMsgList = [self.tempLLMMsgList objectForKey:message_id];
-        NSArray *keysArray = [tempLLMMsgList allKeys];
-        NSArray * sortedArray = [keysArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            NSNumber* obj1N = (NSNumber*)obj1;
-            NSNumber* obj2N = (NSNumber*)obj2;
-            return [obj1N longLongValue] > [obj2N longLongValue];
-        }];
-        
-        NSString* roundSeqId=@"";
-        for (int i=0; i<sortedArray.count; i++) {
-            roundSeqId = [roundSeqId stringByAppendingFormat:@"%lld,", [[sortedArray objectAtIndex:i] longLongValue]];
+        if (self.tempDelayRemoveLLMsgList.count > 2) {
+            for (NSString* item in  self.tempDelayRemoveLLMsgList) {
+                //代码代码主要用来打日志
+                NSMutableDictionary<NSNumber*,ZegoAudioChatMsgModel*>* tempLLMMsgList = [self.tempLLMMsgList objectForKey:item];
+                NSArray *keysArray = [tempLLMMsgList allKeys];
+                NSArray * sortedArray = [keysArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                    NSNumber* obj1N = (NSNumber*)obj1;
+                    NSNumber* obj2N = (NSNumber*)obj2;
+                    return [obj1N longLongValue] > [obj2N longLongValue];
+                }];
+                
+                NSString* roundSeqId=@"";
+                for (int i=0; i<sortedArray.count; i++) {
+                    roundSeqId = [roundSeqId stringByAppendingFormat:@"%lld,", [[sortedArray objectAtIndex:i] longLongValue]];
+                }
+                
+                ZAALogI(@"onInRoomMessageReceived", @"recvllmtts remove round=%lld, totalSeqStr=%@, message_id=%@", round, roundSeqId, item);
+                [self.tempLLMMsgList removeObjectForKey:item];
+            }
+            [self.tempDelayRemoveLLMsgList removeAllObjects];
         }
-        
-        ZAALogI(@"onInRoomMessageReceived", @"recvllmtts remove round=%lld, totalSeqStr=%@, message_id=%@", round, roundSeqId, message_id);
-        [self.tempLLMMsgList removeObjectForKey:message_id];
+        [self.tempDelayRemoveLLMsgList addObject:message_id];
     }
+    
 }
 
 -(void)insertCurMsgModel:(int)cmd

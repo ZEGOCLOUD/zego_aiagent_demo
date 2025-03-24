@@ -136,6 +136,8 @@
 @property (nonatomic, assign) BOOL ansEnable;
 @property (nonatomic, assign) BOOL agcEnable;
 
+@property (nonatomic, assign) BOOL welcomeEnable;
+
 @property (nonatomic, assign) long bgmVolume;
 @property (nonatomic, assign) long ttsVolume;
 

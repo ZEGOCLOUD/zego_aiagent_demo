@@ -20,6 +20,8 @@
 #define KANS_ENABLE @"ANS_ENABLE"
 #define KANS_MODE @"ANS_MODE"
 
+#define KWELCOME_ENABLE @"WELCOME_ENABLE"
+
 static AppDataManager *_sharedInstance;
 
 @implementation AppDataManager
@@ -82,6 +84,7 @@ static AppDataManager *_sharedInstance;
         self.ttsVolume = 100;
         self.echoEnergyAdaptive = NO;
         self.audioVolumeDucking = NO;
+        self.welcomeEnable = NO;
         
         NSLog(@"AppDataManager init, userID: %@", _userID);
     }
@@ -97,6 +100,13 @@ static AppDataManager *_sharedInstance;
 -(void)setAnsMode:(long)ansMode{
     _ansMode = ansMode;
     [[NSUserDefaults standardUserDefaults] setInteger:ansMode  forKey:KANS_MODE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+-(void)setWelcomeEnable:(BOOL)welcomeEnable{
+    _welcomeEnable = welcomeEnable;
+    [[NSUserDefaults standardUserDefaults] setInteger:_welcomeEnable  forKey:KWELCOME_ENABLE];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

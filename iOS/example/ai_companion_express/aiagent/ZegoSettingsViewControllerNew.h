@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UISwitch *aecSwitch;
 @property (nonatomic, strong) UISwitch *agcSwitch;
 @property (nonatomic, strong) UISwitch *ansSwitch;
+@property (nonatomic, strong) UISwitch *welcomeSwitch;
 @property (nonatomic, strong) UISwitch *localVadSwitch;
 @property (nonatomic, strong) UISwitch *latencyModeSwitch;
 

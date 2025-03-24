@@ -122,6 +122,7 @@
         @{@"title": @"回声消除(AEC)", @"property": @"aecSwitch"},
         @{@"title": @"自动增益控制(AGC)", @"property": @"agcSwitch"},
         @{@"title": @"自动降噪(ANS)", @"property": @"ansSwitch"},
+        @{@"title": @"发送欢迎语", @"property": @"welcomeSwitch"},
 //        @{@"title": @"本地vad和打断", @"property": @"localVadSwitch"},
 //        @{@"title": @"延迟优化", @"property": @"latencyModeSwitch"}
     ];
@@ -183,6 +184,8 @@
                 switchControl.on = [AppDataManager sharedInstance].agcEnable;
             }else if([switchInfo[@"property"] isEqualToString:@"ansSwitch"]){
                 switchControl.on = [AppDataManager sharedInstance].ansEnable;
+            }else if([switchInfo[@"property"] isEqualToString:@"welcomeSwitch"]){
+                switchControl.on = [AppDataManager sharedInstance].welcomeEnable;
             }
             
             [self setValue:switchControl forKey:switchInfo[@"property"]];
@@ -355,6 +358,8 @@
         [AppDataManager sharedInstance].aecEnable = self.aecSwitch.on;
     }else if(sender == self.agcSwitch){
         [AppDataManager sharedInstance].agcEnable = self.agcSwitch.on;
+    }else if(sender == self.welcomeSwitch){
+        [AppDataManager sharedInstance].welcomeEnable = self.welcomeSwitch.on;
     }
 }
 

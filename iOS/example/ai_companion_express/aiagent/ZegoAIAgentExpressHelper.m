@@ -224,4 +224,20 @@ static ZegoAIAgentExpressHelper *_sharedInstance;
         complete(errorCode, errMsg, requestId);
     }];
 }
+
+-(void)sendAgentTTSInput:(NSString*)conversationId
+              withUserId:(NSString*)userId
+             withAgentId:(NSString*)AgentId
+                withText:(NSString*)Text
+    withRemoveMsgHistory:(BOOL)flag
+            withCallback:(AIAgentCommonCallBack)complete{
+    [[ZegoAiCompanionHttpHelper sharedInstance] sendAgentTTSInput:conversationId
+                                                       withUserId:userId
+                                                      withAgentId:AgentId
+                                                         withText:Text
+                                             withRemoveMsgHistory:flag
+                                                     withCallback:^(NSInteger errorCode, NSString *errMsg, NSString *requestId) {
+        complete(errorCode, errMsg, requestId);
+    }];
+}
 @end

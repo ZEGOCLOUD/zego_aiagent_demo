@@ -39,7 +39,6 @@
 		862C9CD72C809BDD00BE1DA9 /* zhibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C9CC12C809BD000BE1DA9 /* zhibo.png */; };
 		862C9CDF2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 862C9CDD2C81B9AC00BE1DA9 /* ZegoCustomCollectionViewCell.m */; };
 		862C9CE42C81E26800BE1DA9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 862C9CE22C81E26800BE1DA9 /* SceneDelegate.m */; };
-		863DE9F02D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DE9EF2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m */; };
 		8649AA012D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA002D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m */; };
 		8649AB8C2D1024A2003E1EB6 /* zlogger.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8649AB8B2D1024A2003E1EB6 /* zlogger.xcframework */; };
 		86756CA32CEF401E00A84E20 /* ZegoRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86756CA22CEF401E00A84E20 /* ZegoRadioButton.m */; };
@@ -61,6 +60,7 @@
 		869E4C562CEB16F4000AA962 /* ZegoAskAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 869E4C542CEB16F4000AA962 /* ZegoAskAnswerTableViewCell.m */; };
 		869E4C572CEB16F4000AA962 /* ZegoStaticsLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 869E4C552CEB16F4000AA962 /* ZegoStaticsLogView.m */; };
 		869E4C5A2CEB17C4000AA962 /* PerfStaticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 869E4C582CEB17C4000AA962 /* PerfStaticsHelper.m */; };
+		86A7C2982D913F3B00EEC2BA /* ZegoSettingsViewControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A7C2972D913F3B00EEC2BA /* ZegoSettingsViewControllerNew.m */; };
 		86B5C1A32CA1848500333A13 /* ZegoAiCompanionUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86B5C1A22CA1848500333A13 /* ZegoAiCompanionUtil.mm */; };
 		86B5C1A62CA2DA5600333A13 /* ZegoSettingsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B5C1A52CA2DA5600333A13 /* ZegoSettingsContainerView.m */; };
 		86C493132D23D487005090F1 /* AVAudioSession+Switch.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C493122D23D487005090F1 /* AVAudioSession+Switch.m */; };
@@ -170,7 +170,6 @@
 		862C9CE22C81E26800BE1DA9 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		862C9CE32C81E26800BE1DA9 /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		863DE9EE2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZegoSettingsViewControllerNew.h; sourceTree = "<group>"; };
-		863DE9EF2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZegoSettingsViewControllerNew.m; sourceTree = "<group>"; };
 		8649A9FF2D0C5AA8003E1EB6 /* ZegoAudioChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAudioChatTableView.h; sourceTree = "<group>"; };
 		8649AA002D0C5AA8003E1EB6 /* ZegoAudioChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAudioChatTableView.m; sourceTree = "<group>"; };
 		8649AB8B2D1024A2003E1EB6 /* zlogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = zlogger.xcframework; path = Libs/Zlogger/libs/ios/zlogger.xcframework; sourceTree = "<group>"; };
@@ -205,6 +204,7 @@
 		869E4C582CEB17C4000AA962 /* PerfStaticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfStaticsHelper.m; sourceTree = "<group>"; };
 		869E4C592CEB17C4000AA962 /* PerfStaticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfStaticsHelper.h; sourceTree = "<group>"; };
 		869E4C5B2CEB2FA2000AA962 /* ai_companion_ocDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ai_companion_ocDebug.entitlements; sourceTree = "<group>"; };
+		86A7C2972D913F3B00EEC2BA /* ZegoSettingsViewControllerNew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZegoSettingsViewControllerNew.m; sourceTree = "<group>"; };
 		86B5C1A12CA1848500333A13 /* ZegoAiCompanionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAiCompanionUtil.h; sourceTree = "<group>"; };
 		86B5C1A22CA1848500333A13 /* ZegoAiCompanionUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZegoAiCompanionUtil.mm; sourceTree = "<group>"; };
 		86B5C1A42CA2DA5600333A13 /* ZegoSettingsContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoSettingsContainerView.h; sourceTree = "<group>"; };
@@ -460,7 +460,7 @@
 				867C22902C00446C00F4717E /* ViewController.m */,
 				867C22922C00446C00F4717E /* Main.storyboard */,
 				863DE9EE2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.h */,
-				863DE9EF2D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m */,
+				86A7C2972D913F3B00EEC2BA /* ZegoSettingsViewControllerNew.m */,
 				867C22952C00446D00F4717E /* Assets.xcassets */,
 				867C22972C00446D00F4717E /* LaunchScreen.storyboard */,
 				867C229A2C00446D00F4717E /* Info.plist */,
@@ -771,6 +771,7 @@
 				86756CA52CF022E500A84E20 /* AiCompanionConfig.mm in Sources */,
 				86D32CEA2CCB8AC8008F6FA1 /* ZegoAIComCreateAIAgentVC.m in Sources */,
 				869E4C5A2CEB17C4000AA962 /* PerfStaticsHelper.m in Sources */,
+				86A7C2982D913F3B00EEC2BA /* ZegoSettingsViewControllerNew.m in Sources */,
 				86D32CEB2CCB8AC8008F6FA1 /* ZegoInsetsLabelView.m in Sources */,
 				86DBC0422C92880100B2A1AB /* ZegoCustomNavBarHeaderView.m in Sources */,
 				86DBC0302C89D39100B2A1AB /* UIView+Toast.m in Sources */,
@@ -807,7 +808,6 @@
 				862C9C7D2C7F15D900BE1DA9 /* ZegoAiCompanionHttpHelper.mm in Sources */,
 				869E4C562CEB16F4000AA962 /* ZegoAskAnswerTableViewCell.m in Sources */,
 				86235C8B2D2675BC006E5A06 /* ZegoAICompanionCallVCWithExpress.m in Sources */,
-				863DE9F02D7C29B600BB9E09 /* ZegoSettingsViewControllerNew.m in Sources */,
 				867C229C2C00446D00F4717E /* main.m in Sources */,
 				862C9C772C7ED94000BE1DA9 /* AppDataManager.m in Sources */,
 				86DD16D72D09B3B80098B1C0 /* ZegoPopupMenuViewCell.m in Sources */,

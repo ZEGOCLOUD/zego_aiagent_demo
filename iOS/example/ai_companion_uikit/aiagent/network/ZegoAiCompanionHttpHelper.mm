@@ -21,6 +21,7 @@ static NSString* ACTION_CreateConversation = @"CreateConversation";
 static NSString* ACTION_UpdateConversation = @"UpdateConversation";
 static NSString* ACTION_DeleteConversation = @"DeleteConversation";
 static NSString* ACTION_ResetConversationMsg = @"ResetConversationMsg";
+static NSString* ACTION_SendAgentTTSInput = @"SendAgentTTSInput";
 static NSString* ACTION_StartRtcChat = @"StartRtcChat";
 static NSString* ACTION_StopRtcChat = @"StopRtcChat";
 //模版相关
@@ -519,6 +520,31 @@ static ZegoAiCompanionHttpHelper *_sharedInstance;
         complete(errorCode, errMsg, requestId);
     }];
 }
+
+
+-(void)sendAgentTTSInput:(NSString*)conversationId
+              withUserId:(NSString*)userId
+             withAgentId:(NSString*)AgentId
+                withText:(NSString*)Text
+    withRemoveMsgHistory:(BOOL)flag
+
+            withCallback:(AICompanionCommonCallBack)complete{
+    NSURL *url = [self buildCommonUrl:BASE_URL withAction:ACTION_SendAgentTTSInput];
+    NSDictionary *params = @{@"ConversationId":conversationId,
+                             @"UserId":userId,
+                             @"AgentId":AgentId,
+                             @"Text":Text,
+                             @"RemoveMsgHistory":@(flag)};
+    
+    [self requestSvrInternal:url withParams:params withCallback:^(NSInteger errorCode,
+                                                                  NSString *errMsg,
+                                                                  NSString* requestId,
+                                                                  NSDictionary *configDict) {
+        complete(errorCode, errMsg, requestId);
+    }];
+}
+
+
 
 
 -(void)createCustomAgentTemplate:(CustomAgentConfig*)config

@@ -268,6 +268,7 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
 }
 
 -(void)startPlayStream:(NSString*)streamId{
+    [[ZegoExpressEngine sharedEngine] setPlayStreamBufferIntervalRange:self.agentStreamID min:0 max:0];
     [[ZegoExpressEngine sharedEngine] startPlayingStream:self.agentStreamID];
     [self onAfterStartPlayStream:self.agentStreamID channel:ZegoPublishChannelAux];
 }
@@ -568,6 +569,25 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
                   extendedData:(nullable NSDictionary *)extendedData
                       streamID:(NSString *)streamID{
     ZAALogI(@"onPublisherStateUpdate", @"state=%d, errorCode=%d, streamID=%@",state,errorCode, streamID);
+}
+
+- (void)onPlayerRecvAudioFirstFrame:(NSString *)streamID{
+    /**当收到服务端首帧，证明拉流连接基本已完成，在这里可以考虑请求发送欢迎语逻辑，可以保证欢迎语是完整的,对应pass文档https://zegocloud.feishu.cn/wiki/FpwqwwQeyiIs3KkhlQhcDfFvn5i，Action：SendAgentTTSInput**/
+    CharacterConfig* characterConfig = [AppDataManager sharedInstance].curCharacterConfig;
+    NSString* conversationId = characterConfig.conversationId;
+    NSString* userId = self.userID;
+    NSString* agentStreamID = self.agentStreamID;
+    NSString* welcomeString =@"宝宝，欢迎你来哦";
+    if (AppDataManager.sharedInstance.welcomeEnable && [agentStreamID isEqualToString:streamID]) {
+        [[ZegoAIAgentExpressHelper sharedInstance] sendAgentTTSInput:conversationId
+                                                          withUserId:userId
+                                                         withAgentId:characterConfig.agentId
+                                                            withText:welcomeString
+                                                withRemoveMsgHistory:NO
+                                                        withCallback:^(NSInteger errorCode, NSString *errMsg, NSString *requestId) {
+            ZAALogI(@"onPlayerRecvAudioFirstFrame", @"errorCode=%d, streamID=%@, welcomeString=%@",errorCode, streamID, welcomeString);
+        }];
+    }
 }
 
 //监听房间推流信息更新

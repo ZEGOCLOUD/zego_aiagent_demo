@@ -83,6 +83,15 @@ typedef void (^AICompanionOtherCommonCallBack)(NSInteger errorCode, NSString* er
                          AgentTemplateId:(NSString*)agentTemplateId
                             withCallback:(AICompanionCommonCallBack)complete;
 
+
+-(void)sendAgentTTSInput:(NSString*)conversationId
+              withUserId:(NSString*)userId
+             withAgentId:(NSString*)AgentId
+                withText:(NSString*)Text
+    withRemoveMsgHistory:(BOOL)flag
+            withCallback:(AICompanionCommonCallBack)complete;
+
+
 -(void)uploadAvatarHeaderImage:(NSString*)userId
                 withLoacalPath:(NSString*)localPath
 withCallback:(AICompanionUploadImageCallBack)complete;
