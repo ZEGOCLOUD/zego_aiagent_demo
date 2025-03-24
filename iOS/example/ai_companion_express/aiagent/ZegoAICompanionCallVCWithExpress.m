@@ -268,7 +268,7 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
 }
 
 -(void)startPlayStream:(NSString*)streamId{
-    [[ZegoExpressEngine sharedEngine] setPlayStreamBufferIntervalRange:self.agentStreamID min:0 max:0];
+    [[ZegoExpressEngine sharedEngine] setPlayStreamBufferIntervalRange:self.agentStreamID min:0 max:4000];
     [[ZegoExpressEngine sharedEngine] startPlayingStream:self.agentStreamID];
     [self onAfterStartPlayStream:self.agentStreamID channel:ZegoPublishChannelAux];
 }
