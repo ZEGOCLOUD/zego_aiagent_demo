@@ -38,6 +38,7 @@
 
 @property (nonatomic, strong) UILabel *counterLabel;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) ZegoMediaPlayer* mediaPlayer;
 
 
 
@@ -73,6 +74,11 @@
 -(void)dealloc{
     //关闭VAD
     [[ZegoExpressEngine sharedEngine] stopSoundLevelMonitor];
+    
+    //停止房间BGM播放
+    [self.mediaPlayer stop];
+    [[ZegoExpressEngine sharedEngine]destroyMediaPlayer:self.mediaPlayer];
+    self.mediaPlayer = nil;
 }
 
 -(void)viewDidLoad{
@@ -349,6 +355,27 @@
     [dateFormatter setDateFormat:@"HH:mm:ss.SSS"];
     NSString *currentDateStr = [dateFormatter stringFromDate: detailDate];
     self.counterLabel.text = currentDateStr;
+}
+
+-(void)playRoomBGMForTest{
+    self.mediaPlayer = [[ZegoExpressEngine sharedEngine] createMediaPlayer];
+    [self.mediaPlayer enableRepeat:YES];
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+    NSString *filePath = [bundlePath stringByAppendingPathComponent:@"banzou1.wav"];
+    [self.mediaPlayer loadResource:filePath callback:^(int errorCode) {
+        if (errorCode == 0) {
+            [self.mediaPlayer start];
+            [self.mediaPlayer setPlayVolume:[AppDataManager sharedInstance].bgmVolume];
+        }else{
+            ZAALogI(@"joinRoom", @"result code=%d", errorCode);
+        }
+    }];
+}
+
+-(void)startDumpData{
+    ZegoDumpDataConfig* config = [[ZegoDumpDataConfig alloc]init];
+    config.dataType = ZegoDumpDataTypeAudio;
+    [[ZegoExpressEngine sharedEngine] startDumpData:config];
 }
 
 @end

@@ -39,7 +39,6 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
 @property (nonatomic, strong) ZegoSettingsContainerView* settingsContainerView;
 @property (nonatomic, strong) UIImageView* headAvatar;
 @property (nonatomic, assign) int64_t lastCMD1Seq; //该标志用来防治消息收取乱序
-//@property (nonatomic, strong) AskAnswerStatics* askAnswerStatics;
 
 //下面成员变量是用来实现快速打断逻辑
 @property (nonatomic, strong)ZegoVoiceActivityChecker* vadChecker;
@@ -62,8 +61,7 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
         self.curVolume = 100;
         self.lastCMD1Seq = 0;
         self.localVadSwitch = NO; //默认关闭的
-//        self.curBGMVolume = 100;
-        
+
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(adjustTTSVolume:)
                                                      name:@"adjust_tts_volume" object:nil];
@@ -187,10 +185,6 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
         }
     }];
     
-    [self.mediaPlayer stop];
-    [[ZegoExpressEngine sharedEngine]destroyMediaPlayer:self.mediaPlayer];
-    self.mediaPlayer = nil;
-    
     [self setPlayVolumeInternal:0];
     [[ZegoExpressEngine sharedEngine] stopPlayingStream:self.agentStreamID];
     [[ZegoExpressEngine sharedEngine] stopPublishingStream];
@@ -219,6 +213,7 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
     [self unInit];
 }
 
+
 -(void)initZegoExpressEngine{
     ZegoEngineProfile* profile = [[ZegoEngineProfile alloc]init];
     profile.appID = [AppDataManager sharedInstance].appID;
@@ -226,11 +221,17 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
 //    profile.scenario = ZegoScenarioStandardVoiceCall;
     profile.scenario = ZegoScenarioHighQualityChatroom;
     //设置该场景可以避免申请相机权限，接入方应按自己的业务场景设置具体值
+    
     ZegoEngineConfig* engineConfig = [[ZegoEngineConfig alloc] init];
+    
+    int set_audio_volume_ducking_mode = [AppDataManager sharedInstance].audioVolumeDucking ? 1:0;
+    NSString* enable_echo_energy_adaptive = [AppDataManager sharedInstance].echoEnergyAdaptive ? @"true":@"false";
     engineConfig.advancedConfig = @{
         @"notify_remote_device_unknown_status": @"true",
         @"notify_remote_device_init_status":@"true",
         @"enforce_audio_loopback_in_sync": @"true", /**该配置用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
+        @"set_audio_volume_ducking_mode":@(set_audio_volume_ducking_mode),/**该配置是用来做音量闪避的**/
+        @"enable_echo_energy_adaptive":enable_echo_energy_adaptive,/**该配置是用来做播放音量自适用**/
     };
     
     [ZegoExpressEngine setEngineConfig:engineConfig];
@@ -305,25 +306,9 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
     [[ZegoExpressEngine sharedEngine] loginRoom:self.roomId user:user config:roomConfig callback:^(int errorCode, NSDictionary * _Nonnull extendedData) {
         ZAALogI(@"joinRoom", @"result code=%d", errorCode);
         
-        self.mediaPlayer = [[ZegoExpressEngine sharedEngine] createMediaPlayer];
-        [self.mediaPlayer enableRepeat:YES];
-        NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-        NSString *filePath = [bundlePath stringByAppendingPathComponent:@"banzou1.wav"];
-        [self.mediaPlayer loadResource:filePath callback:^(int errorCode) {
-            if (errorCode == 0) {
-                [self.mediaPlayer start];
-                
-                
-                [self.mediaPlayer setPlayVolume:[AppDataManager sharedInstance].bgmVolume];
-            }else{
-                ZAALogI(@"joinRoom", @"result code=%d", errorCode);
-            }
-        }];
+        //播放房间背景音乐，这里请客户同学注释掉
+        [self playRoomBGMForTest];
         
-        //默认开始音频数据转储
-        ZegoDumpDataConfig* config = [[ZegoDumpDataConfig alloc]init];
-        config.dataType = ZegoDumpDataTypeAudio;
-        [[ZegoExpressEngine sharedEngine] startDumpData:config];
         /**下面用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
 //        NSString *params_publish = @"{\"method\":\"liveroom.audio.set_publish_latency_mode\",\"params\":{\"mode\":1,\"channel\":0}}";
 //        [[ZegoExpressEngine sharedEngine] callExperimentalAPI:params_publish];
@@ -331,6 +316,9 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
         
         //进房后开始推流
         [self startPushlishStream];
+        
+        //默认开始音频数据转储,客户同学请注意注释掉
+        [self startDumpData];
         
         complete(errorCode, extendedData);
     }];

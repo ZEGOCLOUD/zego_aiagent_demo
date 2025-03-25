@@ -123,6 +123,9 @@
         @{@"title": @"自动增益控制(AGC)", @"property": @"agcSwitch"},
         @{@"title": @"自动降噪(ANS)", @"property": @"ansSwitch"},
         @{@"title": @"发送欢迎语", @"property": @"welcomeSwitch"},
+        
+        @{@"title": @"音量闪避", @"property": @"audioVolumeDuckSwitch"},
+        @{@"title": @"音量播放自适用", @"property": @"echoEneryAdaptiveSwitch"},
 //        @{@"title": @"本地vad和打断", @"property": @"localVadSwitch"},
 //        @{@"title": @"延迟优化", @"property": @"latencyModeSwitch"}
     ];
@@ -151,8 +154,11 @@
                 envText = @"delta";
             }else if(env_type.integerValue == 5){
                 envText = @"gamma";
-            }else if(env_type.integerValue == 9){
-                envText = @"huiwan";
+            }else if(
+                     ///    旧huiW
+                     env_type.integerValue == 9
+                     || env_type.integerValue == 10){
+                envText = @"zeta";///trail
             }
             
             [self.envSwitchButton setTitle:envText forState:UIControlStateNormal];
@@ -186,6 +192,10 @@
                 switchControl.on = [AppDataManager sharedInstance].ansEnable;
             }else if([switchInfo[@"property"] isEqualToString:@"welcomeSwitch"]){
                 switchControl.on = [AppDataManager sharedInstance].welcomeEnable;
+            }else if([switchInfo[@"property"] isEqualToString:@"audioVolumeDuckSwitch"]){
+                switchControl.on = [AppDataManager sharedInstance].audioVolumeDucking;
+            }else if([switchInfo[@"property"] isEqualToString:@"echoEneryAdaptiveSwitch"]){
+                switchControl.on = [AppDataManager sharedInstance].echoEnergyAdaptive;
             }
             
             [self setValue:switchControl forKey:switchInfo[@"property"]];
@@ -358,8 +368,15 @@
         [AppDataManager sharedInstance].aecEnable = self.aecSwitch.on;
     }else if(sender == self.agcSwitch){
         [AppDataManager sharedInstance].agcEnable = self.agcSwitch.on;
+    }else if(sender == self.agcSwitch){
+        [AppDataManager sharedInstance].agcEnable = self.agcSwitch.on;
     }else if(sender == self.welcomeSwitch){
         [AppDataManager sharedInstance].welcomeEnable = self.welcomeSwitch.on;
+    }
+    else if(sender == self.audioVolumeDuckSwitch){
+        [AppDataManager sharedInstance].audioVolumeDucking = self.audioVolumeDuckSwitch.on;
+    }else if(sender == self.echoEneryAdaptiveSwitch){
+        [AppDataManager sharedInstance].echoEnergyAdaptive = self.echoEneryAdaptiveSwitch.on;
     }
 }
 
@@ -440,7 +457,7 @@
                                                                              message:nil
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
     
-    NSArray *modes = @[@"alpha", @"beta", @"publish",@"delta", @"gamma", @"huiwan"];
+    NSArray *modes = @[@"alpha", @"beta", @"publish",@"delta", @"gamma", @"zeta"];
     for (NSString *mode in modes) {
         UIAlertAction *action = [UIAlertAction actionWithTitle:mode
                                                        style:UIAlertActionStyleDefault
@@ -449,7 +466,7 @@
 
             
             NSNumber* env_type =  [[NSUserDefaults standardUserDefaults] objectForKey:@"env_type"];
-            if (env_type.integerValue < 1 ||env_type.integerValue > 9) {
+            if (env_type.integerValue < 1 ||env_type.integerValue > 10) {
                 env_type = @(1);
             }
             
@@ -463,8 +480,8 @@
                 env_type = @(4);
             }else if([mode isEqualToString:@"gamma"]){
                 env_type = @(5);
-            }else if([mode isEqualToString:@"huiwan"]){
-                env_type = @(9);
+            }else if([mode isEqualToString:@"zeta"]){///    trail
+                env_type = @(10);
             }
 
 

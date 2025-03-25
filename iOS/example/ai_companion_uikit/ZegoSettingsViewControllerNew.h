@@ -22,6 +22,9 @@
 @property (nonatomic, strong) UISwitch *localVadSwitch;
 @property (nonatomic, strong) UISwitch *latencyModeSwitch;
 
+@property(nonatomic, strong)UISwitch* audioVolumeDuckSwitch;
+@property(nonatomic, strong)UISwitch* echoEneryAdaptiveSwitch;
+
 @property (nonatomic, strong) UIButton *shareLogButton;
 @property (nonatomic, strong) UIButton *clearLogButton;
 @property (nonatomic, strong) UIButton *saveRestartButton;

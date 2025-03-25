@@ -69,7 +69,7 @@ static AppDataManager *_sharedInstance;
         if (aec_mode_serialize) {
             self.aecMode = [aec_mode_serialize longValue];
         }else{
-            self.aecMode =3;    //ZegoAECModeSoft = 2,
+            self.aecMode =3;    //ZegoAECModeAI = 3,
         }
         
         
@@ -80,10 +80,10 @@ static AppDataManager *_sharedInstance;
             self.ansMode =4;    //ZegoANSModeAIBalanced = 4,
         }
         
-        self.bgmVolume = 80;
+        self.bgmVolume = 60;
         self.ttsVolume = 100;
-        self.echoEnergyAdaptive = NO;
-        self.audioVolumeDucking = NO;
+        self.echoEnergyAdaptive = YES;
+        self.audioVolumeDucking = YES;
         self.welcomeEnable = NO;
         
         NSLog(@"AppDataManager init, userID: %@", _userID);

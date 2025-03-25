@@ -26,13 +26,13 @@ typedef NS_ENUM(NSInteger, ChatSessionState) {
 @property (nonatomic, assign) ChatSessionState chatSessionState;
 @property (nonatomic, assign) BOOL localVadSwitch;
 @property (nonatomic, strong) ZegoCallVCNameUIComponent *callVCNameStatusCom;
-@property (nonatomic, strong) ZegoMediaPlayer* mediaPlayer;
-@property (nonatomic, assign) int curBGMVolume;
 
 //暴露出方法给子类重载
 -(void)onLeaveButtonClicked:(UIButton *)sender;
 -(void)initZegoExpressEngine;
 -(void)setPlayVolumeInternal:(int)volume;
+-(void)playRoomBGMForTest;
+-(void)startDumpData;
 @end
 
 NS_ASSUME_NONNULL_END
