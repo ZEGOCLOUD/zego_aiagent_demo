@@ -203,8 +203,6 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Storage.set_env(position);
-                Storage.set_env(position);
-                ZegoAIAgentSettings.MergeLLM = (Storage.env() == 3);
             }
 
             @Override

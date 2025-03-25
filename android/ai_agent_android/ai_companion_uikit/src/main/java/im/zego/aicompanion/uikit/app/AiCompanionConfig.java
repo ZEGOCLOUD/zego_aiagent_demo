@@ -34,12 +34,47 @@ public class AiCompanionConfig {
 
     }
 
+
+    static class Delta {
+
+        //mEnv 3
+        public static long appID = ;
+        public static String serverSecret = ;
+        public static String appSign = ;
+
+    }
+
+    static class Gamma {
+
+        //mEnv 4
+        public static long appID = ;
+        public static String serverSecret = ;
+        public static String appSign = ;
+
+    }
+
+    static class Trial {
+
+        //mEnv 5
+        public static long appID = ;
+        public static String appSign = ;
+        public static String serverSecret = ;
+
+    }
+
+
     public static long getAppID() {
         int env = Storage.env();
         if (env == 0) {
             return Alpha.appID;
         } else if (env == 1) {
             return Beta.appID;
+        } else if (env == 3) {
+            return Delta.appID;
+        } else if (env == 4) {
+            return Gamma.appID;
+        } else if (env == 5) {
+            return Trial.appID;
         } else {
             return Prod.appID;
         }
@@ -51,6 +86,12 @@ public class AiCompanionConfig {
             return Alpha.serverSecret;
         } else if (env == 1) {
             return Beta.serverSecret;
+        } else if (env == 3) {
+            return Delta.serverSecret;
+        } else if (env == 4) {
+            return Gamma.serverSecret;
+        } else if (env == 5) {
+            return Trial.serverSecret;
         } else {
             return Prod.serverSecret;
         }
@@ -62,6 +103,12 @@ public class AiCompanionConfig {
             return Alpha.appSign;
         } else if (env == 1) {
             return Beta.appSign;
+        } else if (env == 3) {
+            return Delta.appSign;
+        } else if (env == 4) {
+            return Gamma.appSign;
+        } else if (env == 5) {
+            return Trial.appSign;
         } else {
             return Prod.appSign;
         }

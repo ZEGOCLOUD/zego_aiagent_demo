@@ -2,8 +2,6 @@ package im.zego.aiagent.core;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 import com.google.gson.Gson;
 import im.zego.aiagent.core.data.RTCRoomMessage;
 import java.io.File;
@@ -17,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.apache.commons.text.similarity.LevenshteinDistance;
-import timber.log.Timber;
 
 public class ASRChecker {
 
@@ -160,16 +157,13 @@ public class ASRChecker {
             if (findMessage.isPresent()) {
                 RTCRoomMessage existedMessage = findMessage.get();
                 if (existedMessage.seq_id < newMessage.seq_id) {
-                    Timber.d("本地seq_id 比较小，更新消息 = [" + newMessage + "]");
                     existedMessage.seq_id = newMessage.seq_id;
                     existedMessage.timestamp = newMessage.timestamp;
                     existedMessage.round = newMessage.round;
                     existedMessage.data = newMessage.data;
                 } else {
-                    Timber.d("本地seq_id 比较大，不用更新 = [" + newMessage + "]");
                 }
             } else {
-                Timber.d("新消息，直接插入 = [" + newMessage + "]");
                 rtcMessageList.add(newMessage);
             }
         }

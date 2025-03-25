@@ -306,7 +306,7 @@
           android:layout_height="wrap_content"
           android:paddingStart="8dp"
           android:paddingEnd="8dp"
-          android:text="回声能量自适应" />
+          android:text="播放音量自适应" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
           android:id="@+id/local_vad"
