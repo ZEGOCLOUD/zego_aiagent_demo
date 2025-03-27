@@ -8,7 +8,6 @@ import im.zego.aiagent.core.ZegoAIAgentSettings;
 import im.zego.aiagent.core.callback.AIAgentCallBack;
 import im.zego.aiagent.core.controller.ZegoAIAgentConfigController;
 import im.zego.aiagent.core.utils.AudioFileUtils;
-import im.zego.aiagent.core.utils.Utils;
 import im.zego.zegoexpress.ZegoExpressEngine;
 import im.zego.zegoexpress.ZegoMediaPlayer;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
@@ -30,6 +29,7 @@ import im.zego.zegoexpress.entity.ZegoCustomAudioConfig;
 import im.zego.zegoexpress.entity.ZegoDumpDataConfig;
 import im.zego.zegoexpress.entity.ZegoEngineConfig;
 import im.zego.zegoexpress.entity.ZegoEngineProfile;
+import im.zego.zegoexpress.entity.ZegoNetworkTimeInfo;
 import im.zego.zegoexpress.entity.ZegoPlayStreamQuality;
 import im.zego.zegoexpress.entity.ZegoPublishStreamQuality;
 import im.zego.zegoexpress.entity.ZegoRoomConfig;
@@ -43,6 +43,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -80,12 +81,11 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
         Timber.d("LOCAL_VAD: " + ZegoAIAgentSettings.LOCAL_VAD);
         Timber.d("Latency_Mode: " + ZegoAIAgentSettings.Latency_Mode);
         Timber.d("AUDIO_DUCK: " + ZegoAIAgentSettings.AUDIO_DUCK);
-        Timber.d("ECHO_ADAPTIVE: " + ZegoAIAgentSettings.ECHO_ADAPTIVE);
+        Timber.d("ECHO_ADAPTIVE: " + ZegoAIAgentSettings.VOLUME_ADAPTIVE);
         Timber.d("mediaPlayerVolume: " + ZegoAIAgentSettings.mediaPlayerVolume);
         Timber.d("playStreamVolume: " + ZegoAIAgentSettings.playStreamVolume);
         Timber.d("defaultShowTestView: " + ZegoAIAgentSettings.defaultShowTestView);
         Timber.d("autoDump: " + ZegoAIAgentSettings.autoDump);
-        Timber.d("MergeLLM: " + ZegoAIAgentSettings.MergeLLM);
 
         ZegoEngineProfile profile = new ZegoEngineProfile();
         profile.appID = ZegoAIAgentConfigController.getInstance().appID;
@@ -103,7 +103,7 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
         /*********************************************************************************************************/
 
         advanceConfig.put("set_audio_volume_ducking_mode", String.valueOf(ZegoAIAgentSettings.AUDIO_DUCK));
-        advanceConfig.put("enable_echo_energy_adaptive", String.valueOf(ZegoAIAgentSettings.ECHO_ADAPTIVE));
+        advanceConfig.put("enable_rnd_volume_adaptive", String.valueOf(ZegoAIAgentSettings.VOLUME_ADAPTIVE));
 
         if (customAudioCapture) {
             advanceConfig.put("ext_capture_and_inner_render", "true");
@@ -245,6 +245,7 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
                         ZegoStream item = streamList.get(i);
                         if (item.streamID.equals(robotStreamId)) {
                             setPlayStreamVolume(ZegoAIAgentSettings.playStreamVolume);
+                            ZegoExpressEngine.getEngine().setPlayStreamBufferIntervalRange(robotStreamId,0,4000);
                             ZegoExpressEngine.getEngine().startPlayingStream(robotStreamId);
                             if (ZegoAIAgentSettings.Latency_Mode) {
                                 /**下面用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
@@ -271,8 +272,9 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
             @Override
             public void onIMRecvCustomCommand(String roomID, ZegoUser fromUser, String command) {
                 super.onIMRecvCustomCommand(roomID, fromUser, command);
+                ZegoNetworkTimeInfo networkTimeInfo = ZegoExpressEngine.getEngine().getNetworkTimeInfo();
                 Timber.d("onIMRecvCustomCommand() called with: roomID = [" + roomID + "], fromUser.userID = ["
-                    + fromUser.userID + ", userName=" + fromUser.userName + "], command = [" + command + "]");
+                    + fromUser.userID + ", userName=" + fromUser.userName + "], command = [" + command + "],networkTimeInfo:" + new Date(networkTimeInfo.timestamp));
                 if (eventHandler != null) {
                     eventHandler.onIMRecvCustomCommand(roomID, fromUser, command);
                 }

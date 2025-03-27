@@ -203,8 +203,6 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Storage.set_env(position);
-                Storage.set_env(position);
-                ZegoAIAgentSettings.MergeLLM = (Storage.env() == 3);
             }
 
             @Override
@@ -408,11 +406,11 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        binding.echoAdapter.setChecked(ZegoAIAgentSettings.ECHO_ADAPTIVE);
+        binding.echoAdapter.setChecked(ZegoAIAgentSettings.VOLUME_ADAPTIVE);
         binding.echoAdapter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ZegoAIAgentSettings.ECHO_ADAPTIVE = isChecked;
+                ZegoAIAgentSettings.VOLUME_ADAPTIVE = isChecked;
             }
         });
     }

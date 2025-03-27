@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.material.slider.Slider;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-import im.zego.aiagent.MusicDialogManager;
 import im.zego.aiagent.R;
 import im.zego.aiagent.core.ZegoAIAgentHelper;
 import im.zego.aiagent.core.data.RTCRoomMessage;
@@ -190,7 +189,7 @@ public class ZegoAgentTestView extends ConstraintLayout {
         }
     }
 
-    public void loadAndPlayAcc(String name){
+    public void loadAndPlayAcc(String name) {
         dialogManager.loadAndPlayAcc(name);
     }
 

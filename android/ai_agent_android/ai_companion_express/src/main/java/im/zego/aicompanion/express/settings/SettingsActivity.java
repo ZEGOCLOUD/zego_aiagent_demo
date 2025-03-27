@@ -191,7 +191,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> envAdapter;
         envAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-            Arrays.asList("alpha", "beta", "prod", "delta", "gamma"));
+            Arrays.asList("alpha", "beta", "prod", "delta", "gamma","trial"));
         envAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerEnv.setAdapter(envAdapter);
         // 0, alpha , 1 beta,  2, prod
@@ -203,8 +203,6 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Storage.set_env(position);
-                Storage.set_env(position);
-                ZegoAIAgentSettings.MergeLLM = (Storage.env() == 3);
             }
 
             @Override
@@ -408,11 +406,11 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        binding.echoAdapter.setChecked(ZegoAIAgentSettings.ECHO_ADAPTIVE);
+        binding.echoAdapter.setChecked(ZegoAIAgentSettings.VOLUME_ADAPTIVE);
         binding.echoAdapter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ZegoAIAgentSettings.ECHO_ADAPTIVE = isChecked;
+                ZegoAIAgentSettings.VOLUME_ADAPTIVE = isChecked;
             }
         });
     }

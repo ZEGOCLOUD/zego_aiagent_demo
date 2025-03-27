@@ -83,9 +83,12 @@
 
   <LinearLayout
     android:id="@+id/acc_volumn_layout"
-    android:layout_width="match_parent"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
+    app:layout_constraintEnd_toStartOf="@+id/play_volumn_layout"
+    app:layout_constraintHorizontal_weight="1"
+    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/info_container">
 
     <TextView
@@ -98,21 +101,24 @@
     <com.google.android.material.slider.Slider
       android:id="@+id/acc_volumn"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
-      android:layout_marginEnd="8dp"
+      android:layout_height="20dp"
+      android:padding="0dp"
       android:stepSize="1.0"
-      android:valueFrom="0.0"
-      android:valueTo="100.0" />
+      app:thumbRadius="4dp"
+      app:trackHeight="2dp" />
 
   </LinearLayout>
 
   <LinearLayout
     android:id="@+id/play_volumn_layout"
-    android:layout_width="match_parent"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintTop_toBottomOf="@+id/acc_volumn_layout">
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="@+id/acc_volumn_layout"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_weight="1"
+    app:layout_constraintStart_toEndOf="@+id/acc_volumn_layout"
+    app:layout_constraintTop_toTopOf="@+id/acc_volumn_layout">
 
     <TextView
       android:id="@+id/play_volumn_title"
@@ -124,12 +130,11 @@
     <com.google.android.material.slider.Slider
       android:id="@+id/play_volumn"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
-      android:layout_marginEnd="8dp"
+      android:layout_height="20dp"
+      android:padding="0dp"
       android:stepSize="1.0"
-      android:valueFrom="0.0"
-      android:valueTo="100.0" />
+      app:thumbRadius="4dp"
+      app:trackHeight="2dp" />
 
   </LinearLayout>
 

@@ -224,8 +224,6 @@
                              zego_express_enable_audio_capture_device)                              \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_audio_mixing,                                   \
                              zego_express_enable_audio_mixing)                                      \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_aux_bgm_balance,                                \
-                             zego_express_enable_aux_bgm_balance)                                   \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_beautify, zego_express_enable_beautify)         \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_before_audio_prep_audio_data,                   \
                              zego_express_enable_before_audio_prep_audio_data)                      \
@@ -258,8 +256,6 @@
                              zego_express_enable_debug_assistant)                                   \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_effects_beauty,                                 \
                              zego_express_enable_effects_beauty)                                    \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_face_detection,                                 \
-                             zego_express_enable_face_detection)                                    \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_h_265_encode_fallback,                          \
                              zego_express_enable_h_265_encode_fallback)                             \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_enable_hardware_decoder,                               \
@@ -519,8 +515,6 @@
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_mute_speaker, zego_express_mute_speaker)               \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_post_windows_message,                                  \
                              zego_express_post_windows_message)                                     \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_post_zego_callback_task,                               \
-                             zego_express_post_zego_callback_task)                                  \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_range_audio_enable_microphone,                         \
                              zego_express_range_audio_enable_microphone)                            \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_range_audio_enable_spatializer,                        \
@@ -617,8 +611,6 @@
                              zego_express_screen_capture_enable_audio_capture)                      \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_screen_capture_enable_cursor_visible,                  \
                              zego_express_screen_capture_enable_cursor_visible)                     \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_screen_capture_enable_hight_light,                     \
-                             zego_express_screen_capture_enable_hight_light)                        \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_screen_capture_enable_window_activate,                 \
                              zego_express_screen_capture_enable_window_activate)                    \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_screen_capture_get_capture_source_rect,                \
@@ -745,8 +737,6 @@
                              zego_express_set_custom_video_capture_rotation)                        \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_custom_video_capture_transform_matrix,             \
                              zego_express_set_custom_video_capture_transform_matrix)                \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_dummy_capture_image_params,                        \
-                             zego_express_set_dummy_capture_image_params)                           \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_dummy_capture_image_path,                          \
                              zego_express_set_dummy_capture_image_path)                             \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_effects_beauty_param,                              \
@@ -765,8 +755,6 @@
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_log_config, zego_express_set_log_config)           \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_low_light_enhancement,                             \
                              zego_express_set_low_light_enhancement)                                \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_low_light_enhancement_params,                      \
-                             zego_express_set_low_light_enhancement_params)                         \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_min_video_bitrate_for_traffic_control,             \
                              zego_express_set_min_video_bitrate_for_traffic_control)                \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_express_set_min_video_bitrate_for_traffic_control_by_channel,  \
@@ -1182,8 +1170,6 @@
                              zego_register_publisher_captured_video_first_frame_callback)           \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_publisher_dummy_capture_image_path_error_callback,    \
                              zego_register_publisher_dummy_capture_image_path_error_callback)       \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_publisher_face_detect_info_callback,                  \
-                             zego_register_publisher_face_detect_info_callback)                     \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_publisher_low_fps_warning_callback,                   \
                              zego_register_publisher_low_fps_warning_callback)                      \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_publisher_quality_update_callback,                    \
@@ -1287,8 +1273,6 @@
                              zego_register_recv_room_transparent_message_callback)                  \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_recv_windows_message_callback,                        \
                              zego_register_recv_windows_message_callback)                           \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_recv_zego_callback_task,                              \
-                             zego_register_recv_zego_callback_task)                                 \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_remote_audio_spectrum_update_callback,                \
                              zego_register_remote_audio_spectrum_update_callback)                   \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_remote_camera_state_update_callback,                  \
@@ -1327,8 +1311,6 @@
                              zego_register_room_token_will_expire_callback)                         \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_room_user_update_callback,                            \
                              zego_register_room_user_update_callback)                               \
-    ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_rtc_stats_callback,                                   \
-                             zego_register_rtc_stats_callback)                                      \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_screen_capture_mobile_exception_occurred_callback,    \
                              zego_register_screen_capture_mobile_exception_occurred_callback)       \
     ZEGOEXP_DECLARE_FUNC_PTR(pfnzego_register_screen_capture_mobile_start_callback,                 \
@@ -1547,8 +1529,6 @@
                                   zego_express_enable_audio_capture_device)                         \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_audio_mixing,                              \
                                   zego_express_enable_audio_mixing)                                 \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_aux_bgm_balance,                           \
-                                  zego_express_enable_aux_bgm_balance)                              \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_beautify, zego_express_enable_beautify)    \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_before_audio_prep_audio_data,              \
                                   zego_express_enable_before_audio_prep_audio_data)                 \
@@ -1581,8 +1561,6 @@
                                   zego_express_enable_debug_assistant)                              \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_effects_beauty,                            \
                                   zego_express_enable_effects_beauty)                               \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_face_detection,                            \
-                                  zego_express_enable_face_detection)                               \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_h_265_encode_fallback,                     \
                                   zego_express_enable_h_265_encode_fallback)                        \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_enable_hardware_decoder,                          \
@@ -1847,8 +1825,6 @@
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_mute_speaker, zego_express_mute_speaker)          \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_post_windows_message,                             \
                                   zego_express_post_windows_message)                                \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_post_zego_callback_task,                          \
-                                  zego_express_post_zego_callback_task)                             \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_range_audio_enable_microphone,                    \
                                   zego_express_range_audio_enable_microphone)                       \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_range_audio_enable_spatializer,                   \
@@ -1945,8 +1921,6 @@
                                   zego_express_screen_capture_enable_audio_capture)                 \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_screen_capture_enable_cursor_visible,             \
                                   zego_express_screen_capture_enable_cursor_visible)                \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_screen_capture_enable_hight_light,                \
-                                  zego_express_screen_capture_enable_hight_light)                   \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_screen_capture_enable_window_activate,            \
                                   zego_express_screen_capture_enable_window_activate)               \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_screen_capture_get_capture_source_rect,           \
@@ -2075,8 +2049,6 @@
                                   zego_express_set_custom_video_capture_rotation)                   \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_custom_video_capture_transform_matrix,        \
                                   zego_express_set_custom_video_capture_transform_matrix)           \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_dummy_capture_image_params,                   \
-                                  zego_express_set_dummy_capture_image_params)                      \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_dummy_capture_image_path,                     \
                                   zego_express_set_dummy_capture_image_path)                        \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_effects_beauty_param,                         \
@@ -2096,8 +2068,6 @@
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_log_config, zego_express_set_log_config)      \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_low_light_enhancement,                        \
                                   zego_express_set_low_light_enhancement)                           \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_low_light_enhancement_params,                 \
-                                  zego_express_set_low_light_enhancement_params)                    \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_express_set_min_video_bitrate_for_traffic_control,        \
                                   zego_express_set_min_video_bitrate_for_traffic_control)           \
             ZEGOEXP_LOAD_FUNC_PTR(                                                                  \
@@ -2527,8 +2497,6 @@
             ZEGOEXP_LOAD_FUNC_PTR(                                                                  \
                 pfnzego_register_publisher_dummy_capture_image_path_error_callback,                 \
                 zego_register_publisher_dummy_capture_image_path_error_callback)                    \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_publisher_face_detect_info_callback,             \
-                                  zego_register_publisher_face_detect_info_callback)                \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_publisher_low_fps_warning_callback,              \
                                   zego_register_publisher_low_fps_warning_callback)                 \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_publisher_quality_update_callback,               \
@@ -2634,8 +2602,6 @@
                                   zego_register_recv_room_transparent_message_callback)             \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_recv_windows_message_callback,                   \
                                   zego_register_recv_windows_message_callback)                      \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_recv_zego_callback_task,                         \
-                                  zego_register_recv_zego_callback_task)                            \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_remote_audio_spectrum_update_callback,           \
                                   zego_register_remote_audio_spectrum_update_callback)              \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_remote_camera_state_update_callback,             \
@@ -2674,8 +2640,6 @@
                                   zego_register_room_token_will_expire_callback)                    \
             ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_room_user_update_callback,                       \
                                   zego_register_room_user_update_callback)                          \
-            ZEGOEXP_LOAD_FUNC_PTR(pfnzego_register_rtc_stats_callback,                              \
-                                  zego_register_rtc_stats_callback)                                 \
             ZEGOEXP_LOAD_FUNC_PTR(                                                                  \
                 pfnzego_register_screen_capture_mobile_exception_occurred_callback,                 \
                 zego_register_screen_capture_mobile_exception_occurred_callback)                    \

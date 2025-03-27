@@ -1,4 +1,4 @@
-package im.zego.aiagent;
+package im.zego.aiagent.core.widget;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import im.zego.aiagent.R;
 import im.zego.aiagent.core.ZegoAIAgentHelper;
 import im.zego.aiagent.core.sdkapi.ZegoVoiceCallProxy;
 import im.zego.aiagent.core.utils.Utils;

@@ -7,14 +7,8 @@ import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import androidx.appcompat.app.AppCompatActivity;
-import im.zego.aiagent.core.ZegoAIAgentSettings;
 import im.zego.aicompanion.uikit.R;
 import im.zego.aicompanion.uikit.settings.SettingsActivity;
-import im.zego.aicompanion.uikit.settings.Storage;
-import im.zego.zegoexpress.constants.ZegoAECMode;
-import im.zego.zegoexpress.constants.ZegoANSMode;
-import im.zego.zegoexpress.constants.ZegoAudioDeviceMode;
-import im.zego.zegoexpress.constants.ZegoScenario;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,25 +18,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         configuration = ViewConfiguration.get(this);
-
-        ZegoAIAgentSettings.AEC = true;
-        ZegoAIAgentSettings.AGC = true;
-        ZegoAIAgentSettings.ANS = true;
-        ZegoAIAgentSettings.ANS_MODE = ZegoANSMode.AI_BALANCED.value();
-        ZegoAIAgentSettings.AEC_MODE = ZegoAECMode.AI.value();
-        ZegoAIAgentSettings.SCENARIO = ZegoScenario.HIGH_QUALITY_CHATROOM.value();
-        ZegoAIAgentSettings.AUDIO_DEVICE_MODE = ZegoAudioDeviceMode.GENERAL.value();
-        ZegoAIAgentSettings.LOCAL_VAD = false;
-        ZegoAIAgentSettings.Latency_Mode = false;
-        ZegoAIAgentSettings.AUDIO_DUCK = 1;
-        ZegoAIAgentSettings.ECHO_ADAPTIVE = true;
-        ZegoAIAgentSettings.mediaPlayerVolume = 80;
-        ZegoAIAgentSettings.playStreamVolume = 100;
-        ZegoAIAgentSettings.defaultShowTestView = true;
-        ZegoAIAgentSettings.autoDump = true;
-        ZegoAIAgentSettings.autoPlayAcc = false;
-
-        ZegoAIAgentSettings.MergeLLM = (Storage.env() == 3);
     }
 
     private Handler handler = new Handler(Looper.getMainLooper());
