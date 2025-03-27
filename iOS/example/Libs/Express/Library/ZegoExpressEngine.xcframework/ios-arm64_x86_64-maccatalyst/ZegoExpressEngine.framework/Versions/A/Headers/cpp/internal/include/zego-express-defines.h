@@ -56,7 +56,6 @@
 #define ZEGO_EXPRESS_MAX_URL_COUNT (10)
 #define ZEGO_EXPRESS_MAX_URL_LEN (1024)
 #define ZEGO_EXPRESS_MAX_MEDIA_URL_LEN (2048)
-#define ZEGO_EXPRESS_MAX_PATH_LEN (2048)
 #define ZEGO_EXPRESS_MAX_IMAGE_PATH (512)
 #define ZEGO_EXPRESS_MAX_MESSAGE_LEN (10240)
 #define ZEGO_EXPRESS_MAX_CUSTOM_CMD_LEN (1024)
@@ -575,16 +574,7 @@ enum zego_reverb_preset {
     zego_reverb_preset_enhanced_rock = 13,
 
     /// Enhanced misty reverb effect
-    zego_reverb_preset_enhanced_misty = 14,
-
-    /// Hip Hop reverb effect
-    zego_reverb_preset_hip_hop = 15,
-
-    /// Misty reverb effect
-    zego_reverb_preset_misty = 16,
-
-    /// 3D voice reverb effect
-    zego_reverb_preset_three_dimensional_voice = 17
+    zego_reverb_preset_enhanced_misty = 14
 
 };
 
@@ -782,10 +772,7 @@ enum zego_ans_mode {
     zego_ans_mode_ai_balanced = 4,
 
     /// Low latency AI mode ANS. It will cause great damage to music, so it can not be used for noise suppression of sound sources that need to collect background sound. Please contact ZEGO technical support before use.
-    zego_ans_mode_ai_low_latency = 5,
-
-    /// Aggressive AI mode ANS. It will cause great damage to music, so it can not be used for noise suppression of sound sources that need to collect background sound. Please contact ZEGO technical support before use.
-    zego_ans_mode_ai_aggressive = 6
+    zego_ans_mode_ai_low_latency = 5
 
 };
 
@@ -1128,16 +1115,6 @@ enum zego_device_exception_type {
 
     /// Audio session category change (Apple platform only).
     zego_device_exception_type_audio_session_category_change = 13
-
-};
-
-/// Mode for notifying the local device state.
-enum zego_exp_notify_device_state_mode {
-    /// Notify the local device state.
-    zego_exp_notify_device_state_mode_open = 0,
-
-    /// Do not notify the local device state. Only valid for disable device.
-    zego_exp_notify_device_state_mode_close = 1
 
 };
 
@@ -2024,16 +2001,6 @@ enum zego_low_light_enhancement_mode {
 
 };
 
-/// Low light enhanced type.
-enum zego_exp_low_light_enhancement_type {
-    /// Normal low light enhancement.
-    zego_exp_lowlight_enhancement_type_normal = 0,
-
-    /// AI low light enhancement. If you want to use this function, contact ZEGO technical support.
-    zego_exp_lowlight_enhancement_type_ai = 1
-
-};
-
 /// Video denoise mode.
 enum zego_video_denoise_mode {
     /// Turn off video denoise.
@@ -2450,16 +2417,6 @@ enum zego_processed_data_usage_type {
 
 };
 
-/// Dummy capture image mode.
-enum zego_dummy_capture_image_mode {
-    /// Manual mode. The user needs to call the [EnableCamera] interface to turn off camera capture, and the SDK will use dummy capture image.
-    zego_dummy_capture_image_mode_manual = 0,
-
-    /// Auto mode. After the SDK detects that the camera is unavailable, it uses dummy capture image to puublish the stream.
-    zego_dummy_capture_image_mode_auto = 1
-
-};
-
 /// Log config.
 ///
 /// Description: This parameter is required when calling [setlogconfig] to customize log configuration.
@@ -2804,12 +2761,6 @@ struct zego_roi_rect {
     int strength;
 };
 
-/// Position information used by the face detection.
-struct zego_face_position_info {
-    /// Coordinates used by the face detection.
-    struct zego_rect position;
-};
-
 /// View object.
 ///
 /// Configure view object, view Mode, background color
@@ -2944,23 +2895,6 @@ struct zego_stream_relay_cdn_info {
 
     /// The timestamp when the state changed, UNIX timestamp, in milliseconds.
     unsigned long long state_time;
-};
-
-/// Face detection info.
-///
-/// Face detection info.
-struct zego_face_detection_info {
-    /// The image width captured by the camera
-    int image_width;
-
-    /// The image height captured by the camera
-    int image_height;
-
-    /// Face position information list
-    struct zego_face_position_info *face_position_list;
-
-    /// Length of face position information list
-    unsigned int face_position_count;
 };
 
 /// Custom play stream resource type configuration.
@@ -3692,9 +3626,6 @@ struct zego_video_encoded_frame_param {
 
     /// Length of the SEI data (Optional, if you don't need to send SEI, set it to 0. Deprecated, use [sendSEI] instead). Useful when set format as [AVCC] or [AnnexB]
     unsigned int sei_data_length;
-
-    /// Whether to use the external timestamp completely. The default is false. When set to false, the SDK will adjust based on the timestamps of the audio frame and video frame to ensure audio-video synchronization. When set to true, the SDK does not adjust the timestamp and uses the external timestamp completely.
-    bool is_external_clock;
 };
 
 /// Parameter object for audio frame.
@@ -3871,30 +3802,6 @@ struct zego_network_speed_test_quality {
 
     /// network quality. excellent, good, medium and poor
     enum zego_stream_quality_level quality;
-};
-
-/// RTC Network Statistics
-struct zego_rtc_stats_info {
-    /// total upstream bandwidth, in kbps
-    double total_tx_bandwidth;
-
-    /// upstream average rtt, in milliseconds
-    unsigned int avg_tx_rtt;
-
-    /// upstream average packet lost rate. in percentage, 0.0 ~ 1.0
-    double avg_tx_packet_lost_rate;
-
-    /// total downlink bandwidth, in kbps
-    double total_rx_bandwidth;
-
-    /// downlink average rtt, in milliseconds
-    unsigned int avg_rx_rtt;
-
-    /// downlink average packet lost rate. in percentage, 0.0 ~ 1.0
-    double avg_rx_packet_lost_rate;
-
-    /// average peer to peer delay, in milliseconds
-    unsigned int avg_peer_to_peer_delay;
 };
 
 /// The NTP info
@@ -4159,9 +4066,6 @@ struct zego_screen_capture_config {
 
     /// Set the audio capture parameters during screen capture. (only for Android)
     struct zego_audio_frame_param audio_param;
-
-    /// Set the crop rectangle during screen capture. The crop rectangle must be included in the rectangle of the original data, unit is pixel. (only for iOS/Android)
-    struct zego_rect crop_rect;
 };
 
 /// The screen captures source information.
@@ -4180,17 +4084,6 @@ struct zego_screen_capture_source_info {
 
     /// The image content of the icon.
     struct zego_image_buffer icon_image;
-};
-
-/// Layer border configuration.
-///
-/// Customize the size, color, etc. of the layer border.
-struct zego_layer_border_config {
-    /// Border size, default value 4, the maximum value is 100.
-    unsigned int width;
-
-    /// Background color, the format is 0xRRGGBB, default is green, which is 0x00FF00
-    int color;
 };
 
 /// Audio source mix config
@@ -4240,12 +4133,6 @@ struct zego_media_player_resource {
 
     /// The resource ID obtained from the copyrighted music module.
     char resource_id[ZEGO_EXPRESS_MAX_COMMON_LEN];
-
-    /// Online resource cache path, in utf8 encoding format.
-    char online_resource_cache_path[ZEGO_EXPRESS_MAX_MEDIA_URL_LEN];
-
-    /// The maximum length of online resource cache to be used, in bytes, with a minimum setting of 10M (10 * 1024 * 1024). The default value is 0 - no limit, and try to cache the entire file.
-    long long max_cache_pending_length;
 };
 
 /// Background config.
@@ -4405,24 +4292,6 @@ struct zego_video_denoise_params {
 
     /// Description: Video denoise strength. Default value: Light.
     enum zego_video_denoise_strength strength;
-};
-
-/// Dummy capture image params.
-struct zego_dummy_capture_image_params {
-    /// Picture file path.
-    char path[ZEGO_EXPRESS_MAX_PATH_LEN];
-
-    /// Dummy capture image mode.
-    enum zego_dummy_capture_image_mode mode;
-};
-
-/// Low light enhancement params.
-struct zego_exp_low_light_enhancement_params {
-    /// Description: Low light enhancement mode. Default value: Off.
-    enum zego_low_light_enhancement_mode mode;
-
-    /// Description: Low light enhancement type. Default value: Normal.
-    enum zego_exp_low_light_enhancement_type type;
 };
 
 #endif /* __ZEGO_EXPRESS_DEFINE_H__ */

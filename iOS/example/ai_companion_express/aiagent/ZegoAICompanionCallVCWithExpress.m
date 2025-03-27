@@ -225,13 +225,13 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
     ZegoEngineConfig* engineConfig = [[ZegoEngineConfig alloc] init];
     
     int set_audio_volume_ducking_mode = [AppDataManager sharedInstance].audioVolumeDucking ? 1:0;
-    NSString* enable_echo_energy_adaptive = [AppDataManager sharedInstance].echoEnergyAdaptive ? @"true":@"false";
+    NSString* enable_rnd_volume_adaptive = [AppDataManager sharedInstance].echoEnergyAdaptive ? @"true":@"false";
     engineConfig.advancedConfig = @{
         @"notify_remote_device_unknown_status": @"true",
         @"notify_remote_device_init_status":@"true",
         @"enforce_audio_loopback_in_sync": @"true", /**该配置用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
         @"set_audio_volume_ducking_mode":@(set_audio_volume_ducking_mode),/**该配置是用来做音量闪避的**/
-        @"enable_echo_energy_adaptive":enable_echo_energy_adaptive,/**该配置是用来做播放音量自适用**/
+        @"enable_rnd_volume_adaptive":enable_rnd_volume_adaptive,/**该配置是用来做播放音量自适用**/
     };
     
     [ZegoExpressEngine setEngineConfig:engineConfig];

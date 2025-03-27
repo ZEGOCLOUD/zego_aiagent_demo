@@ -686,13 +686,7 @@ typedef NS_ENUM(NSUInteger, ZegoReverbPreset) {
     /// Enhanced Rock reverb effect
     ZegoReverbPresetEnhancedRock = 13,
     /// Enhanced misty reverb effect
-    ZegoReverbPresetEnhancedMisty = 14,
-    /// Hip Hop reverb effect
-    ZegoReverbPresetHipHop = 15,
-    /// Misty reverb effect
-    ZegoReverbPresetMisty = 16,
-    /// 3D voice reverb effect
-    ZegoReverbPresetThreeDimensionalVoice = 17
+    ZegoReverbPresetEnhancedMisty = 14
 };
 
 /// Mode of Electronic Effects.
@@ -844,9 +838,7 @@ typedef NS_ENUM(NSUInteger, ZegoANSMode) {
     /// Balanced AI mode ANS. It will cause great damage to music, so it can not be used for noise suppression of sound sources that need to collect background sound. Please contact ZEGO technical support before use.
     ZegoANSModeAIBalanced = 4,
     /// Low latency AI mode ANS. It will cause great damage to music, so it can not be used for noise suppression of sound sources that need to collect background sound. Please contact ZEGO technical support before use.
-    ZegoANSModeAILowLatency = 5,
-    /// Aggressive AI mode ANS. It will cause great damage to music, so it can not be used for noise suppression of sound sources that need to collect background sound. Please contact ZEGO technical support before use.
-    ZegoANSModeAIAggressive = 6
+    ZegoANSModeAILowLatency = 5
 };
 
 /// video encode profile.
@@ -1103,14 +1095,6 @@ typedef NS_ENUM(NSUInteger, ZegoDeviceExceptionType) {
     ZegoDeviceExceptionTypeAudioSessionDeactive = 12,
     /// Audio session category change (Apple platform only).
     ZegoDeviceExceptionTypeAudioSessionCategoryChange = 13
-};
-
-/// Mode for notifying the local device state.
-typedef NS_ENUM(NSUInteger, ZegoExpNotifyDeviceStateMode) {
-    /// Notify the local device state.
-    ZegoExpNotifyDeviceStateModeOpen = 0,
-    /// Do not notify the local device state. Only valid for disable device.
-    ZegoExpNotifyDeviceStateModeClose = 1
 };
 
 /// Remote device status.
@@ -1715,14 +1699,6 @@ typedef NS_ENUM(NSUInteger, ZegoLowlightEnhancementMode) {
     ZegoLowlightEnhancementModeAuto = 2
 };
 
-/// Low light enhanced type.
-typedef NS_ENUM(NSUInteger, ZegoExpLowlightEnhancementType) {
-    /// Normal low light enhancement.
-    ZegoExpLowlightEnhancementTypeNormal = 0,
-    /// AI low light enhancement. If you want to use this function, contact ZEGO technical support.
-    ZegoExpLowlightEnhancementTypeAI = 1
-};
-
 /// Video denoise mode.
 typedef NS_ENUM(NSUInteger, ZegoVideoDenoiseMode) {
     /// Turn off video denoise.
@@ -2018,14 +1994,6 @@ typedef NS_ENUM(NSUInteger, ZegoProcessedDataUsageType) {
     ZegoProcessedDataUsageTypePublish = 1,
     /// Both preview and publish.
     ZegoProcessedDataUsageTypeBoth = 2
-};
-
-/// Dummy capture image mode.
-typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
-    /// Manual mode. The user needs to call the [EnableCamera] interface to turn off camera capture, and the SDK will use dummy capture image.
-    ZegoDummyCaptureImageModeManual = 0,
-    /// Auto mode. After the SDK detects that the camera is unavailable, it uses dummy capture image to puublish the stream.
-    ZegoDummyCaptureImageModeAuto = 1
 };
 
 /// Log config.
@@ -2444,14 +2412,6 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 @end
 
-/// Position information used by the face detection.
-@interface ZegoFacePositionInfo : NSObject
-
-/// Coordinates used by the face detection.
-@property (nonatomic, assign) CGRect position;
-
-@end
-
 /// View object.
 ///
 /// Configure view object, view Mode, background color
@@ -2607,22 +2567,6 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 /// The timestamp when the state changed, UNIX timestamp, in milliseconds.
 @property (nonatomic, assign) unsigned long long stateTime;
-
-@end
-
-/// Face detection info.
-///
-/// Face detection info.
-@interface ZegoFaceDetectionInfo : NSObject
-
-/// The image width captured by the camera
-@property (nonatomic, assign) int imageWidth;
-
-/// The image height captured by the camera
-@property (nonatomic, assign) int imageHeight;
-
-/// Face position information list
-@property (nonatomic, strong) NSArray<ZegoFacePositionInfo *> *facePositionList;
 
 @end
 
@@ -3500,9 +3444,6 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 /// SEI data (Optional, if you don't need to send SEI, set it to null. Deprecated, use [sendSEI] instead). Useful when set format as [AVCC] or [AnnexB]
 @property (nonatomic, strong, nullable) NSData *SEIData;
 
-/// Whether to use the external timestamp completely. The default is false. When set to false, the SDK will adjust based on the timestamps of the audio frame and video frame to ensure audio-video synchronization. When set to true, the SDK does not adjust the timestamp and uses the external timestamp completely.
-@property (nonatomic, assign) BOOL isExternalClock;
-
 @end
 
 /// Parameter object for audio frame.
@@ -3719,32 +3660,6 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 /// network quality. excellent, good, medium and poor
 @property (nonatomic, assign) ZegoStreamQualityLevel quality;
-
-@end
-
-/// RTC Network Statistics
-@interface ZegoRtcStatsInfo : NSObject
-
-/// total upstream bandwidth, in kbps
-@property (nonatomic, assign) double totalTxBandwidth;
-
-/// upstream average rtt, in milliseconds
-@property (nonatomic, assign) unsigned int avgTxRtt;
-
-/// upstream average packet lost rate. in percentage, 0.0 ~ 1.0
-@property (nonatomic, assign) double avgTxPacketLostRate;
-
-/// total downlink bandwidth, in kbps
-@property (nonatomic, assign) double totalRxBandwidth;
-
-/// downlink average rtt, in milliseconds
-@property (nonatomic, assign) unsigned int avgRxRtt;
-
-/// downlink average packet lost rate. in percentage, 0.0 ~ 1.0
-@property (nonatomic, assign) double avgRxPacketLostRate;
-
-/// average peer to peer delay, in milliseconds
-@property (nonatomic, assign) unsigned int avgPeerToPeerDelay;
 
 @end
 
@@ -4032,9 +3947,6 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 /// Set Application audio volume for ReplayKit. The range is 0 ~ 200. The default is 100. (only for iOS)
 @property (nonatomic, assign) unsigned int applicationVolume;
 
-/// Set the crop rectangle during screen capture. The crop rectangle must be included in the rectangle of the original data, unit is pixel. (only for iOS/Android)
-@property (nonatomic, assign) CGRect cropRect;
-
 @end
 
 /// The screen captures source information.
@@ -4054,19 +3966,6 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 /// The image content of the icon.
 @property (nonatomic, copy) ZGImage *_Nullable iconImage;
-
-@end
-
-/// Layer border configuration.
-///
-/// Customize the size, color, etc. of the layer border.
-@interface ZegoLayerBorderConfig : NSObject
-
-/// Border size, default value 4, the maximum value is 100.
-@property (nonatomic, assign) unsigned int width;
-
-/// Background color, the format is 0xRRGGBB, default is green, which is 0x00FF00
-@property (nonatomic, assign) int color;
 
 @end
 
@@ -4119,12 +4018,6 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 /// The resource ID obtained from the copyrighted music module.
 @property (nonatomic, copy) NSString *resourceID;
-
-/// Online resource cache path, in utf8 encoding format.
-@property (nonatomic, copy) NSString *onlineResourceCachePath;
-
-/// The maximum length of online resource cache to be used, in bytes, with a minimum setting of 10M (10 * 1024 * 1024). The default value is 0 - no limit, and try to cache the entire file.
-@property (nonatomic, assign) long long maxCachePendingLength;
 
 @end
 
@@ -4280,28 +4173,6 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 
 /// Description: Video denoise strength. Default value: Light.
 @property (nonatomic, assign) ZegoVideoDenoiseStrength strength;
-
-@end
-
-/// Dummy capture image params.
-@interface ZegoDummyCaptureImageParams : NSObject
-
-/// Picture file path.
-@property (nonatomic, copy) NSString *path;
-
-/// Dummy capture image mode.
-@property (nonatomic, assign) ZegoDummyCaptureImageMode mode;
-
-@end
-
-/// Low light enhancement params.
-@interface ZegoExpLowlightEnhancementParams : NSObject
-
-/// Description: Low light enhancement mode. Default value: Off.
-@property (nonatomic, assign) ZegoLowlightEnhancementMode mode;
-
-/// Description: Low light enhancement type. Default value: Normal.
-@property (nonatomic, assign) ZegoExpLowlightEnhancementType type;
 
 @end
 
@@ -4778,7 +4649,7 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 /// Related APIs: After it is turned on, user can use the [onMediaPlayerFrequencySpectrumUpdate] callback to monitor frequency spectrum updates.
 ///
 /// @param enable Whether to enable monitoring, YES is enabled, NO is disabled.
-/// @param millisecond Monitoring time period of the frequency spectrum, in milliseconds, has a value range of [10, 3000]. Note that on v3.19.0 and older version, the value range is [100, 3000].
+/// @param millisecond Monitoring time period of the frequency spectrum, in milliseconds, has a value range of [100, 3000].
 - (void)enableFrequencySpectrumMonitor:(BOOL)enable millisecond:(unsigned int)millisecond;
 
 /// Set the playback channel.
@@ -6522,19 +6393,6 @@ typedef NS_ENUM(NSUInteger, ZegoDummyCaptureImageMode) {
 ///
 /// @param visible Whether to show the cursor. YES to show the cursor, NO to not show the cursor, the default is NO.
 - (void)enableCursorVisible:(BOOL)visible;
-#endif
-
-#if TARGET_OS_OSX
-/// Set whether to highlight the capture area
-///
-/// Available since: 3.20.0
-/// Description: Set whether to highlight the capture area.
-/// When to call: It can be called after the engine by [createScreenCaptureSource] has been initialized.
-/// Restrictions: Only available on Windows/macOS.
-///
-/// @param enable Whether to highlight the capture area. YES to highlight, NO to not highlight, the default is NO.
-/// @param config Highlight capture area border configuration.
-- (void)enableHightLight:(BOOL)enable config:(ZegoLayerBorderConfig *)config;
 #endif
 
 #if TARGET_OS_OSX

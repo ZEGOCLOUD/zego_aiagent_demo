@@ -503,16 +503,7 @@ enum ZegoReverbPreset {
     ZEGO_REVERB_PRESET_ENHANCED_ROCK = 13,
 
     /// Enhanced misty reverb effect
-    ZEGO_REVERB_PRESET_ENHANCED_MISTY = 14,
-
-    /// Hip Hop reverb effect
-    ZEGO_REVERB_PRESET_HIP_HOP = 15,
-
-    /// Misty reverb effect
-    ZEGO_REVERB_PRESET_MISTY = 16,
-
-    /// 3D voice reverb effect
-    ZEGO_REVERB_PRESET_THREE_DIMENSIONAL_VOICE = 17
+    ZEGO_REVERB_PRESET_ENHANCED_MISTY = 14
 
 };
 
@@ -732,10 +723,7 @@ enum ZegoANSMode {
     ZEGO_ANS_MODE_AI_BALANCED = 4,
 
     /// Low latency AI mode ANS. It will cause great damage to music, so it can not be used for noise suppression of sound sources that need to collect background sound. Please contact ZEGO technical support before use.
-    ZEGO_ANS_MODE_AI_LOW_LATENCY = 5,
-
-    /// Aggressive AI mode ANS. It will cause great damage to music, so it can not be used for noise suppression of sound sources that need to collect background sound. Please contact ZEGO technical support before use.
-    ZEGO_ANS_MODE_AI_AGGRESSIVE = 6
+    ZEGO_ANS_MODE_AI_LOW_LATENCY = 5
 
 };
 
@@ -1863,16 +1851,6 @@ enum ZegoLowlightEnhancementMode {
 
 };
 
-/// Low light enhanced type.
-enum ZegoExpLowlightEnhancementType {
-    /// Normal low light enhancement.
-    ZEGO_EXP_LOWLIGHT_ENHANCEMENT_TYPE_NORMAL = 0,
-
-    /// AI low light enhancement. If you want to use this function, contact ZEGO technical support.
-    ZEGO_EXP_LOWLIGHT_ENHANCEMENT_TYPE_AI = 1
-
-};
-
 /// Range scene state change reason.
 enum ZegoSceneState {
     /// Logging in to the scene. When calling [loginScene] to log in to the scene, it will enter this state, indicating that it is requesting to connect to the server. The application interface is usually displayed through this state.
@@ -2219,16 +2197,6 @@ enum ZegoProcessedDataUsageType {
 
 };
 
-/// Dummy capture image mode.
-enum ZegoDummyCaptureImageMode {
-    /// Manual mode. The user needs to call the [EnableCamera] interface to turn off camera capture, and the SDK will use dummy capture image.
-    ZEGO_DUMMY_CAPTURE_IMAGE_MODE_MANUAL = 0,
-
-    /// Auto mode. After the SDK detects that the camera is unavailable, it uses dummy capture image to puublish the stream.
-    ZEGO_DUMMY_CAPTURE_IMAGE_MODE_AUTO = 1
-
-};
-
 /// Log config.
 ///
 /// Description: This parameter is required when calling [setlogconfig] to customize log configuration.
@@ -2298,11 +2266,6 @@ struct ZegoEngineProfile {
 
     /// The room scenario. the SDK will optimize the audio and video configuration for the specified scenario to achieve the best effect in this scenario. After specifying the scenario, you can call other APIs to adjusting the audio and video configuration. Differences between scenarios and how to choose a suitable scenario, please refer to https://docs.zegocloud.com/article/14940
     ZegoScenario scenario;
-
-    /// only windows and mac need callback switch to ui thread
-    bool callbackSwitchToMainThread;
-
-    ZegoEngineProfile() : appID(0), appSign(""), callbackSwitchToMainThread(true) {}
 };
 
 /// Advanced engine configuration.
@@ -3586,13 +3549,6 @@ struct ZegoVideoEncodedFrameParam {
 
     /// Length of the SEI data (Optional, if you don't need to send SEI, set it to 0. Deprecated, use [sendSEI] instead). Useful when set format as [AVCC] or [AnnexB]
     unsigned int SEIDataLength;
-
-    /// Whether to use the external timestamp completely. The default is false. When set to false, the SDK will adjust based on the timestamps of the audio frame and video frame to ensure audio-video synchronization. When set to true, the SDK does not adjust the timestamp and uses the external timestamp completely.
-    bool isExternalClock;
-
-    ZegoVideoEncodedFrameParam()
-        : format(ZEGO_VIDEO_ENCODED_FRAME_FORMAT_AVCC), isKeyFrame(false), rotation(0), width(0),
-          height(0), SEIData(nullptr), SEIDataLength(0), isExternalClock(false) {}
 };
 
 /// Parameter object for audio frame.
@@ -3798,30 +3754,6 @@ struct ZegoNetworkSpeedTestQuality {
 
     /// network quality. excellent, good, medium and poor
     ZegoStreamQualityLevel quality;
-};
-
-/// RTC Network Statistics
-struct ZegoRtcStatsInfo {
-    /// total upstream bandwidth, in kbps
-    double totalTxBandwidth;
-
-    /// upstream average rtt, in milliseconds
-    unsigned int avgTxRtt;
-
-    /// upstream average packet lost rate. in percentage, 0.0 ~ 1.0
-    double avgTxPacketLostRate;
-
-    /// total downlink bandwidth, in kbps
-    double totalRxBandwidth;
-
-    /// downlink average rtt, in milliseconds
-    unsigned int avgRxRtt;
-
-    /// downlink average packet lost rate. in percentage, 0.0 ~ 1.0
-    double avgRxPacketLostRate;
-
-    /// average peer to peer delay, in milliseconds
-    unsigned int avgPeerToPeerDelay;
 };
 
 /// The NTP info
@@ -4146,22 +4078,6 @@ struct ZegoScreenCaptureSourceInfo {
     ZegoImageBuffer iconImage;
 };
 
-/// Layer border configuration.
-///
-/// Customize the size, color, etc. of the layer border.
-struct ZegoLayerBorderConfig {
-    /// Border size, default value 4, the maximum value is 100.
-    unsigned int width;
-
-    /// Background color, the format is 0xRRGGBB, default is green, which is 0x00FF00
-    int color;
-
-    ZegoLayerBorderConfig() {
-        width = 4;
-        color = 0x00FF00;
-    }
-};
-
 /// Audio source mix config
 ///
 /// Used to config whether mix media player, audio effect player and captured system audio into publish stream or not when set audio source.
@@ -4219,12 +4135,6 @@ struct ZegoMediaPlayerResource {
     /// The resource ID obtained from the copyrighted music module.
     std::string resourceID;
 
-    /// Online resource cache path, in utf8 encoding format.
-    std::string onlineResourceCachePath;
-
-    /// The maximum length of online resource cache to be used, in bytes, with a minimum setting of 10M (10 * 1024 * 1024). The default value is 0 - no limit, and try to cache the entire file.
-    long long maxCachePendingLength;
-
     ZegoMediaPlayerResource() {
         loadType = ZEGO_MULTIMEDIA_LOAD_TYPE_FILE_PATH;
         startPosition = 0;
@@ -4233,8 +4143,6 @@ struct ZegoMediaPlayerResource {
         memory = nullptr;
         memoryLength = 0;
         resourceID = "";
-        onlineResourceCachePath = "";
-        maxCachePendingLength = 0;
     }
 };
 
@@ -4399,34 +4307,6 @@ struct ZegoColorEnhancementParams {
         intensity = 0;
         skinToneProtectionLevel = 1;
         lipColorProtectionLevel = 0;
-    }
-};
-
-/// Dummy capture image params.
-struct ZegoDummyCaptureImageParams {
-    /// Picture file path.
-    std::string path;
-
-    /// Dummy capture image mode.
-    ZegoDummyCaptureImageMode mode;
-
-    ZegoDummyCaptureImageParams() {
-        path = "";
-        mode = ZEGO_DUMMY_CAPTURE_IMAGE_MODE_MANUAL;
-    }
-};
-
-/// Low light enhancement params.
-struct ZegoExpLowlightEnhancementParams {
-    /// Description: Low light enhancement mode. Default value: Off.
-    ZegoLowlightEnhancementMode mode;
-
-    /// Description: Low light enhancement type. Default value: Normal.
-    ZegoExpLowlightEnhancementType type;
-
-    ZegoExpLowlightEnhancementParams() {
-        mode = ZEGO_LOWLIGHT_ENHANCEMENT_MODE_OFF;
-        type = ZEGO_EXP_LOWLIGHT_ENHANCEMENT_TYPE_NORMAL;
     }
 };
 

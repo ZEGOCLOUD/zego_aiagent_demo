@@ -337,16 +337,13 @@ typedef zego_error(EXP_CALL *pfnzego_express_set_audio_route_to_speaker)(bool de
 /// Note: This function is only available in ZegoExpressVideo SDK!
 ///
 /// @param enable Whether to turn on the camera, `true`: turn on camera, `false`: turn off camera
-/// @param notify_mode Mode for notifying the local device status.
 /// @param channel Publishing stream channel
 #ifndef ZEGOEXP_EXPLICIT
-ZEGOEXP_API zego_error EXP_CALL
-zego_express_enable_camera(bool enable, enum zego_exp_notify_device_state_mode notify_mode,
-                           enum zego_publish_channel channel);
+ZEGOEXP_API zego_error EXP_CALL zego_express_enable_camera(bool enable,
+                                                           enum zego_publish_channel channel);
 #else
-typedef zego_error(EXP_CALL *pfnzego_express_enable_camera)(
-    bool enable, enum zego_exp_notify_device_state_mode notify_mode,
-    enum zego_publish_channel channel);
+typedef zego_error(EXP_CALL *pfnzego_express_enable_camera)(bool enable,
+                                                            enum zego_publish_channel channel);
 #endif
 
 /// Switches to the front or the rear camera (for the specified channel).

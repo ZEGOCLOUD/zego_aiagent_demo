@@ -324,7 +324,7 @@ typedef zego_error(EXP_CALL *pfnzego_express_mute_play_stream_video)(const char 
                                                                      bool mute);
 #endif
 
-/// Can the pull stream receive all audio data. (When set to true, calling [mutePlayStreamAudio] will not take effect)
+/// Can the pull stream receive all audio data.
 ///
 /// Available since: 2.4.0
 /// Description: In the process of real-time audio and video interaction, local users can use this function to control whether to receive audio data from all remote users when pulling streams (including the audio streams pushed by users who have newly joined the room after calling this function). By default, users can receive audio data pushed by all remote users after joining the room. When the developer does not receive the audio receipt, the hardware and network overhead can be reduced.
@@ -356,7 +356,7 @@ ZEGOEXP_API zego_error EXP_CALL zego_express_mute_all_play_audio_streams(bool mu
 typedef zego_error(EXP_CALL *pfnzego_express_mute_all_play_audio_streams)(bool mute);
 #endif
 
-/// Can the pull stream receive all video data. (When set to true, calling [mutePlayStreamVideo] will not take effect)
+/// Can the pull stream receive all video data.
 ///
 /// Available since: 2.4.0
 /// Description: In the process of real-time video and video interaction, local users can use this function to control whether to receive all remote users' video data when pulling the stream (including the video stream pushed by the new user who joins the room after calling this function). By default, users can receive video data pushed by all remote users after joining the room. When the developer does not receive the video data, the hardware and network overhead can be reduced.

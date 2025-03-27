@@ -629,7 +629,7 @@ typedef zego_error(EXP_CALL *pfnzego_express_media_player_enable_sound_level_mon
 /// Related APIs: After it is turned on, user can use the [onMediaPlayerFrequencySpectrumUpdate] callback to monitor frequency spectrum updates.
 ///
 /// @param enable Whether to enable monitoring, true is enabled, false is disabled.
-/// @param millisecond Monitoring time period of the frequency spectrum, in milliseconds, has a value range of [10, 3000]. Note that on v3.19.0 and older version, the value range is [100, 3000].
+/// @param millisecond Monitoring time period of the frequency spectrum, in milliseconds, has a value range of [100, 3000].
 #ifndef ZEGOEXP_EXPLICIT
 ZEGOEXP_API zego_error EXP_CALL zego_express_media_player_enable_frequency_spectrum_monitor(
     bool enable, unsigned int millisecond, enum zego_media_player_instance_index instance_index);

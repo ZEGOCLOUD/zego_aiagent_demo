@@ -865,32 +865,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param channel Publish channel.
 - (void)setDummyCaptureImagePath:(NSString *)filePath channel:(ZegoPublishChannel)channel;
 
-/// Set the params of the static picture would be published when the camera is closed.
-///
-/// Available: since 3.19.0
-/// Description: Set the params of the static picture would be published when enableCamera(NO) is called, it would start to publish static pictures, and when enableCamera(YES) is called, it would end publishing static pictures.
-/// Use case: The developer wants to display a static picture when the camera is closed. For example, when the anchor exits the background, the camera would be actively closed. At this time, the audience side needs to display the image of the anchor temporarily leaving.
-/// When to call: After the engine is initialized, call this API to configure the parameters before closing the camera.
-/// Restrictions:
-///   1. Supported picture types are JPEG/JPG, PNG, BMP, HEIF.
-///   2. The function is only for SDK video capture and does not take effect for custom video capture.
-///   3. Not supported that the filePath is a network link.
-/// Caution:
-///   1. The static picture cannot be seen in the local preview.
-///   2. External filters, mirroring, watermarks, and snapshots are all invalid.
-///   3. If the picture aspect ratio is inconsistent with the set code aspect ratio, it will be cropped according to the code aspect ratio.
-/// Platform differences:
-///   1. Windows: Fill in the location of the picture directly, such as "D://dir//image.jpg".
-///   2. iOS: If it is a full path, add the prefix "file:", such as @"file:/var/image.png"; If it is a assets picture path, add the prefix "asset:", such as @"asset:watermark".
-///   3. Android: If it is a full path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets directory path, add the prefix "asset:", such as "asset:watermark.png".
-///   4. Flutter: If it is a absolute path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets resources directory path, add the prefix "flutter-asset://", such as "flutter-asset://assets/watermark.png".
-///   5. UniApp: Only absolute paths are supported. You need to add a "file:" prefix, such as: "file:/sdcard/image.png".
-///
-/// @param params Dummy capture image params.
-/// @param channel Publish channel.
-- (void)setDummyCaptureImageParams:(ZegoDummyCaptureImageParams *)params
-                           channel:(ZegoPublishChannel)channel;
-
 /// Whether to enable H.265 encoding to automatically downgrade to H.264 encoding.
 ///
 /// Available since: 2.12.0
@@ -1123,27 +1097,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param mode The camera stabilization mode. \niOS:See Apple AVCaptureVideoStabilizationMode definition for details. The default value is 0. \nAndroid:AUTO:-1, OFF:0. The default value is 0.
 /// @param channel Publish stream channel.
 - (void)setCameraStabilizationMode:(int)mode channel:(ZegoPublishChannel)channel;
-
-/// Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM.
-///
-/// Available since: 3.18.0
-/// Description: Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM to balance the volume of the human voice and the BGM. Default is off.
-/// When to call: Called after the engine is created [createEngine].
-/// Restrictions: This interface will take effect only when the [EnableAux] interface of the media player is called to enable aux.
-///
-/// @param enable Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM.
-- (void)enableAuxBgmBalance:(BOOL)enable;
-
-/// Turn on or off the face detection.
-///
-/// Available since: 3.20.0
-/// Description: Turn on or off the face detection. Default is on.
-/// When to call: Called after the engine is created [createEngine].
-/// Related callbacks: Detect results will be called back through [onPublisherFaceDetectInfo].
-///
-/// @param enable Turn on or off the face detection.
-/// @param channel Publish stream channel.
-- (void)enableFaceDetection:(BOOL)enable channel:(ZegoPublishChannel)channel;
 
 @end
 

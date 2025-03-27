@@ -58,13 +58,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
         return oInternalOriginBridge->setDummyCaptureImagePath(filePath, channel);
     }
 
-    void
-    setDummyCaptureImageParams(ZegoDummyCaptureImageParams params,
-                               ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) override {
-        auto i_params = ZegoExpressConvert::O2IDummyCaptureImageParams(params);
-        oInternalOriginBridge->setDummyCaptureImageParams(i_params, channel);
-    }
-
     ///===================================================================================================
     void loginRoom(const std::string &roomID, ZegoUser user) override {
         ZegoRoomConfig config;
@@ -479,10 +472,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
             static_cast<zego_video_codec_backend>(codecBackend));
     }
 
-    void enableAuxBgmBalance(bool enable) override {
-        oInternalOriginBridge->enableAuxBgmBalance(enable);
-    }
-
     ///===================================================================================================
     void startPlayingStream(const std::string &streamID, ZegoCanvas *canvas) override {
         const char *stream_id = streamID.c_str();
@@ -745,17 +734,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
         oInternalOriginBridge->setLowlightEnhancement(
             static_cast<zego_low_light_enhancement_mode>(mode),
             static_cast<zego_publish_channel>(channel));
-    }
-
-    void
-    setLowlightEnhancementParams(ZegoExpLowlightEnhancementParams params,
-                                 ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) override {
-        struct zego_exp_low_light_enhancement_params p;
-        memset(&p, 0, sizeof(struct zego_exp_low_light_enhancement_params));
-        p.mode = static_cast<zego_low_light_enhancement_mode>(params.mode);
-        p.type = static_cast<zego_exp_low_light_enhancement_type>(params.type);
-        oInternalOriginBridge->setLowlightEnhancementParams(
-            p, static_cast<zego_publish_channel>(channel));
     }
 
     int setVideoSource(ZegoVideoSourceType source) override { return setVideoSource(source, 0); }
@@ -2092,9 +2070,6 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
                 ZEGO_EXPRESS_MAX_SET_CONFIG_VALUE_LEN);
 
         oInternalOriginBridge->setEngineConfig(_engineConfig);
-
-        // Used to handle callback
-        oInternalCallbackCenter->engineConfig = engineConfig;
     }
 
     static void setLogConfig(ZegoLogConfig config) {
@@ -2188,39 +2163,32 @@ class ZegoExpressEngineImp : public IZegoExpressEngine {
         if (!oInternalOriginBridge->getLibraryReady()) {
             return false;
         }
-        oInternalCallbackCenter->registerCallback(true);
+        oInternalCallbackCenter->registerCallback();
         oInternalCallbackCenter->setIZegoEventHandler(eventHandler);
 
-        int errorCode = oInternalOriginBridge->init(appID, appSign.c_str(), isTestEnvironment,
-                                                    zego_scenario(scenario));
-        if (errorCode != ZegoErrorCode::ZEGO_ERROR_CODE_COMMON_SUCCESS) {
-            if (eventHandler) {
-                eventHandler->onDebugError(errorCode, "CreateEngine", "CreateEngine failed");
-            }
-
+        bool initSucceed =
+            0 == oInternalOriginBridge->init(appID, appSign.c_str(), isTestEnvironment,
+                                             zego_scenario(scenario));
+        if (!initSucceed) {
             oInternalCallbackCenter->unregisterCallback();
             oInternalCallbackCenter->clearHandlerData();
         }
-        return errorCode == ZegoErrorCode::ZEGO_ERROR_CODE_COMMON_SUCCESS;
+        return initSucceed;
     }
 
     bool init(const ZegoEngineProfile &profile, std::shared_ptr<IZegoEventHandler> eventHandler) {
         if (!oInternalOriginBridge->getLibraryReady()) {
             return false;
         }
-        oInternalCallbackCenter->registerCallback(profile.callbackSwitchToMainThread);
+        oInternalCallbackCenter->registerCallback();
         oInternalCallbackCenter->setIZegoEventHandler(eventHandler);
 
-        int errorCode = oInternalOriginBridge->init(profile);
-        if (errorCode != ZegoErrorCode::ZEGO_ERROR_CODE_COMMON_SUCCESS) {
-            if (eventHandler) {
-                eventHandler->onDebugError(errorCode, "CreateEngine", "CreateEngine failed");
-            }
-
+        bool initSucceed = 0 == oInternalOriginBridge->init(profile);
+        if (!initSucceed) {
             oInternalCallbackCenter->unregisterCallback();
             oInternalCallbackCenter->clearHandlerData();
         }
-        return errorCode == ZegoErrorCode::ZEGO_ERROR_CODE_COMMON_SUCCESS;
+        return initSucceed;
     }
 
     void uinitAsync(ZegoDestroyCompletionCallback afterDestroyed) {

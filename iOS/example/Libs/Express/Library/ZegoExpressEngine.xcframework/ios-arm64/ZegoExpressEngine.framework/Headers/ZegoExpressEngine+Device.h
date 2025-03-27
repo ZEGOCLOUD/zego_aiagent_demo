@@ -247,23 +247,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param channel Publishing stream channel
 - (void)enableCamera:(BOOL)enable channel:(ZegoPublishChannel)channel;
 
-/// Turns on/off the camera (for the specified channel).
-///
-/// Available since: 1.1.0
-/// Description: This function is used to control whether to start the capture of the camera. After the camera is turned off, the video capture will not be performed. At this time, there will be no video data for local preview and push streaming.
-/// Default value: The default is `YES` which means the camera is turned on.
-/// When to call: After creating the engine [createEngine].
-/// Restrictions: None.
-/// Caution: In the case of using the custom video capture function [enableCustomVideoCapture], since the developer has taken over the video data capture, the SDK is no longer responsible for the video data capture, but this function still affects whether to encode or not. Therefore, when developers use custom video capture, please ensure that the value of this function is `YES`.
-/// Note: This function is only available in ZegoExpressVideo SDK!
-///
-/// @param enable Whether to turn on the camera, `YES`: turn on camera, `NO`: turn off camera
-/// @param notifyMode Mode for notifying the local device status.
-/// @param channel Publishing stream channel
-- (void)enableCamera:(BOOL)enable
-          notifyMode:(ZegoExpNotifyDeviceStateMode)notifyMode
-             channel:(ZegoPublishChannel)channel;
-
 #if TARGET_OS_IPHONE
 /// Switches to the front or the rear camera.
 ///
