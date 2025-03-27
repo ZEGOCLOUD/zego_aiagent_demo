@@ -406,11 +406,11 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        binding.echoAdapter.setChecked(ZegoAIAgentSettings.ECHO_ADAPTIVE);
+        binding.echoAdapter.setChecked(ZegoAIAgentSettings.VOLUME_ADAPTIVE);
         binding.echoAdapter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ZegoAIAgentSettings.ECHO_ADAPTIVE = isChecked;
+                ZegoAIAgentSettings.VOLUME_ADAPTIVE = isChecked;
             }
         });
     }

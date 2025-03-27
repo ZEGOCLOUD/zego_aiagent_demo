@@ -224,24 +224,6 @@ typedef zego_error(EXP_CALL *pfnzego_express_screen_capture_enable_cursor_visibl
     bool visible, int instance_index);
 #endif
 
-/// Set whether to highlight the capture area
-///
-/// Available since: 3.20.0
-/// Description: Set whether to highlight the capture area.
-/// When to call: It can be called after the engine by [createScreenCaptureSource] has been initialized.
-/// Restrictions: Only available on Windows/macOS.
-///
-/// @param enable Whether to highlight the capture area. true to highlight, false to not highlight, the default is false.
-/// @param config Highlight capture area border configuration.
-/// @param instance_index The screen capture source instance index.
-#ifndef ZEGOEXP_EXPLICIT
-ZEGOEXP_API zego_error EXP_CALL zego_express_screen_capture_enable_hight_light(
-    bool enable, struct zego_layer_border_config config, int instance_index);
-#else
-typedef zego_error(EXP_CALL *pfnzego_express_screen_capture_enable_hight_light)(
-    bool enable, struct zego_layer_border_config config, int instance_index);
-#endif
-
 /// Whether to collect the sound of the window process during window collection
 ///
 /// Available since: 3.13.0

@@ -841,9 +841,6 @@ enum ZegoErrorCode {
     /// Description: Custom video rendering does not support the currently set video buffer type. <br>Cause: The buffer_type in the config parameter of [enableCustomVideoRender] only supports raw_data, cv_pixel_buffer, encoded_data. For [enableCustomVideoProcessing], only raw_data is supported on Windows platform, only cv_pixel_buffer is supported on Apple devices, and gl_texture_2d and surface_texture are supported on Android platform. <br> Solutions: Select the correct video buffer type.
     ZEGO_ERROR_CODE_CUSTOM_VIDEO_IO_NOT_SUPPORTED_BUFFER_TYPE = 1011011,
 
-    /// Description: [customVideoCaptureSendD3DTextureData] specifies texture not supported by the SDK. <br>Cause: TThe device corresponding to the texture specified by [customVideoCaptureSendD3DTextureData] was not created by D3D11CreateDevice(0, D3D_DRIVER_TYPE_HARDWARE, NULL,...). <br> Solutions: [customVideoCaptureSendD3DTextureData] specifies the texture created by D3D11CreateDevice (0, D3D_DRIVER_TYPE_HARDWARE, NULL,...).
-    ZEGO_ERROR_CODE_CUSTOM_VIDEO_IO_INVALID_ACTIVE_D3D11_DEVICE = 1011012,
-
     /// Description: Unsupported custom audio source type. <br>Cause: Only channel_aux supports zego_audio_source_type_media_player. <br> Solutions: Select the correct custom audio source type.
     ZEGO_ERROR_CODE_CUSTOM_AUDIO_IO_UNSUPPORTED_AUDIO_SOURCE_TYPE = 1012001,
 

@@ -17,11 +17,10 @@ public class ZegoAIAgentSettings {
     public static boolean LOCAL_VAD = false;
     public static boolean Latency_Mode = false;
     public static int AUDIO_DUCK = 1;
-    public static boolean ECHO_ADAPTIVE = true;
+    public static boolean VOLUME_ADAPTIVE = true;
     public static int mediaPlayerVolume = 80;
     public static int playStreamVolume = 100;
     public static boolean defaultShowTestView = false;
     public static boolean autoDump = false;
     public static boolean autoPlayAcc = false;
-    public static boolean MergeLLM = false;
 }

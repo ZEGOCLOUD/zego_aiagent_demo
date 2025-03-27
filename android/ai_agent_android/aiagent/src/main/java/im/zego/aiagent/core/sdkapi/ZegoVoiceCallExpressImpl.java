@@ -8,7 +8,6 @@ import im.zego.aiagent.core.ZegoAIAgentSettings;
 import im.zego.aiagent.core.callback.AIAgentCallBack;
 import im.zego.aiagent.core.controller.ZegoAIAgentConfigController;
 import im.zego.aiagent.core.utils.AudioFileUtils;
-import im.zego.aiagent.core.utils.Utils;
 import im.zego.zegoexpress.ZegoExpressEngine;
 import im.zego.zegoexpress.ZegoMediaPlayer;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
@@ -82,12 +81,11 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
         Timber.d("LOCAL_VAD: " + ZegoAIAgentSettings.LOCAL_VAD);
         Timber.d("Latency_Mode: " + ZegoAIAgentSettings.Latency_Mode);
         Timber.d("AUDIO_DUCK: " + ZegoAIAgentSettings.AUDIO_DUCK);
-        Timber.d("ECHO_ADAPTIVE: " + ZegoAIAgentSettings.ECHO_ADAPTIVE);
+        Timber.d("ECHO_ADAPTIVE: " + ZegoAIAgentSettings.VOLUME_ADAPTIVE);
         Timber.d("mediaPlayerVolume: " + ZegoAIAgentSettings.mediaPlayerVolume);
         Timber.d("playStreamVolume: " + ZegoAIAgentSettings.playStreamVolume);
         Timber.d("defaultShowTestView: " + ZegoAIAgentSettings.defaultShowTestView);
         Timber.d("autoDump: " + ZegoAIAgentSettings.autoDump);
-        Timber.d("MergeLLM: " + ZegoAIAgentSettings.MergeLLM);
 
         ZegoEngineProfile profile = new ZegoEngineProfile();
         profile.appID = ZegoAIAgentConfigController.getInstance().appID;
@@ -105,7 +103,7 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
         /*********************************************************************************************************/
 
         advanceConfig.put("set_audio_volume_ducking_mode", String.valueOf(ZegoAIAgentSettings.AUDIO_DUCK));
-        advanceConfig.put("enable_echo_energy_adaptive", String.valueOf(ZegoAIAgentSettings.ECHO_ADAPTIVE));
+        advanceConfig.put("enable_rnd_volume_adaptive", String.valueOf(ZegoAIAgentSettings.VOLUME_ADAPTIVE));
 
         if (customAudioCapture) {
             advanceConfig.put("ext_capture_and_inner_render", "true");

@@ -189,7 +189,7 @@ public class ZegoAgentTestView extends ConstraintLayout {
         }
     }
 
-    public void loadAndPlayAcc(String name){
+    public void loadAndPlayAcc(String name) {
         dialogManager.loadAndPlayAcc(name);
     }
 

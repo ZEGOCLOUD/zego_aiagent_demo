@@ -91,72 +91,48 @@ public class ZegoVoiceCallMessageAdapter extends BaseAdapter {
         }
 
         String string = builder.toString();
-        Log.d("TAG", "addOrUpdateLLMChatMessage: " + ZegoAIAgentSettings.MergeLLM);
-        if (ZegoAIAgentSettings.MergeLLM) {
-            if (!TextUtils.isEmpty(string)) {
-                // 查找同一 round 内 seq_id 最大的消息
-                Optional<RTCRoomMessage> maxSeqIdInRound = rtcMessageList.stream()
-                    .filter(roomMessage -> roomMessage.round == newMessage.round && roomMessage.cmd == 4)
-                    .max(Comparator.comparingInt(msg -> msg.seq_id));
 
-                if (maxSeqIdInRound.isPresent() && maxSeqIdInRound.get().seq_id > newMessage.seq_id) {
-                    // 如果同一 round 内已有 seq_id 更大的消息，忽略当前消息
-                    Timber.d("同一 round 已存在更大 seq_id 的消息，忽略当前 message_id: " + newMessage.data.message_id
-                        + ", seq_id: " + newMessage.seq_id);
-                    return;
-                }
+        if (!TextUtils.isEmpty(string)) {
+            // 查找同一 round 内 seq_id 最大的消息
+            Optional<RTCRoomMessage> maxSeqIdInRound = rtcMessageList.stream()
+                .filter(roomMessage -> roomMessage.round == newMessage.round && roomMessage.cmd == 4)
+                .max(Comparator.comparingInt(msg -> msg.seq_id));
 
-                // 移除同一 round 内所有 seq_id 较小的消息
-                rtcMessageList.removeIf(
-                    roomMessage -> roomMessage.round == newMessage.round && roomMessage.seq_id < newMessage.seq_id
-                        && roomMessage.cmd == 4);
-
-                // 检查是否已有相同的 message_id
-                Optional<RTCRoomMessage> findSameMessageID = rtcMessageList.stream()
-                    .filter(roomMessage -> roomMessage.data.message_id.equals(newMessage.data.message_id)).findAny();
-
-                if (findSameMessageID.isPresent()) {
-                    findSameMessageID.get().data.text = string;
-                    Timber.d("更新文本 ： [" + string + "]");
-                } else {
-                    RTCRoomMessage generateMessage = new RTCRoomMessage();
-                    generateMessage.timestamp = newMessage.timestamp;
-                    generateMessage.seq_id = newMessage.seq_id;
-                    generateMessage.round = newMessage.round;
-                    generateMessage.cmd = newMessage.cmd;
-                    generateMessage.data = new Data();
-                    generateMessage.data.speak_status = newMessage.data.speak_status;
-                    generateMessage.data.text = string;
-                    generateMessage.data.message_id = newMessage.data.message_id;
-                    generateMessage.data.end_flag = newMessage.data.end_flag;
-                    rtcMessageList.add(generateMessage);
-                    Timber.d("插入文本 ： [" + string + "]");
-                }
-                Timber.d("同一 round 保留 seq_id 最大的 message_id: " + newMessage.data.message_id + ", seq_id: "
-                    + newMessage.seq_id);
+            if (maxSeqIdInRound.isPresent() && maxSeqIdInRound.get().seq_id > newMessage.seq_id) {
+                // 如果同一 round 内已有 seq_id 更大的消息，忽略当前消息
+                Timber.d("同一 round 已存在更大 seq_id 的消息，忽略当前 message_id: " + newMessage.data.message_id
+                    + ", seq_id: " + newMessage.seq_id);
+                return;
             }
-        } else {
-            if (!TextUtils.isEmpty(string)) {
-                Optional<RTCRoomMessage> any = rtcMessageList.stream()
-                    .filter(roomMessage -> roomMessage.data.message_id.equals(newMessage.data.message_id)).findAny();
-                if (any.isPresent()) {
-                    any.get().data.text = string;
-                    Timber.d("更新文本 ： [" + string + "]");
-                } else {
-                    RTCRoomMessage generateMessage = new RTCRoomMessage();
-                    generateMessage.timestamp = newMessage.timestamp;
-                    generateMessage.seq_id = newMessage.seq_id;
-                    generateMessage.round = newMessage.round;
-                    generateMessage.cmd = newMessage.cmd;
-                    generateMessage.data = new Data();
-                    generateMessage.data.speak_status = newMessage.data.speak_status;
-                    generateMessage.data.text = string;
-                    generateMessage.data.message_id = newMessage.data.message_id;
-                    generateMessage.data.end_flag = newMessage.data.end_flag;
-                    rtcMessageList.add(generateMessage);
-                    Timber.d("插入文本 ： [" + string + "]");
-                }
+
+            // 移除同一 round 内所有 seq_id 较小的消息
+            rtcMessageList.removeIf(
+                roomMessage -> roomMessage.round == newMessage.round && roomMessage.seq_id < newMessage.seq_id
+                    && roomMessage.cmd == 4);
+
+            // 检查是否已有相同的 message_id
+            Optional<RTCRoomMessage> findSameMessageID = rtcMessageList.stream()
+                .filter(roomMessage -> roomMessage.data.message_id.equals(newMessage.data.message_id)).findAny();
+
+            if (findSameMessageID.isPresent()) {
+                findSameMessageID.get().data.text = string;
+                Timber.d("更新文本 ： [" + string + "]");
+            } else {
+                RTCRoomMessage generateMessage = new RTCRoomMessage();
+                generateMessage.timestamp = newMessage.timestamp;
+                generateMessage.seq_id = newMessage.seq_id;
+                generateMessage.round = newMessage.round;
+                generateMessage.cmd = newMessage.cmd;
+                generateMessage.data = new Data();
+                generateMessage.data.speak_status = newMessage.data.speak_status;
+                generateMessage.data.text = string;
+                generateMessage.data.message_id = newMessage.data.message_id;
+                generateMessage.data.end_flag = newMessage.data.end_flag;
+                rtcMessageList.add(generateMessage);
+                Timber.d("插入文本 ： [" + string + "]");
             }
+            Timber.d("同一 round 保留 seq_id 最大的 message_id: " + newMessage.data.message_id + ", seq_id: "
+                + newMessage.seq_id);
         }
 
         // 来了新消息，按照 <messageID,当前时间> 存入 map

@@ -908,37 +908,6 @@ typedef zego_error(EXP_CALL *pfnzego_express_set_dummy_capture_image_path)(
     const char *file_path, enum zego_publish_channel channel);
 #endif
 
-/// Set the params of the static picture would be published when the camera is closed.
-///
-/// Available: since 3.19.0
-/// Description: Set the params of the static picture would be published when enableCamera(false) is called, it would start to publish static pictures, and when enableCamera(true) is called, it would end publishing static pictures.
-/// Use case: The developer wants to display a static picture when the camera is closed. For example, when the anchor exits the background, the camera would be actively closed. At this time, the audience side needs to display the image of the anchor temporarily leaving.
-/// When to call: After the engine is initialized, call this API to configure the parameters before closing the camera.
-/// Restrictions:
-///   1. Supported picture types are JPEG/JPG, PNG, BMP, HEIF.
-///   2. The function is only for SDK video capture and does not take effect for custom video capture.
-///   3. Not supported that the filePath is a network link.
-/// Caution:
-///   1. The static picture cannot be seen in the local preview.
-///   2. External filters, mirroring, watermarks, and snapshots are all invalid.
-///   3. If the picture aspect ratio is inconsistent with the set code aspect ratio, it will be cropped according to the code aspect ratio.
-/// Platform differences:
-///   1. Windows: Fill in the location of the picture directly, such as "D://dir//image.jpg".
-///   2. iOS: If it is a full path, add the prefix "file:", such as @"file:/var/image.png"; If it is a assets picture path, add the prefix "asset:", such as @"asset:watermark".
-///   3. Android: If it is a full path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets directory path, add the prefix "asset:", such as "asset:watermark.png".
-///   4. Flutter: If it is a absolute path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets resources directory path, add the prefix "flutter-asset://", such as "flutter-asset://assets/watermark.png".
-///   5. UniApp: Only absolute paths are supported. You need to add a "file:" prefix, such as: "file:/sdcard/image.png".
-///
-/// @param params Dummy capture image params.
-/// @param channel Publish channel.
-#ifndef ZEGOEXP_EXPLICIT
-ZEGOEXP_API zego_error EXP_CALL zego_express_set_dummy_capture_image_params(
-    struct zego_dummy_capture_image_params params, enum zego_publish_channel channel);
-#else
-typedef zego_error(EXP_CALL *pfnzego_express_set_dummy_capture_image_params)(
-    struct zego_dummy_capture_image_params params, enum zego_publish_channel channel);
-#endif
-
 /// Whether to enable H.265 encoding to automatically downgrade to H.264 encoding.
 ///
 /// Available since: 2.12.0
@@ -1150,37 +1119,6 @@ zego_express_set_camera_stabilization_mode(int mode, enum zego_publish_channel c
 #else
 typedef zego_error(EXP_CALL *pfnzego_express_set_camera_stabilization_mode)(
     int mode, enum zego_publish_channel channel);
-#endif
-
-/// Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM.
-///
-/// Available since: 3.18.0
-/// Description: Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM to balance the volume of the human voice and the BGM. Default is off.
-/// When to call: Called after the engine is created [createEngine].
-/// Restrictions: This interface will take effect only when the [EnableAux] interface of the media player is called to enable aux.
-///
-/// @param enable Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM.
-#ifndef ZEGOEXP_EXPLICIT
-ZEGOEXP_API zego_error EXP_CALL zego_express_enable_aux_bgm_balance(bool enable);
-#else
-typedef zego_error(EXP_CALL *pfnzego_express_enable_aux_bgm_balance)(bool enable);
-#endif
-
-/// Turn on or off the face detection.
-///
-/// Available since: 3.20.0
-/// Description: Turn on or off the face detection. Default is on.
-/// When to call: Called after the engine is created [createEngine].
-/// Related callbacks: Detect results will be called back through [onPublisherFaceDetectInfo].
-///
-/// @param enable Turn on or off the face detection.
-/// @param channel Publish stream channel.
-#ifndef ZEGOEXP_EXPLICIT
-ZEGOEXP_API zego_error EXP_CALL
-zego_express_enable_face_detection(bool enable, enum zego_publish_channel channel);
-#else
-typedef zego_error(EXP_CALL *pfnzego_express_enable_face_detection)(
-    bool enable, enum zego_publish_channel channel);
 #endif
 
 /// The callback triggered when the state of stream publishing changes.
@@ -1492,28 +1430,6 @@ ZEGOEXP_API void EXP_CALL zego_register_publisher_dummy_capture_image_path_error
 #else
 typedef void(EXP_CALL *pfnzego_register_publisher_dummy_capture_image_path_error_callback)(
     zego_on_publisher_dummy_capture_image_path_error callback_func, void *user_context);
-#endif
-
-/// Face detection information update notification.
-///
-/// Available since: 3.20.0
-/// Description: The notification for face detection.
-/// When to trigger: Turn on face detection through the [enableFaceDetection] interface, and this callback will be triggered when the camera is started or the number of faces changes.
-/// Caution: The callback is low-frequency and cannot be used with the custom video pre-processing function.
-///
-/// @param info Face detection information.
-/// @param channel Publishing stream channel.If you only publish one audio and video stream, you can ignore this parameter.
-/// @param user_context Context of user.
-typedef void (*zego_on_publisher_face_detect_info)(struct zego_face_detection_info info,
-                                                   enum zego_publish_channel channel,
-                                                   void *user_context);
-
-#ifndef ZEGOEXP_EXPLICIT
-ZEGOEXP_API void EXP_CALL zego_register_publisher_face_detect_info_callback(
-    zego_on_publisher_face_detect_info callback_func, void *user_context);
-#else
-typedef void(EXP_CALL *pfnzego_register_publisher_face_detect_info_callback)(
-    zego_on_publisher_face_detect_info callback_func, void *user_context);
 #endif
 
 /// Callback for setting stream extra information.

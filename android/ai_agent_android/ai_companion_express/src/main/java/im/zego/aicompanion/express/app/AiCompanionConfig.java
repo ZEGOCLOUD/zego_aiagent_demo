@@ -53,6 +53,16 @@ public class AiCompanionConfig {
 
     }
 
+    static class Trial {
+
+        //mEnv 5
+        public static long appID = ;
+        public static String appSign = ;
+        public static String serverSecret = ;
+
+    }
+
+
     public static long getAppID() {
         int env = Storage.env();
         if (env == 0) {
@@ -63,6 +73,8 @@ public class AiCompanionConfig {
             return Delta.appID;
         } else if (env == 4) {
             return Gamma.appID;
+        } else if (env == 5) {
+            return Trial.appID;
         } else {
             return Prod.appID;
         }
@@ -78,6 +90,8 @@ public class AiCompanionConfig {
             return Delta.serverSecret;
         } else if (env == 4) {
             return Gamma.serverSecret;
+        } else if (env == 5) {
+            return Trial.serverSecret;
         } else {
             return Prod.serverSecret;
         }
@@ -93,6 +107,8 @@ public class AiCompanionConfig {
             return Delta.appSign;
         } else if (env == 4) {
             return Gamma.appSign;
+        } else if (env == 5) {
+            return Trial.appSign;
         } else {
             return Prod.appSign;
         }

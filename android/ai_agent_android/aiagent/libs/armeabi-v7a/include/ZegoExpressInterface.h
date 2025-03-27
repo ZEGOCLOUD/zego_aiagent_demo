@@ -877,33 +877,6 @@ class IZegoExpressEngine {
     setDummyCaptureImagePath(const std::string &filePath,
                              ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
 
-    /// Set the params of the static picture would be published when the camera is closed.
-    ///
-    /// Available: since 3.19.0
-    /// Description: Set the params of the static picture would be published when enableCamera(false) is called, it would start to publish static pictures, and when enableCamera(true) is called, it would end publishing static pictures.
-    /// Use case: The developer wants to display a static picture when the camera is closed. For example, when the anchor exits the background, the camera would be actively closed. At this time, the audience side needs to display the image of the anchor temporarily leaving.
-    /// When to call: After the engine is initialized, call this API to configure the parameters before closing the camera.
-    /// Restrictions:
-    ///   1. Supported picture types are JPEG/JPG, PNG, BMP, HEIF.
-    ///   2. The function is only for SDK video capture and does not take effect for custom video capture.
-    ///   3. Not supported that the filePath is a network link.
-    /// Caution:
-    ///   1. The static picture cannot be seen in the local preview.
-    ///   2. External filters, mirroring, watermarks, and snapshots are all invalid.
-    ///   3. If the picture aspect ratio is inconsistent with the set code aspect ratio, it will be cropped according to the code aspect ratio.
-    /// Platform differences:
-    ///   1. Windows: Fill in the location of the picture directly, such as "D://dir//image.jpg".
-    ///   2. iOS: If it is a full path, add the prefix "file:", such as @"file:/var/image.png"; If it is a assets picture path, add the prefix "asset:", such as @"asset:watermark".
-    ///   3. Android: If it is a full path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets directory path, add the prefix "asset:", such as "asset:watermark.png".
-    ///   4. Flutter: If it is a absolute path, add the prefix "file:", such as "file:/sdcard/image.png"; If it is a assets resources directory path, add the prefix "flutter-asset://", such as "flutter-asset://assets/watermark.png".
-    ///   5. UniApp: Only absolute paths are supported. You need to add a "file:" prefix, such as: "file:/sdcard/image.png".
-    ///
-    /// @param params Dummy capture image params.
-    /// @param channel Publish channel.
-    virtual void
-    setDummyCaptureImageParams(ZegoDummyCaptureImageParams params,
-                               ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
-
     /// Whether to enable H.265 encoding to automatically downgrade to H.264 encoding.
     ///
     /// Available since: 2.12.0
@@ -971,20 +944,6 @@ class IZegoExpressEngine {
     /// @param channel Publish stream channel.
     virtual void setLowlightEnhancement(ZegoLowlightEnhancementMode mode,
                                         ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
-
-    /// Set low light enhancement params.
-    ///
-    /// Available since: 3.19.0
-    /// Description: According to the set low-light enhancement mode, the brightness of the image captured by the camera is enhanced, which is compatible with the beauty function. Users can watch the effect while previewing and toggle the low-light enhancement mode in real time.
-    /// Use cases: The environment on the streaming end is dark, or the frame rate set by the camera is high, which causes the picture to be dark, and the subject cannot be displayed or recognized normally.
-    /// When to call: After creating the engine [createEngine].
-    /// Note: This function is only available in ZegoExpressVideo SDK!
-    ///
-    /// @param params Low light enhancement params.
-    /// @param channel Publish stream channel.
-    virtual void
-    setLowlightEnhancementParams(ZegoExpLowlightEnhancementParams params,
-                                 ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
 
     /// Set video capture source.
     ///
@@ -1148,16 +1107,6 @@ class IZegoExpressEngine {
     virtual void
     enableAlphaChannelVideoEncoder(bool enable, ZegoAlphaLayoutType alphaLayout,
                                    ZegoPublishChannel channel = ZEGO_PUBLISH_CHANNEL_MAIN) = 0;
-
-    /// Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM.
-    ///
-    /// Available since: 3.18.0
-    /// Description: Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM to balance the volume of the human voice and the BGM. Default is off.
-    /// When to call: Called after the engine is created [createEngine].
-    /// Restrictions: This interface will take effect only when the [EnableAux] interface of the media player is called to enable aux.
-    ///
-    /// @param enable Turn on or off the adaptive mode to adjust the volume of the human voice according to the volume of the BGM.
-    virtual void enableAuxBgmBalance(bool enable) = 0;
 
     /// Starts playing a stream from ZEGO RTC server.
     ///
@@ -1447,7 +1396,7 @@ class IZegoExpressEngine {
     /// @param mute Whether it is possible to receive the video data of the specified remote user when streaming, "true" means prohibition, "false" means receiving, the default value is "false". The default value for automatically played streams within the SDK is false.
     virtual void mutePlayStreamVideo(const std::string &streamID, bool mute) = 0;
 
-    /// Can the pull stream receive all audio data. (When set to true, calling [mutePlayStreamAudio] will not take effect)
+    /// Can the pull stream receive all audio data.
     ///
     /// Available since: 2.4.0
     /// Description: In the process of real-time audio and video interaction, local users can use this function to control whether to receive audio data from all remote users when pulling streams (including the audio streams pushed by users who have newly joined the room after calling this function). By default, users can receive audio data pushed by all remote users after joining the room. When the developer does not receive the audio receipt, the hardware and network overhead can be reduced.
@@ -1471,7 +1420,7 @@ class IZegoExpressEngine {
     /// @param mute Whether it is possible to receive audio data from all remote users when streaming, "true" means prohibition, "false" means receiving, and the default value is "false".
     virtual void muteAllPlayAudioStreams(bool mute) = 0;
 
-    /// Can the pull stream receive all video data. (When set to true, calling [mutePlayStreamVideo] will not take effect)
+    /// Can the pull stream receive all video data.
     ///
     /// Available since: 2.4.0
     /// Description: In the process of real-time video and video interaction, local users can use this function to control whether to receive all remote users' video data when pulling the stream (including the video stream pushed by the new user who joins the room after calling this function). By default, users can receive video data pushed by all remote users after joining the room. When the developer does not receive the video data, the hardware and network overhead can be reduced.
@@ -2893,7 +2842,7 @@ class IZegoExpressEngine {
     /// Available since: 1.20.0
     /// Description: This function supports uplink/downlink network speed test when the network can be connected.
     /// Use cases: This function can be used to detect whether the network environment is suitable for pushing/pulling streams with specified bitrates.
-    /// When to call: It needs to be called after [loginRoom]. If you call [startPublishingStream]/[startPlayingStream] while speed testing, the speed test will automatically stop.
+    /// When to call: It needs to be called after [loginRoom]. If you call [startPublishingStream] while speed testing, the speed test will automatically stop.
     /// Restrictions: The default maximum allowable test time for a single network speed test is 30 seconds.
     /// Caution: Developers can register [onNetworkSpeedTestQualityUpdate] callback to get the speed test result, which will be triggered every 3 seconds. If an error occurs during the speed test process, [onNetworkSpeedTestError] callback will be triggered. If this function is repeatedly called multiple times, the last functioh call's configuration will be used.
     /// Related APIs: Call [stopNetworkSpeedTest] to stop network speed test.
@@ -4077,7 +4026,7 @@ class IZegoMediaPlayer {
     /// Related APIs: After it is turned on, user can use the [onMediaPlayerFrequencySpectrumUpdate] callback to monitor frequency spectrum updates.
     ///
     /// @param enable Whether to enable monitoring, true is enabled, false is disabled.
-    /// @param millisecond Monitoring time period of the frequency spectrum, in milliseconds, has a value range of [10, 3000]. Note that on v3.19.0 and older version, the value range is [100, 3000].
+    /// @param millisecond Monitoring time period of the frequency spectrum, in milliseconds, has a value range of [100, 3000].
     virtual void enableFrequencySpectrumMonitor(bool enable, unsigned int millisecond) = 0;
 
     /// Set the playback channel.
@@ -5705,18 +5654,6 @@ class IZegoScreenCaptureSource {
     ///
     /// @param visible Whether to show the cursor. true to show the cursor, false to not show the cursor, the default is false.
     virtual void enableCursorVisible(bool visible) = 0;
-
-    /// Set whether to highlight the capture area
-    ///
-    /// Available since: 3.20.0
-    /// Description: Set whether to highlight the capture area.
-    /// When to call: It can be called after the engine by [createScreenCaptureSource] has been initialized.
-    /// Restrictions: Only available on Windows/macOS.
-    ///
-    /// @param enable Whether to highlight the capture area. true to highlight, false to not highlight, the default is false.
-    /// @param config Highlight capture area border configuration.
-    virtual void enableHightLight(bool enable,
-                                  ZegoLayerBorderConfig config = ZegoLayerBorderConfig()) = 0;
 
     /// Whether to collect the sound of the window process during window collection
     ///
