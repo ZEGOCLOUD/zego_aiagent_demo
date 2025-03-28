@@ -534,17 +534,13 @@ static ZegoAiCompanionHttpHelper *_sharedInstance;
          withRoomId:(NSString*)roomId
        withStreamId:(NSString*)streamId
   withAgentStreamId:(NSString*)agentStreamId
- withEnableMultiASR:(BOOL)enableMultiASR
-withMultiASRInterval:(NSInteger)multiASRInterval
        withCallback:(AICompanionCommonCallBack)complete{
     NSURL *url = [self buildCommonUrl:BASE_URL withAction:ACTION_StartRtcChat];
     NSDictionary *params = @{@"ConversationId":conversationId,
                              @"UserId":userId,
                              @"RoomId":roomId,
                              @"StreamId":streamId,
-                             @"AgentStreamId":agentStreamId,
-                             @"EnableMultiASR":@(enableMultiASR),
-                             @"MultiASRInterval":@(multiASRInterval),
+                             @"AgentStreamId":agentStreamId
                              
     };
     
