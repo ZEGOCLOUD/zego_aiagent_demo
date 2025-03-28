@@ -310,8 +310,7 @@ static ZegoAiCompanionHttpHelper *_sharedInstance;
                           AgentId:(NSString*)agentId
                   AgentTemplateId:(NSString*)agentTemplateId
                      withCallback:(AICompanionCommonCallBack)complete{
-    
-    [[ZegoAiCompanionHttpHelper sharedInstance] createConversation:conversationId 
+    [[ZegoAiCompanionHttpHelper sharedInstance] createConversation:conversationId
                                                         withUserId:userId
                                                        withAgentId:agentId
                                                    withAgentTempId:agentTemplateId
@@ -373,6 +372,7 @@ static ZegoAiCompanionHttpHelper *_sharedInstance;
                                                                                                NSString *errMsg,
                                                                                                NSString* requestID,
                                                                                                NSDictionary *configDict) {
+        
         NSArray<CustomAgentConfig *> *customAgentList = [AppDataManager sharedInstance].appExtraConfig.customAgentList;
         NSMutableArray<CustomAgentConfig*>* needCreateDefaultAgentList = [[NSMutableArray alloc]initWithCapacity:customAgentList.count];
         
@@ -380,7 +380,6 @@ static ZegoAiCompanionHttpHelper *_sharedInstance;
             [needCreateDefaultAgentList addObject:customAgentList[i]];
         }
         
-
         if (errorCode != 0) {
             NSLog(@"describeConversationList fail, need create new Conversation");
         }else{
@@ -485,6 +484,36 @@ static ZegoAiCompanionHttpHelper *_sharedInstance;
     }];
 }
 
+-(void)deleteAllConversation:(NSString*)userId
+                withCallback:(AICompanionCommonCallBack)complete{
+    
+    [[ZegoAiCompanionHttpHelper sharedInstance] describeConversationList:userId withCallback:^(NSInteger errorCode,
+                                                                                               NSString *errMsg,
+                                                                                               NSString* requestID,
+                                                                                               NSDictionary *configDict) {
+        if (errorCode != 0) {
+            NSLog(@"describeConversationList fail, need create new Conversation");
+        }else{
+            NSNumber* totalCount = configDict[@"Total"];
+            int nTotalCount = [totalCount intValue];
+            if (nTotalCount ==0) {
+                //创建所有会话
+            }else{
+                NSArray* curConversionList = configDict[@"ConversationList"];
+                for (int i=0; i<curConversionList.count; i++) {
+                    
+                    NSDictionary* item = [curConversionList objectAtIndex:i];
+                    NSString* conversionId =item[@"ConversationId"];
+                    [self deleteConversation:conversionId withUserId:userId withCallback:^(NSInteger errorCode, NSString *errMsg, NSString *requestId) {
+                        NSLog(@"deleteConversation result, errorCode=%ld, errMsg=%@", static_cast<long>(errorCode), errMsg ?:@"");
+                    }];
+                }
+            }
+        }
+        complete(0, @"", @"");
+    }];
+}
+
 -(void)StopRtcChat:(NSString*)conversationId
         withUserId:(NSString*)userId
       withCallback:(AICompanionCommonCallBack)complete{
@@ -505,13 +534,19 @@ static ZegoAiCompanionHttpHelper *_sharedInstance;
          withRoomId:(NSString*)roomId
        withStreamId:(NSString*)streamId
   withAgentStreamId:(NSString*)agentStreamId
+ withEnableMultiASR:(BOOL)enableMultiASR
+withMultiASRInterval:(NSInteger)multiASRInterval
        withCallback:(AICompanionCommonCallBack)complete{
     NSURL *url = [self buildCommonUrl:BASE_URL withAction:ACTION_StartRtcChat];
     NSDictionary *params = @{@"ConversationId":conversationId,
                              @"UserId":userId,
                              @"RoomId":roomId,
                              @"StreamId":streamId,
-                             @"AgentStreamId":agentStreamId};
+                             @"AgentStreamId":agentStreamId,
+                             @"EnableMultiASR":@(enableMultiASR),
+                             @"MultiASRInterval":@(multiASRInterval),
+                             
+    };
     
     [self requestSvrInternal:url withParams:params withCallback:^(NSInteger errorCode, 
                                                                   NSString *errMsg,

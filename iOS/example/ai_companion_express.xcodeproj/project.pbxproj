@@ -79,7 +79,7 @@
 		8649AB8A2D1023C2003E1EB6 /* AiCompanionConfig.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB882D1023C2003E1EB6 /* AiCompanionConfig.mm */; };
 		8649AB8E2D102624003E1EB6 /* zlogger.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8649AB8D2D102624003E1EB6 /* zlogger.xcframework */; };
 		8649AB912D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8649AB8F2D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.m */; };
-		86A7C29B2D92A9B500EEC2BA /* ZegoSettingsViewControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A7C29A2D92A9B500EEC2BA /* ZegoSettingsViewControllerNew.m */; };
+		86A7C29E2D93A25900EEC2BA /* ZegoSettingsViewControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A7C29D2D93A25900EEC2BA /* ZegoSettingsViewControllerNew.m */; };
 		86DD16852D09ABEB0098B1C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16842D09ABEB0098B1C0 /* AppDelegate.m */; };
 		86DD16882D09ABEB0098B1C0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD16872D09ABEB0098B1C0 /* SceneDelegate.m */; };
 		86DD168B2D09ABEB0098B1C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DD168A2D09ABEB0098B1C0 /* ViewController.m */; };
@@ -209,8 +209,8 @@
 		8649AB8D2D102624003E1EB6 /* zlogger.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = zlogger.xcframework; path = Libs/Zlogger/libs/ios/zlogger.xcframework; sourceTree = "<group>"; };
 		8649AB8F2D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAICompanionCallVCWithExpress.m; sourceTree = "<group>"; };
 		8649AB902D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAICompanionCallVCWithExpress.h; sourceTree = "<group>"; };
-		86A7C2992D92A9B500EEC2BA /* ZegoSettingsViewControllerNew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZegoSettingsViewControllerNew.h; sourceTree = "<group>"; };
-		86A7C29A2D92A9B500EEC2BA /* ZegoSettingsViewControllerNew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZegoSettingsViewControllerNew.m; sourceTree = "<group>"; };
+		86A7C29C2D93A25900EEC2BA /* ZegoSettingsViewControllerNew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZegoSettingsViewControllerNew.h; path = ai_companion_uikit/ZegoSettingsViewControllerNew.h; sourceTree = SOURCE_ROOT; };
+		86A7C29D2D93A25900EEC2BA /* ZegoSettingsViewControllerNew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZegoSettingsViewControllerNew.m; path = ai_companion_uikit/ZegoSettingsViewControllerNew.m; sourceTree = SOURCE_ROOT; };
 		86DD16802D09ABEB0098B1C0 /* ai_companion_express.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ai_companion_express.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DD16832D09ABEB0098B1C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		86DD16842D09ABEB0098B1C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -466,8 +466,8 @@
 				86DD169F2D09AEF80098B1C0 /* ZegoAIAgentExpressHelper.m */,
 				8649AB902D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.h */,
 				8649AB8F2D102DB2003E1EB6 /* ZegoAICompanionCallVCWithExpress.m */,
-				86A7C2992D92A9B500EEC2BA /* ZegoSettingsViewControllerNew.h */,
-				86A7C29A2D92A9B500EEC2BA /* ZegoSettingsViewControllerNew.m */,
+				86A7C29C2D93A25900EEC2BA /* ZegoSettingsViewControllerNew.h */,
+				86A7C29D2D93A25900EEC2BA /* ZegoSettingsViewControllerNew.m */,
 			);
 			path = aiagent;
 			sourceTree = "<group>";
@@ -662,7 +662,7 @@
 				8649AB862D1023B0003E1EB6 /* AppDataManager.m in Sources */,
 				8649AAA32D102320003E1EB6 /* ZegoVoiceActivityChecker.m in Sources */,
 				86DD168B2D09ABEB0098B1C0 /* ViewController.m in Sources */,
-				86A7C29B2D92A9B500EEC2BA /* ZegoSettingsViewControllerNew.m in Sources */,
+				86A7C29E2D93A25900EEC2BA /* ZegoSettingsViewControllerNew.m in Sources */,
 				8649AB772D102396003E1EB6 /* WavFileWriter.cpp in Sources */,
 				8649AB802D1023A3003E1EB6 /* ZegoAiCompanionHttpHelper.mm in Sources */,
 				86DD16852D09ABEB0098B1C0 /* AppDelegate.m in Sources */,

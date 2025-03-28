@@ -83,6 +83,10 @@ typedef void (^AICompanionOtherCommonCallBack)(NSInteger errorCode, NSString* er
                          AgentTemplateId:(NSString*)agentTemplateId
                             withCallback:(AICompanionCommonCallBack)complete;
 
+//删除所有会话
+-(void)deleteAllConversation:(NSString*)userId
+                withCallback:(AICompanionCommonCallBack)complete;
+
 
 -(void)sendAgentTTSInput:(NSString*)conversationId
               withUserId:(NSString*)userId

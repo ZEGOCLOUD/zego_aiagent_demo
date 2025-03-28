@@ -65,15 +65,6 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(adjustTTSVolume:)
                                                      name:@"adjust_tts_volume" object:nil];
-        
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(audioVolumeDuck:)
-                                                     name:@"audio_volume_duck" object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(echoEneryAdaptive:)
-                                                     name:@"echo_enery_adaptive" object:nil];
     }
     return self;
 }
@@ -96,21 +87,6 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
     [ZegoExpressEngine.sharedEngine setPlayVolume:volume streamID:self.agentStreamID];
 }
 
-- (void)audioVolumeDuck: (NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    NSNumber* on = userInfo[@"on"];
-    
-    NSLog(@"audioVolumeDuck on=%d",on.intValue);
-}
-
-- (void)echoEneryAdaptive: (NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    NSNumber* on = userInfo[@"on"];
-
-    
-    NSLog(@"echoEneryAdaptive on=%d",on.intValue);
-}
-
 
 -(void)startRtcChatInternal{
     CharacterConfig* characterConfig = [AppDataManager sharedInstance].curCharacterConfig;
@@ -125,6 +101,7 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
           conversationId,
           roomID, streamID,
           agentStreamID);
+    
     [[ZegoAIAgentExpressHelper sharedInstance] startRtcChat:conversationId
                                                  withUserId:self.userID
                                                  withRoomId:roomID
@@ -223,15 +200,10 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
     //设置该场景可以避免申请相机权限，接入方应按自己的业务场景设置具体值
     
     ZegoEngineConfig* engineConfig = [[ZegoEngineConfig alloc] init];
-    
-    int set_audio_volume_ducking_mode = [AppDataManager sharedInstance].audioVolumeDucking ? 1:0;
-    NSString* enable_rnd_volume_adaptive = [AppDataManager sharedInstance].echoEnergyAdaptive ? @"true":@"false";
     engineConfig.advancedConfig = @{
         @"notify_remote_device_unknown_status": @"true",
         @"notify_remote_device_init_status":@"true",
         @"enforce_audio_loopback_in_sync": @"true", /**该配置用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
-        @"set_audio_volume_ducking_mode":@(set_audio_volume_ducking_mode),/**该配置是用来做音量闪避的**/
-        @"enable_rnd_volume_adaptive":enable_rnd_volume_adaptive,/**该配置是用来做播放音量自适用**/
     };
     
     [ZegoExpressEngine setEngineConfig:engineConfig];
@@ -285,8 +257,15 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
 -(void)joinRoom:(JoinRoomCallback)complete{
     /**下面用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
     ZegoEngineConfig *engineConfig = [[ZegoEngineConfig alloc] init];
+    
+    
+    int set_audio_volume_ducking_mode = [AppDataManager sharedInstance].audioVolumeDucking ? 1:0;
+    NSString* enable_rnd_volume_adaptive = [AppDataManager sharedInstance].enableRndVolumeAdaptive ? @"true":@"false";
+    
     engineConfig.advancedConfig = @{
-        @"enforce_audio_loopback_in_sync": @"true"
+        @"enforce_audio_loopback_in_sync": @"true",
+        @"set_audio_volume_ducking_mode":@(set_audio_volume_ducking_mode),/**该配置是用来做音量闪避的**/
+        @"enable_rnd_volume_adaptive":enable_rnd_volume_adaptive,         /**该配置是用来做播放音量自适用**/
     };
     [ZegoExpressEngine setEngineConfig:engineConfig];
     /*********************************************************************************************************/
@@ -610,8 +589,8 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
         NSString* message_id = dataMap[@"message_id"];
         BOOL end_flag =dataMap[@"end_flag"];
         
-        ZAALogI(@"onInRoomMessageReceived", @"recvasr userID=%@, userName=%@, cmd=%d, seqId=%llu, round=%llu, timeStamp=%llu, content=%@, message_id=%@, end_flag=%d", fromUser.userID,
-                fromUser.userName,cmd,seqId,round,timeStamp,content,message_id,end_flag);
+        ZAALogI(@"onInRoomMessageReceived", @"recvasr userID=%@, userName=%@, cmd=%d, round=%llu, seqId=%llu, message_id=%@, timeStamp=%llu, content=%@,  end_flag=%d",
+                fromUser.userID,fromUser.userName,cmd,round,seqId,message_id,timeStamp,content,end_flag);
         
         [self.chatMsgTable handleRecvAsrChatMsg: msgDict];
         
@@ -621,8 +600,8 @@ ZegoSettingsContainerViewDelegate, ZegoStaticsLogViewDelegate>
         NSString* message_id = dataMap[@"message_id"];
         BOOL end_flag =[dataMap[@"end_flag"] boolValue];
         
-        ZAALogI(@"onInRoomMessageReceived", @"recvllmtts userID=%@, userName=%@, cmd=%d, seqId=%llu, round=%llu, timeStamp=%llu, content=%@, message_id=%@, end_flag=%d",
-                fromUser.userID,fromUser.userName,cmd,seqId,round,timeStamp,content,message_id,end_flag);
+        ZAALogI(@"onInRoomMessageReceived", @"recvllmtts userID=%@, userName=%@, cmd=%d, round=%llu, seqId=%llu, message_id=%@, timeStamp=%llu, content=%@,  end_flag=%d",
+                fromUser.userID,fromUser.userName,cmd,round,seqId,message_id,timeStamp,content,end_flag);
         [self.chatMsgTable handleRecvLLMChatMsg:msgDict];
     }else if(cmd == 1){
         int speakStatus = [dataMap[@"speak_status"]intValue];

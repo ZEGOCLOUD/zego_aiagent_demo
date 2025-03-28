@@ -72,6 +72,11 @@ public class ZIMKit: NSObject {
         }
     }
     
+    @objc public static func deleteAllConversion() {
+        ZIMKitCore.shared.deleteAllConversion();
+    }
+    
+    
     static internal var currentIndex = 0
     static internal var timer: Timer?
     static internal var conversationList: [ZIMKitMessage]?

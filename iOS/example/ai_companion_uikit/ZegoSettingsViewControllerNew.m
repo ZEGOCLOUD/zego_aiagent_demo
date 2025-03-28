@@ -122,10 +122,10 @@
         @{@"title": @"回声消除(AEC)", @"property": @"aecSwitch"},
         @{@"title": @"自动增益控制(AGC)", @"property": @"agcSwitch"},
         @{@"title": @"自动降噪(ANS)", @"property": @"ansSwitch"},
-        @{@"title": @"发送欢迎语", @"property": @"welcomeSwitch"},
-        
         @{@"title": @"音量闪避", @"property": @"audioVolumeDuckSwitch"},
-        @{@"title": @"音量播放自适用", @"property": @"echoEneryAdaptiveSwitch"},
+        @{@"title": @"音量播放自适用", @"property": @"enableRndVolumeAdaptiveSwitch"},
+        @{@"title": @"发送欢迎语", @"property": @"welcomeSwitch"},
+        @{@"title": @"ASR长句合并", @"property": @"enableMultiASRSwitch"},
 //        @{@"title": @"本地vad和打断", @"property": @"localVadSwitch"},
 //        @{@"title": @"延迟优化", @"property": @"latencyModeSwitch"}
     ];
@@ -194,8 +194,10 @@
                 switchControl.on = [AppDataManager sharedInstance].welcomeEnable;
             }else if([switchInfo[@"property"] isEqualToString:@"audioVolumeDuckSwitch"]){
                 switchControl.on = [AppDataManager sharedInstance].audioVolumeDucking;
-            }else if([switchInfo[@"property"] isEqualToString:@"echoEneryAdaptiveSwitch"]){
-                switchControl.on = [AppDataManager sharedInstance].echoEnergyAdaptive;
+            }else if([switchInfo[@"property"] isEqualToString:@"enableMultiASRSwitch"]){
+                switchControl.on = [AppDataManager sharedInstance].enableMultiASR;
+            }else if([switchInfo[@"property"] isEqualToString:@"enableRndVolumeAdaptiveSwitch"]){
+                switchControl.on = [AppDataManager sharedInstance].enableRndVolumeAdaptive;
             }
             
             [self setValue:switchControl forKey:switchInfo[@"property"]];
@@ -321,6 +323,42 @@
             }];
             
             lastView = ansModeContainer;
+        }else if ([switchInfo[@"property"] isEqualToString:@"enableMultiASRSwitch"]) {
+            UIView *multiASRIntervalContainer = [[UIView alloc] init];
+            [self.contentView addSubview:multiASRIntervalContainer];
+            
+            self.multiASRIntervalLabel = [[UILabel alloc] init];
+            self.multiASRIntervalLabel.text = @"MultiASRInterval";
+            self.multiASRIntervalLabel.textColor = [UIColor blackColor];
+            
+            [multiASRIntervalContainer addSubview:self.multiASRIntervalLabel];
+            
+            self.multiASRIntervalVal = [[UITextField alloc] init];
+            self.multiASRIntervalVal.font =  [UIFont fontWithName:@"PingFang SC" size:16];
+            self.multiASRIntervalVal.textColor = [UIColor colorWithRed:42/255.0 green:42/255.0 blue:42/255.0 alpha:1];
+            self.multiASRIntervalVal.returnKeyType = UIReturnKeyDone;
+            self.multiASRIntervalVal.textAlignment = NSTextAlignmentRight;
+            [self.multiASRIntervalVal addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+            self.multiASRIntervalVal.text = [NSString stringWithFormat:@"%ld",[AppDataManager sharedInstance].multiASRInterval];
+            [multiASRIntervalContainer addSubview:self.multiASRIntervalVal];
+            
+            [multiASRIntervalContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self.contentView);
+                make.height.equalTo(@48);
+                make.top.equalTo(lastView.mas_bottom);
+            }];
+            
+            [self.multiASRIntervalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(multiASRIntervalContainer).offset(20);
+                make.centerY.equalTo(multiASRIntervalContainer);
+            }];
+            
+            [self.multiASRIntervalVal mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(multiASRIntervalContainer).offset(-20);
+                make.centerY.equalTo(multiASRIntervalContainer);
+            }];
+            
+            lastView = multiASRIntervalContainer;
         }
     }
     
@@ -339,12 +377,19 @@
     [self.clearLogButton addTarget:self action:@selector(clearLogButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.clearLogButton];
     
-    self.saveRestartButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.saveRestartButton setTitle:@"保存重启" forState:UIControlStateNormal];
-    [self.saveRestartButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.saveRestartButton.backgroundColor = [UIColor systemBlueColor];
-    [self.saveRestartButton addTarget:self action:@selector(saveRestartButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:self.saveRestartButton];
+//    self.saveRestartButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [self.saveRestartButton setTitle:@"保存重启" forState:UIControlStateNormal];
+//    [self.saveRestartButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    self.saveRestartButton.backgroundColor = [UIColor systemBlueColor];
+//    [self.saveRestartButton addTarget:self action:@selector(saveRestartButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+//    [self.contentView addSubview:self.saveRestartButton];
+    
+//    self.otherBizConfigButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [self.otherBizConfigButton setTitle:@"其它业务开关" forState:UIControlStateNormal];
+//    [self.otherBizConfigButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    self.otherBizConfigButton.backgroundColor = [UIColor systemBlueColor];
+//    [self.otherBizConfigButton addTarget:self action:@selector(otherBizConfigButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+//    [self.contentView addSubview:self.otherBizConfigButton];
     
     [self.shareLogButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lastView.mas_bottom).offset(20);
@@ -368,15 +413,15 @@
         [AppDataManager sharedInstance].aecEnable = self.aecSwitch.on;
     }else if(sender == self.agcSwitch){
         [AppDataManager sharedInstance].agcEnable = self.agcSwitch.on;
-    }else if(sender == self.agcSwitch){
-        [AppDataManager sharedInstance].agcEnable = self.agcSwitch.on;
     }else if(sender == self.welcomeSwitch){
         [AppDataManager sharedInstance].welcomeEnable = self.welcomeSwitch.on;
-    }
-    else if(sender == self.audioVolumeDuckSwitch){
+    }else if(sender == self.audioVolumeDuckSwitch){
         [AppDataManager sharedInstance].audioVolumeDucking = self.audioVolumeDuckSwitch.on;
-    }else if(sender == self.echoEneryAdaptiveSwitch){
-        [AppDataManager sharedInstance].echoEnergyAdaptive = self.echoEneryAdaptiveSwitch.on;
+    }else if(sender == self.enableMultiASRSwitch){
+        [AppDataManager sharedInstance].enableMultiASR = self.enableMultiASRSwitch.on;
+        [AppDataManager sharedInstance].multiASRInterval = [self.multiASRIntervalVal.text intValue];
+    }else if(sender == self.enableRndVolumeAdaptiveSwitch){
+        [AppDataManager sharedInstance].enableRndVolumeAdaptive = self.enableRndVolumeAdaptiveSwitch.on;
     }
 }
 
@@ -441,6 +486,24 @@
 
 - (void)saveRestartButtonClicked {
     
+}
+
+- (void)otherBizConfigButtonClicked {
+    
+}
+
+#pragma delegate UITextFieldDelegate
+- (void)textFieldDidChange:(UITextField *)textField{
+//    UITextRange *selectedRange = [textField markedTextRange];
+//    // 获取高亮部分,
+//    UITextPosition *pos = [textField positionFromPosition:selectedRange.start offset:0];
+//    if (selectedRange && pos) {//如果存在高亮部分, 就暂时不统计字数
+//        return;
+//    }
+//    NSInteger realLength = textField.text.length;
+//    if (realLength > 20) {
+//        textField.text = [textField.text substringToIndex:20];
+//    }
 }
 
 #pragma mark - UIDocumentInteractionControllerDelegate

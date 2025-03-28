@@ -23,15 +23,27 @@
 @property (nonatomic, strong) UISwitch *latencyModeSwitch;
 
 @property(nonatomic, strong)UISwitch* audioVolumeDuckSwitch;
-@property(nonatomic, strong)UISwitch* echoEneryAdaptiveSwitch;
+@property(nonatomic, strong)UISwitch* enableRndVolumeAdaptiveSwitch;
+
+@property(nonatomic, strong)UISwitch* enableMultiASRSwitch;
+
 
 @property (nonatomic, strong) UIButton *shareLogButton;
 @property (nonatomic, strong) UIButton *clearLogButton;
 @property (nonatomic, strong) UIButton *saveRestartButton;
+@property (nonatomic, strong) UIButton *otherBizConfigButton;
 
 @property (nonatomic, strong) UILabel *aecModeLabel;
 @property (nonatomic, strong) UIButton *envSwitchButton;
 @property (nonatomic, strong) UILabel *ansModeLabel;
 @property (nonatomic, strong) UIButton *aecModeButton;
 @property (nonatomic, strong) UIButton *ansModeButton;
+
+@property (nonatomic, strong) UILabel *multiASRIntervalLabel;
+@property (nonatomic, strong) UITextField *multiASRIntervalVal;
 @end
+//
+//@interface ZegoOtherBizSettingsViewController : UIViewController
+//@property (nonatomic, strong) UISwitch *welcomeSwitch;
+//@property(nonatomic, strong)UISwitch* asrLongSentenceMergeSwitch;
+//@end

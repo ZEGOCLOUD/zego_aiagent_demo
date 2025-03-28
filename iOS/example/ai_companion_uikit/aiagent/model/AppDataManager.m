@@ -22,6 +22,10 @@
 
 #define KWELCOME_ENABLE @"WELCOME_ENABLE"
 
+#define KASRLONGSENTENCEMERGE_ENABLE @"ASRLONGSENTENCEMERGE_ENABLE"
+
+#define KmultiASRInterval @"multiASRInterval"
+
 static AppDataManager *_sharedInstance;
 
 @implementation AppDataManager
@@ -82,9 +86,20 @@ static AppDataManager *_sharedInstance;
         
         self.bgmVolume = 60;
         self.ttsVolume = 100;
-        self.echoEnergyAdaptive = YES;
+        self.enableRndVolumeAdaptive = YES;
         self.audioVolumeDucking = YES;
-        self.welcomeEnable = NO;
+        
+        
+        NSNumber* welcomeEnable_serialize = [[NSUserDefaults standardUserDefaults] objectForKey:KWELCOME_ENABLE];
+        if (welcomeEnable_serialize) {
+            self.welcomeEnable = [welcomeEnable_serialize boolValue];
+        }else{
+            self.welcomeEnable = NO;
+        }
+        
+        
+        self.enableMultiASR = NO;
+        self.multiASRInterval = 1500;
         
         NSLog(@"AppDataManager init, userID: %@", _userID);
     }
@@ -122,10 +137,19 @@ static AppDataManager *_sharedInstance;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+
 -(void)setAnsEnable:(BOOL)ansEnable{
     _ansEnable = ansEnable;
     [[NSUserDefaults standardUserDefaults] setBool:ansEnable forKey:KANS_ENABLE];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)setEnableMultiASR:(BOOL)enableMultiASR{
+    _enableMultiASR = enableMultiASR;
+}
+
+-(void)setMultiASRInterval:(long)multiASRInterval{
+    _multiASRInterval = multiASRInterval;
 }
 
 - (ConversionConfigInfo *)getConversationConfigById:(NSString*)conversationId{
@@ -511,6 +535,9 @@ static AppDataManager *_sharedInstance;
     NSDictionary* tts_dict =[NSDictionary dictionaryWithObjectsAndKeys:self.tts.Voice,@"Voice",
                              self.tts.Type, @"Type",nil];
     
+    NSDictionary* asr_dict =[NSDictionary dictionaryWithObjectsAndKeys:self.asr.HotWordId,@"HotWordId",
+                             self.asr.HotWord, @"HotWord", @"MultiASRInterval", nil];
+    
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:self.AgentTemplateId ?:@"",@"AgentTemplateId",
                           self.Name,@"Name",
                           self.Avatar ?:@"",@"Avatar",
@@ -518,6 +545,7 @@ static AppDataManager *_sharedInstance;
                           self.System ?:@"", @"System",
                           llm_dict, @"LLM",
                           tts_dict, @"TTS",
+                          asr_dict, @"ASR",
                           self.Source ?:@"", @"Source",
                           self.Sex ?:@"", @"Sex",
                           self.WelcomeMessage ?:@"", @"WelcomeMessage",
@@ -527,21 +555,7 @@ static AppDataManager *_sharedInstance;
 
 - (NSString *)toJson{
     // 使用NSJSONSerialization实现序列化
-    NSDictionary* llm_dict =[NSDictionary dictionaryWithObjectsAndKeys:
-                             self.llm.Type,@"Type",
-                             self.llm.Model,@"Model", nil];
-    NSDictionary* tts_dict =[NSDictionary dictionaryWithObjectsAndKeys:self.tts.Voice,@"Voice",
-                             self.tts.Type, @"Type", nil];
-    
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:self.AgentTemplateId,@"AgentTemplateId",
-                          self.Name,@"Name",
-                          self.Avatar,@"Avatar",
-                          self.Intro, @"Intro",
-                          self.System, @"System",
-                          llm_dict, @"LLM",
-                          tts_dict, @"TTS",
-                          nil];
-    
+    NSDictionary *dict = [self toDict];
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
     if (error) {
@@ -631,4 +645,7 @@ static AppDataManager *_sharedInstance;
 @end
 
 @implementation TTSConfigInfo
+@end
+
+@implementation ASRConfg
 @end

@@ -169,7 +169,7 @@
     sender.selected = !sender.selected;
     NSMutableDictionary* userInfo = [[NSMutableDictionary alloc]init];
     userInfo[@"on"] = [NSNumber numberWithBool:sender.selected];
-    [AppDataManager sharedInstance].echoEnergyAdaptive = sender.selected;
+    [AppDataManager sharedInstance].enableRndVolumeAdaptive = sender.selected;
    [[NSNotificationCenter defaultCenter] postNotificationName:@"echo_enery_adaptive"
                                                        object:self userInfo:userInfo];
 }
@@ -369,40 +369,40 @@
     
 
 
-    self.audioVolumeDuckBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.audioVolumeDuckBtn setTitle:@"音量闪避" forState:UIControlStateNormal];
-    [self.audioVolumeDuckBtn setTitle:@"音量闪避" forState:UIControlStateSelected];
-    self.audioVolumeDuckBtn.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    self.audioVolumeDuckBtn.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:12];
-    [self.audioVolumeDuckBtn setImage:uncheckedImag forState:UIControlStateNormal];
-    [self.audioVolumeDuckBtn setImage:checkedImag forState:UIControlStateSelected];
-    self.audioVolumeDuckBtn.selected = [AppDataManager sharedInstance].audioVolumeDucking; //默认是关闭的
-    [self addSubview:self.audioVolumeDuckBtn];
-    [self.audioVolumeDuckBtn addTarget:self action:@selector(switchAudioVolumeDuckClick:)
-                  forControlEvents:UIControlEventTouchUpInside];
-    [self.audioVolumeDuckBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(2);
-        make.height.mas_equalTo(22);
-        make.top.equalTo(self.TTSVolumeValue.mas_bottom).offset(5);
-    }];
-    
-    
-    self.echoEneryAdaptive = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.echoEneryAdaptive setTitle:@"音量闪避" forState:UIControlStateNormal];
-    [self.echoEneryAdaptive setTitle:@"音量闪避" forState:UIControlStateSelected];
-    self.echoEneryAdaptive.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    self.echoEneryAdaptive.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:12];
-    [self.echoEneryAdaptive setImage:uncheckedImag forState:UIControlStateNormal];
-    [self.echoEneryAdaptive setImage:checkedImag forState:UIControlStateSelected];
-    self.echoEneryAdaptive.selected = [AppDataManager sharedInstance].echoEnergyAdaptive; //默认是关闭的
-    [self addSubview:self.echoEneryAdaptive];
-    [self.echoEneryAdaptive addTarget:self action:@selector(switchEchoEneryAdaptiveClick:)
-                  forControlEvents:UIControlEventTouchUpInside];
-    [self.echoEneryAdaptive mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.audioVolumeDuckBtn.mas_right).offset(5);
-        make.height.mas_equalTo(22);
-        make.top.equalTo(self.TTSVolumeValue.mas_bottom).offset(5);
-    }];
+//    self.audioVolumeDuckBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.audioVolumeDuckBtn setTitle:@"音量闪避" forState:UIControlStateNormal];
+//    [self.audioVolumeDuckBtn setTitle:@"音量闪避" forState:UIControlStateSelected];
+//    self.audioVolumeDuckBtn.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+//    self.audioVolumeDuckBtn.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:12];
+//    [self.audioVolumeDuckBtn setImage:uncheckedImag forState:UIControlStateNormal];
+//    [self.audioVolumeDuckBtn setImage:checkedImag forState:UIControlStateSelected];
+//    self.audioVolumeDuckBtn.selected = [AppDataManager sharedInstance].audioVolumeDucking; //默认是关闭的
+//    [self addSubview:self.audioVolumeDuckBtn];
+//    [self.audioVolumeDuckBtn addTarget:self action:@selector(switchAudioVolumeDuckClick:)
+//                  forControlEvents:UIControlEventTouchUpInside];
+//    [self.audioVolumeDuckBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).offset(2);
+//        make.height.mas_equalTo(22);
+//        make.top.equalTo(self.TTSVolumeValue.mas_bottom).offset(5);
+//    }];
+//    
+//    
+//    self.echoEneryAdaptive = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.echoEneryAdaptive setTitle:@"音量闪避" forState:UIControlStateNormal];
+//    [self.echoEneryAdaptive setTitle:@"音量闪避" forState:UIControlStateSelected];
+//    self.echoEneryAdaptive.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+//    self.echoEneryAdaptive.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:12];
+//    [self.echoEneryAdaptive setImage:uncheckedImag forState:UIControlStateNormal];
+//    [self.echoEneryAdaptive setImage:checkedImag forState:UIControlStateSelected];
+//    self.echoEneryAdaptive.selected = [AppDataManager sharedInstance].enableRndVolumeAdaptive; //默认是关闭的
+//    [self addSubview:self.echoEneryAdaptive];
+//    [self.echoEneryAdaptive addTarget:self action:@selector(switchEchoEneryAdaptiveClick:)
+//                  forControlEvents:UIControlEventTouchUpInside];
+//    [self.echoEneryAdaptive mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.audioVolumeDuckBtn.mas_right).offset(5);
+//        make.height.mas_equalTo(22);
+//        make.top.equalTo(self.TTSVolumeValue.mas_bottom).offset(5);
+//    }];
 
 //    NSString* aceModeStr = [ZegoAiCompanionUtil aecTextFromEnumValue:[AppDataManager sharedInstance].aecMode];
 //    NSString* ansModeStr = [ZegoAiCompanionUtil ansTextFromEnumValue:[AppDataManager sharedInstance].ansMode];
@@ -434,7 +434,7 @@
         make.width.mas_equalTo(self).offset(-30);
         make.height.mas_equalTo(20);
         make.left.equalTo(self).offset(5);
-        make.top.equalTo(self.echoEneryAdaptive.mas_bottom).offset(5);
+        make.top.equalTo(self.TTSVolumeValue.mas_bottom).offset(5);
     }];
     
     

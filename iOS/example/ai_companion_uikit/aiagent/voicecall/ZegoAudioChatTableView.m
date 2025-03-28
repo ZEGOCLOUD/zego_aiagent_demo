@@ -15,9 +15,9 @@
 @property (nonatomic, assign) long msgTotalCount;
 @property (nonatomic, strong) NSMutableDictionary<NSNumber*,ZegoAudioChatMsgModel*>* chatMsgList;
 @property (nonatomic, strong) NSMutableDictionary<NSString*,ZegoAudioChatMsgModel*>* tempAsrMsgList;
-@property (nonatomic, strong) NSMutableDictionary<NSString*,NSMutableDictionary<NSNumber*, ZegoAudioChatMsgModel*>*>* tempLLMMsgList;
-@property (nonatomic, strong) NSMutableArray<NSString*>* tempDelayRemoveLLMsgList;
-
+//改成以round做key
+@property (nonatomic, strong) NSMutableDictionary<NSNumber*,NSMutableDictionary<NSNumber*, ZegoAudioChatMsgModel*>*>* tempLLMMsgList;
+@property (nonatomic, strong) NSMutableOrderedSet<NSNumber*>* roundEndFlag;
 @end
 
 @implementation ZegoAudioChatTableView
@@ -27,7 +27,7 @@
         self.msgTotalCount = 0;
         self.tempAsrMsgList = [[NSMutableDictionary alloc] initWithCapacity:5];
         self.tempLLMMsgList = [[NSMutableDictionary alloc] initWithCapacity:5];
-        self.tempDelayRemoveLLMsgList = [[NSMutableArray alloc] initWithCapacity:5];
+        self.roundEndFlag = [[NSMutableOrderedSet alloc] initWithCapacity:5];
 
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableFooterView = [[UIView alloc] init];
@@ -97,6 +97,7 @@
     NSString* content = dataMap[@"text"];
     NSString* message_id = dataMap[@"message_id"];
     BOOL end_flag =[dataMap[@"end_flag"] boolValue];
+    NSNumber* roundObj = [NSNumber numberWithLongLong:round];
     
     if (content && content.length > 0) {
         NSNumber* objSeq = [NSNumber numberWithLongLong:seqId];
@@ -108,13 +109,14 @@
         existAsrMsgModel.message_id = message_id;
         existAsrMsgModel.end_flag = end_flag;
         existAsrMsgModel.messageTimeStamp = timeStamp;
-        
-        NSMutableDictionary<NSNumber*,ZegoAudioChatMsgModel*>* existAsrMsgList = [self.tempLLMMsgList objectForKey:message_id];
+  
+        NSMutableDictionary<NSNumber*,ZegoAudioChatMsgModel*>* existAsrMsgList = [self.tempLLMMsgList objectForKey:roundObj];
         if (existAsrMsgList == nil) {
             //如果是该消息id的第一条内容
             existAsrMsgList = [[NSMutableDictionary alloc]initWithCapacity:5];
             [existAsrMsgList setObject:existAsrMsgModel forKey:objSeq];
-            [self.tempLLMMsgList setObject:existAsrMsgList forKey:message_id];
+
+            [self.tempLLMMsgList setObject:existAsrMsgList forKey:roundObj];
             
             ZegoAudioChatMsgModel* chatTableCellModel =  [[ZegoAudioChatMsgModel alloc]init];
             chatTableCellModel.seqId = seqId;
@@ -126,6 +128,29 @@
             chatTableCellModel.messageTimeStamp = timeStamp;
             [self insertCurMsgModel:cmd withMsgModel:chatTableCellModel];
         }else{
+            //如果不是第一条消息
+            id firstKey = [existAsrMsgList allKeys].firstObject;
+            ZegoAudioChatMsgModel* firstValue = [existAsrMsgList objectForKey:firstKey];
+            
+            if (![message_id isEqualToString:firstValue.message_id]) {
+                //1.同回合来了一条messageId不同的消息，则判断seqId，如果当前的seqId比保存的更大，
+                //则把原来保存的全部删除，用新的messageId及后续的同messageId消息
+                
+                // 遍历所有键，找到最大值
+                NSArray *keys = [existAsrMsgList allKeys];
+                NSNumber *maxKey = [keys firstObject];
+                for (NSNumber *key in keys) {
+                    if ([key compare:maxKey] == NSOrderedDescending) {
+                        maxKey = key;
+                    }
+                }
+                
+                if (seqId > [maxKey longLongValue]) {
+                    ZAALogI(@"handleRecvLLMChatMsg", @"recvllmtts remove all message_id=%@", message_id);
+                    [existAsrMsgList removeAllObjects];
+                }
+            }
+            
             [existAsrMsgList setObject:existAsrMsgModel forKey:objSeq];
             NSArray *keysArray = [existAsrMsgList allKeys];
             NSArray * sortedArray = [keysArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -150,7 +175,7 @@
                 totalContent = [totalContent stringByAppendingString:temp.content];
             }
             
-            ZegoAudioChatMsgModel* curUserChatMsgModel = [self queryMsgModelWithMessageId:message_id];
+            ZegoAudioChatMsgModel* curUserChatMsgModel = [self queryLLMMsgModelWithRoundId:round];
             curUserChatMsgModel.seqId = seqId;
             curUserChatMsgModel.isMine = NO;
             curUserChatMsgModel.end_flag = end_flag;
@@ -159,31 +184,32 @@
             [self reloadTableViewInternal];
         }
     }
-    if (end_flag) {
-        if (self.tempDelayRemoveLLMsgList.count > 2) {
-            for (NSString* item in  self.tempDelayRemoveLLMsgList) {
-                //代码代码主要用来打日志
-                NSMutableDictionary<NSNumber*,ZegoAudioChatMsgModel*>* tempLLMMsgList = [self.tempLLMMsgList objectForKey:item];
-                NSArray *keysArray = [tempLLMMsgList allKeys];
-                NSArray * sortedArray = [keysArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                    NSNumber* obj1N = (NSNumber*)obj1;
-                    NSNumber* obj2N = (NSNumber*)obj2;
-                    return [obj1N longLongValue] > [obj2N longLongValue];
-                }];
-                
-                NSString* roundSeqId=@"";
-                for (int i=0; i<sortedArray.count; i++) {
-                    roundSeqId = [roundSeqId stringByAppendingFormat:@"%lld,", [[sortedArray objectAtIndex:i] longLongValue]];
-                }
-                
-                ZAALogI(@"onInRoomMessageReceived", @"recvllmtts remove round=%lld, totalSeqStr=%@, message_id=%@", round, roundSeqId, item);
-                [self.tempLLMMsgList removeObjectForKey:item];
-            }
-            [self.tempDelayRemoveLLMsgList removeAllObjects];
+
+    //end_flag标志不可靠不能依赖，同回合里可能有多个end_flag=true,且可能不是最后一条消息到达,这里采用延迟删除
+    if (self.roundEndFlag.count <3) {
+        [self.roundEndFlag addObject:roundObj];
+    }else{
+        NSNumber* key = self.roundEndFlag.firstObject;
+        
+        //下面代码主要用来打日志
+        NSMutableDictionary<NSNumber*,ZegoAudioChatMsgModel*>* tempLLMMsgList = [self.tempLLMMsgList objectForKey:key];
+        NSArray *keysArray = [tempLLMMsgList allKeys];
+        NSArray * sortedArray = [keysArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSNumber* obj1N = (NSNumber*)obj1;
+            NSNumber* obj2N = (NSNumber*)obj2;
+            return [obj1N longLongValue] > [obj2N longLongValue];
+        }];
+        
+        NSString* roundSeqId=@"";
+        for (int i=0; i<sortedArray.count; i++) {
+            roundSeqId = [roundSeqId stringByAppendingFormat:@"%lld,", [[sortedArray objectAtIndex:i] longLongValue]];
         }
-        [self.tempDelayRemoveLLMsgList addObject:message_id];
+        
+        ZAALogI(@"handleRecvLLMChatMsg", @"recvllmtts remove round=%lld, totalSeqStr=%@", [key longLongValue], roundSeqId);
+        [self.tempLLMMsgList removeObjectForKey:key];
+        [self.roundEndFlag removeObject:key];
     }
-    
+
 }
 
 -(void)insertCurMsgModel:(int)cmd
@@ -207,6 +233,18 @@
         NSNumber* itemKey = keysArray[i];
         ZegoAudioChatMsgModel* itemValue = [self.chatMsgList objectForKey:itemKey];
         if ([itemValue.message_id isEqualToString:msgId]) {
+            return itemValue;
+        }
+    }
+    return nil;
+}
+
+-(ZegoAudioChatMsgModel*)queryLLMMsgModelWithRoundId:(long long)roundId{
+    NSArray* keysArray = [self.chatMsgList allKeys];
+    for (int i=0; i<keysArray.count; i++) {
+        NSNumber* itemKey = keysArray[i];
+        ZegoAudioChatMsgModel* itemValue = [self.chatMsgList objectForKey:itemKey];
+        if (itemValue.round  == roundId && !itemValue.isMine) {
             return itemValue;
         }
     }

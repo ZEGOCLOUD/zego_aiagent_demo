@@ -111,6 +111,9 @@ typedef void (^AIAgentCommonCallBack)(NSInteger errorCode, NSString* errMsg, NSS
  * 语音对话过程中，自定义调用TTS，通常用于AI主动发言。
  * 对应pass接口：Action：SendAgentTTSInput, https://zegocloud.feishu.cn/wiki/FpwqwwQeyiIs3KkhlQhcDfFvn5i
  * @param conversationId 会话Id，创建会话步骤得到的
+ * @param userId 用户Id
+ * @param AgentId 机器人Id
+ * @param Text 发送TTS文本
  * @param complete 回调，返回结果
 **/
 -(void)sendAgentTTSInput:(NSString*)conversationId

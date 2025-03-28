@@ -21,6 +21,12 @@
 -(BOOL)isTTSEqualToOther:(RawProperties*)other;
 @end
 
+@interface ASRConfg : NSObject
+@property (nonatomic, strong) NSString* HotWordId;
+@property (nonatomic, strong) NSString* HotWord;
+@property (nonatomic, strong) NSString* ExtensionASRParams;
+@end
+
 @interface LLMConfig : NSObject
 @property (nonatomic, strong) NSString *Id;
 @property (nonatomic, strong) NSString *name;
@@ -60,6 +66,7 @@
 @property (nonatomic, strong) NSString* System;
 @property (nonatomic, strong) RawProperties* llm;
 @property (nonatomic, strong) RawProperties* tts;
+@property (nonatomic, strong) ASRConfg* asr;
 @property (nonatomic, strong) NSString* Source;
 @property (nonatomic, strong) NSString* Sex;
 @property (nonatomic, strong) NSString* WelcomeMessage;
@@ -143,7 +150,11 @@
 
 
 @property (nonatomic, assign) BOOL audioVolumeDucking;
-@property (nonatomic, assign) BOOL echoEnergyAdaptive;
+@property (nonatomic, assign) BOOL enableRndVolumeAdaptive;
+
+
+@property (nonatomic, assign) BOOL enableMultiASR;
+@property (nonatomic, assign) long multiASRInterval;
 
 + (instancetype)sharedInstance;
 

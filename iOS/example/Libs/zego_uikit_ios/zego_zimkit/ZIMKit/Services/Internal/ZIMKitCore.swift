@@ -64,6 +64,14 @@ class ZIMKitCore: NSObject {
 
     }
     
+    
+    func deleteAllConversion() {
+        let config = ZIMConversationDeleteConfig();
+        self.zim?.deleteAllConversations(with: config) { ZIMError in
+            print("deleteAllConversations result code=\(ZIMError.code), message=\(ZIMError.message)")
+        }
+    }
+    
     func registerZIMKitDelegate(_ delegate: ZIMKitDelegate) {
         delegates.add(delegate)
     }
