@@ -102,9 +102,6 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
         advanceConfig.put("enforce_audio_loopback_in_sync", "true");  // 应答延迟优化
         /*********************************************************************************************************/
 
-        advanceConfig.put("set_audio_volume_ducking_mode", String.valueOf(ZegoAIAgentSettings.AUDIO_DUCK));
-        advanceConfig.put("enable_rnd_volume_adaptive", String.valueOf(ZegoAIAgentSettings.VOLUME_ADAPTIVE));
-
         if (customAudioCapture) {
             advanceConfig.put("ext_capture_and_inner_render", "true");
         }
@@ -133,6 +130,13 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
 
     @Override
     public void loginRoom(String roomID, AIAgentCallBack callBack) {
+        ZegoEngineConfig config = new ZegoEngineConfig();
+        HashMap<String, String> advanceConfig = new HashMap<String, String>();
+        advanceConfig.put("set_audio_volume_ducking_mode", String.valueOf(ZegoAIAgentSettings.AUDIO_DUCK));
+        advanceConfig.put("enable_rnd_volume_adaptive", String.valueOf(ZegoAIAgentSettings.VOLUME_ADAPTIVE));
+        config.advancedConfig = advanceConfig;
+        ZegoExpressEngine.setEngineConfig(config);
+
         ZegoExpressEngine.getEngine().setRoomScenario(ZegoScenario.getZegoScenario(ZegoAIAgentSettings.SCENARIO));
 
         ZegoExpressEngine.getEngine()
@@ -245,7 +249,7 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
                         ZegoStream item = streamList.get(i);
                         if (item.streamID.equals(robotStreamId)) {
                             setPlayStreamVolume(ZegoAIAgentSettings.playStreamVolume);
-                            ZegoExpressEngine.getEngine().setPlayStreamBufferIntervalRange(robotStreamId,0,4000);
+                            ZegoExpressEngine.getEngine().setPlayStreamBufferIntervalRange(robotStreamId, 0, 4000);
                             ZegoExpressEngine.getEngine().startPlayingStream(robotStreamId);
                             if (ZegoAIAgentSettings.Latency_Mode) {
                                 /**下面用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
@@ -274,7 +278,8 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
                 super.onIMRecvCustomCommand(roomID, fromUser, command);
                 ZegoNetworkTimeInfo networkTimeInfo = ZegoExpressEngine.getEngine().getNetworkTimeInfo();
                 Timber.d("onIMRecvCustomCommand() called with: roomID = [" + roomID + "], fromUser.userID = ["
-                    + fromUser.userID + ", userName=" + fromUser.userName + "], command = [" + command + "],networkTimeInfo:" + new Date(networkTimeInfo.timestamp));
+                    + fromUser.userID + ", userName=" + fromUser.userName + "], command = [" + command
+                    + "],networkTimeInfo:" + new Date(networkTimeInfo.timestamp));
                 if (eventHandler != null) {
                     eventHandler.onIMRecvCustomCommand(roomID, fromUser, command);
                 }
