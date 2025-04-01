@@ -10,8 +10,6 @@
 		86235CA82D267F68006E5A06 /* ZegoCallVCNameUIComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235CA72D267F68006E5A06 /* ZegoCallVCNameUIComponent.m */; };
 		862548612D89702F00E9D2BD /* ZegoExpressEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8602D8B72D6434A30046FBA9 /* ZegoExpressEngine.xcframework */; };
 		862548622D89702F00E9D2BD /* ZegoExpressEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8602D8B72D6434A30046FBA9 /* ZegoExpressEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		862548692D89762100E9D2BD /* banzou1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 862548672D89762100E9D2BD /* banzou1.wav */; };
-		8625486A2D89762100E9D2BD /* fangjian1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 862548682D89762100E9D2BD /* fangjian1.wav */; };
 		8649AA782D102271003E1EB6 /* AIAgentLogUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA722D102271003E1EB6 /* AIAgentLogUtil.mm */; };
 		8649AA792D102271003E1EB6 /* LogUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA732D102271003E1EB6 /* LogUtil.cpp */; };
 		8649AA7A2D102271003E1EB6 /* ZLoggerWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8649AA752D102271003E1EB6 /* ZLoggerWrapper.cpp */; };
@@ -113,8 +111,6 @@
 		86235CA12D267EFF006E5A06 /* ZegoExpressEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ZegoExpressEngine.xcframework; path = Libs/Express/ZegoExpressEngine.xcframework; sourceTree = "<group>"; };
 		86235CA62D267F68006E5A06 /* ZegoCallVCNameUIComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoCallVCNameUIComponent.h; sourceTree = "<group>"; };
 		86235CA72D267F68006E5A06 /* ZegoCallVCNameUIComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoCallVCNameUIComponent.m; sourceTree = "<group>"; };
-		862548672D89762100E9D2BD /* banzou1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = banzou1.wav; sourceTree = "<group>"; };
-		862548682D89762100E9D2BD /* fangjian1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fangjian1.wav; sourceTree = "<group>"; };
 		8649AA712D102271003E1EB6 /* AIAgentLogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIAgentLogUtil.h; sourceTree = "<group>"; };
 		8649AA722D102271003E1EB6 /* AIAgentLogUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AIAgentLogUtil.mm; sourceTree = "<group>"; };
 		8649AA732D102271003E1EB6 /* LogUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogUtil.cpp; sourceTree = "<group>"; };
@@ -317,8 +313,6 @@
 		8649AB092D102372003E1EB6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				862548672D89762100E9D2BD /* banzou1.wav */,
-				862548682D89762100E9D2BD /* fangjian1.wav */,
 				8649AB622D10237D003E1EB6 /* icon */,
 				8649AAE12D102372003E1EB6 /* AppExtraConfig.json */,
 				8649AAE22D102372003E1EB6 /* gender-arrow.png */,
@@ -579,8 +573,6 @@
 				8649AB462D102372003E1EB6 /* icon_close.png in Resources */,
 				8649AB4D2D102372003E1EB6 /* icon_mic_jinyong@2x.png in Resources */,
 				8649AB592D102372003E1EB6 /* main_bg.png in Resources */,
-				862548692D89762100E9D2BD /* banzou1.wav in Resources */,
-				8625486A2D89762100E9D2BD /* fangjian1.wav in Resources */,
 				8649AB5C2D102372003E1EB6 /* nav-back.png in Resources */,
 				8649AB422D102372003E1EB6 /* icon_back.png in Resources */,
 				8649AB472D102372003E1EB6 /* icon_close@2x.png in Resources */,
