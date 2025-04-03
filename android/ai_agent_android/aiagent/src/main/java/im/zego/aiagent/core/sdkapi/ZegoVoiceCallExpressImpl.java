@@ -95,8 +95,6 @@ public class ZegoVoiceCallExpressImpl implements ZegoVoiceCallProxy {
 
         ZegoEngineConfig config = new ZegoEngineConfig();
         HashMap<String, String> advanceConfig = new HashMap<String, String>();
-        advanceConfig.put("notify_remote_device_unknown_status", "true");
-        advanceConfig.put("notify_remote_device_init_status", "true");
 
         /**下面的设置用来做应答延迟优化的，需要集成对应版本的ZegoExpressEngine sdk，请联系即构同学**/
         advanceConfig.put("enforce_audio_loopback_in_sync", "true");  // 应答延迟优化
